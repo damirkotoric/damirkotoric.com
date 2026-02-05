@@ -37,17 +37,39 @@ const baseProps = {
   ambientStrength: 0.25,
 };
 
-// SHARED LAYOUT - used by hero, about pixelated, and about real image
-// All three MUST use identical layout classes
+// Shared layout class for full-screen variants
 const heroLayoutClass = "h-screen w-full";
-const heroCanvasProps = {
+
+// Shared canvas props for hero/medium variants
+const largeCanvasProps = {
   cellSize: 10,
   distortionRadius: 100,
-  objectFit: "contain" as const,
-  objectPosition: "bottom" as const,
+  objectFit: "cover" as const,
   fillContainer: true,
-  minImageHeight: "80vh",
 };
+
+// Reusable pixelated canvas component for hero and medium variants
+function LargePixelatedCanvas({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn("relative overflow-visible", heroLayoutClass, className)}
+    >
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 overflow-visible"
+        style={{
+          height: "100vh",
+          aspectRatio: "1 / 1",
+        }}
+      >
+        <PixelatedCanvas
+          {...baseProps}
+          {...largeCanvasProps}
+          className="h-full w-full"
+        />
+      </div>
+    </div>
+  );
+}
 
 export function PixelatedAvatar({
   variant = "medium",
@@ -91,6 +113,7 @@ export function PixelatedAvatar({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [reveal, externalRevealProgress]);
 
+  // Mobile variant - small inline avatar
   if (variant === "mobile") {
     return (
       <PixelatedCanvas
@@ -106,13 +129,7 @@ export function PixelatedAvatar({
 
   // Hero variant - full screen pixelated avatar
   if (variant === "hero") {
-    return (
-      <PixelatedCanvas
-        {...baseProps}
-        {...heroCanvasProps}
-        className={cn(heroLayoutClass, className)}
-      />
-    );
+    return <LargePixelatedCanvas className={className} />;
   }
 
   // Medium variant with reveal
@@ -120,7 +137,7 @@ export function PixelatedAvatar({
     const showRealImage = revealProgress > 0.05;
 
     return (
-      <div ref={containerRef} className={cn("relative overflow-hidden", heroLayoutClass, className)}>
+      <div ref={containerRef} className={cn("relative overflow-visible", heroLayoutClass, className)}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/damir.avif"
@@ -130,29 +147,31 @@ export function PixelatedAvatar({
             showRealImage ? "opacity-100" : "opacity-0"
           )}
           style={{
-            height: "80vh",
+            height: "100vh",
             width: "auto",
           }}
         />
-        {/* Pixelated canvas */}
-        <PixelatedCanvas
-          {...baseProps}
-          {...heroCanvasProps}
+        {/* Pixelated canvas - uses same structure as LargePixelatedCanvas */}
+        <div
           className={cn(
-            "absolute inset-0 z-10 transition-opacity duration-500 ease-out",
+            "absolute bottom-0 left-1/2 -translate-x-1/2 z-10 overflow-visible transition-opacity duration-500 ease-out",
             showRealImage ? "opacity-0" : "opacity-100"
           )}
-        />
+          style={{
+            height: "100vh",
+            aspectRatio: "1 / 1",
+          }}
+        >
+          <PixelatedCanvas
+            {...baseProps}
+            {...largeCanvasProps}
+            className="h-full w-full"
+          />
+        </div>
       </div>
     );
   }
 
   // Medium variant without reveal - same as hero
-  return (
-    <PixelatedCanvas
-      {...baseProps}
-      {...heroCanvasProps}
-      className={cn(heroLayoutClass, className)}
-    />
-  );
+  return <LargePixelatedCanvas className={className} />;
 }

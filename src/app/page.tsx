@@ -103,7 +103,7 @@ export default function HomePage() {
               <p className="mb-8 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
                 Design Engineer
               </p>
-              <p className="mb-10 max-w-[520px] text-lg leading-relaxed sm:text-xl">
+              <p className="mb-10 max-w-[520px] leading-relaxed">
                 I partner with funded startups and product teams on complex
                 product design — typically 3+ month engagements or full-time
                 roles.
@@ -114,21 +114,8 @@ export default function HomePage() {
 
               {/* Social proof strip */}
               <div className="mt-16 border-y border-border py-6 text-[15px] text-muted-foreground">
-                Designing since &apos;09 · Clients across 4 continents ·
+                Designing since &apos;09 · 
                 Previously at Booking.com
-              </div>
-
-              {/* What I do */}
-              <div className="mt-10">
-                <p className="mb-6 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                  What I do
-                </p>
-                <p className="max-w-[520px] text-lg leading-relaxed sm:text-xl">
-                  I&apos;m a design engineer — I do UX, UI, and frontend
-                  implementation. I embed with product teams to ship high-quality
-                  software, from early concepts through to production code. I work
-                  in Figma, and I build in React, Next.js, and Tailwind.
-                </p>
               </div>
             </div>
           </ScrollSection>
@@ -190,11 +177,11 @@ export default function HomePage() {
 
           {/* Section 6: About */}
           <ScrollSection id="about">
-            <div className="lg:py-8">
+            <div className="lg:py-40">
               <p className="mb-6 text-xs font-medium uppercase tracking-widest text-muted-foreground">
                 Meet Damir
               </p>
-              <p className="max-w-[520px] text-lg leading-relaxed sm:text-xl">
+              <p className="max-w-[520px] leading-relaxed">
                 I&apos;ve been nomadic since 2018, working remotely with teams
                 across time zones. I care about craft, clear communication, and
                 shipping work that actually moves the needle. I prefer async
@@ -224,7 +211,7 @@ export default function HomePage() {
                   <h3 className="mb-2 text-xl font-semibold leading-tight sm:text-2xl">
                     {product.name}
                   </h3>
-                  <p className="text-base text-muted-foreground sm:text-lg">
+                  <p className="text-muted-foreground">
                     {product.description}
                   </p>
                 </a>

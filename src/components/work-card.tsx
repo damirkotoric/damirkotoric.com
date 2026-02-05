@@ -27,7 +27,7 @@ export function WorkCard({
         {title}
       </Heading>
       <p
-        className={`text-muted-foreground ${meta ? "mb-3 text-lg" : "text-base sm:text-lg"}`}
+        className={`text-muted-foreground ${meta ? "mb-3" : ""}`}
       >
         {description}
       </p>

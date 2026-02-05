@@ -9,7 +9,7 @@ interface TestimonialCardProps {
 export function TestimonialCard({ quote, name, role }: TestimonialCardProps) {
   return (
     <div>
-      <blockquote className="mb-5 text-lg leading-relaxed sm:text-xl">
+      <blockquote className="mb-5 leading-relaxed">
         {quote}
       </blockquote>
       <div className="flex items-center gap-3">
