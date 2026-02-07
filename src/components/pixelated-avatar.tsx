@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
 import { cn } from "@/lib/utils";
 
 type PixelatedAvatarProps = {
-  variant?: "mobile" | "hero" | "medium";
+  variant?: "mobile" | "large";
   className?: string;
-  /** When true, the pixelated image reveals into the real photo on scroll */
+  /** When true, reveals from pixelated to real photo when in view */
   reveal?: boolean;
-  /** External reveal progress (0 = pixelated, 1 = real photo) - used when inside fixed containers */
-  revealProgress?: number;
+  /** Size of the large variant container. Default is "full" (h-screen), "medium" is 60% */
+  size?: "full" | "medium";
 };
 
 // Known image dimensions - AVIF metadata can be unreliable
@@ -37,81 +37,59 @@ const baseProps = {
   ambientStrength: 0.25,
 };
 
-// Shared layout class for full-screen variants
-const heroLayoutClass = "h-screen w-full";
-
-// Shared canvas props for hero/medium variants
-const largeCanvasProps = {
-  cellSize: 10,
-  distortionRadius: 100,
-  objectFit: "cover" as const,
-  fillContainer: true,
-};
-
-// Reusable pixelated canvas component for hero and medium variants
-function LargePixelatedCanvas({ className }: { className?: string }) {
-  return (
-    <div
-      className={cn("relative overflow-visible", heroLayoutClass, className)}
-    >
-      <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 overflow-visible"
-        style={{
-          height: "100vh",
-          aspectRatio: "1 / 1",
-        }}
-      >
-        <PixelatedCanvas
-          {...baseProps}
-          {...largeCanvasProps}
-          className="h-full w-full"
-        />
-      </div>
-    </div>
-  );
-}
-
 export function PixelatedAvatar({
-  variant = "medium",
+  variant = "large",
   className,
   reveal = false,
-  revealProgress: externalRevealProgress,
+  size = "full",
 }: PixelatedAvatarProps) {
+  const heightClass = size === "medium" ? "h-[60vh]" : "h-screen";
   const containerRef = useRef<HTMLDivElement>(null);
-  const [internalRevealProgress, setInternalRevealProgress] = useState(0);
+  const [showRealImage, setShowRealImage] = useState(false);
+  const hasTriggeredRef = useRef(false);
 
-  // Use external progress if provided (for fixed containers), otherwise use internal tracking
-  const revealProgress = externalRevealProgress ?? internalRevealProgress;
-
-  // Track scroll progress for reveal effect (only if no external progress provided)
+  // Trigger reveal/conceal animation based on visibility
   useEffect(() => {
-    if (!reveal || externalRevealProgress !== undefined) return;
+    if (!reveal || variant === "mobile") return;
 
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
+    const element = containerRef.current;
+    if (!element) return;
 
-      // Progress goes from 0 to 1 as the element scrolls from bottom of viewport to top
-      // Start reveal when element is 60% up the viewport, complete at 30%
-      const startPoint = viewportHeight * 0.6;
-      const endPoint = viewportHeight * 0.3;
-      const elementCenter = rect.top + rect.height / 2;
+    let revealTimeout: NodeJS.Timeout | null = null;
 
-      if (elementCenter > startPoint) {
-        setInternalRevealProgress(0);
-      } else if (elementCenter < endPoint) {
-        setInternalRevealProgress(1);
-      } else {
-        const progress = (startPoint - elementCenter) / (startPoint - endPoint);
-        setInternalRevealProgress(Math.max(0, Math.min(1, progress)));
-      }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const ratio = entry.intersectionRatio;
+
+          if (ratio >= 0.8) {
+            // Element is mostly in view - wait 1 second, then reveal
+            if (!hasTriggeredRef.current) {
+              hasTriggeredRef.current = true;
+              revealTimeout = setTimeout(() => {
+                setShowRealImage(true);
+              }, 1000);
+            }
+          } else if (ratio < 0.95) {
+            // Any part leaving view - conceal back to pixelated immediately
+            if (revealTimeout) {
+              clearTimeout(revealTimeout);
+              revealTimeout = null;
+            }
+            hasTriggeredRef.current = false;
+            setShowRealImage(false);
+          }
+        });
+      },
+      { threshold: [0.8, 0.85, 0.9, 0.95, 1.0] } // Multiple thresholds for precise control
+    );
+
+    observer.observe(element);
+    return () => {
+      observer.disconnect();
+      if (revealTimeout) clearTimeout(revealTimeout);
     };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [reveal, externalRevealProgress]);
+  }, [reveal, variant]);
 
   // Mobile variant - small inline avatar
   if (variant === "mobile") {
@@ -127,51 +105,67 @@ export function PixelatedAvatar({
     );
   }
 
-  // Hero variant - full screen pixelated avatar
-  if (variant === "hero") {
-    return <LargePixelatedCanvas className={className} />;
-  }
-
-  // Medium variant with reveal
+  // Large variant with reveal effect
   if (reveal) {
-    const showRealImage = revealProgress > 0.05;
-
     return (
-      <div ref={containerRef} className={cn("relative overflow-visible", heroLayoutClass, className)}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/damir.avif"
-          alt="Damir Kotorić"
-          className={cn(
-            "absolute bottom-0 left-1/2 -translate-x-1/2 max-w-none transition-opacity duration-500 ease-out",
-            showRealImage ? "opacity-100" : "opacity-0"
-          )}
-          style={{
-            height: "100vh",
-            width: "auto",
-          }}
-        />
-        {/* Pixelated canvas - uses same structure as LargePixelatedCanvas */}
+      <div ref={containerRef} className={cn("relative w-full overflow-visible", heightClass, className)}>
         <div
-          className={cn(
-            "absolute bottom-0 left-1/2 -translate-x-1/2 z-10 overflow-visible transition-opacity duration-500 ease-out",
-            showRealImage ? "opacity-0" : "opacity-100"
-          )}
+          className="absolute left-1/2 -translate-x-1/2 bottom-0 pointer-events-auto"
           style={{
-            height: "100vh",
+            height: "110%",
             aspectRatio: "1 / 1",
           }}
         >
-          <PixelatedCanvas
-            {...baseProps}
-            {...largeCanvasProps}
-            className="h-full w-full"
-          />
+          {/* Real image */}
+          <div
+            className="absolute inset-0 transition-opacity duration-700"
+            style={{ opacity: showRealImage ? 1 : 0 }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/damir.avif"
+              alt="Damir Kotorić"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          {/* Pixelated canvas */}
+          <div
+            className="absolute inset-0 transition-opacity duration-700"
+            style={{ opacity: showRealImage ? 0 : 1 }}
+          >
+            <PixelatedCanvas
+              {...baseProps}
+              cellSize={10}
+              distortionRadius={100}
+              objectFit="cover"
+              fillContainer
+              className="h-full w-full"
+            />
+          </div>
         </div>
       </div>
     );
   }
 
-  // Medium variant without reveal - same as hero
-  return <LargePixelatedCanvas className={className} />;
+  // Large variant - dramatic full-height presentation (no reveal)
+  return (
+    <div className={cn("relative w-full overflow-visible", heightClass, className)}>
+      <div
+        className="absolute left-1/2 -translate-x-1/2 bottom-0 pointer-events-auto"
+        style={{
+          height: "110%",
+          aspectRatio: "1 / 1",
+        }}
+      >
+        <PixelatedCanvas
+          {...baseProps}
+          cellSize={10}
+          distortionRadius={100}
+          objectFit="cover"
+          fillContainer
+          className="h-full w-full"
+        />
+      </div>
+    </div>
+  );
 }

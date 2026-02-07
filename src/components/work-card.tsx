@@ -22,7 +22,7 @@ export function WorkCard({
     <Link href={href} className="group block">
       {showImage && <Card className="mb-4 aspect-[16/10] w-full" />}
       <Heading
-        className={`mb-2 font-semibold leading-tight ${Heading === "h2" ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"}`}
+        className={`mb-2 font-bold leading-tight ${Heading === "h2" ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"}`}
       >
         {title}
       </Heading>

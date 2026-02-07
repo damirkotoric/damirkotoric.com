@@ -628,7 +628,7 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
 
   if (fillContainer) {
     return (
-      <div ref={containerRef} className={className}>
+      <div ref={containerRef} className={`pointer-events-auto ${className ?? ""}`}>
         <canvas
           ref={canvasRef}
           className="h-full w-full"
