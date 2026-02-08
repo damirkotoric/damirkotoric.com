@@ -41,7 +41,7 @@ const selectedWork = [
 ];
 
 const outcomes = [
-  { number: "€35M", description: "Annual conversion boost at Booking.com" },
+  { number: "€35M", description: "Annual revenue increase at Booking.com" },
   { number: "70%", description: "Acquisition secured for BrokerEngine" },
   { number: "$2M", description: "Seed round raised for Nametag" },
 ];
@@ -199,6 +199,35 @@ export default function HomePage() {
         </ScrollLinkedMedia>
       </ScrollLinkedProvider>
 
+      {/* Logo Reel */}
+      <section className="relative py-12 overflow-hidden">
+        {/* Gradient overlays */}
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-background to-transparent" />
+
+        {/* Scrolling container */}
+        <div className="flex animate-marquee">
+          {[...Array(2)].map((_, setIndex) => (
+            <div key={setIndex} className="flex shrink-0 items-center gap-12 pr-12">
+              {/* Wide wordmarks: h-8 (32px) */}
+              <div role="img" aria-label="Booking.com" className="h-8 w-[189px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-booking.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
+              <div role="img" aria-label="Harvard" className="h-8 w-[129px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-harvard.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
+              <div role="img" aria-label="TNW" className="h-8 w-[132px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-tnw.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
+              {/* Compact icons: h-9 (36px) */}
+              <div role="img" aria-label="Queensland Government" className="h-12 w-[140px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-queensland-government.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
+              <div role="img" aria-label="Toptal" className="h-8 w-[104px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-toptal.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
+              <div role="img" aria-label="Nivea" className="h-8 w-[122px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-nivea.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
+              <div role="img" aria-label="Envato" className="h-8 w-[167px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-envato.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
+              <div role="img" aria-label="General Assembly" className="h-9 w-[108px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-general-assembly.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
+              {/* Symbols/seals: h-10 (40px) */}
+              <div role="img" aria-label="NSW Government" className="h-10 w-[38px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-nsw.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
+              <div role="img" aria-label="Zhejiang University" className="h-10 w-[40px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-zhejiang.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
+              <div role="img" aria-label="BeyondWords" className="h-8 w-[187px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-beyondwords.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Section 2: Selected work */}
       <ProjectSection title="Selected work" items={selectedWork} />
 
@@ -234,7 +263,7 @@ export default function HomePage() {
       </section>
 
       {/* Section 4: About */}
-      <ScrollLinkedProvider className="bg-muted p-6 lg:pt-24 lg:pb-0 2xl:px-80">
+      <ScrollLinkedProvider className="bg-muted px-6 py-24 lg:px-24 lg:pb-0 2xl:px-80">
         <ScrollLinkedContent>
           <ScrollSection id="about">
             <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -263,6 +292,21 @@ export default function HomePage() {
 
       {/* Section 5: My Products */}
       <ProjectSection title="My products" items={products} />
+
+      {/* Section 6: CTA */}
+      <section className="bg-muted px-6 py-24 lg:px-24 lg:py-32 2xl:px-80">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="mb-4 text-3xl font-bold sm:text-4xl">
+            Ready to work together?
+          </h2>
+          <p className="mb-8 text-muted-foreground">
+            Let&apos;s discuss your next project.
+          </p>
+          <Button asChild size="lg">
+            <Link href="#">Get in touch</Link>
+          </Button>
+        </div>
+      </section>
 
       <Footer />
     </>
