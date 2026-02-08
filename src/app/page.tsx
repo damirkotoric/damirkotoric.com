@@ -5,7 +5,6 @@ import { Footer } from "@/components/footer";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
-import { CometCard } from "@/components/ui/comet-card";
 import {
   ScrollLinkedProvider,
   ScrollLinkedContent,
@@ -127,7 +126,7 @@ function ProjectSection({
             <div key={item.id} className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-16">
               <div>
                 <Link href={item.href} className="group block lg:pr-24">
-                  <h3 className="mb-2 text-xl font-bold leading-tight sm:text-2xl">
+                  <h3 className="mb-2 text-xl font-bold leading-tight sm:text-2xl group-hover:underline">
                     {itemTitle}
                   </h3>
                   <p className="text-muted-foreground">
@@ -141,7 +140,7 @@ function ProjectSection({
                   alt={itemTitle}
                   width={800}
                   height={450}
-                  className="aspect-video w-full rounded-lg object-cover lg:col-span-2 shadow-layered"
+                  className="aspect-video w-full rounded-lg object-cover lg:col-span-2 shadow-layered border border-border"
                 />
               ) : (
                 <div className="aspect-video w-full rounded-lg bg-muted flex items-center justify-center text-muted-foreground">
@@ -235,7 +234,7 @@ export default function HomePage() {
       </section>
 
       {/* Section 4: About */}
-      <ScrollLinkedProvider className="px-6 lg:px-24 2xl:px-80">
+      <ScrollLinkedProvider className="bg-muted p-6 lg:pt-24 lg:pb-0 2xl:px-80">
         <ScrollLinkedContent>
           <ScrollSection id="about">
             <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -257,9 +256,7 @@ export default function HomePage() {
 
         <ScrollLinkedMedia className="overflow-visible">
           <ScrollMediaItem sectionId="about" className="overflow-visible">
-            <CometCard>
-              <PixelatedAvatar variant="large" reveal size="medium" />
-            </CometCard>
+            <PixelatedAvatar variant="large" reveal size="medium" />
           </ScrollMediaItem>
         </ScrollLinkedMedia>
       </ScrollLinkedProvider>

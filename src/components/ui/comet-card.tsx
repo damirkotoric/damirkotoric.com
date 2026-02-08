@@ -80,6 +80,26 @@ export const CometCard = ({
 
   return (
     <div className={cn("perspective-distant transform-3d", className)}>
+      {/* SVG filter for shadow banding fix */}
+      <svg className="absolute h-0 w-0" aria-hidden="true">
+        <defs>
+          <filter id="shadow-noise" colorInterpolationFilters="sRGB">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.9"
+              numOctaves="4"
+              result="noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale="1.5"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </defs>
+      </svg>
       <motion.div
         ref={ref}
         onMouseMove={handleMouseMove}
@@ -96,14 +116,13 @@ export const CometCard = ({
           z: 20,
           transition: { duration: 0.2 },
         }}
-        className="relative rounded-2xl shadow-layered"
+        className="relative rounded-2xl shadow-layered dark:[filter:url(#shadow-noise)]"
       >
         {children}
         <motion.div
-          className="pointer-events-none absolute inset-0 z-50 h-full w-full rounded-[16px] mix-blend-overlay"
+          className="pointer-events-none absolute inset-0 z-50 h-full w-full rounded-[16px] mix-blend-overlay opacity-60 dark:opacity-0"
           style={{
             background: glareBackground,
-            opacity: 0.6,
           }}
           transition={{ duration: 0.2 }}
         />
