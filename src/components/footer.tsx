@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { ThemeSwitcher } from "./theme-switcher";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border py-12 text-sm text-muted-foreground">
-      <div className="mx-auto max-w-3xl px-6">
+    <footer className="py-12 pt-40 text-sm text-muted-foreground px-6 lg:px-24 2xl:px-80">
+      <div>
         <div className="mb-4 flex gap-6">
           <Link href="/" className="hover:text-foreground">
             Home
@@ -19,11 +20,11 @@ export function Footer() {
           >
             LinkedIn
           </a>
-          <Link href="/blog" className="hover:text-foreground">
-            Blog
-          </Link>
         </div>
-        <div>&copy; {new Date().getFullYear()} Damir Kotorić</div>
+        <div className="flex items-center justify-between">
+          <div>&copy; {new Date().getFullYear()} Damir Kotorić</div>
+          <ThemeSwitcher />
+        </div>
       </div>
     </footer>
   );

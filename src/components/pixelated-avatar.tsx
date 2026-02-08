@@ -11,6 +11,8 @@ type PixelatedAvatarProps = {
   reveal?: boolean;
   /** Size of the large variant container. Default is "full" (h-screen), "medium" is 60% */
   size?: "full" | "medium";
+  /** How to trigger the reveal: "scroll" (in-view) or "hover" (mouse hover). Default is "scroll" */
+  revealOn?: "scroll" | "hover";
 };
 
 // Known image dimensions - AVIF metadata can be unreliable
@@ -42,20 +44,20 @@ export function PixelatedAvatar({
   className,
   reveal = false,
   size = "full",
+  revealOn = "scroll",
 }: PixelatedAvatarProps) {
   const heightClass = size === "medium" ? "h-[60vh]" : "h-screen";
   const containerRef = useRef<HTMLDivElement>(null);
   const [showRealImage, setShowRealImage] = useState(false);
   const hasTriggeredRef = useRef(false);
+  const revealTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Trigger reveal/conceal animation based on visibility
+  // Trigger reveal/conceal animation based on visibility (scroll mode)
   useEffect(() => {
-    if (!reveal || variant === "mobile") return;
+    if (!reveal || variant === "mobile" || revealOn !== "scroll") return;
 
     const element = containerRef.current;
     if (!element) return;
-
-    let revealTimeout: NodeJS.Timeout | null = null;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -66,15 +68,15 @@ export function PixelatedAvatar({
             // Element is mostly in view - wait 1 second, then reveal
             if (!hasTriggeredRef.current) {
               hasTriggeredRef.current = true;
-              revealTimeout = setTimeout(() => {
+              revealTimeoutRef.current = setTimeout(() => {
                 setShowRealImage(true);
-              }, 1000);
+              }, 200);
             }
           } else if (ratio < 0.95) {
             // Any part leaving view - conceal back to pixelated immediately
-            if (revealTimeout) {
-              clearTimeout(revealTimeout);
-              revealTimeout = null;
+            if (revealTimeoutRef.current) {
+              clearTimeout(revealTimeoutRef.current);
+              revealTimeoutRef.current = null;
             }
             hasTriggeredRef.current = false;
             setShowRealImage(false);
@@ -87,9 +89,24 @@ export function PixelatedAvatar({
     observer.observe(element);
     return () => {
       observer.disconnect();
-      if (revealTimeout) clearTimeout(revealTimeout);
+      if (revealTimeoutRef.current) clearTimeout(revealTimeoutRef.current);
     };
-  }, [reveal, variant]);
+  }, [reveal, variant, revealOn]);
+
+  // Hover handlers for hover mode
+  const handleMouseEnter = () => {
+    if (!reveal || revealOn !== "hover") return;
+    setShowRealImage(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (!reveal || revealOn !== "hover") return;
+    if (revealTimeoutRef.current) {
+      clearTimeout(revealTimeoutRef.current);
+      revealTimeoutRef.current = null;
+    }
+    setShowRealImage(false);
+  };
 
   // Mobile variant - small inline avatar
   if (variant === "mobile") {
@@ -108,7 +125,12 @@ export function PixelatedAvatar({
   // Large variant with reveal effect
   if (reveal) {
     return (
-      <div ref={containerRef} className={cn("relative w-full overflow-visible", heightClass, className)}>
+      <div
+        ref={containerRef}
+        className={cn("relative w-full overflow-visible", heightClass, className)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <div
           className="absolute left-1/2 -translate-x-1/2 bottom-0 pointer-events-auto"
           style={{

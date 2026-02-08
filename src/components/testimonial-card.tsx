@@ -13,18 +13,30 @@ interface TestimonialCardProps {
 
 export function TestimonialCard({ quote, name, role, image, linkedIn }: TestimonialCardProps) {
   return (
-    <div>
+    <div className="max-w-md">
       <blockquote className="mb-5 leading-relaxed">
         {quote}
       </blockquote>
       <div className="flex items-center gap-3">
-        <Avatar className="size-12">
-          {image ? (
-            <Image src={image} alt={name} fill className="object-cover" />
-          ) : (
-            <AvatarFallback />
-          )}
-        </Avatar>
+        {linkedIn ? (
+          <Link href={linkedIn} target="_blank" rel="noopener noreferrer">
+            <Avatar className="size-12 bg-background border border-background shadow-lg transition-transform duration-300 ease-out hover:rotate-[2deg]">
+              {image ? (
+                <Image src={image} alt={name} fill className="object-cover" />
+              ) : (
+                <AvatarFallback />
+              )}
+            </Avatar>
+          </Link>
+        ) : (
+          <Avatar className="size-12 bg-background border border-background shadow-lg transition-transform duration-300 ease-out hover:rotate-[2deg]">
+            {image ? (
+              <Image src={image} alt={name} fill className="object-cover" />
+            ) : (
+              <AvatarFallback />
+            )}
+          </Avatar>
+        )}
         <div>
           <div className="text-base font-medium">
             {linkedIn ? (

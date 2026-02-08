@@ -1,8 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
+import { TextHoverEffect } from "@/components/ui/text-hover-effect";
+import { CometCard } from "@/components/ui/comet-card";
 import {
   ScrollLinkedProvider,
   ScrollLinkedContent,
@@ -18,6 +21,7 @@ const selectedWork = [
     description:
       "Created a custom design system for an audio AI startup, enabling faster product iteration.",
     href: "/portfolio/beyondwords",
+    image: "/images/portfolio/beyond-words-1.avif",
   },
   {
     id: "brokerengine",
@@ -25,6 +29,7 @@ const selectedWork = [
     description:
       "Redesigned the product over 3 years, leading to a 70% acquisition by a major corporation.",
     href: "/portfolio/brokerengine",
+    image: "/images/portfolio/brokerengine-1.avif",
   },
   {
     id: "nametag",
@@ -32,6 +37,7 @@ const selectedWork = [
     description:
       "Designed the product from scratch, helping secure a $2M seed round and 60K users.",
     href: "/portfolio/nametag",
+    image: "/images/portfolio/nametag-1.avif",
   },
 ];
 
@@ -75,6 +81,7 @@ const products = [
     description:
       "AI-powered hotel review analysis for smarter booking decisions",
     href: "https://donotstay.app",
+    image: "/images/portfolio/donotstay-1.jpg",
   },
   {
     id: "rankdat",
@@ -82,12 +89,14 @@ const products = [
     description:
       "Global country rankings on everything from healthcare to corruption",
     href: "https://rankdat.io",
+    image: "/images/portfolio/rankdat-1.jpg",
   },
   {
     id: "stylespin",
     name: "StyleSpin",
     description: "AI fashion photoshoots for e-commerce sellers",
     href: "https://stylespin.io",
+    image: "/images/portfolio/stylespin-1.jpg",
   },
 ];
 
@@ -103,20 +112,21 @@ function ProjectSection({
     name?: string;
     description: string;
     href: string;
+    image?: string;
   }>;
 }) {
   return (
     <section className="px-6 py-24 lg:px-24 2xl:px-80">
-      <p className="mb-16 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+      <p className="mb-16 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
         {title}
       </p>
-      <div className="flex flex-col gap-24">
+      <div className="flex flex-col gap-40">
         {items.map((item) => {
           const itemTitle = item.title || item.name || '';
           return (
-            <div key={item.id} className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+            <div key={item.id} className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-16">
               <div>
-                <Link href={item.href} className="group block">
+                <Link href={item.href} className="group block lg:pr-24">
                   <h3 className="mb-2 text-xl font-bold leading-tight sm:text-2xl">
                     {itemTitle}
                   </h3>
@@ -125,9 +135,19 @@ function ProjectSection({
                   </p>
                 </Link>
               </div>
-              <div className="aspect-video w-full rounded-lg bg-muted flex items-center justify-center text-muted-foreground">
-                {itemTitle} preview
-              </div>
+              {item.image ? (
+                <Image
+                  src={item.image}
+                  alt={itemTitle}
+                  width={800}
+                  height={450}
+                  className="aspect-video w-full rounded-lg object-cover lg:col-span-2 shadow-layered"
+                />
+              ) : (
+                <div className="aspect-video w-full rounded-lg bg-muted flex items-center justify-center text-muted-foreground">
+                  {itemTitle} preview
+                </div>
+              )}
             </div>
           );
         })}
@@ -147,13 +167,21 @@ export default function HomePage() {
             mobileMedia={<PixelatedAvatar variant="mobile" />}
           >
             <div className="py-16 lg:py-24">
+              <div className="mb-4 flex gap-2">
+                <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs text-muted-foreground">
+                  Designing since &apos;09
+                </span>
+                <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs text-muted-foreground">
+                  Previously at Booking.com
+                </span>
+              </div>
               <h1 className="mb-3 text-5xl font-black leading-[1.05] sm:text-6xl lg:text-[72px]">
                 Damir Kotorić
               </h1>
-              <p className="mb-8 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
+              <p className="mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
                 Design Engineer
               </p>
-              <p className="mb-10 max-w-[520px] leading-relaxed">
+              <p className="mb-10 max-w-[580px] leading-relaxed">
                 I partner with funded startups and product teams on complex
                 product design — typically 3+ month engagements or full-time
                 roles.
@@ -161,12 +189,6 @@ export default function HomePage() {
               <Button asChild size="lg">
                 <Link href="#">Tell me about your project</Link>
               </Button>
-
-              {/* Social proof strip */}
-              <div className="mt-16 border-y border-border py-6 text-[15px] text-muted-foreground">
-                Designing since &apos;09 <span className="px-2">/</span>
-                Previously at Booking.com
-              </div>
             </div>
           </ScrollSection>
         </ScrollLinkedContent>
@@ -181,67 +203,42 @@ export default function HomePage() {
       {/* Section 2: Selected work */}
       <ProjectSection title="Selected work" items={selectedWork} />
 
-      {/* Section 3: Social proof */}
-      <ScrollLinkedProvider className="px-6 lg:px-24 2xl:px-80">
-        <ScrollLinkedContent>
-          <ScrollSection id="social-proof">
-            {/* Outcomes */}
-            <div className="mb-16">
-              <p className="mb-10 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                Outcomes
-              </p>
-              <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-10">
-                {outcomes.map((outcome) => (
-                  <div key={outcome.number}>
-                    <div className="mb-2 text-4xl font-black leading-none sm:text-5xl">
-                      {outcome.number}
-                    </div>
-                    <div className="text-base text-muted-foreground">
-                      {outcome.description}
-                    </div>
-                  </div>
-                ))}
+      {/* Section 3: Outcomes */}
+      <section className="px-6 py-24 lg:px-24 2xl:px-80">
+        <p className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          Outcomes
+        </p>
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-10">
+          {outcomes.map((outcome) => (
+            <div key={outcome.number}>
+              <div className="h-24 sm:h-32">
+                <TextHoverEffect text={outcome.number} />
+              </div>
+              <div className="text-base text-muted-foreground">
+                {outcome.description}
               </div>
             </div>
+          ))}
+        </div>
+      </section>
 
-            {/* Testimonials */}
-            <div className="border-t border-border pt-14">
-              <p className="mb-10 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                What people say
-              </p>
-              <div className="flex flex-col gap-12">
-                {testimonials.map((testimonial) => (
-                  <TestimonialCard key={testimonial.name} {...testimonial} />
-                ))}
-              </div>
-            </div>
-          </ScrollSection>
-        </ScrollLinkedContent>
-
-        <ScrollLinkedMedia>
-          <ScrollMediaItem sectionId="social-proof">
-            <div className="flex flex-col items-center gap-6">
-              <div className="grid grid-cols-3 gap-8">
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-12 w-24 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground"
-                  >
-                    Logo
-                  </div>
-                ))}
-              </div>
-              <p className="text-sm text-muted-foreground">Client logos</p>
-            </div>
-          </ScrollMediaItem>
-        </ScrollLinkedMedia>
-      </ScrollLinkedProvider>
+      {/* Section 4: Testimonials */}
+      <section className="px-6 py-24 lg:px-24 2xl:px-80">
+        <p className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          Testimonials
+        </p>
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
+          {testimonials.map((testimonial) => (
+            <TestimonialCard key={testimonial.name} {...testimonial} />
+          ))}
+        </div>
+      </section>
 
       {/* Section 4: About */}
       <ScrollLinkedProvider className="px-6 lg:px-24 2xl:px-80">
         <ScrollLinkedContent>
           <ScrollSection id="about">
-            <p className="mb-6 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+            <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               Meet Damir
             </p>
             <p className="mb-6 max-w-[520px] leading-relaxed">
@@ -260,7 +257,9 @@ export default function HomePage() {
 
         <ScrollLinkedMedia className="overflow-visible">
           <ScrollMediaItem sectionId="about" className="overflow-visible">
-            <PixelatedAvatar variant="large" reveal size="medium" />
+            <CometCard>
+              <PixelatedAvatar variant="large" reveal size="medium" />
+            </CometCard>
           </ScrollMediaItem>
         </ScrollLinkedMedia>
       </ScrollLinkedProvider>
