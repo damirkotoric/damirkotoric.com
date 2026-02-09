@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
+import { LogoReel } from "@/components/logo-reel";
 import {
   ScrollLinkedProvider,
   ScrollLinkedContent,
@@ -158,74 +159,48 @@ function ProjectSection({
 export default function HomePage() {
   return (
     <>
-      {/* Section 1: Hero */}
-      <ScrollLinkedProvider className="px-6 lg:px-24 2xl:px-80 border-b border-border">
-        <ScrollLinkedContent>
-          <ScrollSection
-            id="intro"
-            mobileMedia={<PixelatedAvatar variant="mobile" />}
-          >
-            <div className="py-16 lg:py-24">
-              <div className="mb-4 flex gap-2">
-                <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs text-muted-foreground">
-                  Designing since &apos;09
-                </span>
-                <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs text-muted-foreground">
-                  Previously at Booking.com
-                </span>
-              </div>
-              <h1 className="mb-3 text-5xl font-black leading-[1.05] sm:text-6xl lg:text-[72px]">
-                Damir Kotorić
-              </h1>
-              <p className="mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
-                Design Engineer
-              </p>
-              <p className="mb-10 max-w-[580px] leading-relaxed">
-                I partner with funded startups and product teams on complex
-                product design — typically 3+ month engagements or full-time
-                roles.
-              </p>
-              <Button asChild size="lg">
-                <Link href="#">Tell me about your project</Link>
-              </Button>
-            </div>
-          </ScrollSection>
-        </ScrollLinkedContent>
+      {/* Section 1: Hero + Logo Reel */}
+      <section className="min-h-screen grid grid-rows-[1fr_auto]">
+        <div className="h-full">
+          <ScrollLinkedProvider className="h-full px-6 lg:px-24 2xl:px-80">
+            <ScrollLinkedContent className="h-full justify-center">
+              <ScrollSection
+                id="intro"
+                mobileMedia={<PixelatedAvatar variant="mobile" />}
+              >
+                <div className="py-24">
+                  <div className="mb-4 flex gap-2">
+                    <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs text-muted-foreground">
+                      Previously at Booking.com
+                    </span>
+                  </div>
+                  <h1 className="mb-3 text-5xl font-black leading-[1.05] sm:text-6xl lg:text-[72px]">
+                    Damir Kotorić
+                  </h1>
+                  <p className="mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
+                    Design Engineer
+                  </p>
+                  <p className="mb-10 max-w-[580px] leading-relaxed">
+                    I partner with funded startups and product teams on complex
+                    product design — typically 3+ month engagements or full-time
+                    roles.
+                  </p>
+                  <Button asChild size="lg">
+                    <Link href="#">Tell me about your project</Link>
+                  </Button>
+                </div>
+              </ScrollSection>
+            </ScrollLinkedContent>
 
-        <ScrollLinkedMedia className="overflow-visible">
-          <ScrollMediaItem sectionId="intro" className="overflow-visible">
-            <PixelatedAvatar variant="large" />
-          </ScrollMediaItem>
-        </ScrollLinkedMedia>
-      </ScrollLinkedProvider>
-
-      {/* Logo Reel */}
-      <section className="relative py-12 overflow-hidden">
-        {/* Gradient overlays */}
-        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-background to-transparent" />
-
-        {/* Scrolling container */}
-        <div className="flex animate-marquee">
-          {[...Array(2)].map((_, setIndex) => (
-            <div key={setIndex} className="flex shrink-0 items-center gap-12 pr-12">
-              {/* Wide wordmarks: h-8 (32px) */}
-              <div role="img" aria-label="Booking.com" className="h-8 w-[189px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-booking.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
-              <div role="img" aria-label="Harvard" className="h-8 w-[129px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-harvard.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
-              <div role="img" aria-label="TNW" className="h-8 w-[132px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-tnw.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
-              {/* Compact icons: h-9 (36px) */}
-              <div role="img" aria-label="Queensland Government" className="h-12 w-[140px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-queensland-government.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
-              <div role="img" aria-label="Toptal" className="h-8 w-[104px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-toptal.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
-              <div role="img" aria-label="Nivea" className="h-8 w-[122px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-nivea.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
-              <div role="img" aria-label="Envato" className="h-8 w-[167px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-envato.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
-              <div role="img" aria-label="General Assembly" className="h-9 w-[108px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-general-assembly.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
-              {/* Symbols/seals: h-10 (40px) */}
-              <div role="img" aria-label="NSW Government" className="h-10 w-[38px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-nsw.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
-              <div role="img" aria-label="Zhejiang University" className="h-10 w-[40px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-zhejiang.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
-              <div role="img" aria-label="BeyondWords" className="h-8 w-[187px] shrink-0 bg-current opacity-60" style={{ maskImage: "url(/images/logos/logo-beyondwords.svg)", maskSize: "contain", maskRepeat: "no-repeat" }} />
-            </div>
-          ))}
+            <ScrollLinkedMedia className="h-full flex items-center">
+              <ScrollMediaItem sectionId="intro" className="h-full">
+                <PixelatedAvatar variant="large" size="fill" />
+              </ScrollMediaItem>
+            </ScrollLinkedMedia>
+          </ScrollLinkedProvider>
         </div>
+
+        <LogoReel />
       </section>
 
       {/* Section 2: Selected work */}
@@ -264,13 +239,13 @@ export default function HomePage() {
 
       {/* Section 4: About */}
       <ScrollLinkedProvider className="bg-muted px-6 py-24 lg:px-24 lg:pb-0 2xl:px-80">
-        <ScrollLinkedContent>
+        <ScrollLinkedContent className="justify-center lg:pb-24">
           <ScrollSection id="about">
             <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               Meet Damir
             </p>
             <p className="mb-6 max-w-[520px] leading-relaxed">
-              I&apos;ve been nomadic since 2018, working remotely with teams
+              I&apos;ve been designing since 2009, and nomadic since 2018, working remotely with teams
               across time zones. I care about craft, clear communication, and
               shipping work that actually moves the needle.
             </p>

@@ -9,8 +9,8 @@ type PixelatedAvatarProps = {
   className?: string;
   /** When true, reveals from pixelated to real photo when in view */
   reveal?: boolean;
-  /** Size of the large variant container. Default is "full" (h-screen), "medium" is 60% */
-  size?: "full" | "medium";
+  /** Size of the large variant container. Default is "viewport" (h-screen), "medium" is 60vh, "fill" is h-full */
+  size?: "viewport" | "medium" | "fill";
   /** How to trigger the reveal: "scroll" (in-view) or "hover" (mouse hover). Default is "scroll" */
   revealOn?: "scroll" | "hover";
 };
@@ -43,10 +43,13 @@ export function PixelatedAvatar({
   variant = "large",
   className,
   reveal = false,
-  size = "full",
+  size = "viewport",
   revealOn = "scroll",
 }: PixelatedAvatarProps) {
-  const heightClass = size === "medium" ? "h-[60vh]" : "h-screen";
+  const heightClass = size === "medium" ? "h-[60vh]" : size === "fill" ? "h-full" : "h-screen";
+  const innerHeight = size === "fill" ? "100%" : "110%";
+  const bottomClass = size === "fill" ? "bottom-0" : "bottom-0";
+  const overflowClass = "overflow-visible";
   const containerRef = useRef<HTMLDivElement>(null);
   const [showRealImage, setShowRealImage] = useState(false);
   const hasTriggeredRef = useRef(false);
@@ -171,11 +174,11 @@ export function PixelatedAvatar({
 
   // Large variant - dramatic full-height presentation (no reveal)
   return (
-    <div className={cn("relative w-full overflow-visible", heightClass, className)}>
+    <div className={cn("relative w-full", overflowClass, heightClass, className)}>
       <div
-        className="absolute left-1/2 -translate-x-1/2 bottom-0 pointer-events-auto"
+        className={cn("absolute left-1/2 -translate-x-1/2 pointer-events-auto", bottomClass)}
         style={{
-          height: "110%",
+          height: innerHeight,
           aspectRatio: "1 / 1",
         }}
       >
