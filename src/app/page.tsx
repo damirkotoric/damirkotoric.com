@@ -1,11 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
+import { PortfolioShowcase } from "@/components/portfolio-showcase";
 import {
   ScrollLinkedProvider,
   ScrollLinkedContent,
@@ -79,7 +79,7 @@ const products = [
     id: "donotstay",
     name: "DoNotStay",
     description:
-      "AI-powered hotel review analysis for smarter booking decisions",
+      "AI-powered hotel review analysis for smarter booking decisions.",
     href: "https://donotstay.app",
     image: "/images/portfolio/donotstay-1.jpg",
   },
@@ -87,78 +87,22 @@ const products = [
     id: "rankdat",
     name: "Rankdat",
     description:
-      "Global country rankings on everything from healthcare to corruption",
+      "Global country rankings on everything from healthcare to corruption.",
     href: "https://rankdat.io",
     image: "/images/portfolio/rankdat-1.jpg",
   },
   {
     id: "stylespin",
     name: "StyleSpin",
-    description: "AI fashion photoshoots for e-commerce sellers",
+    description: "AI fashion photoshoots for e-commerce sellers.",
     href: "https://stylespin.io",
     image: "/images/portfolio/stylespin-1.jpg",
   },
 ];
 
-// Reusable component for text-left, media-right layout
-function ProjectSection({
-  title,
-  items,
-}: {
-  title: string;
-  items: Array<{
-    id: string;
-    title?: string;
-    name?: string;
-    description: string;
-    href: string;
-    image?: string;
-  }>;
-}) {
-  return (
-    <section className="px-6 py-24 lg:px-24 2xl:px-80">
-      <p className="mb-16 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-        {title}
-      </p>
-      <div className="flex flex-col gap-40">
-        {items.map((item) => {
-          const itemTitle = item.title || item.name || '';
-          return (
-            <div key={item.id} className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-16">
-              <div>
-                <Link href={item.href} className="group block lg:pr-24">
-                  <h3 className="mb-2 text-xl font-bold leading-tight sm:text-2xl group-hover:underline">
-                    {itemTitle}
-                  </h3>
-                  <p className="text-muted-foreground">
-                    {item.description}
-                  </p>
-                </Link>
-              </div>
-              {item.image ? (
-                <Image
-                  src={item.image}
-                  alt={itemTitle}
-                  width={800}
-                  height={450}
-                  className="aspect-video w-full rounded-lg object-cover lg:col-span-2 shadow-layered border border-border"
-                />
-              ) : (
-                <div className="aspect-video w-full rounded-lg bg-muted flex items-center justify-center text-muted-foreground">
-                  {itemTitle} preview
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
 export default function HomePage() {
   return (
-    <>
+    <div className="overflow-x-clip">
       {/* Section 1: Hero + Logo Reel */}
       <section className="min-h-screen grid grid-rows-[1fr_auto]">
         <div className="h-full">
@@ -186,7 +130,7 @@ export default function HomePage() {
                     roles.
                   </p>
                   <Button asChild size="lg">
-                    <Link href="#">Tell me about your project</Link>
+                    <Link href="#">Start the conversation</Link>
                   </Button>
                 </div>
               </ScrollSection>
@@ -204,10 +148,10 @@ export default function HomePage() {
       </section>
 
       {/* Section 2: Selected work */}
-      <ProjectSection title="Selected work" items={selectedWork} />
+      <PortfolioShowcase title="Selected work" items={selectedWork} />
 
       {/* Section 3: Outcomes */}
-      <section className="px-6 py-24 lg:px-24 2xl:px-80">
+      <section className="px-6 py-48 pb-0 lg:px-24 2xl:px-80">
         <p className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           Outcomes
         </p>
@@ -226,7 +170,7 @@ export default function HomePage() {
       </section>
 
       {/* Section 4: Testimonials */}
-      <section className="px-6 py-24 lg:px-24 2xl:px-80">
+      <section className="px-6 py-48 lg:px-24 2xl:px-80">
         <p className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           Testimonials
         </p>
@@ -266,24 +210,21 @@ export default function HomePage() {
       </ScrollLinkedProvider>
 
       {/* Section 5: My Products */}
-      <ProjectSection title="My products" items={products} />
+      <PortfolioShowcase title="My products" items={products} />
 
       {/* Section 6: CTA */}
-      <section className="bg-muted px-6 py-24 lg:px-24 lg:py-32 2xl:px-80">
+      <section className="bg-muted px-6 py-48 lg:px-24 lg:py-48 2xl:px-80">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="mb-4 text-3xl font-bold sm:text-4xl">
+          <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
             Ready to work together?
           </h2>
-          <p className="mb-8 text-muted-foreground">
-            Let&apos;s discuss your next project.
-          </p>
           <Button asChild size="lg">
-            <Link href="#">Get in touch</Link>
+            <Link href="#">Start the conversation</Link>
           </Button>
         </div>
       </section>
 
       <Footer />
-    </>
+    </div>
   );
 }

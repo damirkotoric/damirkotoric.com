@@ -125,6 +125,10 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html,
+  body {
+    overflow-x: clip;
+  }
   html {
     font-size: 18px;
   }

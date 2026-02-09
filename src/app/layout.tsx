@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning className="overflow-x-clip">
+      <body className={`${inter.variable} antialiased overflow-x-clip`}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

@@ -90,7 +90,7 @@ export const TextHoverEffect = ({
         y="50%"
         textAnchor="start"
         dominantBaseline="middle"
-        strokeWidth="0.5"
+        strokeWidth="1.5"
         className="fill-transparent stroke-neutral-600 font-[helvetica] text-8xl font-bold dark:stroke-neutral-400"
         style={{ opacity: hovered ? 1 : 0 }}
       >
@@ -101,7 +101,7 @@ export const TextHoverEffect = ({
         y="50%"
         textAnchor="start"
         dominantBaseline="middle"
-        strokeWidth="0.5"
+        strokeWidth="1.5"
         fill="var(--background)"
         className="stroke-neutral-600 font-[helvetica] text-8xl font-bold dark:stroke-neutral-400"
         initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
