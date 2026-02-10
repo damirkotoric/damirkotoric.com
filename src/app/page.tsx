@@ -6,6 +6,8 @@ import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
 import { PortfolioShowcase } from "@/components/portfolio-showcase";
+import { BeyondWordsBg } from "@/components/beyondwords-bg";
+import { BrokerEngineBg } from "@/components/brokerengine-bg";
 import {
   ScrollLinkedProvider,
   ScrollLinkedContent,
@@ -21,7 +23,7 @@ const selectedWork = [
     description:
       "Created a custom design system for an audio AI startup, enabling faster product iteration.",
     href: "/portfolio/beyondwords",
-    image: "/images/portfolio/beyond-words-1.avif",
+    customBg: <BeyondWordsBg />,
   },
   {
     id: "brokerengine",
@@ -29,7 +31,7 @@ const selectedWork = [
     description:
       "Redesigned the product over 3 years, leading to a 70% acquisition by a major corporation.",
     href: "/portfolio/brokerengine",
-    image: "/images/portfolio/brokerengine-1.avif",
+    customBg: <BrokerEngineBg />,
   },
   {
     id: "nametag",
@@ -50,7 +52,7 @@ const outcomes = [
 const testimonials = [
   {
     quote:
-      "\u201CDamir is a legend. He completely transformed BrokerEngine. He is not a \u2018yes man\u2019 and will 100% push back on you when he doesn\u2019t like the direction.\u201D",
+      "\u201CDamir is a legend. He is not a \u2018yes man\u2019 and will 100% push back on you when he doesn\u2019t like the direction.\u201D",
     name: "Craig Vaughan",
     role: "Co-Founder, BrokerEngine",
     image: "/images/testimonials/craig.avif",
@@ -58,7 +60,7 @@ const testimonials = [
   },
   {
     quote:
-      "\u201CDamir is a brilliant designer. What impressed us most was his willingness to meet all of our tight deadlines and nothing was ever too hard. If you are looking for a top 1% product designer then I cannot recommend Damir enough.\u201D",
+      "\u201CDamir is a brilliant designer. If you are looking for a top 1% product designer then I cannot recommend Damir enough.\u201D",
     name: "Bradley Zarich",
     role: "Co-Founder, Nametag & Cosmitto",
     image: "/images/testimonials/brad.avif",
@@ -66,7 +68,7 @@ const testimonials = [
   },
   {
     quote:
-      "\u201CDamir is a great all-rounder. He is very good at developing new propositions and products, and is capable of running projects with little assistance due to his wide skill set.\u201D",
+      "\u201CDamir is a great all-rounder. He is capable of running projects with little assistance due to his wide skill set.\u201D",
     name: "Chris Thelwell",
     role: "Director of Product Design, DuckDuckGo",
     image: "/images/testimonials/chris-thelwell.avif",
@@ -106,8 +108,8 @@ export default function HomePage() {
       {/* Section 1: Hero + Logo Reel */}
       <section className="min-h-screen grid grid-rows-[1fr_auto]">
         <div className="h-full">
-          <ScrollLinkedProvider className="h-full px-6 lg:px-24 2xl:px-80">
-            <ScrollLinkedContent className="h-full justify-center">
+          <ScrollLinkedProvider className="h-full px-6 lg:px-16 2xl:px-80">
+            <ScrollLinkedContent className="h-full justify-center max-w-[580px]">
               <ScrollSection
                 id="intro"
                 mobileMedia={<PixelatedAvatar variant="mobile" />}
@@ -124,7 +126,7 @@ export default function HomePage() {
                   <p className="mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
                     Design Engineer
                   </p>
-                  <p className="mb-10 max-w-[580px] leading-relaxed">
+                  <p className="mb-10 leading-relaxed">
                     I partner with funded startups and product teams on complex
                     product design — typically 3+ month engagements or full-time
                     roles.
@@ -151,7 +153,7 @@ export default function HomePage() {
       <PortfolioShowcase title="Selected work" items={selectedWork} />
 
       {/* Section 3: Outcomes */}
-      <section className="px-6 py-48 pb-0 lg:px-24 2xl:px-80">
+      <section className="px-6 pt-24 lg:px-16 2xl:px-80">
         <p className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           Outcomes
         </p>
@@ -170,7 +172,7 @@ export default function HomePage() {
       </section>
 
       {/* Section 4: Testimonials */}
-      <section className="px-6 py-48 lg:px-24 2xl:px-80">
+      <section className="px-6 py-64 lg:px-16 2xl:px-80">
         <p className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           Testimonials
         </p>
@@ -182,19 +184,19 @@ export default function HomePage() {
       </section>
 
       {/* Section 4: About */}
-      <ScrollLinkedProvider className="bg-muted px-6 py-24 lg:px-24 lg:pb-0 2xl:px-80">
+      <ScrollLinkedProvider className="bg-muted px-6 py-24 lg:px-16 lg:pb-0 2xl:px-80">
         <ScrollLinkedContent className="justify-center lg:pb-24">
           <ScrollSection id="about">
             <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               Meet Damir
             </p>
             <p className="mb-6 max-w-[520px] leading-relaxed">
-              I&apos;ve been designing since 2009, and nomadic since 2018, working remotely with teams
+              I&apos;ve been <strong>designing since 2009</strong>, and <strong>nomadic since 2018</strong>, working remotely with teams
               across time zones. I care about craft, clear communication, and
               shipping work that actually moves the needle.
             </p>
             <p className="max-w-[520px] leading-relaxed">
-              I prefer async collaboration, direct feedback, and working with
+              I prefer <strong>async collaboration, direct feedback</strong>, and working with
               people who know what they want to build. If you&apos;re looking
               for someone to execute a vision — or challenge it when needed —
               we&apos;ll probably get along.
@@ -210,10 +212,10 @@ export default function HomePage() {
       </ScrollLinkedProvider>
 
       {/* Section 5: My Products */}
-      <PortfolioShowcase title="My products" items={products} />
+      <PortfolioShowcase title="My products" items={products} isPersonalProject />
 
       {/* Section 6: CTA */}
-      <section className="bg-muted px-6 py-48 lg:px-24 lg:py-48 2xl:px-80">
+      <section className="bg-muted px-6 py-48 lg:px-16 lg:py-48 2xl:px-80">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
             Ready to work together?

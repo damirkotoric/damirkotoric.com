@@ -13,7 +13,7 @@ export function ScrollLinkedProvider({
   className,
 }: ScrollLinkedProviderProps) {
   return (
-    <div className={cn("grid grid-cols-1 lg:grid-cols-2 lg:gap-32 overflow-visible", className)}>
+    <div className={cn("grid grid-cols-1 lg:grid-cols-[auto_1fr] lg:gap-32 overflow-visible", className)}>
       {children}
     </div>
   );

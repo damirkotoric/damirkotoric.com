@@ -3,8 +3,11 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 import { motion, useScroll, useTransform, useSpring, useInView, Variants } from "motion/react";
 import { cn } from "@/lib/utils";
+import { blurPlaceholders } from "@/lib/blur-placeholders";
 
 // Animation variants for text (still uses useInView for fade-up)
 const containerVariants: Variants = {
@@ -40,15 +43,17 @@ type PortfolioItem = {
   description: string;
   href: string;
   image?: string;
+  customBg?: React.ReactNode;
 };
 
 type PortfolioShowcaseProps = {
   title: string;
   items: PortfolioItem[];
   className?: string;
+  isPersonalProject?: boolean;
 };
 
-function PortfolioShowcaseItem({ item }: { item: PortfolioItem }) {
+function PortfolioShowcaseItem({ item, isPersonalProject }: { item: PortfolioItem; isPersonalProject?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, {
     once: true,
@@ -83,69 +88,86 @@ function PortfolioShowcaseItem({ item }: { item: PortfolioItem }) {
       animate={isInView ? "visible" : "hidden"}
       className="relative"
     >
-      {/* Desktop: Side-by-side with bleeding image */}
-      <div className="hidden lg:grid lg:grid-cols-[1fr_2fr] lg:items-start lg:gap-16">
-        {/* Text content - narrower column, stays within page margins */}
-        <motion.div
-          variants={textVariants}
-          className="pl-24 pr-8 2xl:pl-80"
-        >
-          <Link href={item.href} className="group block">
-            <h3 className="mb-3 text-3xl font-bold leading-tight group-hover:underline">
-              {itemTitle}
-            </h3>
-            <p className="text-lg text-muted-foreground">{item.description}</p>
-          </Link>
+      {/* Desktop: Side-by-side layout */}
+      <div className="hidden lg:grid lg:grid-cols-[33%_2fr] lg:items-start lg:gap-8 2xl:gap-16">
+        {/* Text content */}
+        <motion.div variants={textVariants}>
+          <h3 className="mb-3 text-3xl font-bold leading-tight">
+            {itemTitle}
+          </h3>
+          <p className="text-lg text-muted-foreground mb-4">{item.description}</p>
+          {isPersonalProject ? (
+            <Button variant="outline" trailingIcon={<ArrowUpRight />} asChild>
+              <Link href={item.href} target="_blank" rel="noopener noreferrer">Visit site</Link>
+            </Button>
+          ) : (
+            <Button variant="outline" asChild>
+              <Link href={item.href}>View project</Link>
+            </Button>
+          )}
         </motion.div>
 
-        {/* Bleeding image - extends to right edge, scroll-linked animation */}
+        {/* Image */}
         <motion.div
           style={{ x, opacity }}
-          className="relative will-change-transform"
+          className="relative will-change-transform w-full"
         >
-          <div className="relative mr-[-100vw] pr-[100vw]">
-            <div className="overflow-hidden rounded-lg border border-border shadow-layered">
-              {item.image ? (
-                <Image
-                  src={item.image}
-                  alt={itemTitle}
-                  width={1600}
-                  height={1067}
-                  className="aspect-[3/2] w-full object-cover"
-                />
-              ) : (
-                <div className="aspect-[3/2] w-full bg-muted flex items-center justify-center text-muted-foreground">
-                  {itemTitle} preview
-                </div>
-              )}
-            </div>
+          <div className="overflow-hidden rounded-lg border border-border shadow-layered min-w-[1100px]">
+            {item.customBg ? (
+              item.customBg
+            ) : item.image ? (
+              <Image
+                src={item.image}
+                alt={itemTitle}
+                width={1600}
+                height={1067}
+                className="aspect-[3/2] w-full object-cover"
+                placeholder="blur"
+                blurDataURL={blurPlaceholders[item.image]}
+              />
+            ) : (
+              <div className="aspect-[3/2] w-full bg-muted flex items-center justify-center text-muted-foreground">
+                {itemTitle} preview
+              </div>
+            )}
           </div>
         </motion.div>
       </div>
 
-      {/* Mobile: Stacked layout with full-width image */}
+      {/* Mobile: Stacked layout */}
       <div className="lg:hidden">
-        <motion.div variants={textVariants} className="px-6 mb-6">
-          <Link href={item.href} className="group block">
-            <h3 className="mb-2 text-xl font-bold leading-tight group-hover:underline">
-              {itemTitle}
-            </h3>
-            <p className="text-muted-foreground">{item.description}</p>
-          </Link>
+        <motion.div variants={textVariants} className="mb-6">
+          <h3 className="mb-2 text-xl font-bold leading-tight">
+            {itemTitle}
+          </h3>
+          <p className="text-muted-foreground mb-3">{item.description}</p>
+          {isPersonalProject ? (
+            <Button variant="outline" trailingIcon={<ArrowUpRight />} asChild>
+              <Link href={item.href} target="_blank" rel="noopener noreferrer">Visit site</Link>
+            </Button>
+          ) : (
+            <Button variant="outline" asChild>
+              <Link href={item.href}>View project</Link>
+            </Button>
+          )}
         </motion.div>
 
         <motion.div
           style={{ x, opacity }}
-          className="relative w-screen left-1/2 -translate-x-1/2 px-4 will-change-transform"
+          className="relative will-change-transform"
         >
           <div className="overflow-hidden rounded-lg border border-border shadow-layered">
-            {item.image ? (
+            {item.customBg ? (
+              item.customBg
+            ) : item.image ? (
               <Image
                 src={item.image}
                 alt={itemTitle}
-                width={800}
-                height={533}
+                width={1600}
+                height={1067}
                 className="aspect-[3/2] w-full object-cover"
+                placeholder="blur"
+                blurDataURL={blurPlaceholders[item.image]}
               />
             ) : (
               <div className="aspect-[3/2] w-full bg-muted flex items-center justify-center text-muted-foreground">
@@ -163,21 +185,22 @@ export function PortfolioShowcase({
   title,
   items,
   className,
+  isPersonalProject,
 }: PortfolioShowcaseProps) {
   return (
     <section className={cn("overflow-x-clip py-48 pb-60", className)}>
-      {/* Section header - stays within page margins */}
-      <div className="px-6 lg:px-24 2xl:px-80">
+      <div className="px-6 lg:px-16 2xl:px-80">
+        {/* Section header */}
         <p className="mb-16 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           {title}
         </p>
-      </div>
 
-      {/* Portfolio items */}
-      <div className="flex flex-col gap-32 lg:gap-48">
-        {items.map((item) => (
-          <PortfolioShowcaseItem key={item.id} item={item} />
-        ))}
+        {/* Portfolio items */}
+        <div className="flex flex-col gap-32 lg:gap-48">
+          {items.map((item) => (
+            <PortfolioShowcaseItem key={item.id} item={item} isPersonalProject={isPersonalProject} />
+          ))}
+        </div>
       </div>
     </section>
   );

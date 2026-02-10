@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import {
   motion,
   useMotionValue,
@@ -10,17 +10,19 @@ import {
 import { cn } from "@/lib/utils";
 
 export const CometCard = ({
-  rotateDepth = 4,
-  translateDepth = 10,
+  rotateDepth = 1,
+  translateDepth = 3,
   className,
   children,
+  trackingRef,
 }: {
   rotateDepth?: number;
   translateDepth?: number;
   className?: string;
   children: React.ReactNode;
+  trackingRef?: React.RefObject<HTMLElement | null>;
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -55,53 +57,65 @@ export const CometCard = ({
 
   const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.9) 10%, rgba(255, 255, 255, 0.75) 20%, rgba(255, 255, 255, 0) 80%)`;
 
+  // Use external tracking ref if provided, otherwise use card's own events
+  useEffect(() => {
+    if (!trackingRef?.current) return;
+
+    const trackingElement = trackingRef.current;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!trackingElement) return;
+
+      const rect = trackingElement.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      const xPct = mouseX / rect.width - 0.5;
+      const yPct = mouseY / rect.height - 0.5;
+
+      x.set(xPct);
+      y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+      x.set(0);
+      y.set(0);
+    };
+
+    trackingElement.addEventListener("mousemove", handleMouseMove);
+    trackingElement.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      trackingElement.removeEventListener("mousemove", handleMouseMove);
+      trackingElement.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [trackingRef, x, y]);
+
+  // Fallback handlers for when no trackingRef is provided
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
+    if (trackingRef?.current || !cardRef.current) return;
 
-    const rect = ref.current.getBoundingClientRect();
-
-    const width = rect.width;
-    const height = rect.height;
-
+    const rect = cardRef.current.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
 
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
+    const xPct = mouseX / rect.width - 0.5;
+    const yPct = mouseY / rect.height - 0.5;
 
     x.set(xPct);
     y.set(yPct);
   };
 
   const handleMouseLeave = () => {
+    if (trackingRef?.current) return;
     x.set(0);
     y.set(0);
   };
 
   return (
     <div className={cn("perspective-distant transform-3d", className)}>
-      {/* SVG filter for shadow banding fix */}
-      <svg className="absolute h-0 w-0" aria-hidden="true">
-        <defs>
-          <filter id="shadow-noise" colorInterpolationFilters="sRGB">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.9"
-              numOctaves="4"
-              result="noise"
-            />
-            <feDisplacementMap
-              in="SourceGraphic"
-              in2="noise"
-              scale="1.5"
-              xChannelSelector="R"
-              yChannelSelector="G"
-            />
-          </filter>
-        </defs>
-      </svg>
       <motion.div
-        ref={ref}
+        ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{
@@ -116,7 +130,7 @@ export const CometCard = ({
           z: 20,
           transition: { duration: 0.2 },
         }}
-        className="relative rounded-2xl shadow-layered dark:[filter:url(#shadow-noise)]"
+        className="relative rounded-2xl shadow-layered"
       >
         {children}
         <motion.div
