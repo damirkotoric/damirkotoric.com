@@ -22,7 +22,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="overflow-x-clip">
       <body className={`${inter.variable} antialiased overflow-x-clip`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:rounded-md focus:outline-ring"
+        >
+          Skip to main content
+        </a>
+        <ThemeProvider>
+          <main id="main-content">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );

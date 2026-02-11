@@ -7,7 +7,7 @@ export function Header() {
         <Link href="/" className="text-base font-semibold text-foreground">
           Damir Kotorić
         </Link>
-        <nav className="flex gap-6">
+        <nav aria-label="Main navigation" className="flex gap-6">
           <Link
             href="/"
             className="text-sm text-muted-foreground hover:text-foreground"

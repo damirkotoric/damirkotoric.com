@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
 import { cn } from "@/lib/utils";
 
@@ -148,11 +149,11 @@ export function PixelatedAvatar({
             className="absolute inset-0 transition-opacity duration-700"
             style={{ opacity: showRealImage ? 1 : 0 }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/images/damir.avif"
               alt="Damir Kotorić"
-              className="h-full w-full object-cover"
+              fill
+              className="object-cover"
             />
           </div>
           {/* Pixelated canvas */}

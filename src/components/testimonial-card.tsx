@@ -24,7 +24,7 @@ export function TestimonialCard({ quote, name, role, image, linkedIn }: Testimon
       </blockquote>
       <div className="flex items-center gap-3">
         {linkedIn ? (
-          <Link href={linkedIn} target="_blank" rel="noopener noreferrer">
+          <Link href={linkedIn} target="_blank" rel="noopener noreferrer" aria-label={`View ${name}'s LinkedIn profile (opens in new tab)`}>
             <Avatar className="size-16 bg-background border border-background shadow-lg transition-transform duration-300 ease-out hover:rotate-[2deg]">
               {image ? (
                 <Image src={image} alt={name} fill className="object-cover" />
@@ -49,10 +49,11 @@ export function TestimonialCard({ quote, name, role, image, linkedIn }: Testimon
                 href={linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`${name} - view LinkedIn profile (opens in new tab)`}
                 className="inline-flex items-center gap-1 hover:underline"
               >
                 {name}
-                <ArrowUpRight className="size-4 text-muted-foreground" />
+                <ArrowUpRight className="size-4 text-muted-foreground" aria-hidden="true" />
               </Link>
             ) : (
               name

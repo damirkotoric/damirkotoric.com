@@ -161,9 +161,9 @@ export default function HomePage() {
 
       {/* Section 3: Outcomes */}
       <section className="px-6 lg:pt-24 lg:px-16 2xl:px-80">
-        <p className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+        <h2 className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           Outcomes
-        </p>
+        </h2>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-10">
           {outcomes.map((outcome) => (
             <div key={outcome.number}>
@@ -180,9 +180,9 @@ export default function HomePage() {
 
       {/* Section 4: Testimonials */}
       <section className="px-6 py-48 lg:py-64 lg:px-16 2xl:px-80">
-        <p className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+        <h2 className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           Testimonials
-        </p>
+        </h2>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           {testimonials.map((testimonial) => (
             <TestimonialCard key={testimonial.name} {...testimonial} />
@@ -192,6 +192,7 @@ export default function HomePage() {
           href="https://www.linkedin.com/in/damirkotoric/details/recommendations/?detailScreenTabIndex=0"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Read more recommendations on LinkedIn (opens in new tab)"
           className="mt-8 inline-block text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           Read more on LinkedIn ↗
@@ -202,9 +203,9 @@ export default function HomePage() {
       <section className="bg-muted px-6 pt-24 lg:px-16 2xl:px-80">
         <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 lg:items-center">
           <div className="max-w-[520px] lg:pb-24">
-            <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+            <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               Meet Damir
-            </p>
+            </h2>
             <p className="mb-6 leading-relaxed">
               I&apos;ve been <strong>designing since 2009</strong>, and <strong>nomadic since 2018</strong>, working remotely with teams
               across time zones. I care about craft, clear communication, and
