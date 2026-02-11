@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
+import { AnimatedAvatarWrapper } from "@/components/animated-avatar-wrapper";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
 import { PortfolioShowcase } from "@/components/portfolio-showcase";
@@ -111,7 +112,7 @@ export default function HomePage() {
     <div className="overflow-x-clip">
       {/* Section 1: Hero + Logo Reel */}
       <section className="min-h-screen grid grid-rows-[1fr_auto]">
-        <div className="h-full">
+        <div className="h-full overflow-hidden">
           <ScrollLinkedProvider className="h-full px-6 lg:px-16 2xl:px-80">
             <ScrollLinkedContent className="h-full justify-center max-w-[580px]">
               <ScrollSection
@@ -144,7 +145,9 @@ export default function HomePage() {
 
             <ScrollLinkedMedia className="h-full flex items-center">
               <ScrollMediaItem sectionId="intro" className="h-full">
-                <PixelatedAvatar variant="large" size="fill" />
+                <AnimatedAvatarWrapper delay={0.5}>
+                  <PixelatedAvatar variant="large" size="fill" />
+                </AnimatedAvatarWrapper>
               </ScrollMediaItem>
             </ScrollLinkedMedia>
           </ScrollLinkedProvider>

@@ -16,12 +16,8 @@ const logos = [
 export function LogoReel() {
   return (
     <div className="relative py-8 lg:py-12 overflow-hidden border-b border-t border-border">
-      {/* Gradient overlays */}
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-background to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-background to-transparent" />
-
-      <Marquee speed={40} gradient={false}>
-        {[...logos, ...logos].map((logo, index) => (
+      <Marquee speed={40} gradient={true} gradientColor="white" gradientWidth={100} autoFill>
+        {logos.map((logo, index) => (
           <div
             key={`${logo.name}-${index}`}
             role="img"

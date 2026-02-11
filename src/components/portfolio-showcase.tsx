@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -9,13 +9,13 @@ import { motion, useScroll, useTransform, useSpring, useInView, Variants } from 
 import { cn } from "@/lib/utils";
 import { blurPlaceholders } from "@/lib/blur-placeholders";
 
-// Animation variants for text (still uses useInView for fade-up)
+// Animation variants - slide from bottom with stagger
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.2,
       delayChildren: 0.1,
     },
   },
@@ -31,6 +31,36 @@ const textVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
+  },
+};
+
+// Mobile: slide from bottom
+const imageVariantsMobile: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
+  },
+};
+
+// Desktop: slide from right (x handled by scroll-linked animation)
+const imageVariantsDesktop: Variants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.7,
       ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
@@ -55,6 +85,15 @@ type PortfolioShowcaseProps = {
 
 function PortfolioShowcaseItem({ item, isPersonalProject }: { item: PortfolioItem; isPersonalProject?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
+
   const isInView = useInView(ref, {
     once: true,
     margin: "-100px",
@@ -70,13 +109,11 @@ function PortfolioShowcaseItem({ item, isPersonalProject }: { item: PortfolioIte
   // Spring config for smooth, gliding "ice skates" feel
   const springConfig = { stiffness: 50, damping: 20, mass: 1 };
 
-  // Transform x from 40px to 0 and opacity from 0.5 to 1 based on scroll
+  // Transform x from 40px to 0 based on scroll
   const xRaw = useTransform(scrollYProgress, [0, 1], [40, 0]);
-  const opacityRaw = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
 
   // Apply spring physics for smooth momentum
   const x = useSpring(xRaw, springConfig);
-  const opacity = useSpring(opacityRaw, springConfig);
 
   const itemTitle = item.title || item.name || "";
 
@@ -107,7 +144,8 @@ function PortfolioShowcaseItem({ item, isPersonalProject }: { item: PortfolioIte
 
       {/* Image */}
       <motion.div
-        style={{ x, opacity }}
+        variants={isDesktop ? imageVariantsDesktop : imageVariantsMobile}
+        style={isDesktop ? { x } : undefined}
         className="relative will-change-transform w-full"
       >
         <div className="overflow-hidden rounded-lg border border-border shadow-layered min-w-[480px] lg:min-w-[1100px]">
