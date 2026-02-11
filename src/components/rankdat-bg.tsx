@@ -10,19 +10,15 @@ import { useInView } from "motion/react";
 export function RankdatBg() {
   const ref = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const isVisible = useInView(ref, { margin: "100px" });
+  const isVisible = useInView(ref, { amount: 0.3 });
 
   useEffect(() => {
     if (!videoRef.current) return;
 
     if (isVisible) {
-      // Reset to start and play when coming into view
-      videoRef.current.currentTime = 0;
       videoRef.current.play();
     } else {
-      // Pause and reset when out of view
       videoRef.current.pause();
-      videoRef.current.currentTime = 0;
     }
   }, [isVisible]);
 
