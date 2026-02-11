@@ -1,196 +1,205 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { WorkCard } from "@/components/work-card";
+import { ProjectCard } from "@/components/project-card";
 
 export const metadata: Metadata = {
   title: "Portfolio • Damir Kotorić",
   description:
-    "Selected projects from 16 years of product design work across startups, scale-ups, and enterprise.",
+    "Selected projects from 17 years of product design work across startups, scale-ups, and enterprise.",
 };
 
-const featuredWork = [
+const featuredProjects = [
   {
-    title: "Booking.com",
-    outcome:
-      "Led design across 3 payment teams, contributing to a €35M annual conversion boost.",
-    meta: "UX Designer · 2017–2018",
-    href: "/portfolio/designing-the-payment-ux-at-booking-com",
-  },
-  {
-    title: "BrokerEngine",
-    outcome:
-      "Redesigned the product over 3 years, leading to a 70% acquisition by a major corporation.",
-    meta: "Product Designer · 2019–2022",
-    href: "/portfolio/brokerengine",
-  },
-  {
-    title: "Nametag",
-    outcome:
-      "Designed the web3 product from scratch, helping secure a $2M seed round and 60K users.",
-    meta: "Product Designer · 2022",
-    href: "/portfolio/nametag",
-  },
-  {
+    slug: "beyondwords",
     title: "BeyondWords",
-    outcome:
-      "Created a custom design system for an audio AI startup, enabling faster product iteration.",
-    meta: "Design System Designer · 2025",
-    href: "/portfolio/beyondwords",
+    outcome: "Created a custom design system for an audio AI startup, enabling faster product iteration.",
+    image: "/images/portfolio/beyondwords-ui1.avif",
   },
   {
+    slug: "brokerengine",
+    title: "BrokerEngine",
+    outcome: "Redesigned the product over 3 years, leading to a 70% acquisition by a major corporation.",
+    image: "/images/portfolio/brokerengine-1.avif",
+  },
+  {
+    slug: "nametag",
+    title: "Nametag",
+    outcome: "Designed the web3 product from scratch, helping secure a $2M seed round and 60K users.",
+    image: "/images/portfolio/nametag-1.avif",
+  },
+  {
+    slug: "designing-the-payment-ux-at-booking-com",
+    title: "Booking.com",
+    outcome: "Led design across mobile payment, accessibility and performance teams, contributing to a €35M annual conversion boost.",
+    image: "/images/portfolio/bookingcom-1.avif",
+  },
+  {
+    slug: "nsw-climate-data-portal",
     title: "NSW Climate Data Portal",
-    outcome:
-      "Designed an open data portal for the NSW Government, making petabytes of climate data publicly accessible.",
-    meta: "UX/UI Designer · 2020",
-    href: "/portfolio/nsw-climate-data-portal",
+    outcome: "Designed an open data portal for the NSW Government, making petabytes of climate data publicly accessible.",
+    image: null,
   },
   {
+    slug: "gsq-open-data-portal",
     title: "Queensland Open Data Portal",
-    outcome:
-      "Designed a geological data portal for the Queensland Government, serving mining industry and researchers.",
-    meta: "UX/UI Designer · 2020",
-    href: "/portfolio/gsq-open-data-portal",
+    outcome: "Designed a geological data portal for the Queensland Government, serving mining industry and researchers.",
+    image: null,
+  },
+];
+
+const personalProjects = [
+  {
+    title: "DoNotStay",
+    description: "AI-powered hotel review analysis for smarter booking decisions.",
+    href: "https://donotstay.app",
+    video: "/images/portfolio/donotstay.mp4",
+  },
+  {
+    title: "Rankdat",
+    description: "Global country rankings platform covering healthcare, corruption, and more.",
+    href: "https://rankdat.io",
+    video: "/images/portfolio/rankdat.mp4",
+  },
+  {
+    title: "StyleSpin",
+    description: "AI fashion photoshoots for e-commerce sellers.",
+    href: "https://stylespin.io",
+    video: "/images/portfolio/stylespin.mp4",
   },
 ];
 
 const archiveProjects = [
-  { name: "Cosmitto", href: "/portfolio/cosmitto" },
-  { name: "AI Design Generator", href: "/portfolio/ai-design-generator" },
-  { name: "Krakatoa", href: "/portfolio/krakatoa" },
-  { name: "Resell Calendar", href: "/portfolio/resell-calendar" },
-  { name: "Ideaverse", href: "/portfolio/ideaverse" },
-  { name: "Oracy", href: "/portfolio/oracy" },
-  { name: "Orpheus", href: "/portfolio/orpheus" },
-  { name: "New Alexandria", href: "/portfolio/new-alexandria" },
-  { name: "Envato Design Sprint", href: "/portfolio/design-sprint-at-envato" },
-  { name: "Giza AR", href: "/portfolio/giza-ar" },
-  {
-    name: "Zhejiang Museum AR",
-    href: "/portfolio/zhejiang-museum-ar-app",
-  },
-  { name: "Parthenon AR", href: "/portfolio/parthenon-ar-app" },
-  {
-    name: "Boston North End",
-    href: "/portfolio/boston-north-end-public-art",
-  },
-  { name: "Historic Blenheim", href: "/portfolio/historic-blenheim-ar" },
-  {
-    name: "Tripureshwor 360° Tour",
-    href: "/portfolio/tripureshwor-web-360-tour",
-  },
-  { name: "Storyverse", href: "/portfolio/storyverse" },
-  {
-    name: "Chatbot Learning App",
-    href: "/portfolio/chatbot-learning-app-for-ios",
-  },
-  {
-    name: "Event Management App",
-    href: "/portfolio/event-management-app",
-  },
-  {
-    name: "Teaching at General Assembly",
-    href: "/portfolio/teaching-ux-design-at-general-assembly",
-  },
-];
-
-const products = [
-  { name: "DoNotStay", href: "https://donotstay.app" },
-  { name: "Rankdat", href: "https://rankdat.io" },
-  { name: "StyleSpin", href: "https://stylespin.io" },
+  { name: "AI Design Generator", slug: "ai-design-generator" },
+  { name: "Boston North End", slug: "boston-north-end-public-art" },
+  { name: "Chatbot Learning App", slug: "chatbot-learning-app-for-ios" },
+  { name: "Cosmitto", slug: "cosmitto" },
+  { name: "Envato Design Sprint", slug: "design-sprint-at-envato" },
+  { name: "Event Management App", slug: "event-management-app" },
+  { name: "Giza AR", slug: "giza-ar" },
+  { name: "Historic Blenheim", slug: "historic-blenheim-ar" },
+  { name: "Ideaverse", slug: "ideaverse" },
+  { name: "Krakatoa", slug: "krakatoa" },
+  { name: "New Alexandria", slug: "new-alexandria" },
+  { name: "Oracy", slug: "oracy" },
+  { name: "Orpheus", slug: "orpheus" },
+  { name: "Parthenon AR", slug: "parthenon-ar-app" },
+  { name: "Resell Calendar", slug: "resell-calendar" },
+  { name: "Storyverse", slug: "storyverse" },
+  { name: "Teaching at General Assembly", slug: "teaching-ux-design-at-general-assembly" },
+  { name: "Tripureshwor 360° Tour", slug: "tripureshwor-web-360-tour" },
+  { name: "Zhejiang Museum AR", slug: "zhejiang-museum-ar-app" },
 ];
 
 export default function PortfolioPage() {
   return (
     <>
-      <Header />
+      <main>
+        {/* Back link */}
+        <div className="px-6 pt-8 lg:px-16 2xl:px-80">
+          <Link
+            href="/"
+            className="text-sm text-muted-foreground transition hover:text-foreground -m-6 p-6"
+          >
+            ← Home
+          </Link>
+        </div>
 
-      <div className="mx-auto max-w-3xl px-6">
         {/* Page header */}
-        <section className="pb-12 pt-16 sm:pt-16">
-          <h1 className="mb-3 text-[26px] font-semibold leading-tight sm:text-[32px]">
+        <section className="px-6 pt-8 pb-12 lg:px-16 lg:pt-12 lg:pb-16 2xl:px-80">
+          <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Portfolio
+          </h2>
+          <h1 className="mb-3 text-3xl font-bold sm:text-4xl">
+            Selected Work
           </h1>
-          <p className="max-w-[480px] text-lg text-muted-foreground">
-            Selected projects from 16 years of product design work across
-            startups, scale-ups, and enterprise.
+          <p className="max-w-[520px] text-lg text-muted-foreground">
+            Projects from 17 years of product design work across startups, scale-ups, and enterprise.
           </p>
         </section>
 
-        {/* Featured work */}
-        <section className="pb-16">
-          <div className="flex flex-col gap-12">
-            {featuredWork.map((work) => (
-              <WorkCard
-                key={work.title}
-                title={work.title}
-                description={work.outcome}
-                href={work.href}
-                meta={work.meta}
-                headingLevel="h2"
-              />
+        {/* Project grid */}
+        <section className="px-6 pb-24 lg:px-16 lg:pb-32 2xl:px-80">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-10">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.slug} {...project} />
             ))}
           </div>
         </section>
 
         {/* Archive */}
-        <section className="border-t border-border py-12">
-          <h2 className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+        <section className="px-6 pb-24 lg:px-16 lg:pb-32 2xl:px-80">
+          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Archive
           </h2>
-          <p className="mb-4 text-sm text-muted-foreground">
-            Previous projects available for reference:
-          </p>
-          <div className="text-sm leading-8 text-muted-foreground">
-            {archiveProjects.map((project, i) => (
-              <span key={project.name}>
+          <ul className="columns-2 sm:columns-3 lg:columns-4 gap-x-8 text-sm text-muted-foreground">
+            {archiveProjects.map((project) => (
+              <li key={project.slug} className="mb-2 break-inside-avoid">
                 <Link
-                  href={project.href}
-                  className="border-b border-border hover:border-foreground hover:text-foreground"
+                  href={`/portfolio/${project.slug}`}
+                  className="transition-colors hover:text-foreground"
                 >
                   {project.name}
                 </Link>
-                {i < archiveProjects.length - 1 && " · "}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
 
-        {/* My products */}
-        <section className="border-t border-border py-12">
-          <h2 className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            My products
+        {/* Personal Projects */}
+        <section className="px-6 pb-24 lg:px-16 lg:pb-32 2xl:px-80">
+          <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+            Personal Projects
           </h2>
-          <div className="text-sm leading-8 text-muted-foreground">
-            {products.map((product, i) => (
-              <span key={product.name}>
-                <a
-                  href={product.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-b border-border hover:border-foreground hover:text-foreground"
-                >
-                  {product.name}
-                </a>
-                {i < products.length - 1 && " · "}
-              </span>
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-10">
+            {personalProjects.map((project) => (
+              <a
+                key={project.title}
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block"
+              >
+                <article>
+                  <div className="mb-4 overflow-hidden rounded-lg border border-border">
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="aspect-[5/4] w-full object-cover"
+                    >
+                      <source src={project.video} type="video/mp4" />
+                    </video>
+                  </div>
+                  <h3 className="mb-1 flex items-center gap-1 text-lg font-semibold">
+                    {project.title}
+                    <span className="-translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100">
+                      ↗
+                    </span>
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {project.description}
+                  </p>
+                </article>
+              </a>
             ))}
           </div>
         </section>
 
         {/* CTA */}
-        <section className="border-t border-border py-12 text-center">
-          <h2 className="mb-2 text-2xl font-semibold">Like what you see?</h2>
-          <p className="mb-6 text-muted-foreground">
-            Let&apos;s talk about your project.
-          </p>
-          <Button asChild size="lg">
-            <Link href="/#contact">Get in touch</Link>
-          </Button>
+        <section className="bg-muted px-6 py-24 lg:px-16 lg:py-48 2xl:px-80">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
+              Ready to work together?
+            </h2>
+            <Button asChild size="lg">
+              <Link href="#">Start the conversation</Link>
+            </Button>
+          </div>
         </section>
-      </div>
+      </main>
 
       <Footer />
     </>

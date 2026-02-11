@@ -36,7 +36,7 @@ export function NametagBg() {
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full aspect-[3/2] overflow-hidden cursor-zoom-in"
+      className="relative w-full aspect-[3/2] overflow-hidden cursor-pointer"
     >
       <motion.div
         animate={{

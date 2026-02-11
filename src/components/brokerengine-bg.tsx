@@ -8,7 +8,11 @@ import { CometCard } from "@/components/ui/comet-card";
 /**
  * Static background with foreground UI for BrokerEngine portfolio card.
  */
-export function BrokerEngineBg() {
+type BrokerEngineBgProps = {
+  compact?: boolean;
+};
+
+export function BrokerEngineBg({ compact = false }: BrokerEngineBgProps) {
   const ref = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const isInView = useInView(ref, { margin: "-100px", amount: 0.3 });
@@ -55,7 +59,7 @@ export function BrokerEngineBg() {
               alt="BrokerEngine UI"
               width={1280}
               height={853}
-              className="w-full h-auto rounded-sm lg:rounded-2xl"
+              className={`w-full h-auto rounded-sm ${compact ? "lg:rounded-lg" : "lg:rounded-2xl"}`}
             />
           </CometCard>
         </motion.div>

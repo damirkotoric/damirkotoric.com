@@ -10,7 +10,11 @@ import { CometCard } from "@/components/ui/comet-card";
  * Features concentric arcs in each corner that pulse outward like audio waves
  * from speakers positioned at each corner.
  */
-export function BeyondWordsBg() {
+type BeyondWordsBgProps = {
+  compact?: boolean;
+};
+
+export function BeyondWordsBg({ compact = false }: BeyondWordsBgProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { margin: "-100px", amount: 0.3 });
   const isVisible = useInView(ref, { margin: "100px" });
@@ -45,7 +49,7 @@ export function BeyondWordsBg() {
               alt="BeyondWords UI"
               width={1280}
               height={853}
-              className="w-full h-auto rounded-sm lg:rounded-2xl"
+              className={`w-full h-auto rounded-sm ${compact ? "lg:rounded-lg" : "lg:rounded-2xl"}`}
             />
           </CometCard>
         </motion.div>
