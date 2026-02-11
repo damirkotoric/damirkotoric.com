@@ -86,97 +86,50 @@ function PortfolioShowcaseItem({ item, isPersonalProject }: { item: PortfolioIte
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className="relative"
+      className="grid grid-cols-1 lg:grid-cols-[33%_2fr] lg:items-start gap-6 lg:gap-8 2xl:gap-16"
     >
-      {/* Desktop: Side-by-side layout */}
-      <div className="hidden lg:grid lg:grid-cols-[33%_2fr] lg:items-start lg:gap-8 2xl:gap-16">
-        {/* Text content */}
-        <motion.div variants={textVariants}>
-          <h3 className="mb-3 text-3xl font-bold leading-tight">
-            {itemTitle}
-          </h3>
-          <p className="text-lg text-muted-foreground mb-4">{item.description}</p>
-          {isPersonalProject ? (
-            <Button variant="outline" trailingIcon={<ArrowUpRight />} asChild>
-              <Link href={item.href} target="_blank" rel="noopener noreferrer">Visit site</Link>
-            </Button>
+      {/* Text content */}
+      <motion.div variants={textVariants}>
+        <h3 className="mb-2 lg:mb-3 text-xl lg:text-3xl font-bold leading-tight">
+          {itemTitle}
+        </h3>
+        <p className="text-muted-foreground lg:text-lg mb-3 lg:mb-4">{item.description}</p>
+        {isPersonalProject ? (
+          <Button variant="outline" trailingIcon={<ArrowUpRight />} asChild>
+            <Link href={item.href} target="_blank" rel="noopener noreferrer">Visit site</Link>
+          </Button>
+        ) : (
+          <Button variant="outline" asChild>
+            <Link href={item.href}>View project</Link>
+          </Button>
+        )}
+      </motion.div>
+
+      {/* Image */}
+      <motion.div
+        style={{ x, opacity }}
+        className="relative will-change-transform w-full"
+      >
+        <div className="overflow-hidden rounded-lg border border-border shadow-layered min-w-[480px] lg:min-w-[1100px]">
+          {item.customBg ? (
+            item.customBg
+          ) : item.image ? (
+            <Image
+              src={item.image}
+              alt={itemTitle}
+              width={1600}
+              height={1067}
+              className="aspect-[3/2] w-full object-cover"
+              placeholder="blur"
+              blurDataURL={blurPlaceholders[item.image]}
+            />
           ) : (
-            <Button variant="outline" asChild>
-              <Link href={item.href}>View project</Link>
-            </Button>
+            <div className="aspect-[3/2] w-full bg-muted flex items-center justify-center text-muted-foreground">
+              {itemTitle} preview
+            </div>
           )}
-        </motion.div>
-
-        {/* Image */}
-        <motion.div
-          style={{ x, opacity }}
-          className="relative will-change-transform w-full"
-        >
-          <div className="overflow-hidden rounded-lg border border-border shadow-layered min-w-[1100px]">
-            {item.customBg ? (
-              item.customBg
-            ) : item.image ? (
-              <Image
-                src={item.image}
-                alt={itemTitle}
-                width={1600}
-                height={1067}
-                className="aspect-[3/2] w-full object-cover"
-                placeholder="blur"
-                blurDataURL={blurPlaceholders[item.image]}
-              />
-            ) : (
-              <div className="aspect-[3/2] w-full bg-muted flex items-center justify-center text-muted-foreground">
-                {itemTitle} preview
-              </div>
-            )}
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Mobile: Stacked layout */}
-      <div className="lg:hidden">
-        <motion.div variants={textVariants} className="mb-6">
-          <h3 className="mb-2 text-xl font-bold leading-tight">
-            {itemTitle}
-          </h3>
-          <p className="text-muted-foreground mb-3">{item.description}</p>
-          {isPersonalProject ? (
-            <Button variant="outline" trailingIcon={<ArrowUpRight />} asChild>
-              <Link href={item.href} target="_blank" rel="noopener noreferrer">Visit site</Link>
-            </Button>
-          ) : (
-            <Button variant="outline" asChild>
-              <Link href={item.href}>View project</Link>
-            </Button>
-          )}
-        </motion.div>
-
-        <motion.div
-          style={{ x, opacity }}
-          className="relative will-change-transform"
-        >
-          <div className="overflow-hidden rounded-lg border border-border shadow-layered">
-            {item.customBg ? (
-              item.customBg
-            ) : item.image ? (
-              <Image
-                src={item.image}
-                alt={itemTitle}
-                width={1600}
-                height={1067}
-                className="aspect-[3/2] w-full object-cover"
-                placeholder="blur"
-                blurDataURL={blurPlaceholders[item.image]}
-              />
-            ) : (
-              <div className="aspect-[3/2] w-full bg-muted flex items-center justify-center text-muted-foreground">
-                {itemTitle} preview
-              </div>
-            )}
-          </div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </motion.article>
   );
 }
@@ -188,7 +141,7 @@ export function PortfolioShowcase({
   isPersonalProject,
 }: PortfolioShowcaseProps) {
   return (
-    <section className={cn("overflow-x-clip py-48 pb-60", className)}>
+    <section className={cn("overflow-x-clip py-48 lg:pb-60", className)}>
       <div className="px-6 lg:px-16 2xl:px-80">
         {/* Section header */}
         <p className="mb-16 text-xs font-semibold uppercase tracking-widest text-muted-foreground">

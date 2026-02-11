@@ -69,13 +69,13 @@ export function ScrollSection({
       id={id}
       className={cn("", className)}
     >
-      {/* Mobile media - inline above content */}
+      {children}
+      {/* Mobile media - inline below content */}
       {mobileMedia && (
-        <div className="mb-8 lg:hidden">
+        <div className="-mt-12 lg:mt-8 lg:hidden">
           {mobileMedia}
         </div>
       )}
-      {children}
     </div>
   );
 }

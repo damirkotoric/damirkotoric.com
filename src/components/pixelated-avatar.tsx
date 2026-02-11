@@ -111,17 +111,19 @@ export function PixelatedAvatar({
     setShowRealImage(false);
   };
 
-  // Mobile variant - small inline avatar
+  // Mobile variant - inline avatar
   if (variant === "mobile") {
     return (
-      <PixelatedCanvas
-        {...baseProps}
-        width={200}
-        height={200}
-        cellSize={3}
-        distortionRadius={60}
-        className={cn("mx-auto", className)}
-      />
+      <div className={cn("min-h-[400px] flex items-center justify-center", className)}>
+        <PixelatedCanvas
+          {...baseProps}
+          width={560}
+          height={560}
+          cellSize={5}
+          distortionRadius={80}
+          className="mx-auto"
+        />
+      </div>
     );
   }
 

@@ -38,7 +38,7 @@ export function BrokerEngineBg() {
       </video>
 
       {/* Blur overlay */}
-      <div className="absolute inset-0 bg-black/[0.01] backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/[0.01] backdrop-blur-lg" />
 
       {/* Centered UI image with comet card effect */}
       <div className="absolute inset-0 flex items-center justify-center z-10 perspective-distant">
@@ -54,7 +54,7 @@ export function BrokerEngineBg() {
               alt="BrokerEngine UI"
               width={1280}
               height={853}
-              className="w-full h-auto rounded-2xl"
+              className="w-full h-auto rounded-sm lg:rounded-2xl"
             />
           </CometCard>
         </motion.div>

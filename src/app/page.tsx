@@ -8,6 +8,10 @@ import { LogoReel } from "@/components/logo-reel";
 import { PortfolioShowcase } from "@/components/portfolio-showcase";
 import { BeyondWordsBg } from "@/components/beyondwords-bg";
 import { BrokerEngineBg } from "@/components/brokerengine-bg";
+import { NametagBg } from "@/components/nametag-bg";
+import { DoNotStayBg } from "@/components/donotstay-bg";
+import { RankdatBg } from "@/components/rankdat-bg";
+import { StyleSpinBg } from "@/components/stylespin-bg";
 import {
   ScrollLinkedProvider,
   ScrollLinkedContent,
@@ -39,7 +43,7 @@ const selectedWork = [
     description:
       "Designed the product from scratch, helping secure a $2M seed round and 60K users.",
     href: "/portfolio/nametag",
-    image: "/images/portfolio/nametag-1.avif",
+    customBg: <NametagBg />,
   },
 ];
 
@@ -83,7 +87,7 @@ const products = [
     description:
       "AI-powered hotel review analysis for smarter booking decisions.",
     href: "https://donotstay.app",
-    image: "/images/portfolio/donotstay-1.jpg",
+    customBg: <DoNotStayBg />,
   },
   {
     id: "rankdat",
@@ -91,14 +95,14 @@ const products = [
     description:
       "Global country rankings on everything from healthcare to corruption.",
     href: "https://rankdat.io",
-    image: "/images/portfolio/rankdat-1.jpg",
+    customBg: <RankdatBg />,
   },
   {
     id: "stylespin",
     name: "StyleSpin",
     description: "AI fashion photoshoots for e-commerce sellers.",
     href: "https://stylespin.io",
-    image: "/images/portfolio/stylespin-1.jpg",
+    customBg: <StyleSpinBg />,
   },
 ];
 
@@ -114,7 +118,7 @@ export default function HomePage() {
                 id="intro"
                 mobileMedia={<PixelatedAvatar variant="mobile" />}
               >
-                <div className="py-24">
+                <div className="py-12 lg:py-24">
                   <div className="mb-4 flex gap-2">
                     <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs text-muted-foreground">
                       Previously at Booking.com
@@ -126,7 +130,7 @@ export default function HomePage() {
                   <p className="mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
                     Design Engineer
                   </p>
-                  <p className="mb-10 leading-relaxed">
+                  <p className="mb-6 leading-relaxed">
                     I partner with funded startups and product teams on complex
                     product design — typically 3+ month engagements or full-time
                     roles.
@@ -153,7 +157,7 @@ export default function HomePage() {
       <PortfolioShowcase title="Selected work" items={selectedWork} />
 
       {/* Section 3: Outcomes */}
-      <section className="px-6 pt-24 lg:px-16 2xl:px-80">
+      <section className="px-6 lg:pt-24 lg:px-16 2xl:px-80">
         <p className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           Outcomes
         </p>
@@ -172,7 +176,7 @@ export default function HomePage() {
       </section>
 
       {/* Section 4: Testimonials */}
-      <section className="px-6 py-64 lg:px-16 2xl:px-80">
+      <section className="px-6 py-48 lg:py-64 lg:px-16 2xl:px-80">
         <p className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           Testimonials
         </p>
@@ -181,41 +185,46 @@ export default function HomePage() {
             <TestimonialCard key={testimonial.name} {...testimonial} />
           ))}
         </div>
+        <Link
+          href="https://www.linkedin.com/in/damirkotoric/details/recommendations/?detailScreenTabIndex=0"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-block text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Read more on LinkedIn ↗
+        </Link>
       </section>
 
-      {/* Section 4: About */}
-      <ScrollLinkedProvider className="bg-muted px-6 py-24 lg:px-16 lg:pb-0 2xl:px-80">
-        <ScrollLinkedContent className="justify-center lg:pb-24">
-          <ScrollSection id="about">
+      {/* Section 5: About */}
+      <section className="bg-muted px-6 pt-24 lg:px-16 2xl:px-80">
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 lg:items-center">
+          <div className="max-w-[520px] lg:pb-24">
             <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               Meet Damir
             </p>
-            <p className="mb-6 max-w-[520px] leading-relaxed">
+            <p className="mb-6 leading-relaxed">
               I&apos;ve been <strong>designing since 2009</strong>, and <strong>nomadic since 2018</strong>, working remotely with teams
               across time zones. I care about craft, clear communication, and
               shipping work that actually moves the needle.
             </p>
-            <p className="max-w-[520px] leading-relaxed">
+            <p className="mb-12 lg:mb-0 leading-relaxed">
               I prefer <strong>async collaboration, direct feedback</strong>, and working with
               people who know what they want to build. If you&apos;re looking
               for someone to execute a vision — or challenge it when needed —
               we&apos;ll probably get along.
             </p>
-          </ScrollSection>
-        </ScrollLinkedContent>
-
-        <ScrollLinkedMedia className="overflow-visible">
-          <ScrollMediaItem sectionId="about" className="overflow-visible">
+          </div>
+          <div className="flex justify-center lg:justify-end">
             <PixelatedAvatar variant="large" reveal size="medium" />
-          </ScrollMediaItem>
-        </ScrollLinkedMedia>
-      </ScrollLinkedProvider>
+          </div>
+        </div>
+      </section>
 
       {/* Section 5: My Products */}
       <PortfolioShowcase title="My products" items={products} isPersonalProject />
 
       {/* Section 6: CTA */}
-      <section className="bg-muted px-6 py-48 lg:px-16 lg:py-48 2xl:px-80">
+      <section className="bg-muted px-6 py-24 lg:py-48 lg:px-16 2xl:px-80">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
             Ready to work together?

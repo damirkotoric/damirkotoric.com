@@ -45,7 +45,7 @@ export function BeyondWordsBg() {
               alt="BeyondWords UI"
               width={1280}
               height={853}
-              className="w-full h-auto rounded-2xl"
+              className="w-full h-auto rounded-sm lg:rounded-2xl"
             />
           </CometCard>
         </motion.div>
