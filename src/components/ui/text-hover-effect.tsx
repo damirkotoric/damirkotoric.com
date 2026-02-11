@@ -104,13 +104,13 @@ export const TextHoverEffect = ({
         strokeWidth="1.5"
         fill="var(--background)"
         className="stroke-neutral-600 font-[helvetica] text-8xl font-bold dark:stroke-neutral-400"
-        initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
+        initial={{ strokeDashoffset: 2000, strokeDasharray: 2000 }}
         animate={isInView ? {
           strokeDashoffset: 0,
-          strokeDasharray: 1000,
+          strokeDasharray: 2000,
         } : {}}
         transition={{
-          duration: 4,
+          duration: 2,
           ease: "easeOut",
         }}
       >

@@ -118,7 +118,11 @@ export default function HomePage() {
             <ScrollLinkedContent className="h-full justify-center max-w-[580px]">
               <ScrollSection
                 id="intro"
-                mobileMedia={<PixelatedAvatar variant="mobile" />}
+                mobileMedia={
+                  <AnimatedAvatarWrapper delay={1.0}>
+                    <PixelatedAvatar variant="mobile" />
+                  </AnimatedAvatarWrapper>
+                }
               >
                 <div className="py-12 lg:py-24">
                   <HeroContent>
