@@ -52,13 +52,15 @@ const imageVariantsMobile: Variants = {
   },
 };
 
-// Desktop: slide from right (x handled by scroll-linked animation)
+// Desktop: no y transform, only opacity (x handled by scroll-linked animation)
 const imageVariantsDesktop: Variants = {
   hidden: {
     opacity: 0,
+    y: 0, // Explicitly set to prevent inherited y transforms from initial render
   },
   visible: {
     opacity: 1,
+    y: 0, // Explicitly set to prevent inherited y transforms from initial render
     transition: {
       duration: 0.7,
       ease: [0.25, 0.46, 0.45, 0.94],

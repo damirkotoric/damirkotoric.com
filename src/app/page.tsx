@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { AnimatedAvatarWrapper } from "@/components/animated-avatar-wrapper";
+import { HeroContent } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
 import { PortfolioShowcase } from "@/components/portfolio-showcase";
@@ -120,32 +121,34 @@ export default function HomePage() {
                 mobileMedia={<PixelatedAvatar variant="mobile" />}
               >
                 <div className="py-12 lg:py-24">
-                  <div className="mb-4 flex gap-2">
-                    <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs text-muted-foreground">
-                      Previously at Booking.com
-                    </span>
-                  </div>
-                  <h1 className="mb-3 text-5xl font-black leading-[1.05] sm:text-6xl lg:text-[72px]">
-                    Damir Kotorić
-                  </h1>
-                  <p className="mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
-                    Design Engineer
-                  </p>
-                  <p className="mb-6 leading-relaxed">
-                    I partner with funded startups and product teams on complex
-                    product design — typically 3+ month engagements or full-time
-                    roles.
-                  </p>
-                  <Button asChild size="lg">
-                    <Link href="#">Start the conversation</Link>
-                  </Button>
+                  <HeroContent>
+                    <div className="mb-4 flex gap-2">
+                      <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs text-muted-foreground">
+                        Previously at Booking.com
+                      </span>
+                    </div>
+                    <h1 className="mb-3 text-5xl font-black leading-[1.05] sm:text-6xl lg:text-[72px]">
+                      Damir Kotorić
+                    </h1>
+                    <p className="mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
+                      Design Engineer
+                    </p>
+                    <p className="mb-6 leading-relaxed">
+                      I partner with funded startups and product teams on complex
+                      product design — typically 3+ month engagements or full-time
+                      roles.
+                    </p>
+                    <Button asChild size="lg">
+                      <Link href="#">Start the conversation</Link>
+                    </Button>
+                  </HeroContent>
                 </div>
               </ScrollSection>
             </ScrollLinkedContent>
 
             <ScrollLinkedMedia className="h-full flex items-center">
               <ScrollMediaItem sectionId="intro" className="h-full">
-                <AnimatedAvatarWrapper delay={0.5}>
+                <AnimatedAvatarWrapper delay={1.0}>
                   <PixelatedAvatar variant="large" size="fill" />
                 </AnimatedAvatarWrapper>
               </ScrollMediaItem>

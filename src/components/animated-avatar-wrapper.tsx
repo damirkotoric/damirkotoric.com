@@ -18,7 +18,7 @@ export function AnimatedAvatarWrapper({
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 1.2,
+        duration: 2.4,
         ease: [0.16, 1, 0.3, 1], // Smooth expo-out easing
         delay,
       }}

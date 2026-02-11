@@ -11,7 +11,7 @@ interface HeroContentProps {
 
 export function HeroContent({
   children,
-  staggerDelay = 0.1,
+  staggerDelay = 0.2,
   baseDelay = 0,
 }: HeroContentProps) {
   const childArray = Children.toArray(children);
@@ -24,7 +24,7 @@ export function HeroContent({
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 0.8,
+            duration: 1.6,
             ease: [0.16, 1, 0.3, 1],
             delay: baseDelay + index * staggerDelay,
           }}
@@ -50,7 +50,7 @@ export function AnimateIn({ children, delay = 0, className, fadeOnly = false }: 
       initial={{ opacity: 0, y: fadeOnly ? 0 : 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.8,
+        duration: 1.6,
         ease: [0.16, 1, 0.3, 1],
         delay,
       }}

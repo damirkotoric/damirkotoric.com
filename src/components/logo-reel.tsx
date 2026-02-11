@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { motion } from "motion/react";
 import Marquee from "react-fast-marquee";
 
 const logos = [
@@ -13,10 +15,26 @@ const logos = [
   { name: "Zhejiang University", width: 78, height: 78, src: "/images/logos/logo-zhejiang.svg" },
 ];
 
-export function LogoReel() {
+interface LogoReelProps {
+  animationDelay?: number;
+}
+
+export function LogoReel({ animationDelay = 1.2 }: LogoReelProps) {
+  const [playMarquee, setPlayMarquee] = useState(false);
+
   return (
-    <div className="relative py-8 lg:py-12 overflow-hidden border-b border-t border-border">
-      <Marquee speed={40} gradient={true} gradientColor="white" gradientWidth={100} autoFill>
+    <motion.div
+      className="relative py-8 lg:py-12 overflow-hidden border-b border-t border-border"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 1.6,
+        ease: [0.16, 1, 0.3, 1],
+        delay: animationDelay,
+      }}
+      onAnimationComplete={() => setPlayMarquee(true)}
+    >
+      <Marquee speed={40} gradient={true} gradientColor="white" gradientWidth={100} autoFill play={playMarquee}>
         {logos.map((logo, index) => (
           <div
             key={`${logo.name}-${index}`}
@@ -34,6 +52,6 @@ export function LogoReel() {
           />
         ))}
       </Marquee>
-    </div>
+    </motion.div>
   );
 }
