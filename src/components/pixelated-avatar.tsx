@@ -153,6 +153,7 @@ export function PixelatedAvatar({
               src="/images/damir.avif"
               alt="Damir Kotorić"
               fill
+              priority
               className="object-cover"
             />
           </div>

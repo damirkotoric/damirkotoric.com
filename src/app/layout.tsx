@@ -9,9 +9,25 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://damirkotoric.com"),
   title: "Damir Kotorić • Design Engineer",
   description:
     "I partner with funded startups and product teams on complex product design — typically 3+ month engagements or full-time roles.",
+  openGraph: {
+    title: "Damir Kotorić • Design Engineer",
+    description:
+      "I partner with funded startups and product teams on complex product design — typically 3+ month engagements or full-time roles.",
+    url: "https://damirkotoric.com",
+    siteName: "Damir Kotorić",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Damir Kotorić • Design Engineer",
+    description:
+      "I partner with funded startups and product teams on complex product design — typically 3+ month engagements or full-time roles.",
+  },
 };
 
 export default function RootLayout({

@@ -13,7 +13,7 @@ export function Footer() {
             Portfolio
           </Link>
           <a
-            href="https://linkedin.com/in/nicetomeetyoudamir"
+            href="https://www.linkedin.com/in/damirkotoric/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-foreground"

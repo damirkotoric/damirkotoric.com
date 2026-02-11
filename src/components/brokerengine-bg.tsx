@@ -28,10 +28,11 @@ export function BrokerEngineBg() {
       {/* Background video */}
       <video
         ref={videoRef}
-        autoPlay
         loop
         muted
         playsInline
+        preload="metadata"
+        aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/images/portfolio/brokerengine-bg.mp4" type="video/mp4" />

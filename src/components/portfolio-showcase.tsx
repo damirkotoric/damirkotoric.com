@@ -184,9 +184,9 @@ export function PortfolioShowcase({
     <section className={cn("overflow-x-clip py-48 lg:pb-60", className)}>
       <div className="px-6 lg:px-16 2xl:px-80">
         {/* Section header */}
-        <p className="mb-16 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+        <h2 className="mb-16 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           {title}
-        </p>
+        </h2>
 
         {/* Portfolio items */}
         <div className="flex flex-col gap-32 lg:gap-48">

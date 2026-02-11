@@ -33,6 +33,8 @@ export function DoNotStayBg() {
         loop
         muted
         playsInline
+        preload="none"
+        aria-hidden="true"
         poster="/images/portfolio/donotstay-1.jpg"
         className="absolute inset-0 w-full h-full object-cover"
       >

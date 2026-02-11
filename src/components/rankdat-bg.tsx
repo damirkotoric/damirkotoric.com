@@ -33,6 +33,8 @@ export function RankdatBg() {
         loop
         muted
         playsInline
+        preload="none"
+        aria-hidden="true"
         poster="/images/portfolio/rankdat-1.jpg"
         className="absolute inset-0 w-full h-full object-cover"
       >
