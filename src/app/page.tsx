@@ -138,8 +138,8 @@ export default function HomePage() {
                       Design Engineer
                     </p>
                     <p className="mb-6 leading-relaxed">
-                      I partner with funded startups and product teams on complex
-                      product design — typically 3+ month engagements or full-time
+                      I partner with funded startups and product teams on end-to-end
+                      product design, typically 3+ month engagements or full-time
                       roles.
                     </p>
                     <Button asChild size="lg">

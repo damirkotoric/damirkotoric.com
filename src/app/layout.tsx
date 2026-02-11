@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://damirkotoric.com"),
   title: "Damir Kotorić • Design Engineer",
   description:
-    "I partner with funded startups and product teams on complex product design — typically 3+ month engagements or full-time roles.",
+    "I partner with funded startups and product teams on end-to-end product design, typically 3+ month engagements or full-time roles.",
   openGraph: {
     title: "Damir Kotorić • Design Engineer",
     description:
-      "I partner with funded startups and product teams on complex product design — typically 3+ month engagements or full-time roles.",
+      "I partner with funded startups and product teams on end-to-end product design, typically 3+ month engagements or full-time roles.",
     url: "https://damirkotoric.com",
     siteName: "Damir Kotorić",
     locale: "en_US",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Damir Kotorić • Design Engineer",
     description:
-      "I partner with funded startups and product teams on complex product design — typically 3+ month engagements or full-time roles.",
+      "I partner with funded startups and product teams on end-to-end product design, typically 3+ month engagements or full-time roles.",
   },
 };
 
