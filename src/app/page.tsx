@@ -142,9 +142,14 @@ export default function HomePage() {
                       product design, typically 3+ month engagements or full-time
                       roles.
                     </p>
-                    <Button asChild size="lg">
-                      <Link href="#">Start the conversation</Link>
-                    </Button>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button asChild size="lg" className="w-full sm:w-auto">
+                        <Link href="#">Start the conversation</Link>
+                      </Button>
+                      <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+                        <Link href="/portfolio">View portfolio</Link>
+                      </Button>
+                    </div>
                   </HeroContent>
                 </div>
               </ScrollSection>
