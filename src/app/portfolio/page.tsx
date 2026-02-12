@@ -8,6 +8,19 @@ export const metadata: Metadata = {
   title: "Portfolio • Damir Kotorić",
   description:
     "Selected projects from 17 years of product design work across startups, scale-ups, and enterprise.",
+  openGraph: {
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Damir Kotorić - Design Engineer",
+      },
+    ],
+  },
+  twitter: {
+    images: ["/og.png"],
+  },
 };
 
 const featuredProjects = [
