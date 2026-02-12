@@ -58,7 +58,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "UI Library",
         description:
-          "Chose shadcn as the foundation, built on Tailwind CSS for robust customisation. Created a custom component library tailored to BeyondWords' product needs.",
+          "We chose shadcn as the foundation of the new design system, built on top of Tailwind CSS for robust, highly-customisable styling. From there, I created a custom component library tailored to BeyondWords' specific product needs — balancing consistency with the flexibility the team needed to move fast.",
         imageBlocks: [
           {
             layout: "full",
@@ -87,7 +87,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Semantic Colours",
         description:
-          "Standardised interactive, text, secondary, and background colours for perfect UI consistency across the product.",
+          "A semantic colour system standardised how the product handled interactive states, text hierarchy, secondary elements, and backgrounds. This removed guesswork from design decisions and gave the engineering team a reliable contract — leading to perfect consistency across every screen.",
         imageBlocks: [
           {
             layout: "full",
@@ -103,7 +103,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Data Dashboard",
         description:
-          "Leveraged shadcn's chart components to build analytics views, saving significant development time.",
+          "Leveraging shadcn's chart components saved significant development time while still delivering a polished analytics experience. I designed dashboard views that surfaced key metrics for publishers — listening time, engagement rates, and audience growth — without overwhelming users with data.",
         imageBlocks: [
           {
             layout: "full",
@@ -119,7 +119,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "SaaS Design",
         description:
-          "Updated the UI for all core text-to-speech AI pages plus signup, password reset, 2FA, account management, and onboarding flows.",
+          "Using the new UI library, I redesigned all core text-to-speech AI pages — the voice editor, article management, and publishing flows. Beyond the product surface, I also tackled the infrastructure screens: signup, password reset, two-factor authentication, account management, and onboarding. These unglamorous pages are where first impressions are formed and trust is built.",
         imageBlocks: [
           {
             layout: "full",
@@ -148,7 +148,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Homepage Concept",
         description:
-          "Created a concept for the new homepage showing consistency between internal SaaS pages and the external marketing site.",
+          "I created a concept for a new marketing homepage that extended the design system beyond the product. The goal was to show how the same visual language could work across both internal SaaS pages and the external site — giving BeyondWords a cohesive brand presence. The client ultimately chose a different direction, but the exercise validated the system's versatility.",
         imageBlocks: [
           {
             layout: "full",
