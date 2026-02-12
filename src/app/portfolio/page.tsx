@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "/og.png",
+        url: "/images/og.png",
         width: 1200,
         height: 630,
         alt: "Damir Kotorić - Design Engineer",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    images: ["/og.png"],
+    images: ["/images/og.png"],
   },
 };
 
