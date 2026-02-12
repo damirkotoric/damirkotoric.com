@@ -7,6 +7,7 @@ import { BrokerEngineBg } from "@/components/brokerengine-bg";
 import { NametagBg } from "@/components/nametag-bg";
 import { BookingBg } from "@/components/booking-bg";
 import { NswCdpBg } from "@/components/nsw-cdp-bg";
+import { GsqBg } from "@/components/gsq-bg";
 
 type ProjectCardProps = {
   slug: string;
@@ -21,6 +22,7 @@ const customBackgrounds: Record<string, React.ReactNode> = {
   nametag: <NametagBg />,
   "designing-the-payment-ux-at-booking-com": <BookingBg compact />,
   "nsw-climate-data-portal": <NswCdpBg compact />,
+  "gsq-open-data-portal": <GsqBg compact />,
 };
 
 export function ProjectCard({ slug, title, outcome, image }: ProjectCardProps) {
