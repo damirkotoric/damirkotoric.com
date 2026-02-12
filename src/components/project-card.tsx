@@ -25,7 +25,7 @@ export function ProjectCard({ slug, title, outcome, image }: ProjectCardProps) {
   return (
     <Link href={`/portfolio/${slug}`} className="group block">
       <article>
-        <div className="mb-4 overflow-hidden rounded-lg border border-border">
+        <div className="mb-3 overflow-hidden rounded-lg border border-border">
           {customBg ? (
             customBg
           ) : image ? (

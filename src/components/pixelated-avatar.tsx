@@ -58,7 +58,7 @@ export function PixelatedAvatar({
 
   // Trigger reveal/conceal animation based on visibility (scroll mode)
   useEffect(() => {
-    if (!reveal || variant === "mobile" || revealOn !== "scroll") return;
+    if (!reveal || revealOn !== "scroll") return;
 
     const element = containerRef.current;
     if (!element) return;
@@ -114,15 +114,49 @@ export function PixelatedAvatar({
 
   // Mobile variant - inline avatar
   if (variant === "mobile") {
+    if (reveal) {
+      return (
+        <div
+          ref={containerRef}
+          className={cn("flex items-center justify-center relative md:pb-8", className)}
+        >
+          <div className="relative w-[448px] h-[448px]">
+            <div
+              className="absolute inset-0 transition-opacity duration-700"
+              style={{ opacity: showRealImage ? 1 : 0 }}
+            >
+              <Image
+                src="/images/damir.avif"
+                alt="Damir Kotorić"
+                width={448}
+                height={448}
+                className="object-cover"
+              />
+            </div>
+            <div
+              className="absolute inset-0 transition-opacity duration-700"
+              style={{ opacity: showRealImage ? 0 : 1 }}
+            >
+              <PixelatedCanvas
+                {...baseProps}
+                width={448}
+                height={448}
+                cellSize={5}
+                distortionRadius={80}
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
     return (
-      <div className={cn("min-h-[400px] flex items-center justify-center", className)}>
+      <div className={cn("flex items-center justify-center lg:pb-8", className)}>
         <PixelatedCanvas
           {...baseProps}
-          width={560}
-          height={560}
+          width={448}
+          height={448}
           cellSize={5}
           distortionRadius={80}
-          className="mx-auto"
         />
       </div>
     );

@@ -121,7 +121,7 @@ export default function PortfolioPage() {
 
         {/* Project grid */}
         <section className="px-6 pb-24 lg:px-16 lg:pb-32 2xl:px-80">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-10">
+          <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
             {featuredProjects.map((project) => (
               <ProjectCard key={project.slug} {...project} />
             ))}
@@ -162,7 +162,7 @@ export default function PortfolioPage() {
                 className="group block"
               >
                 <article>
-                  <div className="mb-4 overflow-hidden rounded-lg border border-border">
+                  <div className="mb-3 overflow-hidden rounded-lg border border-border">
                     <video
                       autoPlay
                       loop

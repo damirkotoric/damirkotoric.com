@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { AnimatedAvatarWrapper } from "@/components/animated-avatar-wrapper";
-import { HeroContent } from "@/components/hero-content";
+import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
 import { PortfolioShowcase } from "@/components/portfolio-showcase";
@@ -146,9 +146,11 @@ export default function HomePage() {
                       <Button asChild size="lg" className="w-full sm:w-auto">
                         <Link href="#">Start the conversation</Link>
                       </Button>
-                      <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
-                        <Link href="/portfolio">View portfolio</Link>
-                      </Button>
+                      <AnimateIn delay={0.3}>
+                        <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+                          <Link href="/portfolio">View portfolio</Link>
+                        </Button>
+                      </AnimateIn>
                     </div>
                   </HeroContent>
                 </div>
@@ -212,9 +214,9 @@ export default function HomePage() {
       </section>
 
       {/* Section 5: About */}
-      <section className="bg-muted px-6 pt-24 lg:px-16 2xl:px-80">
-        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 lg:items-center">
-          <div className="max-w-[520px] lg:pb-24">
+      <section className="bg-muted px-6 lg:px-16 2xl:px-80">
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16">
+          <div className="max-w-[520px] pt-20 lg:py-40 2xl:py-50">
             <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               Meet Damir
             </h2>
@@ -223,15 +225,20 @@ export default function HomePage() {
               across time zones. I care about craft, clear communication, and
               shipping work that actually moves the needle.
             </p>
-            <p className="mb-12 lg:mb-0 leading-relaxed">
+            <p className="lg:mb-12 lg:mb-0 leading-relaxed">
               I prefer <strong>async collaboration, direct feedback</strong>, and working with
               people who know what they want to build. If you&apos;re looking
               for someone to execute a vision — or challenge it when needed —
               we&apos;ll probably get along.
             </p>
           </div>
-          <div className="flex justify-center lg:justify-end">
-            <PixelatedAvatar variant="large" reveal size="medium" />
+          <div className="flex justify-center lg:justify-end lg:h-full 2xl:pr-60">
+            <div className="lg:hidden">
+              <PixelatedAvatar variant="mobile" reveal />
+            </div>
+            <div className="hidden lg:block h-full w-full">
+              <PixelatedAvatar variant="large" reveal size="fill" />
+            </div>
           </div>
         </div>
       </section>
