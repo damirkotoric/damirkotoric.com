@@ -40,7 +40,7 @@ export const portfolioProjects: PortfolioProject[] = [
     year: "2024",
     client: "BeyondWords",
     coverImage: {
-      src: "/images/portfolio/beyondwords-cover.avif",
+      src: "/images/portfolio/beyondwords-cover.jpg",
       alt: "BeyondWords design system overview",
     },
     testimonial: {
