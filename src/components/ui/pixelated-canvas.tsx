@@ -62,6 +62,14 @@ type PixelatedCanvasProps = {
   ambientAnimation?: boolean;
   /** 0..1 intensity of ambient animation (default 0.3) */
   ambientStrength?: number;
+  /** Enable entry animation where cells animate into place */
+  entryAnimation?: boolean;
+  /** Duration of the entry animation in ms (default 1800) */
+  entryDuration?: number;
+  /** Max stagger delay spread in ms (default 600) */
+  entryStagger?: number;
+  /** Initial delay before entry animation starts in ms (default 800) */
+  entryDelay?: number;
 };
 
 export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
@@ -97,6 +105,10 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
   minImageHeight,
   ambientAnimation = false,
   ambientStrength = 0.3,
+  entryAnimation = false,
+  entryDuration = 1800,
+  entryStagger = 600,
+  entryDelay = 800,
 }) => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
   const containerRef = React.useRef<HTMLDivElement | null>(null);
@@ -110,6 +122,9 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
       a: number;
       drop: boolean;
       seed: number;
+      delaySeed: number;
+      startX: number;
+      startY: number;
     }>
   >([]);
   const dimsRef = React.useRef<{
@@ -130,7 +145,7 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
   const pointerInsideRef = React.useRef<boolean>(false);
   const activityRef = React.useRef<number>(0);
   const activityTargetRef = React.useRef<number>(0);
-
+  const entryStartRef = React.useRef<number | null>(null);
 
   React.useEffect(() => {
     let isCancelled = false;
@@ -278,6 +293,9 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
         a: number;
         drop: boolean;
         seed: number;
+        delaySeed: number;
+        startX: number;
+        startY: number;
       }> = [];
 
       let tintRGB: [number, number, number] | null = null;
@@ -369,8 +387,18 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
           );
           const drop = hash2D(cx, cy) < dropoutProb;
           const seed = hash2D(cx, cy);
+          // Separate seed for delay timing - offset coordinates to get different distribution
+          const delaySeed = hash2D(cx + 7919, cy + 104729);
 
-          samples.push({ x, y, r, g, b, a, drop, seed });
+          // Calculate scattered start position for entry animation
+          // Cells rise from below with slight horizontal variance
+          const scatterRadius = Math.max(displayWidth, displayHeight) * 0.35;
+          const verticalOffset = (0.6 + seed * 0.4) * scatterRadius; // Strong downward bias
+          const horizontalVariance = (seed - 0.5) * scatterRadius * 0.15; // Subtle side-to-side
+          const startX = x + horizontalVariance;
+          const startY = y + verticalOffset;
+
+          samples.push({ x, y, r, g, b, a, drop, seed, delaySeed, startX, startY });
         }
       }
 
@@ -446,6 +474,11 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
       canvasEl.addEventListener("pointerenter", onPointerEnter);
       canvasEl.addEventListener("pointerleave", onPointerLeave);
 
+      // Initialize entry animation start time
+      if (entryAnimation && entryStartRef.current === null) {
+        entryStartRef.current = performance.now();
+      }
+
       const animate = () => {
         const now = performance.now();
         const minDelta = 1000 / Math.max(1, maxFps);
@@ -490,10 +523,36 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
         const t = now * 0.001 * jitterSpeed;
         const activity = Math.max(0, Math.min(1, activityRef.current));
 
+        // Entry animation easing function (ease-out expo)
+        const easeOutExpo = (x: number) => x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+
         for (const s of samples) {
           if (s.drop || s.a <= 0) continue;
-          let drawX = s.x + cellSize / 2;
-          let drawY = s.y + cellSize / 2;
+
+          // Base target position
+          const targetX = s.x + cellSize / 2;
+          const targetY = s.y + cellSize / 2;
+
+          let drawX = targetX;
+          let drawY = targetY;
+          let drawAlpha = s.a;
+
+          // Entry animation - interpolate from scattered start to final position
+          if (entryAnimation && entryStartRef.current !== null) {
+            const elapsed = now - entryStartRef.current;
+            const cellDelay = entryDelay + s.delaySeed * entryStagger;
+            const cellProgress = Math.max(0, Math.min(1, (elapsed - cellDelay) / entryDuration));
+            const eased = easeOutExpo(cellProgress);
+
+            // Interpolate position
+            drawX = s.startX + (targetX - s.startX) * eased;
+            drawY = s.startY + (targetY - s.startY) * eased;
+            // Fade in alpha
+            drawAlpha = s.a * eased;
+
+            // Skip drawing if not yet visible
+            if (cellProgress <= 0) continue;
+          }
 
           // Ambient animation - applies to all dots when enabled
           if (ambientAnimation) {
@@ -537,7 +596,7 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
             }
           }
 
-          ctx.globalAlpha = s.a;
+          ctx.globalAlpha = drawAlpha;
           ctx.fillStyle = `rgb(${s.r}, ${s.g}, ${s.b})`;
           if (shape === "circle") {
             const radius = dims.dot / 2;
@@ -624,6 +683,10 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
     minImageHeight,
     ambientAnimation,
     ambientStrength,
+    entryAnimation,
+    entryDuration,
+    entryStagger,
+    entryDelay,
   ]);
 
   if (fillContainer) {

@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
-import { AnimatedAvatarWrapper } from "@/components/animated-avatar-wrapper";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
@@ -119,9 +118,7 @@ export default function HomePage() {
               <ScrollSection
                 id="intro"
                 mobileMedia={
-                  <AnimatedAvatarWrapper delay={1.0}>
-                    <PixelatedAvatar variant="mobile" />
-                  </AnimatedAvatarWrapper>
+                  <PixelatedAvatar variant="mobile" entryAnimation />
                 }
               >
                 <div className="py-12 lg:py-24">
@@ -159,9 +156,7 @@ export default function HomePage() {
 
             <ScrollLinkedMedia className="h-full flex items-center">
               <ScrollMediaItem sectionId="intro" className="h-full">
-                <AnimatedAvatarWrapper delay={1.0}>
-                  <PixelatedAvatar variant="large" size="fill" />
-                </AnimatedAvatarWrapper>
+                <PixelatedAvatar variant="large" size="fill" entryAnimation />
               </ScrollMediaItem>
             </ScrollLinkedMedia>
           </ScrollLinkedProvider>

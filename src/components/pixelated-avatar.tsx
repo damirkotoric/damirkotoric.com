@@ -14,6 +14,8 @@ type PixelatedAvatarProps = {
   size?: "viewport" | "medium" | "fill";
   /** How to trigger the reveal: "scroll" (in-view) or "hover" (mouse hover). Default is "scroll" */
   revealOn?: "scroll" | "hover";
+  /** Enable entry animation where cells animate into place */
+  entryAnimation?: boolean;
 };
 
 // Known image dimensions - AVIF metadata can be unreliable
@@ -46,6 +48,7 @@ export function PixelatedAvatar({
   reveal = false,
   size = "viewport",
   revealOn = "scroll",
+  entryAnimation = false,
 }: PixelatedAvatarProps) {
   const heightClass = size === "medium" ? "h-[60vh]" : size === "fill" ? "h-full" : "h-screen";
   const innerHeight = size === "fill" ? "100%" : "110%";
@@ -141,7 +144,7 @@ export function PixelatedAvatar({
                 {...baseProps}
                 width={448}
                 height={448}
-                cellSize={5}
+                cellSize={8}
                 distortionRadius={80}
               />
             </div>
@@ -155,8 +158,9 @@ export function PixelatedAvatar({
           {...baseProps}
           width={448}
           height={448}
-          cellSize={5}
+          cellSize={8}
           distortionRadius={80}
+          entryAnimation={entryAnimation}
         />
       </div>
     );
@@ -198,7 +202,7 @@ export function PixelatedAvatar({
           >
             <PixelatedCanvas
               {...baseProps}
-              cellSize={7}
+              cellSize={12}
               distortionRadius={100}
               objectFit="cover"
               fillContainer
@@ -222,11 +226,12 @@ export function PixelatedAvatar({
       >
         <PixelatedCanvas
           {...baseProps}
-          cellSize={7}
+          cellSize={12}
           distortionRadius={100}
           objectFit="cover"
           fillContainer
           className="h-full w-full"
+          entryAnimation={entryAnimation}
         />
       </div>
     </div>
