@@ -9,7 +9,6 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://damirkotoric.com"),
   title: "Damir Kotorić • Design Engineer",
   description:
     "I partner with funded startups and product teams on end-to-end product design, typically 3+ month engagements or full-time roles.",
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
     title: "Damir Kotorić • Design Engineer",
     description:
       "I partner with funded startups and product teams on end-to-end product design, typically 3+ month engagements or full-time roles.",
-    url: "https://damirkotoric.com",
+    url: "/",
     siteName: "Damir Kotorić",
     locale: "en_US",
     type: "website",
