@@ -21,12 +21,21 @@ export const metadata: Metadata = {
     siteName: "Damir Kotorić",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Damir Kotorić - Design Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Damir Kotorić • Design Engineer",
     description:
       "I partner with funded startups and product teams on end-to-end product design, typically 3+ month engagements or full-time roles.",
+    images: ["/og.png"],
   },
 };
 

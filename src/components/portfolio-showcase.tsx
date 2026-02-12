@@ -182,7 +182,7 @@ export function PortfolioShowcase({
 }: PortfolioShowcaseProps) {
   return (
     <section className={cn("overflow-x-clip pt-24 pb-48 lg:pb-60", className)}>
-      <div className="px-6 lg:px-16 2xl:px-80">
+      <div className="px-6 lg:px-16 2xl:px-40 3xl:px-80">
         {/* Section header */}
         <h2 className="mb-16 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           {title}

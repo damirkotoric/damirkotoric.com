@@ -114,7 +114,7 @@ export default function HomePage() {
       {/* Section 1: Hero + Logo Reel */}
       <section className="min-h-screen grid grid-rows-[1fr_auto]">
         <div className="h-full overflow-hidden">
-          <ScrollLinkedProvider className="h-full px-6 lg:px-16 2xl:px-80">
+          <ScrollLinkedProvider className="h-full px-6 lg:px-16 2xl:px-40 3xl:px-80">
             <ScrollLinkedContent className="h-full justify-center max-w-[580px]">
               <ScrollSection
                 id="intro"
@@ -174,7 +174,7 @@ export default function HomePage() {
       <PortfolioShowcase title="Selected work" items={selectedWork} />
 
       {/* Section 3: Outcomes */}
-      <section className="px-6 lg:pt-24 lg:px-16 2xl:px-80">
+      <section className="px-6 lg:pt-24 lg:px-16 2xl:px-40 3xl:px-80">
         <h2 className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           Outcomes
         </h2>
@@ -193,7 +193,7 @@ export default function HomePage() {
       </section>
 
       {/* Section 4: Testimonials */}
-      <section className="px-6 py-48 lg:py-64 lg:px-16 2xl:px-80">
+      <section className="px-6 py-48 lg:py-64 lg:px-16 2xl:px-40 3xl:px-80">
         <h2 className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           Testimonials
         </h2>
@@ -214,7 +214,7 @@ export default function HomePage() {
       </section>
 
       {/* Section 5: About */}
-      <section className="bg-muted px-6 lg:px-16 2xl:px-80">
+      <section className="bg-muted px-6 lg:px-16 2xl:px-40 3xl:px-80">
         <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16">
           <div className="max-w-[520px] pt-20 lg:py-40 2xl:py-50">
             <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -232,7 +232,7 @@ export default function HomePage() {
               we&apos;ll probably get along.
             </p>
           </div>
-          <div className="flex justify-center lg:justify-end lg:h-full 2xl:pr-60">
+          <div className="flex justify-center lg:justify-end lg:h-full 3xl:pr-60">
             <div className="lg:hidden">
               <PixelatedAvatar variant="mobile" reveal />
             </div>
@@ -247,7 +247,7 @@ export default function HomePage() {
       <PortfolioShowcase title="My products" items={products} isPersonalProject />
 
       {/* Section 6: CTA */}
-      <section className="bg-muted px-6 py-24 lg:py-48 lg:px-16 2xl:px-80">
+      <section className="bg-muted px-6 py-24 lg:py-48 lg:px-16 2xl:px-40 3xl:px-80">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
             Ready to work together?

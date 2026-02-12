@@ -97,7 +97,7 @@ export default function PortfolioPage() {
     <>
       <main>
         {/* Back link */}
-        <div className="px-6 pt-8 lg:px-16 2xl:px-80">
+        <div className="px-6 pt-8 lg:px-16 2xl:px-40 3xl:px-80">
           <Link
             href="/"
             className="text-sm text-muted-foreground transition hover:text-foreground -m-6 p-6"
@@ -107,7 +107,7 @@ export default function PortfolioPage() {
         </div>
 
         {/* Page header */}
-        <section className="px-6 pt-8 pb-12 lg:px-16 lg:pt-12 lg:pb-16 2xl:px-80">
+        <section className="px-6 pt-8 pb-12 lg:px-16 lg:pt-12 lg:pb-16 2xl:px-40 3xl:px-80">
           <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Portfolio
           </h2>
@@ -120,7 +120,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* Project grid */}
-        <section className="px-6 pb-24 lg:px-16 lg:pb-32 2xl:px-80">
+        <section className="px-6 pb-24 lg:px-16 lg:pb-32 2xl:px-40 3xl:px-80">
           <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
             {featuredProjects.map((project) => (
               <ProjectCard key={project.slug} {...project} />
@@ -129,7 +129,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* Archive */}
-        <section className="px-6 pb-24 lg:px-16 lg:pb-32 2xl:px-80">
+        <section className="px-6 pb-24 lg:px-16 lg:pb-32 2xl:px-40 3xl:px-80">
           <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Archive
           </h2>
@@ -148,7 +148,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* Personal Projects */}
-        <section className="px-6 pb-24 lg:px-16 lg:pb-32 2xl:px-80">
+        <section className="px-6 pb-24 lg:px-16 lg:pb-32 2xl:px-40 3xl:px-80">
           <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Personal Projects
           </h2>
@@ -189,7 +189,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* CTA */}
-        <section className="bg-muted px-6 py-24 lg:px-16 lg:py-48 2xl:px-80">
+        <section className="bg-muted px-6 py-24 lg:px-16 lg:py-48 2xl:px-40 3xl:px-80">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
               Ready to work together?
