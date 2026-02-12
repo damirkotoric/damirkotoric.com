@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
-import { TestimonialCard } from "@/components/testimonial-card";
+import { Testimonial } from "@/components/testimonial";
+import { testimonials } from "@/lib/portfolio-data";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
@@ -54,32 +55,6 @@ const outcomes = [
   { number: "$2M", description: "Seed round raised for Nametag" },
 ];
 
-const testimonials = [
-  {
-    quote:
-      "\u201CDamir is a legend. He is not a \u2018yes man\u2019 and will 100% push back on you when he doesn\u2019t like the direction.\u201D",
-    name: "Craig Vaughan",
-    role: "Co-Founder, BrokerEngine",
-    image: "/images/testimonials/craig.avif",
-    linkedIn: "https://www.linkedin.com/in/maphomeloans/",
-  },
-  {
-    quote:
-      "\u201CDamir is a brilliant designer. If you are looking for a top 1% product designer then I cannot recommend Damir enough.\u201D",
-    name: "Bradley Zarich",
-    role: "Co-Founder, Nametag & Cosmitto",
-    image: "/images/testimonials/brad.avif",
-    linkedIn: "https://www.linkedin.com/in/bradley-zarich/",
-  },
-  {
-    quote:
-      "\u201CDamir is a great all-rounder. He is capable of running projects with little assistance due to his wide skill set.\u201D",
-    name: "Chris Thelwell",
-    role: "Director of Product Design, DuckDuckGo",
-    image: "/images/testimonials/chris-thelwell.avif",
-    linkedIn: "https://www.linkedin.com/in/christhelwell/",
-  },
-];
 
 const products = [
   {
@@ -194,7 +169,7 @@ export default function HomePage() {
         </h2>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.name} {...testimonial} />
+            <Testimonial key={testimonial.name} {...testimonial} />
           ))}
         </div>
         <Link

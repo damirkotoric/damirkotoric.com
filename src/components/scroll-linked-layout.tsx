@@ -29,7 +29,7 @@ export function ScrollLinkedContent({
   className,
 }: ScrollLinkedContentProps) {
   return (
-    <div className={cn("flex flex-col", className)}>
+    <div className={cn("relative z-10 flex flex-col", className)}>
       {children}
     </div>
   );

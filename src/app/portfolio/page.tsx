@@ -112,28 +112,21 @@ export default function PortfolioPage() {
   return (
     <>
       <main>
-        {/* Back link */}
-        <div className="px-6 pt-8 lg:px-16 2xl:px-40 3xl:px-80">
-          <Link
-            href="/"
-            className="text-sm text-muted-foreground transition hover:text-foreground -m-6 p-6"
-          >
-            ← Home
-          </Link>
-        </div>
-
         {/* Page header */}
-        <section className="px-6 pt-8 pb-12 lg:px-16 lg:pt-12 lg:pb-16 2xl:px-40 3xl:px-80">
-          <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            Portfolio
-          </h2>
-          <h1 className="mb-3 text-3xl font-bold sm:text-4xl">
+        <header className="px-6 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-16 2xl:px-40 3xl:px-80">
+          <nav className="mb-2 flex items-center gap-1.5 text-sm text-muted-foreground">
+            <Link href="/" className="transition hover:text-foreground">
+              Home
+            </Link>
+            <span className="opacity-50">/</span>
+          </nav>
+          <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             Selected Work
           </h1>
           <p className="max-w-[520px] text-lg text-muted-foreground">
             Projects from 17 years of product design work across startups, scale-ups, and enterprise.
           </p>
-        </section>
+        </header>
 
         {/* Project grid */}
         <section className="px-6 pb-24 lg:px-16 lg:pb-32 2xl:px-40 3xl:px-80">
