@@ -36,11 +36,11 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "BeyondWords",
     description:
       "Created a custom design system for an audio AI startup, enabling faster product iteration.",
-    role: "Lead Product Designer",
+    role: "Design System Designer",
     year: "2024",
     client: "BeyondWords",
     coverImage: {
-      src: "/images/portfolio/beyondwords-cover.jpg",
+      src: "/images/portfolio/beyondwords/_beyondwords-cover.jpg",
       alt: "BeyondWords design system overview",
     },
     testimonial: {
@@ -71,7 +71,7 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "grid-2",
             images: [
               {
-                src: "/images/portfolio/beyondwords/ui-library-details.avif",
+                src: "/images/portfolio/beyondwords/ui-library-component-details.avif",
                 alt: "Component details",
               },
               {
@@ -120,15 +120,24 @@ export const portfolioProjects: PortfolioProject[] = [
           "Updated the UI for all core text-to-speech AI pages plus signup, password reset, 2FA, account management, and onboarding flows.",
         imageBlocks: [
           {
-            layout: "grid-2",
+            layout: "full",
             images: [
               {
                 src: "/images/portfolio/beyondwords/saas-1.avif",
                 alt: "Voice editor interface",
               },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
               {
                 src: "/images/portfolio/beyondwords/saas-2.avif",
-                alt: "Article management interface",
+                alt: "Security settings interface",
+              },
+              {
+                src: "/images/portfolio/beyondwords/saas-3.avif",
+                alt: "Account management interface",
               },
             ],
           },

@@ -143,16 +143,19 @@ export function PortfolioDetail({ project, nextProject }: PortfolioDetailProps) 
 
 function ImageBlockRenderer({ block }: { block: ImageBlock }) {
   if (block.layout === "full") {
-    const image = block.images[0];
     return (
-      <div className="overflow-hidden rounded-lg bg-muted">
-        <Image
-          src={image.src}
-          alt={image.alt}
-          width={1200}
-          height={800}
-          className="aspect-[3/2] w-full object-cover"
-        />
+      <div className="flex flex-col gap-4">
+        {block.images.map((image, index) => (
+          <div key={index} className="overflow-hidden rounded-lg bg-muted">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={1600}
+              height={0}
+              className="w-full h-auto"
+            />
+          </div>
+        ))}
       </div>
     );
   }
@@ -166,8 +169,8 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
               src={image.src}
               alt={image.alt}
               width={600}
-              height={400}
-              className="aspect-[3/2] w-full object-cover"
+              height={0}
+              className="w-full h-auto"
             />
           </div>
         ))}
@@ -184,8 +187,8 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
               src={image.src}
               alt={image.alt}
               width={400}
-              height={267}
-              className="aspect-[3/2] w-full object-cover"
+              height={0}
+              className="w-full h-auto"
             />
           </div>
         ))}

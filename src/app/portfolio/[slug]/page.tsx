@@ -27,16 +27,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${project.title} • Damir Kotoric`,
+    title: `${project.title} • Damir Kotorić`,
     description: project.description,
     openGraph: {
-      title: `${project.title} • Damir Kotoric`,
+      title: `${project.title} • Damir Kotorić`,
       description: project.description,
       images: [
         {
           url: project.coverImage.src,
           width: 1200,
-          height: 800,
+          height: 680,
           alt: project.coverImage.alt,
         },
       ],
