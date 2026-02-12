@@ -5,6 +5,8 @@ import Link from "next/link";
 import { BeyondWordsBg } from "@/components/beyondwords-bg";
 import { BrokerEngineBg } from "@/components/brokerengine-bg";
 import { NametagBg } from "@/components/nametag-bg";
+import { BookingBg } from "@/components/booking-bg";
+import { NswCdpBg } from "@/components/nsw-cdp-bg";
 
 type ProjectCardProps = {
   slug: string;
@@ -17,6 +19,8 @@ const customBackgrounds: Record<string, React.ReactNode> = {
   beyondwords: <BeyondWordsBg compact />,
   brokerengine: <BrokerEngineBg compact />,
   nametag: <NametagBg />,
+  "designing-the-payment-ux-at-booking-com": <BookingBg compact />,
+  "nsw-climate-data-portal": <NswCdpBg compact />,
 };
 
 export function ProjectCard({ slug, title, outcome, image }: ProjectCardProps) {
