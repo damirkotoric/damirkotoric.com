@@ -394,7 +394,7 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
           // Cells rise from below with slight horizontal variance
           const scatterRadius = Math.max(displayWidth, displayHeight) * 0.35;
           const verticalOffset = (0.6 + seed * 0.4) * scatterRadius; // Strong downward bias
-          const horizontalVariance = (seed - 0.5) * scatterRadius * 0.15; // Subtle side-to-side
+          const horizontalVariance = (seed - 0.5) * scatterRadius * 0.4; // Wider horizontal spread
           const startX = x + horizontalVariance;
           const startY = y + verticalOffset;
 

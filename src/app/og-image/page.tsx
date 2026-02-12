@@ -25,7 +25,7 @@ export default function OgImagePage() {
       </div>
 
       {/* Right half - Avatar */}
-      <div className="w-1/2 h-full pr-24">
+      <div className="w-1/2 h-full pr-24 -z-10">
         <PixelatedAvatar variant="large" size="fill" />
       </div>
     </div>
