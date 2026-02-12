@@ -31,7 +31,7 @@ export function StyleSpinBg() {
         playsInline
         preload="none"
         aria-hidden="true"
-        poster="/images/portfolio/stylespin-1.jpg"
+        poster="/images/portfolio/stylespin-poster.avif"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/images/portfolio/stylespin.mp4" type="video/mp4" />

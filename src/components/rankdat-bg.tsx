@@ -31,7 +31,7 @@ export function RankdatBg() {
         playsInline
         preload="none"
         aria-hidden="true"
-        poster="/images/portfolio/rankdat-1.jpg"
+        poster="/images/portfolio/rankdat-poster.avif"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/images/portfolio/rankdat.mp4" type="video/mp4" />

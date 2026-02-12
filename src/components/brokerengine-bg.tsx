@@ -35,7 +35,8 @@ export function BrokerEngineBg({ compact = false }: BrokerEngineBgProps) {
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="none"
+        poster="/images/portfolio/brokerengine-bg-poster.avif"
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
       >

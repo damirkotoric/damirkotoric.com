@@ -31,7 +31,7 @@ export function DoNotStayBg() {
         playsInline
         preload="none"
         aria-hidden="true"
-        poster="/images/portfolio/donotstay-1.jpg"
+        poster="/images/portfolio/donotstay-poster.avif"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/images/portfolio/donotstay.mp4" type="video/mp4" />

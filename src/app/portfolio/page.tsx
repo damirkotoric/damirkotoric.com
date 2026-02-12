@@ -68,18 +68,21 @@ const personalProjects = [
     description: "AI-powered hotel review analysis for smarter booking decisions.",
     href: "https://donotstay.app",
     video: "/images/portfolio/donotstay.mp4",
+    poster: "/images/portfolio/donotstay-poster.avif",
   },
   {
     title: "Rankdat",
     description: "Global country rankings platform covering healthcare, corruption, and more.",
     href: "https://rankdat.io",
     video: "/images/portfolio/rankdat.mp4",
+    poster: "/images/portfolio/rankdat-poster.avif",
   },
   {
     title: "StyleSpin",
     description: "AI fashion photoshoots for e-commerce sellers.",
     href: "https://stylespin.io",
     video: "/images/portfolio/stylespin.mp4",
+    poster: "/images/portfolio/stylespin-poster.avif",
   },
 ];
 
@@ -181,6 +184,7 @@ export default function PortfolioPage() {
                       loop
                       muted
                       playsInline
+                      poster={project.poster}
                       className="aspect-[5/4] w-full object-cover"
                     >
                       <source src={project.video} type="video/mp4" />
