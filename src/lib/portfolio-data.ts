@@ -25,6 +25,7 @@ export type PortfolioProject = {
   role: string;
   year: string;
   client: string;
+  liveUrl?: string;
   coverImage: { src: string; alt: string };
   testimonial?: Testimonial;
   sections: PortfolioSection[];
@@ -39,6 +40,7 @@ export const portfolioProjects: PortfolioProject[] = [
     role: "Design System Designer",
     year: "2024",
     client: "BeyondWords",
+    liveUrl: "https://beyondwords.io",
     coverImage: {
       src: "/images/portfolio/beyondwords/_beyondwords-cover.jpg",
       alt: "BeyondWords design system overview",

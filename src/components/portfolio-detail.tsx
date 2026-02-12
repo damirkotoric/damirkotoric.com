@@ -54,6 +54,21 @@ export function PortfolioDetail({ project, nextProject }: PortfolioDetailProps) 
               </span>
               <span className="font-medium">{project.client}</span>
             </div>
+            {project.liveUrl && (
+              <div className="flex flex-col gap-1">
+                <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground opacity-60">
+                  Website
+                </span>
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium transition hover:opacity-70"
+                >
+                  {new URL(project.liveUrl).hostname} ↗
+                </a>
+              </div>
+            )}
           </div>
         </header>
 
