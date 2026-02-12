@@ -198,7 +198,7 @@ export function PixelatedAvatar({
           >
             <PixelatedCanvas
               {...baseProps}
-              cellSize={10}
+              cellSize={7}
               distortionRadius={100}
               objectFit="cover"
               fillContainer
@@ -222,7 +222,7 @@ export function PixelatedAvatar({
       >
         <PixelatedCanvas
           {...baseProps}
-          cellSize={10}
+          cellSize={7}
           distortionRadius={100}
           objectFit="cover"
           fillContainer
