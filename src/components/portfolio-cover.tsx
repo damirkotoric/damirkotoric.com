@@ -33,7 +33,7 @@ export function PortfolioCover({ slug, coverImage }: PortfolioCoverProps) {
         width={1200}
         height={800}
         priority
-        unoptimized
+        quality={100}
         className="aspect-[3/2] w-full object-cover"
       />
     </div>

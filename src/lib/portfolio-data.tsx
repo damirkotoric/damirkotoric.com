@@ -24,6 +24,7 @@ export type PortfolioProject = {
   slug: string;
   title: string;
   description: string;
+  descriptionRich?: ReactNode;
   role: string;
   year: string;
   client: string;
@@ -170,6 +171,7 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "BrokerEngine",
     description:
       "Redesigned the product over 3 years, leading to a 70% acquisition by a major corporation.",
+    descriptionRich: <>Redesigned the product over 3 years, leading to a <a href="https://www.afgonline.com.au/afg-acquires-brokerengine-to-drive-further-growth-in-the-australian-mortgage-broker-market/" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">70% acquisition</a> by a major corporation.</>,
     role: "Lead Product Designer",
     year: "2021–2024",
     client: "BrokerEngine",

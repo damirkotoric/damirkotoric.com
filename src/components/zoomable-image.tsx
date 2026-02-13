@@ -77,7 +77,7 @@ export function ZoomableImage({ src, alt, width, height, caption, aspectRatio }:
           alt={alt}
           width={width}
           height={aspectRatio ? Math.round(width * (2 / 3)) : (height ?? 0)}
-          unoptimized
+          quality={100}
           className={imageClass}
         />
       </motion.div>

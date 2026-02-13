@@ -33,7 +33,7 @@ export function PortfolioDetail({ project, nextProject }: PortfolioDetailProps) 
             {project.title}
           </h1>
           <p className="mb-8 max-w-xl text-lg text-muted-foreground">
-            {project.description}
+            {project.descriptionRich ?? project.description}
           </p>
 
           {/* Meta row */}
@@ -176,7 +176,7 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
                 alt={image.alt}
                 width={dims?.width ?? 1600}
                 height={dims?.height ?? 0}
-                unoptimized
+                quality={100}
                 className="w-full h-auto"
               />
             </div>
