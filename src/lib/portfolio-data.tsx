@@ -3,9 +3,11 @@ export type ImageBlock = {
   images: { src: string; alt: string; caption?: string }[];
 };
 
+import type { ReactNode } from "react";
+
 export type PortfolioSection = {
   heading: string;
-  description: string;
+  description: ReactNode;
   imageBlocks: ImageBlock[];
 };
 
@@ -252,6 +254,15 @@ export const portfolioProjects: PortfolioProject[] = [
               },
             ],
           },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/brokerengine/tasks.png",
+                alt: "Task management interface",
+              },
+            ],
+          },
         ],
       },
       {
@@ -278,6 +289,15 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/brokerengine/responsive-contact.png",
                 alt: "Responsive contact details",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/brokerengine/onboarding.avif",
+                alt: "Onboarding experience",
               },
             ],
           },
@@ -314,8 +334,7 @@ export const portfolioProjects: PortfolioProject[] = [
       },
       {
         heading: "Outcome",
-        description:
-          "BrokerEngine was acquired by Australian Finance Group (AFG), one of the country's largest finance broking groups, during my tenure. The 70% acquisition validated the product direction and the design investment. This was my longest freelancing engagement — three years of deep product work that taught me the value of patience, systematic thinking, and building trust with a team over time.",
+        description: <>BrokerEngine was acquired by Australian Finance Group (AFG), one of the country's largest finance broking groups, during my tenure. The <a href="https://www.afg.com.au/about-us/media-centre/afg-acquires-70-of-brokerengine" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">70% acquisition</a> validated the product direction and the design investment. This was my longest freelancing engagement — three years of deep product work that taught me the value of patience, systematic thinking, and building trust with a team over time.</>,
         imageBlocks: [],
       },
     ],
