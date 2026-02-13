@@ -29,7 +29,8 @@ export function Testimonial({
   const maxWidth = isFeatured ? "max-w-xl" : "max-w-md";
 
   const renderQuote = () => {
-    if (!highlight) {
+    // Featured variant (portfolio detail) doesn't use bold highlighting
+    if (!highlight || isFeatured) {
       return quote;
     }
 

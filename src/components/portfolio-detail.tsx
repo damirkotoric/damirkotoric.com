@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { Testimonial } from "@/components/testimonial";
 import { PortfolioCover } from "@/components/portfolio-cover";
+import { ZoomableImage } from "@/components/zoomable-image";
 import type { PortfolioProject, ImageBlock } from "@/lib/portfolio-data";
+import { getImageDimensions } from "@/lib/image-dimensions";
 
 type PortfolioDetailProps = {
   project: PortfolioProject;
@@ -160,17 +162,26 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
   if (block.layout === "full") {
     return (
       <div className="flex flex-col gap-4">
-        {block.images.map((image, index) => (
-          <div key={index} className="overflow-hidden rounded-lg bg-muted">
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={1600}
-              height={0}
-              className="w-full h-auto"
-            />
-          </div>
-        ))}
+        {block.images.map((image, index) => {
+          const dims = getImageDimensions(image.src);
+          return (
+            <div key={index} className="relative overflow-hidden rounded-lg border border-border bg-muted">
+              {image.caption && (
+                <span className="absolute top-3 left-3 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm">
+                  {image.caption}
+                </span>
+              )}
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={dims?.width ?? 1600}
+                height={dims?.height ?? 0}
+                unoptimized
+                className="w-full h-auto"
+              />
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -178,17 +189,19 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
   if (block.layout === "grid-2") {
     return (
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {block.images.map((image, index) => (
-          <div key={index} className="overflow-hidden rounded-lg bg-muted">
-            <Image
+        {block.images.map((image, index) => {
+          const dims = getImageDimensions(image.src);
+          return (
+            <ZoomableImage
+              key={index}
               src={image.src}
               alt={image.alt}
-              width={600}
-              height={0}
-              className="w-full h-auto"
+              width={dims?.width ?? 600}
+              height={dims?.height}
+              caption={image.caption}
             />
-          </div>
-        ))}
+          );
+        })}
       </div>
     );
   }
@@ -196,17 +209,19 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
   if (block.layout === "grid-3") {
     return (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-        {block.images.map((image, index) => (
-          <div key={index} className="overflow-hidden rounded-lg bg-muted">
-            <Image
+        {block.images.map((image, index) => {
+          const dims = getImageDimensions(image.src);
+          return (
+            <ZoomableImage
+              key={index}
               src={image.src}
               alt={image.alt}
-              width={400}
-              height={0}
-              className="w-full h-auto"
+              width={dims?.width ?? 400}
+              height={dims?.height}
+              caption={image.caption}
             />
-          </div>
-        ))}
+          );
+        })}
       </div>
     );
   }

@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import { BeyondWordsBg } from "@/components/beyondwords-bg";
+import { BrokerEngineBg } from "@/components/brokerengine-bg";
 
 const interactiveCovers: Record<string, React.ReactNode> = {
   beyondwords: <BeyondWordsBg />,
+  brokerengine: <BrokerEngineBg />,
 };
 
 type PortfolioCoverProps = {
@@ -31,6 +33,7 @@ export function PortfolioCover({ slug, coverImage }: PortfolioCoverProps) {
         width={1200}
         height={800}
         priority
+        unoptimized
         className="aspect-[3/2] w-full object-cover"
       />
     </div>

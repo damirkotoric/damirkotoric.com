@@ -1,6 +1,6 @@
 export type ImageBlock = {
   layout: "full" | "grid-2" | "grid-3";
-  images: { src: string; alt: string }[];
+  images: { src: string; alt: string; caption?: string }[];
 };
 
 export type PortfolioSection = {
@@ -160,6 +160,163 @@ export const portfolioProjects: PortfolioProject[] = [
             ],
           },
         ],
+      },
+    ],
+  },
+  {
+    slug: "brokerengine",
+    title: "BrokerEngine",
+    description:
+      "Redesigned the product over 3 years, leading to a 70% acquisition by a major corporation.",
+    role: "Lead Product Designer",
+    year: "2021–2024",
+    client: "BrokerEngine",
+    liveUrl: "https://brokerengine.com.au",
+    coverImage: {
+      src: "/images/portfolio/brokerengine/cover.avif",
+      alt: "BrokerEngine product overview",
+    },
+    testimonial: {
+      quote:
+        "Damir is a legend. He completely transformed BrokerEngine. He is not a 'yes man' and will 100% push back on you when he doesn't like the direction.",
+      highlight: "Damir is a legend.",
+      name: "Craig Vaughan",
+      role: "Co-Founder, BrokerEngine",
+      image: "/images/testimonials/craig.avif",
+      linkedIn: "https://www.linkedin.com/in/maphomeloans/",
+    },
+    sections: [
+      {
+        heading: "Design Overhaul",
+        description:
+          "BrokerEngine is a deal management platform for mortgage brokers — think JIRA meets Intercom for real estate. When I joined, the UI was dense, boxy, and relied heavily on visual clutter to communicate hierarchy. Over three years, I led a systematic redesign that stripped back the noise — using colour more purposefully, whitespace more generously, and leaning on typography and spacing instead of borders and boxes. The result was a product that felt calmer and more confident, despite handling deeply complex workflows.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/brokerengine/deals-before.png",
+                alt: "Old deals overview",
+                caption: "Before",
+              },
+              {
+                src: "/images/portfolio/brokerengine/deals-after.png",
+                alt: "Redesigned deals overview",
+                caption: "After",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/brokerengine/deal-before.png",
+                alt: "Old deal page",
+                caption: "Before",
+              },
+              {
+                src: "/images/portfolio/brokerengine/deal-after.png",
+                alt: "Redesigned deal page",
+                caption: "After",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Simplifying Complexity",
+        description:
+          "A single mortgage deal passes through 15 individual stages before a customer gets their keys. Brokers juggle dozens of these simultaneously, each with its own documents, contacts, and compliance requirements. My goal wasn't to dumb the product down — it was to elegantly simplify. Every design decision was filtered through one question: does this reduce cognitive load without hiding information the broker needs? Consistent filtering, clearer status indicators, and a unified layout language turned a stressful tool into one that felt manageable.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/brokerengine/pipeline.png",
+                alt: "Deal pipeline stages",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/brokerengine/filter-before.png",
+                alt: "Old fragmented filtering",
+                caption: "Before",
+              },
+              {
+                src: "/images/portfolio/brokerengine/filter-after.png",
+                alt: "Unified filter component",
+                caption: "After",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Design System",
+        description:
+          "The project used Ant Design as its component foundation. I extended it with a custom UI library to cover BrokerEngine's specific needs — hundreds of custom components across 9 Figma files, each with fully specced states and variants so developers never had to guess. Component variables laid out every possible state: default, hover, active, disabled, error. This rigour eliminated back-and-forth and let the engineering team ship with confidence.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/brokerengine/figma-files.avif",
+                alt: "Nine Figma project files",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/brokerengine/card-payment-system.png",
+                alt: "Card payment system",
+              },
+              {
+                src: "/images/portfolio/brokerengine/responsive-contact.png",
+                alt: "Responsive contact details",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Messaging & Communication",
+        description:
+          "I proposed and designed a revamped messaging architecture that became a core product feature. The new system unified how brokers communicated with clients, replacing scattered touchpoints with a single threaded conversation model. Comments powered the collaboration between brokers and their teams, while the compose component handled everything from quick notes to document requests.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/brokerengine/messaging.png",
+                alt: "Messaging feature",
+              },
+              {
+                src: "/images/portfolio/brokerengine/compose-component.png",
+                alt: "Compose component",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/brokerengine/comments.webp",
+                alt: "Comments system",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outcome",
+        description:
+          "BrokerEngine was acquired by Australian Finance Group (AFG), one of the country's largest finance broking groups, during my tenure. The 70% acquisition validated the product direction and the design investment. This was my longest freelancing engagement — three years of deep product work that taught me the value of patience, systematic thinking, and building trust with a team over time.",
+        imageBlocks: [],
       },
     ],
   },

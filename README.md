@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# damirkotoric.com
 
-## Getting Started
+Personal portfolio website.
 
-First, run the development server:
+## Tech Stack
+
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Motion (Framer Motion)
+
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Image Conversion
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Portfolio images are converted to AVIF using ffmpeg.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Command
 
-## Learn More
+```bash
+ffmpeg -i input.png -c:v libaom-av1 -crf 28 -still-picture 1 output.avif -y
+```
 
-To learn more about Next.js, take a look at the following resources:
+### CRF Settings
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **CRF 28** - Default (good quality/size balance)
+- **CRF 32** - Higher compression for large images
+- Lower CRF = higher quality, larger file
+- Higher CRF = more compression, smaller file
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Portfolio System
 
-## Deploy on Vercel
+Portfolio projects are defined in `src/lib/portfolio-data.ts`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Image Block Layouts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `full` - Full-width image
+- `grid-2` - Two-column grid
+- `grid-3` - Three-column grid
+
+### Interactive Covers
+
+Animated cover backgrounds are mapped in `src/components/portfolio-cover.tsx`:
+
+1. Create component (e.g., `src/components/project-bg.tsx`)
+2. Import and add to `interactiveCovers` map
