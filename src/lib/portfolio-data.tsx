@@ -354,6 +354,195 @@ export const portfolioProjects: PortfolioProject[] = [
       },
     ],
   },
+  {
+    slug: "nametag",
+    title: "Nametag",
+    description:
+      "Designed the web3 product from scratch, helping secure a $2M seed round and 60K users.",
+    descriptionRich: <>Designed the web3 product from scratch, helping secure a <a href="https://finance.yahoo.com/news/okx-ventures-gsrv-co-lead-032400725.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">$2M seed round</a> and 60K users.</>,
+    role: "Lead Product Designer",
+    year: "2022–2023",
+    client: "Nametag",
+    coverImage: {
+      src: "/images/portfolio/nametag/_nametag-cover.jpg",
+      alt: "Nametag product overview",
+    },
+    testimonial: {
+      quote:
+        "Damir is a brilliant designer. What impressed us most about him was his willingness to meet all of our tight deadlines and nothing was ever too hard. If you are looking for a top 1% product designer then I cannot recommend Damir enough.",
+      highlight: "Damir is a brilliant designer.",
+      name: "Bradley Zarich",
+      role: "Co-Founder, Nametag & Cosmitto",
+      image: "/images/testimonials/brad.avif",
+      linkedIn: "https://www.linkedin.com/in/bradley-zarich/",
+    },
+    sections: [
+      {
+        heading: "Product Design",
+        description:
+          "Nametag adds a web3 layer on top of Twitter and Discord, letting users showcase their digital collections — including NFTs — directly on their social media profiles. I joined when the product was an early alpha prototype and led the design through to a fully shipped product with 60,000 users and a 4.9-star rating on the Chrome Web Store. The core experience spans collectible spaces, a Chrome extension overlay, creator-driven drops called Nokens, and rich user profiles.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nametag/nametag.mp4",
+                alt: "Short video showcasing the Nametag product experience across Twitter and Discord",
+              },
+              {
+                src: "/images/portfolio/nametag/space.avif",
+                alt: "Collectible spaces — themed collections from artists and creators",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/nametag/extension.avif",
+                alt: "Chrome extension landing page",
+              },
+              {
+                src: "/images/portfolio/nametag/noken-drop.avif",
+                alt: "Noken drop — proprietary digital collectibles",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nametag/profile.avif",
+                alt: "Completed user profile showcasing digital collections",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Component Architecture",
+        description:
+          "Every component was specced with exhaustive state coverage so developers never had to guess at edge cases. The Claim Box alone — a deceptively simple-looking component — required dozens of state variations: loading, claimed, expired, sold out, wallet connected, wallet disconnected, and more. This level of rigour meant fewer bugs, faster implementation, and a product that handled real-world complexity gracefully.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nametag/noken-figma.avif",
+                alt: "Behind the scenes — Noken page mockups and components in Figma",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nametag/claim-box.avif",
+                alt: "Deep dive on the Claim Box component — dozens of states fully specced",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Onboarding & Auth",
+        description:
+          "We deliberately made signup as frictionless as possible — social channels, email, web3 wallets like MetaMask, and even QR codes. Instead of separating 'sign up' from 'log in', we unified the flow: pick your method, and we either recognise your account or start onboarding. This removed a common drop-off point and reflected our philosophy that the product should be useful before users jump through every hoop. Post-onboarding, we used a soft completion model — users could start using Nametag immediately, then finalise their profile through guided steps when they were ready.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nametag/auth-options.avif",
+                alt: "Flexible authentication — social, email, wallet, and QR code",
+              },
+            ],
+          },
+          {
+            layout: "grid-3",
+            images: [
+              {
+                src: "/images/portfolio/nametag/onboarding-1.avif",
+                alt: "Onboarding step 1",
+              },
+              {
+                src: "/images/portfolio/nametag/onboarding-2.avif",
+                alt: "Onboarding step 2",
+              },
+              {
+                src: "/images/portfolio/nametag/onboarding-3.avif",
+                alt: "Onboarding step 3",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nametag/profile-completion.avif",
+                alt: "Profile completion modal — guided steps to finalise setup",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "iOS & Android Concepts",
+        description:
+          "Before pivoting to a web-only strategy, I designed native app concepts for both iOS and Android. The challenge was making each platform feel native — respecting iOS and Material Design conventions for navigation, iconography, and button radii — while maintaining a distinctly Nametag identity through custom typography, a unified component library, and a consistent colour scheme across platforms.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nametag/mobile-concepts-1.avif",
+                alt: "iOS and Android app concepts — native feel, unified brand",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nametag/mobile-concepts-2.avif",
+                alt: "Platform-specific adaptations with shared design language",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Design System",
+        description:
+          "As a solo designer doing the work of an entire team, I needed to work smart. I built a design system in Figma that used Material Design as the foundation for both web and Android, with a separate iOS layer on top. This meant each custom component only needed two variations instead of three — a 33% reduction in design cost. The setup scaled across multiple Figma files and gave the engineering team a single source of truth.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nametag/figma-setup.avif",
+                alt: "Figma project structure — design system architecture",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nametag/ds-components.avif",
+                alt: "Material Design + iOS strategy — one component, two platforms",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outcome",
+        description: <>Nametag secured a <a href="https://finance.yahoo.com/news/okx-ventures-gsrv-co-lead-032400725.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">$2M seed round</a> co-led by OKX Ventures and GSRV as a direct result of this work. The product grew to 60,000 users with a 4.9-star rating on the Chrome Web Store before the service was eventually shut down. Despite that, this remains one of the highest-ROI engagements of my career — taking a product from alpha prototype to funded and shipped as a solo designer in under a year.</>,
+        imageBlocks: [],
+      },
+    ],
+  },
 ];
 
 export function getProjectBySlug(slug: string): PortfolioProject | undefined {

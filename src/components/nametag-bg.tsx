@@ -6,7 +6,7 @@ import { ZoomableImage } from "@/components/zoomable-image";
 export function NametagBg() {
   return (
     <ZoomableImage
-      src="/images/portfolio/nametag-1.avif"
+      src="/images/portfolio/nametag/nametag-1.avif"
       alt="Nametag UI"
       width={1600}
       aspectRatio="3/2"

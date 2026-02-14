@@ -158,30 +158,59 @@ export function PortfolioDetail({ project, nextProject }: PortfolioDetailProps) 
   );
 }
 
+function isVideo(src: string) {
+  return /\.(mp4|webm|mov)$/i.test(src);
+}
+
+function MediaItem({ image, width }: { image: { src: string; alt: string; caption?: string }; width: number }) {
+  if (isVideo(image.src)) {
+    return (
+      <div className="relative overflow-hidden rounded-lg border border-border bg-muted">
+        {image.caption && (
+          <span className="absolute top-3 left-3 z-10 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm">
+            {image.caption}
+          </span>
+        )}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-auto"
+        >
+          <source src={image.src} type={`video/${image.src.split('.').pop()}`} />
+        </video>
+      </div>
+    );
+  }
+
+  const dims = getImageDimensions(image.src);
+  return (
+    <div className="relative overflow-hidden rounded-lg border border-border bg-muted">
+      {image.caption && (
+        <span className="absolute top-3 left-3 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm">
+          {image.caption}
+        </span>
+      )}
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={dims?.width ?? width}
+        height={dims?.height ?? 0}
+        quality={100}
+        className="w-full h-auto"
+      />
+    </div>
+  );
+}
+
 function ImageBlockRenderer({ block }: { block: ImageBlock }) {
   if (block.layout === "full") {
     return (
       <div className="flex flex-col gap-4">
-        {block.images.map((image, index) => {
-          const dims = getImageDimensions(image.src);
-          return (
-            <div key={index} className="relative overflow-hidden rounded-lg border border-border bg-muted">
-              {image.caption && (
-                <span className="absolute top-3 left-3 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm">
-                  {image.caption}
-                </span>
-              )}
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={dims?.width ?? 1600}
-                height={dims?.height ?? 0}
-                quality={100}
-                className="w-full h-auto"
-              />
-            </div>
-          );
-        })}
+        {block.images.map((image, index) => (
+          <MediaItem key={index} image={image} width={1600} />
+        ))}
       </div>
     );
   }
@@ -190,6 +219,9 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
     return (
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {block.images.map((image, index) => {
+          if (isVideo(image.src)) {
+            return <MediaItem key={index} image={image} width={600} />;
+          }
           const dims = getImageDimensions(image.src);
           return (
             <ZoomableImage
@@ -210,6 +242,9 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
     return (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {block.images.map((image, index) => {
+          if (isVideo(image.src)) {
+            return <MediaItem key={index} image={image} width={400} />;
+          }
           const dims = getImageDimensions(image.src);
           return (
             <ZoomableImage

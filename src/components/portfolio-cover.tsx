@@ -3,10 +3,12 @@
 import Image from "next/image";
 import { BeyondWordsBg } from "@/components/beyondwords-bg";
 import { BrokerEngineBg } from "@/components/brokerengine-bg";
+import { NametagBg } from "@/components/nametag-bg";
 
 const interactiveCovers: Record<string, React.ReactNode> = {
   beyondwords: <BeyondWordsBg />,
   brokerengine: <BrokerEngineBg />,
+  nametag: <NametagBg />,
 };
 
 type PortfolioCoverProps = {

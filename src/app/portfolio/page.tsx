@@ -7,7 +7,7 @@ import { ProjectCard } from "@/components/project-card";
 export const metadata: Metadata = {
   title: "Portfolio • Damir Kotorić",
   description:
-    "Selected projects from 17 years of product design work across startups, scale-ups, and enterprise.",
+    "Selected projects from 17+ years of product design work across startups, scale-ups, and enterprise.",
   openGraph: {
     images: [
       {
@@ -40,7 +40,7 @@ const featuredProjects = [
     slug: "nametag",
     title: "Nametag",
     outcome: "Designed the web3 product from scratch, helping secure a $2M seed round and 60K users.",
-    image: "/images/portfolio/nametag-1.avif",
+    image: "/images/portfolio/nametag/nametag-1.avif",
   },
   {
     slug: "designing-the-payment-ux-at-booking-com",
@@ -124,7 +124,7 @@ export default function PortfolioPage() {
             Selected Work
           </h1>
           <p className="max-w-[520px] text-lg text-muted-foreground">
-            Projects from 17 years of product design work across startups, scale-ups, and enterprise.
+            Projects from 17+ years of product design work across startups, scale-ups, and enterprise.
           </p>
         </header>
 

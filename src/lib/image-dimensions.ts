@@ -18,7 +18,7 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 6800
   },
-  "/images/portfolio/beyondwords/home-page-concept.avif": {
+  "/images/portfolio/beyondwords/homepage-concept.avif": {
     "width": 3200,
     "height": 19784
   },
@@ -94,21 +94,17 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 914,
     "height": 526
   },
-  "/images/portfolio/brokerengine/SMgQI5vK5lC4IWjN22NksUlXY.avif": {
-    "width": 1788,
-    "height": 530
-  },
-  "/images/portfolio/brokerengine/WfRetAwxjBB59L3686NWp1wB7M.avif": {
-    "width": 3476,
-    "height": 2226
-  },
   "/images/portfolio/brokerengine/_brokerengine-bg-poster.avif": {
     "width": 598,
     "height": 400
   },
   "/images/portfolio/brokerengine/_brokerengine-cover.jpg": {
-    "width": 1600,
-    "height": 840
+    "width": 1200,
+    "height": 630
+  },
+  "/images/portfolio/brokerengine/brokerengine-ui.avif": {
+    "width": 2880,
+    "height": 1600
   },
   "/images/portfolio/brokerengine/card-payment-system.avif": {
     "width": 3200,
@@ -190,15 +186,71 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 2720,
     "height": 1600
   },
-  "/images/portfolio/nametag-1.avif": {
-    "width": 3200,
-    "height": 2132
+  "/images/portfolio/nametag/_nametag-cover.jpg": {
+    "width": 1200,
+    "height": 675
   },
-  "/images/portfolio/nametag-2.avif": {
+  "/images/portfolio/nametag/auth-options.avif": {
+    "width": 3476,
+    "height": 2226
+  },
+  "/images/portfolio/nametag/claim-box.avif": {
+    "width": 2992,
+    "height": 1868
+  },
+  "/images/portfolio/nametag/ds-components.avif": {
+    "width": 3476,
+    "height": 2226
+  },
+  "/images/portfolio/nametag/extension.avif": {
+    "width": 3200,
+    "height": 7200
+  },
+  "/images/portfolio/nametag/figma-setup.avif": {
+    "width": 1888,
+    "height": 1536
+  },
+  "/images/portfolio/nametag/mobile-concepts-1.avif": {
     "width": 3200,
     "height": 2400
   },
-  "/images/portfolio/nametag-3.avif": {
+  "/images/portfolio/nametag/mobile-concepts-2.avif": {
+    "width": 2252,
+    "height": 6496
+  },
+  "/images/portfolio/nametag/nametag-1.avif": {
+    "width": 3200,
+    "height": 2132
+  },
+  "/images/portfolio/nametag/noken-drop.avif": {
+    "width": 2992,
+    "height": 4345
+  },
+  "/images/portfolio/nametag/noken-figma.avif": {
+    "width": 2992,
+    "height": 1868
+  },
+  "/images/portfolio/nametag/onboarding-1.avif": {
+    "width": 2880,
+    "height": 1600
+  },
+  "/images/portfolio/nametag/onboarding-2.avif": {
+    "width": 2880,
+    "height": 1600
+  },
+  "/images/portfolio/nametag/onboarding-3.avif": {
+    "width": 2880,
+    "height": 1600
+  },
+  "/images/portfolio/nametag/profile-completion.avif": {
+    "width": 3476,
+    "height": 2226
+  },
+  "/images/portfolio/nametag/profile.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/nametag/space.avif": {
     "width": 3200,
     "height": 2400
   },
