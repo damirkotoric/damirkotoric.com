@@ -274,17 +274,61 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2400
   },
-  "/images/portfolio/nsw-cdp-bg.avif": {
+  "/images/portfolio/nsw-cdp/analysis.avif": {
+    "width": 3200,
+    "height": 2000
+  },
+  "/images/portfolio/nsw-cdp/dataset-page.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/nsw-cdp/faceted-search.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/nsw-cdp/hero.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/nsw-cdp/nsw-cdp-bg.avif": {
     "width": 3200,
     "height": 2132
   },
-  "/images/portfolio/nsw-cdp-ui-desktop.avif": {
+  "/images/portfolio/nsw-cdp/nsw-cdp-ui-desktop.avif": {
     "width": 2800,
     "height": 2000
   },
-  "/images/portfolio/nsw-cdp-ui-mobile.avif": {
+  "/images/portfolio/nsw-cdp/nsw-cdp-ui-mobile.avif": {
     "width": 640,
     "height": 1400
+  },
+  "/images/portfolio/nsw-cdp/reports.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/nsw-cdp/scale-download.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/nsw-cdp/testing-1.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/nsw-cdp/testing-2.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/nsw-cdp/testing-3.avif": {
+    "width": 2400,
+    "height": 2400
+  },
+  "/images/portfolio/nsw-cdp/testing-4.avif": {
+    "width": 2400,
+    "height": 2400
+  },
+  "/images/portfolio/nsw-cdp/testing-summary.avif": {
+    "width": 3200,
+    "height": 1744
   },
   "/images/portfolio/rankdat-poster.avif": {
     "width": 2880,

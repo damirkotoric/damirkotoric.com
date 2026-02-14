@@ -5,12 +5,14 @@ import { BeyondWordsBg } from "@/components/beyondwords-bg";
 import { BrokerEngineBg } from "@/components/brokerengine-bg";
 import { NametagBg } from "@/components/nametag-bg";
 import { BookingBg } from "@/components/booking-bg";
+import { NswCdpBg } from "@/components/nsw-cdp-bg";
 
 const interactiveCovers: Record<string, React.ReactNode> = {
   beyondwords: <BeyondWordsBg />,
   brokerengine: <BrokerEngineBg />,
   nametag: <NametagBg />,
   "booking-com": <BookingBg />,
+  "nsw-climate-data-portal": <NswCdpBg />,
 };
 
 type PortfolioCoverProps = {

@@ -49,7 +49,7 @@ export function NswCdpBg({ compact = false }: NswCdpBgProps) {
     <div ref={ref} className="relative w-full aspect-[3/2] overflow-hidden">
       {/* Background image */}
       <Image
-        src="/images/portfolio/nsw-cdp-bg.avif"
+        src="/images/portfolio/nsw-cdp/nsw-cdp-bg.avif"
         alt=""
         fill
         className="object-cover"
@@ -79,7 +79,7 @@ export function NswCdpBg({ compact = false }: NswCdpBgProps) {
             }}
           >
             <Image
-              src="/images/portfolio/nsw-cdp-ui-desktop.avif"
+              src="/images/portfolio/nsw-cdp/nsw-cdp-ui-desktop.avif"
               alt="NSW Climate Data Portal desktop interface"
               width={2800}
               height={2000}
@@ -101,7 +101,7 @@ export function NswCdpBg({ compact = false }: NswCdpBgProps) {
             }}
           >
             <Image
-              src="/images/portfolio/nsw-cdp-ui-mobile.avif"
+              src="/images/portfolio/nsw-cdp/nsw-cdp-ui-mobile.avif"
               alt="NSW Climate Data Portal mobile interface"
               width={640}
               height={1400}

@@ -647,7 +647,138 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Outcome",
         description:
-          "The combined impact of my A/B tested conversion optimisation work across both teams was calculated at €35 million per year for the company. In terms of direct commercial impact, this remains the most successful outcome of my career.",
+          "The combined impact of my A/B tested conversion optimisation work across both teams was calculated at €35 million per year for the company. In terms of direct commercial impact, this remains the most successful outcome of my career. Every pixel was backed by data — a discipline I've carried into every engagement since.",
+        imageBlocks: [],
+      },
+    ],
+  },
+  {
+    slug: "nsw-climate-data-portal",
+    title: "NSW Climate Data Portal",
+    description:
+      "Designed an open data portal for the NSW Government, making petabytes of climate data publicly accessible.",
+    role: "Product Designer",
+    year: "2020",
+    client: "New South Wales Government",
+    liveUrl: "https://climatedata.environment.nsw.gov.au",
+    coverImage: {
+      src: "/images/portfolio/nsw-cdp/nsw-cdp-bg.avif",
+      alt: "NSW Climate Data Portal overview",
+    },
+    testimonial: {
+      quote:
+        "Damir has the experience and initiative to take on a brief and work with all the key stakeholders to get a successful outcome.",
+      name: "John Corlett",
+      role: "Technical Product Owner, Link Digital",
+      image: "/images/testimonials/john-corlett.avif",
+      linkedIn: "https://www.linkedin.com/in/corlettjohn/",
+    },
+    sections: [
+      {
+        heading: "The Challenge",
+        description:
+          "The NSW Climate Data Portal needed to make petabytes of climate data available to researchers, emergency services, government agencies, media, and the general public. As the sole designer on a team of engineers and government stakeholders, my job was to synthesise competing requirements into a single coherent design direction — then validate it. The portal is built on CKAN, an open-source data platform, and needed to comply with the NSW Government design system while solving for the unique challenges of navigating and downloading massive datasets.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nsw-cdp/analysis.avif",
+                alt: "Thorough analysis of the existing landscape and stakeholder requirements",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Design Direction",
+        description:
+          "I leveraged the existing NSW Government design system to accelerate stakeholder approval, speed up development, and ensure accessibility out of the box. The core design challenge was scale — each dataset could range from gigabytes to petabytes. Users needed to find specific datasets quickly through faceted search, then download only the data relevant to their region of interest rather than pulling entire files. Reports interpreted raw data into human-readable summaries, making the portal accessible beyond just data scientists.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nsw-cdp/dataset-page.avif",
+                alt: "Dataset page — download the full dataset or customise to a specific region",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nsw-cdp/faceted-search.avif",
+                alt: "Faceted search — helping users find a needle in a haystack",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nsw-cdp/scale-download.avif",
+                alt: "Designing for scale — making massive datasets manageable",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nsw-cdp/reports.avif",
+                alt: "Reports — summarising datasets in a human-readable format",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "User Testing",
+        description:
+          "I ran two remote tests with 20 target users: a tree test to validate the navigation structure and a click test to evaluate the homepage layout. The tree test returned a 71% success rate and the click test averaged 80% task completion — strong signals that the information architecture was working. I also ran moderated sessions via Zoom, observing participants completing tasks in real time and compiling the findings into a report of actionable recommendations for the next iteration.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/nsw-cdp/testing-1.avif",
+                alt: "Tree test results",
+              },
+              {
+                src: "/images/portfolio/nsw-cdp/testing-2.avif",
+                alt: "Click test heatmap",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/nsw-cdp/testing-3.avif",
+                alt: "User testing analysis",
+              },
+              {
+                src: "/images/portfolio/nsw-cdp/testing-4.avif",
+                alt: "Task completion findings",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/nsw-cdp/testing-summary.avif",
+                alt: "Summary of user testing findings with actionable recommendations for the next iteration",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outcome",
+        description:
+          "The portal was delivered in a few months — from stakeholder analysis through design iterations, prototyping, and user testing. It now makes NSW's climate data publicly accessible, enabling better-informed decisions across government, research, and emergency services. Working as the sole designer with dozens of technical and government stakeholders sharpened my ability to synthesise complex requirements into clear, actionable design direction.",
         imageBlocks: [],
       },
     ],
@@ -697,13 +828,5 @@ export const testimonials: Testimonial[] = [
     role: "Director of Product Design, DuckDuckGo",
     image: "/images/testimonials/chris-thelwell.avif",
     linkedIn: "https://www.linkedin.com/in/christhelwell/",
-  },
-  {
-    quote:
-      "Damir brought substantial positive change to our team soon after joining, taking over the visual side of our project, championing the user research, and driving the communication of product vision with the wider design community within the company.",
-    name: "Veniamin Kleshchenkov",
-    role: "Senior Full Stack Developer, Booking.com",
-    image: "/images/testimonials/veniamin.avif",
-    linkedIn: "https://www.linkedin.com/in/vtambourine/",
   },
 ];
