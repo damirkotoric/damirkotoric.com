@@ -190,7 +190,7 @@ export const portfolioProjects: PortfolioProject[] = [
     client: "BrokerEngine",
     liveUrl: "https://brokerengine.com.au",
     coverImage: {
-      src: "/images/portfolio/brokerengine/cover.avif",
+      src: "/images/portfolio/brokerengine/_brokerengine-cover.jpg",
       alt: "BrokerEngine product overview",
     },
     testimonial: {

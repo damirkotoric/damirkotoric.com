@@ -16,7 +16,7 @@ export function DoNotStayBg() {
     if (!videoRef.current) return;
 
     if (isVisible) {
-      videoRef.current.play();
+      videoRef.current.play().catch(() => {});
     } else {
       videoRef.current.pause();
     }

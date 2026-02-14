@@ -21,7 +21,7 @@ export function BrokerEngineBg({ compact = false }: BrokerEngineBgProps) {
   useEffect(() => {
     if (!videoRef.current) return;
     if (isVisible) {
-      videoRef.current.play();
+      videoRef.current.play().catch(() => {});
     } else {
       videoRef.current.pause();
     }
@@ -36,11 +36,11 @@ export function BrokerEngineBg({ compact = false }: BrokerEngineBgProps) {
         muted
         playsInline
         preload="none"
-        poster="/images/portfolio/brokerengine-bg-poster.avif"
+        poster="/images/portfolio/brokerengine/_brokerengine-bg-poster.avif"
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/images/portfolio/brokerengine-bg.mp4" type="video/mp4" />
+        <source src="/images/portfolio/brokerengine/_brokerengine-bg.mp4" type="video/mp4" />
       </video>
 
       {/* Blur overlay */}
@@ -56,7 +56,7 @@ export function BrokerEngineBg({ compact = false }: BrokerEngineBgProps) {
         >
           <CometCard trackingRef={ref}>
             <Image
-              src="/images/portfolio/brokerengine-ui.avif"
+              src="/images/portfolio/brokerengine/brokerengine-ui.avif"
               alt="BrokerEngine UI"
               width={1280}
               height={853}
