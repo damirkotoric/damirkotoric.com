@@ -128,8 +128,8 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "full",
             images: [
               {
-                src: "/images/portfolio/beyondwords/saas-1.avif",
-                alt: "Voice editor interface",
+                src: "/images/portfolio/beyondwords/articles.avif",
+                alt: "Articles management interface",
               },
             ],
           },
@@ -137,12 +137,25 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "grid-2",
             images: [
               {
-                src: "/images/portfolio/beyondwords/saas-2.avif",
+                src: "/images/portfolio/beyondwords/security.avif",
                 alt: "Security settings interface",
               },
               {
-                src: "/images/portfolio/beyondwords/saas-3.avif",
+                src: "/images/portfolio/beyondwords/plan-management.avif",
                 alt: "Account management interface",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/beyondwords/onboarding-1.avif",
+                alt: "Onboarding experience",
+              },
+              {
+                src: "/images/portfolio/beyondwords/onboarding-2.avif",
+                alt: "Onboarding experience",
               },
             ],
           },
@@ -199,12 +212,12 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "grid-2",
             images: [
               {
-                src: "/images/portfolio/brokerengine/deals-before.png",
+                src: "/images/portfolio/brokerengine/deals-before.avif",
                 alt: "Old deals overview",
                 caption: "Before",
               },
               {
-                src: "/images/portfolio/brokerengine/deals-after.png",
+                src: "/images/portfolio/brokerengine/deals-after.avif",
                 alt: "Redesigned deals overview",
                 caption: "After",
               },
@@ -214,12 +227,12 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "grid-2",
             images: [
               {
-                src: "/images/portfolio/brokerengine/deal-before.png",
+                src: "/images/portfolio/brokerengine/deal-before.avif",
                 alt: "Old deal page",
                 caption: "Before",
               },
               {
-                src: "/images/portfolio/brokerengine/deal-after.png",
+                src: "/images/portfolio/brokerengine/deal-after.avif",
                 alt: "Redesigned deal page",
                 caption: "After",
               },
@@ -236,7 +249,7 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "full",
             images: [
               {
-                src: "/images/portfolio/brokerengine/pipeline.png",
+                src: "/images/portfolio/brokerengine/pipeline.avif",
                 alt: "Deal pipeline stages",
               },
             ],
@@ -245,12 +258,12 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "grid-2",
             images: [
               {
-                src: "/images/portfolio/brokerengine/filter-before.png",
+                src: "/images/portfolio/brokerengine/filter-before.avif",
                 alt: "Old fragmented filtering",
                 caption: "Before",
               },
               {
-                src: "/images/portfolio/brokerengine/filter-after.png",
+                src: "/images/portfolio/brokerengine/filter-after.avif",
                 alt: "Unified filter component",
                 caption: "After",
               },
@@ -260,7 +273,7 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "full",
             images: [
               {
-                src: "/images/portfolio/brokerengine/tasks.png",
+                src: "/images/portfolio/brokerengine/tasks.avif",
                 alt: "Task management interface",
               },
             ],
@@ -285,11 +298,11 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "grid-2",
             images: [
               {
-                src: "/images/portfolio/brokerengine/card-payment-system.png",
+                src: "/images/portfolio/brokerengine/card-payment-system.avif",
                 alt: "Card payment system",
               },
               {
-                src: "/images/portfolio/brokerengine/responsive-contact.png",
+                src: "/images/portfolio/brokerengine/responsive-contact.avif",
                 alt: "Responsive contact details",
               },
             ],
@@ -314,11 +327,11 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "grid-2",
             images: [
               {
-                src: "/images/portfolio/brokerengine/messaging.png",
+                src: "/images/portfolio/brokerengine/messaging.avif",
                 alt: "Messaging feature",
               },
               {
-                src: "/images/portfolio/brokerengine/compose-component.png",
+                src: "/images/portfolio/brokerengine/compose-component.avif",
                 alt: "Compose component",
               },
             ],
@@ -327,7 +340,7 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "full",
             images: [
               {
-                src: "/images/portfolio/brokerengine/comments.webp",
+                src: "/images/portfolio/brokerengine/comments.avif",
                 alt: "Comments system",
               },
             ],

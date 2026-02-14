@@ -6,19 +6,11 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 1200,
     "height": 630
   },
-  "/images/portfolio/beyondwords/beyond-words-1.avif": {
-    "width": 1600,
-    "height": 1200
+  "/images/portfolio/beyondwords/articles.avif": {
+    "width": 3200,
+    "height": 6400
   },
-  "/images/portfolio/beyondwords/beyond-words-2.avif": {
-    "width": 1600,
-    "height": 1200
-  },
-  "/images/portfolio/beyondwords/beyond-words-3.avif": {
-    "width": 1600,
-    "height": 1200
-  },
-  "/images/portfolio/beyondwords/beyondwords-ui1.avif": {
+  "/images/portfolio/beyondwords/beyondwords-ui.avif": {
     "width": 2884,
     "height": 1604
   },
@@ -26,19 +18,23 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 6800
   },
-  "/images/portfolio/beyondwords/homepage-concept.avif": {
+  "/images/portfolio/beyondwords/home-page-concept.avif": {
     "width": 3200,
     "height": 19784
   },
-  "/images/portfolio/beyondwords/saas-1.avif": {
+  "/images/portfolio/beyondwords/onboarding-1.avif": {
+    "width": 3200,
+    "height": 7200
+  },
+  "/images/portfolio/beyondwords/onboarding-2.avif": {
+    "width": 3200,
+    "height": 7200
+  },
+  "/images/portfolio/beyondwords/plan-management.avif": {
     "width": 3200,
     "height": 6400
   },
-  "/images/portfolio/beyondwords/saas-2.avif": {
-    "width": 3200,
-    "height": 6400
-  },
-  "/images/portfolio/beyondwords/saas-3.avif": {
+  "/images/portfolio/beyondwords/security.avif": {
     "width": 3200,
     "height": 6400
   },
@@ -94,63 +90,51 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2400
   },
-  "/images/portfolio/brokerengine/42Li8FZltd5EMCki3YhOmmeMlM.webp": {
-    "width": 3476,
-    "height": 2226
-  },
   "/images/portfolio/brokerengine/5tHNIK8Ki1uZHAWwcz5rp7UUZ0.avif": {
     "width": 914,
     "height": 526
-  },
-  "/images/portfolio/brokerengine/6guCjCDso64nW3n4ciSREKhBPo.avif": {
-    "width": 3200,
-    "height": 1920
-  },
-  "/images/portfolio/brokerengine/Q1ZFICqpnFjtLatJNFfR3Ln8.webp": {
-    "width": 3476,
-    "height": 2226
-  },
-  "/images/portfolio/brokerengine/QOtcYyu1y9SDUKQQfW2vW70.webp": {
-    "width": 3200,
-    "height": 4000
   },
   "/images/portfolio/brokerengine/SMgQI5vK5lC4IWjN22NksUlXY.avif": {
     "width": 1788,
     "height": 530
   },
-  "/images/portfolio/brokerengine/WfRetAwxjBB59L3686NWp1wB7M.webp": {
+  "/images/portfolio/brokerengine/WfRetAwxjBB59L3686NWp1wB7M.avif": {
     "width": 3476,
     "height": 2226
+  },
+  "/images/portfolio/brokerengine/_brokerengine-bg-poster.avif": {
+    "width": 598,
+    "height": 400
   },
   "/images/portfolio/brokerengine/_brokerengine-cover.jpg": {
     "width": 1600,
     "height": 840
   },
-  "/images/portfolio/brokerengine/card-payment-system.png": {
+  "/images/portfolio/brokerengine/card-payment-system.avif": {
     "width": 3200,
     "height": 2400
   },
-  "/images/portfolio/brokerengine/comments.webp": {
+  "/images/portfolio/brokerengine/comments.avif": {
     "width": 3476,
     "height": 2226
   },
-  "/images/portfolio/brokerengine/compose-component.png": {
+  "/images/portfolio/brokerengine/compose-component.avif": {
     "width": 3200,
     "height": 2400
   },
-  "/images/portfolio/brokerengine/deal-after.png": {
+  "/images/portfolio/brokerengine/deal-after.avif": {
     "width": 3200,
     "height": 1920
   },
-  "/images/portfolio/brokerengine/deal-before.png": {
+  "/images/portfolio/brokerengine/deal-before.avif": {
     "width": 3200,
     "height": 1920
   },
-  "/images/portfolio/brokerengine/deals-after.png": {
+  "/images/portfolio/brokerengine/deals-after.avif": {
     "width": 3200,
     "height": 1920
   },
-  "/images/portfolio/brokerengine/deals-before.png": {
+  "/images/portfolio/brokerengine/deals-before.avif": {
     "width": 3200,
     "height": 1920
   },
@@ -158,53 +142,33 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 6080,
     "height": 2116
   },
-  "/images/portfolio/brokerengine/filter-after.png": {
+  "/images/portfolio/brokerengine/filter-after.avif": {
     "width": 3200,
     "height": 3704
   },
-  "/images/portfolio/brokerengine/filter-before.png": {
+  "/images/portfolio/brokerengine/filter-before.avif": {
     "width": 3200,
     "height": 3704
   },
-  "/images/portfolio/brokerengine/messaging.png": {
+  "/images/portfolio/brokerengine/messaging.avif": {
     "width": 3200,
     "height": 2400
   },
-  "/images/portfolio/brokerengine/pipeline.png": {
+  "/images/portfolio/brokerengine/onboarding.avif": {
+    "width": 3200,
+    "height": 1920
+  },
+  "/images/portfolio/brokerengine/pipeline.avif": {
     "width": 2880,
     "height": 1600
   },
-  "/images/portfolio/brokerengine/responsive-contact.png": {
+  "/images/portfolio/brokerengine/responsive-contact.avif": {
     "width": 3200,
     "height": 2400
   },
-  "/images/portfolio/brokerengine/vncUr0A5kt06eCBYII8JpSStfg.webp": {
+  "/images/portfolio/brokerengine/tasks.avif": {
     "width": 3200,
     "height": 1920
-  },
-  "/images/portfolio/brokerengine-1.avif": {
-    "width": 3200,
-    "height": 1920
-  },
-  "/images/portfolio/brokerengine-1.webp": {
-    "width": 3200,
-    "height": 1920
-  },
-  "/images/portfolio/brokerengine-2.avif": {
-    "width": 3200,
-    "height": 1920
-  },
-  "/images/portfolio/brokerengine-3.webp": {
-    "width": 3476,
-    "height": 2226
-  },
-  "/images/portfolio/brokerengine-bg-poster.avif": {
-    "width": 598,
-    "height": 400
-  },
-  "/images/portfolio/brokerengine-ui.avif": {
-    "width": 2880,
-    "height": 1600
   },
   "/images/portfolio/donotstay-1.jpg": {
     "width": 2560,
@@ -230,7 +194,7 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2132
   },
-  "/images/portfolio/nametag-2.webp": {
+  "/images/portfolio/nametag-2.avif": {
     "width": 3200,
     "height": 2400
   },

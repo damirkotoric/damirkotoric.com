@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "npx tsx scripts/generate-image-dimensions.ts",
     "dev": "next dev",
+    "prebuild": "npx tsx scripts/generate-image-dimensions.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

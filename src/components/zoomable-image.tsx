@@ -19,6 +19,7 @@ type ZoomableImageProps = {
  */
 export function ZoomableImage({ src, alt, width, height, caption, aspectRatio }: ZoomableImageProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const hoverTimer = useRef<ReturnType<typeof setTimeout>>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [position, setPosition] = useState({ x: 50, y: 50 });
 
@@ -32,8 +33,11 @@ export function ZoomableImage({ src, alt, width, height, caption, aspectRatio }:
     setPosition({ x, y });
   };
 
-  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseEnter = () => {
+    hoverTimer.current = setTimeout(() => setIsHovered(true), 300);
+  };
   const handleMouseLeave = () => {
+    if (hoverTimer.current) clearTimeout(hoverTimer.current);
     setIsHovered(false);
     setPosition({ x: 50, y: 50 });
   };

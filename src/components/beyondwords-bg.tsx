@@ -45,7 +45,7 @@ export function BeyondWordsBg({ compact = false }: BeyondWordsBgProps) {
         >
           <CometCard trackingRef={ref}>
             <Image
-              src="/images/portfolio/beyondwords/beyondwords-ui1.avif"
+              src="/images/portfolio/beyondwords/beyondwords-ui.avif"
               alt="BeyondWords UI"
               width={1280}
               height={853}
