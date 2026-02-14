@@ -20,7 +20,7 @@ const customBackgrounds: Record<string, React.ReactNode> = {
   beyondwords: <BeyondWordsBg compact />,
   brokerengine: <BrokerEngineBg compact />,
   nametag: <NametagBg />,
-  "designing-the-payment-ux-at-booking-com": <BookingBg compact />,
+  "booking-com": <BookingBg compact />,
   "nsw-climate-data-portal": <NswCdpBg compact />,
   "gsq-open-data-portal": <GsqBg compact />,
 };

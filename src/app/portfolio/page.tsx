@@ -43,10 +43,10 @@ const featuredProjects = [
     image: "/images/portfolio/nametag/nametag-1.avif",
   },
   {
-    slug: "designing-the-payment-ux-at-booking-com",
+    slug: "booking-com",
     title: "Booking.com",
     outcome: "Led design across mobile payment, accessibility and performance teams, contributing to a €35M annual conversion boost.",
-    image: "/images/portfolio/bookingcom-1.avif",
+    image: "/images/portfolio/booking/bookingcom-1.avif",
   },
   {
     slug: "nsw-climate-data-portal",

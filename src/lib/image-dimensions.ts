@@ -54,39 +54,51 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2132
   },
-  "/images/portfolio/booking-bg.avif": {
+  "/images/portfolio/booking/booking-bg.avif": {
     "width": 2400,
     "height": 1599
   },
-  "/images/portfolio/booking-ui-1.avif": {
+  "/images/portfolio/booking/booking-ui-1.avif": {
     "width": 800,
     "height": 1750
   },
-  "/images/portfolio/booking-ui-2.avif": {
+  "/images/portfolio/booking/booking-ui-2.avif": {
     "width": 800,
     "height": 1750
   },
-  "/images/portfolio/booking-ui-3.avif": {
+  "/images/portfolio/booking/booking-ui-3.avif": {
     "width": 800,
     "height": 1750
   },
-  "/images/portfolio/booking-ui-4.avif": {
+  "/images/portfolio/booking/booking-ui-4.avif": {
     "width": 800,
     "height": 1750
   },
-  "/images/portfolio/bookingcom-1.avif": {
-    "width": 2400,
-    "height": 1800
+  "/images/portfolio/booking/bookingcom-4.avif": {
+    "width": 3200,
+    "height": 2400
   },
-  "/images/portfolio/bookingcom-2.avif": {
+  "/images/portfolio/booking/design-workshop.avif": {
+    "width": 1230,
+    "height": 228
+  },
+  "/images/portfolio/booking/payment-modal.avif": {
+    "width": 3360,
+    "height": 1863
+  },
+  "/images/portfolio/booking/payment-presentation.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/booking/payment-prototype.avif": {
     "width": 3200,
     "height": 1800
   },
-  "/images/portfolio/bookingcom-3.avif": {
-    "width": 3926,
-    "height": 2209
+  "/images/portfolio/booking/payment-vision.avif": {
+    "width": 3200,
+    "height": 2400
   },
-  "/images/portfolio/bookingcom-4.avif": {
+  "/images/portfolio/booking/user-testing-report.avif": {
     "width": 3200,
     "height": 2400
   },
@@ -185,6 +197,14 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/images/portfolio/gsq-ui-modal.avif": {
     "width": 2720,
     "height": 1600
+  },
+  "/images/portfolio/ideaverse/DSC_0628.jpg": {
+    "width": 1000,
+    "height": 667
+  },
+  "/images/portfolio/ideaverse/photo 2.JPG": {
+    "width": 1296,
+    "height": 968
   },
   "/images/portfolio/nametag/_nametag-cover.jpg": {
     "width": 1200,

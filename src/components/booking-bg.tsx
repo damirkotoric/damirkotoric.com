@@ -46,17 +46,17 @@ export function BookingBg({ compact = false }: BookingBgProps) {
   const isInView = useInView(ref, { once: true, margin: "-100px", amount: 0.3 });
 
   const phones = [
-    { src: "/images/portfolio/booking-ui-1.avif", alt: "Booking.com search results" },
-    { src: "/images/portfolio/booking-ui-2.avif", alt: "Booking.com property details" },
-    { src: "/images/portfolio/booking-ui-3.avif", alt: "Booking.com booking overview" },
-    { src: "/images/portfolio/booking-ui-4.avif", alt: "Booking.com room selection" },
+    { src: "/images/portfolio/booking/booking-ui-1.avif", alt: "Booking.com search results" },
+    { src: "/images/portfolio/booking/booking-ui-2.avif", alt: "Booking.com property details" },
+    { src: "/images/portfolio/booking/booking-ui-3.avif", alt: "Booking.com booking overview" },
+    { src: "/images/portfolio/booking/booking-ui-4.avif", alt: "Booking.com room selection" },
   ];
 
   return (
     <div ref={ref} className="relative w-full aspect-[3/2] overflow-hidden">
       {/* Background image */}
       <Image
-        src="/images/portfolio/booking-bg.avif"
+        src="/images/portfolio/booking/booking-bg.avif"
         alt=""
         fill
         className="object-cover"

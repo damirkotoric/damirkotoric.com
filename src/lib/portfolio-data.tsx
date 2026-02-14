@@ -543,6 +543,115 @@ export const portfolioProjects: PortfolioProject[] = [
       },
     ],
   },
+  {
+    slug: "booking-com",
+    title: "Booking.com",
+    description:
+      "Led design across mobile payment, accessibility and performance teams, contributing to a €35M annual conversion boost.",
+    role: "Product Designer",
+    year: "2018–2019",
+    client: "Booking.com",
+    liveUrl: "https://booking.com",
+    coverImage: {
+      src: "/images/portfolio/booking/booking-bg.avif",
+      alt: "Booking.com product overview",
+    },
+    testimonial: {
+      quote:
+        "Damir brought substantial positive change to our team soon after joining, taking over the visual side of our project, championing the user research, and driving the communication of product vision with the wider design community within the company.",
+      name: "Veniamin Kleshchenkov",
+      role: "Senior Full Stack Developer, Booking.com",
+      image: "/images/testimonials/veniamin.avif",
+      linkedIn: "https://www.linkedin.com/in/vtambourine/",
+    },
+    sections: [
+      {
+        heading: "Payment Redesign",
+        description:
+          "Booking.com processes tens of millions of euros in transactions daily across 140 countries, 50+ currencies, and 40+ languages. Unlike simpler payment models that only accept card payments, Booking supports over a dozen payment methods — from credit cards to PayPal instalments to WeChat Pay — with multiple ways to structure each payment. I led the initial effort to redesign this system, creating a future-proof payment experience that worked across mobile web, desktop web, iOS, and Android.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/booking/payment-prototype.avif",
+                alt: "Early prototype exploring a new vision for Booking.com's payment system",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/booking/payment-presentation.avif",
+                alt: "Presenting the new payment vision to leadership — a key moment in securing buy-in for the redesign",
+              },
+              {
+                src: "/images/portfolio/booking/payment-vision.avif",
+                alt: "The new payment vision — a modular system designed to handle complex global requirements while remaining user-friendly",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Research & Prototyping",
+        description:
+          "I prototype early and use it as a research tool rather than spending weeks in discovery. Using a working prototype, I ran remote user testing sessions, compiled the findings into an executive summary with links to key video moments — easy to skim for leadership, with source data available for those who wanted to go deeper. Several assumptions were confirmed: users were comfortable being taken to a separate payment mode before returning to the main site. Others were busted: clicking 'Pay' didn't mean users were ready to pay — they expected one final confirmation step before any money moved.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/booking/prototype.gif",
+                alt: "Interactive payment prototype used for user testing",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/booking/user-testing-report.avif",
+                alt: "User testing summary report with linked video highlights",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Conversion Optimisation",
+        description:
+          "I was the lead designer on two teams simultaneously — Accessibility and Mobile Payments — each consisting of 6–8 people across development, analytics, UX writing, research, and management. Every design change was A/B tested with roughly a month of data collection before we reviewed metrics and decided whether to ship. We measured direct conversion impact alongside secondary metrics like support ticket volume and abandonment rates. Due to confidentiality I can't share specifics of each test, but the cumulative impact was substantial.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/booking/payment-modal.avif",
+                alt: "Payment modal — one of solutions considered during the redesign process",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/booking/design-workshop.avif",
+                alt: "Design workshop — mapping the current payment experience",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outcome",
+        description:
+          "The combined impact of my A/B tested conversion optimisation work across both teams was calculated at €35 million per year for the company. In terms of direct commercial impact, this remains the most successful outcome of my career.",
+        imageBlocks: [],
+      },
+    ],
+  },
 ];
 
 export function getProjectBySlug(slug: string): PortfolioProject | undefined {
@@ -588,5 +697,13 @@ export const testimonials: Testimonial[] = [
     role: "Director of Product Design, DuckDuckGo",
     image: "/images/testimonials/chris-thelwell.avif",
     linkedIn: "https://www.linkedin.com/in/christhelwell/",
+  },
+  {
+    quote:
+      "Damir brought substantial positive change to our team soon after joining, taking over the visual side of our project, championing the user research, and driving the communication of product vision with the wider design community within the company.",
+    name: "Veniamin Kleshchenkov",
+    role: "Senior Full Stack Developer, Booking.com",
+    image: "/images/testimonials/veniamin.avif",
+    linkedIn: "https://www.linkedin.com/in/vtambourine/",
   },
 ];
