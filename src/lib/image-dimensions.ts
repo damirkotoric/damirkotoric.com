@@ -186,6 +186,26 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 2880,
     "height": 2160
   },
+  "/images/portfolio/gsq/_gsq-cover.jpg": {
+    "width": 1200,
+    "height": 630
+  },
+  "/images/portfolio/gsq/faceted-search.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/gsq/hero.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/gsq/portal-1.avif": {
+    "width": 3200,
+    "height": 2000
+  },
+  "/images/portfolio/gsq/portal-2.avif": {
+    "width": 3200,
+    "height": 2000
+  },
   "/images/portfolio/gsq-bg.avif": {
     "width": 3200,
     "height": 2132

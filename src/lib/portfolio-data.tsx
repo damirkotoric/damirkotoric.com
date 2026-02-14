@@ -659,7 +659,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "Designed an open data portal for the NSW Government, making petabytes of climate data publicly accessible.",
     role: "Product Designer",
     year: "2020",
-    client: "New South Wales Government",
+    client: "NSW Government",
     liveUrl: "https://climatedata.environment.nsw.gov.au",
     coverImage: {
       src: "/images/portfolio/nsw-cdp/nsw-cdp-bg.avif",
@@ -779,6 +779,89 @@ export const portfolioProjects: PortfolioProject[] = [
         heading: "Outcome",
         description:
           "The portal was delivered in a few months — from stakeholder analysis through design iterations, prototyping, and user testing. It now makes NSW's climate data publicly accessible, enabling better-informed decisions across government, research, and emergency services. Working as the sole designer with dozens of technical and government stakeholders sharpened my ability to synthesise complex requirements into clear, actionable design direction.",
+        imageBlocks: [],
+      },
+    ],
+  },
+  {
+    slug: "gsq-open-data-portal",
+    title: "Queensland Open Data Portal",
+    description:
+      "Designed a geological data portal for the Queensland Government, serving the state's $38B mining industry.",
+    role: "Product Designer",
+    year: "2020",
+    client: "Queensland Government",
+    coverImage: {
+      src: "/images/portfolio/gsq-bg.avif",
+      alt: "Queensland Open Data Portal overview",
+    },
+    testimonial: {
+      quote:
+        "Damir has the experience and initiative to take on a brief and work with all the key stakeholders to get a successful outcome.",
+      name: "John Corlett",
+      role: "Technical Product Owner, Link Digital",
+      image: "/images/testimonials/john-corlett.avif",
+      linkedIn: "https://www.linkedin.com/in/corlettjohn/",
+    },
+    sections: [
+      {
+        heading: "The Challenge",
+        description:
+          "Queensland's Department of Natural Resources, Mines and Energy needed to make vast geological datasets publicly accessible to support strategic decision-making across the state's $38 billion mining industry. The portal's audience spans corporate teams in city offices to field surveyors on remote sites — each with different needs, connectivity constraints, and technical literacy. My role was to lead the design phase: gather requirements from stakeholders, create a design direction built on CKAN and the Queensland Government's design framework, and deliver high-fidelity mockups with a clickable prototype.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "https://www.youtube.com/watch?v=Q_6VEOBCUGU",
+                alt: "GSQ Open Data Portal video walkthrough",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/gsq/hero.avif",
+                alt: "GSQ Open Data Portal — bridging the gap between scientists and industry",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/gsq/faceted-search.avif",
+                alt: "Discovering datasets using faceted search",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Design & Delivery",
+        description:
+          "I leveraged the Queensland Government's Single Website Experience framework for consistency, accessibility, and development speed. The entire design phase — from stakeholder meetings through high-fidelity mockups and a clickable prototype — was delivered in under 40 hours. The tight timeline demanded decisive design choices: no unnecessary exploration, just clear solutions that met user requirements while working within the constraints of CKAN and the government design system.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/gsq/portal-1.avif",
+                alt: "Portal design direction",
+              },
+              {
+                src: "/images/portfolio/gsq/portal-2.avif",
+                alt: "Dataset detail and map integration",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outcome",
+        description:
+          "The GSQ Open Data Portal launched in 2020 and continues to serve Queensland's mining industry, researchers, and government agencies. Delivering a complete design direction in under 40 hours — from requirements gathering to clickable prototype — demonstrated that rigorous design doesn't require months of process when the scope is clear and decisions are made quickly.",
         imageBlocks: [],
       },
     ],

@@ -162,7 +162,29 @@ function isVideo(src: string) {
   return /\.(mp4|webm|mov)$/i.test(src);
 }
 
+function getYouTubeId(src: string): string | null {
+  const match = src.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+  return match ? match[1] : null;
+}
+
 function MediaItem({ image, width }: { image: { src: string; alt: string; caption?: string }; width: number }) {
+  const youtubeId = getYouTubeId(image.src);
+  if (youtubeId) {
+    return (
+      <div className="relative overflow-hidden rounded-lg border border-border bg-muted">
+        <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+          <iframe
+            src={`https://www.youtube.com/embed/${youtubeId}?rel=0`}
+            title={image.alt}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+          />
+        </div>
+      </div>
+    );
+  }
+
   if (isVideo(image.src)) {
     return (
       <div className="relative overflow-hidden rounded-lg border border-border bg-muted">
