@@ -346,6 +346,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 2880,
     "height": 2160
   },
+  "/images/portfolio/envato/_og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
   "/images/portfolio/envato/api-shipped.avif": {
     "width": 1600,
     "height": 900
@@ -425,6 +429,102 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/images/portfolio/gsq/portal-2.avif": {
     "width": 3200,
     "height": 2000
+  },
+  "/images/portfolio/harvard/athena-1.avif": {
+    "width": 4000,
+    "height": 2250
+  },
+  "/images/portfolio/harvard/athena-2.avif": {
+    "width": 4000,
+    "height": 2250
+  },
+  "/images/portfolio/harvard/athena-3.avif": {
+    "width": 4000,
+    "height": 2250
+  },
+  "/images/portfolio/harvard/blenheim-scan-1.avif": {
+    "width": 3200,
+    "height": 1920
+  },
+  "/images/portfolio/harvard/blenheim-scan-2.avif": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/images/portfolio/harvard/blenheim-scan-3.avif": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/images/portfolio/harvard/blenheim-scan-4.avif": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/images/portfolio/harvard/blenheim-story.avif": {
+    "width": 4000,
+    "height": 2400
+  },
+  "/images/portfolio/harvard/blenheim-xray.avif": {
+    "width": 4000,
+    "height": 2400
+  },
+  "/images/portfolio/harvard/giza-360.avif": {
+    "width": 2048,
+    "height": 1280
+  },
+  "/images/portfolio/harvard/giza-concepts.avif": {
+    "width": 4000,
+    "height": 2250
+  },
+  "/images/portfolio/harvard/giza-hero.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/harvard/new-alexandria-commentary.avif": {
+    "width": 3200,
+    "height": 1920
+  },
+  "/images/portfolio/harvard/new-alexandria-greek.avif": {
+    "width": 3200,
+    "height": 1920
+  },
+  "/images/portfolio/harvard/new-alexandria-hero.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/harvard/new-alexandria-search.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/harvard/new-alexandria-split.avif": {
+    "width": 3200,
+    "height": 1920
+  },
+  "/images/portfolio/harvard/parthenon-3d.avif": {
+    "width": 2000,
+    "height": 1125
+  },
+  "/images/portfolio/harvard/parthenon-annotations.avif": {
+    "width": 4000,
+    "height": 2250
+  },
+  "/images/portfolio/harvard/parthenon-hero.avif": {
+    "width": 2500,
+    "height": 1406
+  },
+  "/images/portfolio/harvard/parthenon-repatriation-1.avif": {
+    "width": 4000,
+    "height": 2250
+  },
+  "/images/portfolio/harvard/parthenon-repatriation-2.avif": {
+    "width": 4000,
+    "height": 2250
+  },
+  "/images/portfolio/harvard/parthenon-repatriation-3.avif": {
+    "width": 4000,
+    "height": 2250
+  },
+  "/images/portfolio/harvard/parthenon-wayfinding.avif": {
+    "width": 2000,
+    "height": 1125
   },
   "/images/portfolio/nametag/_og.jpg": {
     "width": 1200,

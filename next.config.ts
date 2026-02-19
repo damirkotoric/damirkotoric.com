@@ -31,6 +31,26 @@ const nextConfig: NextConfig = {
         destination: "/portfolio/envato",
         permanent: true,
       },
+      {
+        source: "/portfolio/giza-ar",
+        destination: "/portfolio/harvard",
+        permanent: true,
+      },
+      {
+        source: "/portfolio/parthenon-ar-app",
+        destination: "/portfolio/harvard",
+        permanent: true,
+      },
+      {
+        source: "/portfolio/historic-blenheim-ar",
+        destination: "/portfolio/harvard",
+        permanent: true,
+      },
+      {
+        source: "/portfolio/new-alexandria",
+        destination: "/portfolio/harvard",
+        permanent: true,
+      },
     ];
   },
 };

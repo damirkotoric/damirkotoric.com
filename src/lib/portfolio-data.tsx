@@ -1299,6 +1299,7 @@ export const portfolioProjects: PortfolioProject[] = [
       name: "Fiorella Rizzà",
       role: "Lead UX Writer, Qonto (formerly Envato)",
       image: "/images/testimonials/fiorella.avif",
+      linkedIn: "https://www.linkedin.com/in/fiorellarizza/",
     },
     sections: [
       {
@@ -1400,7 +1401,233 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Outcome",
         description:
-          "Two and a half years at Envato shaped how I think about design at scale — working with passionate communities, shipping through sprints, advocating for users across a growing organisation, and writing production code alongside developers. The Envato Market API remains live at build.envato.com with 30+ community-built apps. The sprint methodology I practiced here became foundational to how I run client engagements today.",
+          "Envato shaped how I think about design at scale — working with passionate communities, shipping through sprints, advocating for users across a growing organisation, and writing production code alongside developers. The Envato Market API remains live at build.envato.com with 30+ community-built apps. The sprint methodology I practiced here became foundational to how I run client engagements today.",
+        imageBlocks: [],
+      },
+    ],
+  },
+  {
+    slug: "harvard",
+    title: "Harvard",
+    description:
+      "Led design on a series of AR and digital humanities projects in collaboration with Harvard University, from the tombs of Giza to the Acropolis of Athens.",
+    role: "Lead Product Designer",
+    year: "2018–2020",
+    client: "Harvard University (via Archimedes Digital)",
+    ogImage: {
+      src: "/images/portfolio/harvard/_og.jpg",
+      alt: "Harvard — AR and digital humanities projects",
+    },
+    coverImage: {
+      src: "/images/portfolio/harvard/cover.mp4",
+      alt: "Testing the AR prototype on-site in the tombs of Giza",
+    },
+    sections: [
+      {
+        heading: "Giza AR",
+        description: <>In collaboration with the Giza Project at Harvard University, I designed an AR app for the tombs of the Giza Necropolis. The concept: point your phone at ancient hieroglyphs and see them digitally restored to their original vivid colours, as interpreted by Harvard Egyptology professors. My responsibility was to create the conceptual designs and collaborate with developers on the prototype. We ran a week-long hackathon in Cairo and tested the app on-site in the actual tombs. The team also captured a 3D laser scan of the tomb of Meresankh III using Matterport, which was later <a href="https://www.theguardian.com/travel/2020/apr/15/egyptian-tomb-ancient-wonders-open-for-virtual-tour-in-lockdown" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">featured in The Guardian</a>.</>,
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/harvard/giza-hero.avif",
+                alt: "AR view — hieroglyphs digitally restored to their original colours",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "https://www.youtube.com/watch?v=TdGJ-5XR4gM",
+                alt: "Giza AR — testing the prototype in the tombs of Giza",
+              },
+              {
+                src: "/images/portfolio/harvard/giza-concepts.avif",
+                alt: "Conceptual designs — map navigation, guided tours, and artefact exploration",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/harvard/giza-360.avif",
+                alt: "360-degree webGL experience — exploring the tomb of Meresankh III in immersive 3D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Parthenon AR",
+        description:
+          "For IARPS, a cultural institution in Greece, I created conceptual designs for an AR experience at the Acropolis of Athens. The app would use object recognition to overlay 3D models showing what the Parthenon looked like millennia ago. I designed features for annotation overlays, 3D artefact inspection, wayfinding tours, and a cultural repatriation awareness campaign — illustrating how AR could support the case for returning the Parthenon marbles from the British Museum. The concept also explored an AR 'resurrection' of the lost Statue of Athena, a gold and marble monument that once towered inside the Parthenon.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/harvard/parthenon-hero.avif",
+                alt: "AR overlay — the Parthenon as it appeared in antiquity",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/harvard/parthenon-annotations.avif",
+                alt: "Annotation bubbles at points of interest",
+              },
+              {
+                src: "/images/portfolio/harvard/parthenon-3d.avif",
+                alt: "3D artefact inspection",
+              },
+            ],
+          },
+          {
+            layout: "grid-3",
+            images: [
+              {
+                src: "/images/portfolio/harvard/parthenon-repatriation-1.avif",
+                alt: "Cultural repatriation awareness — the Parthenon marbles",
+              },
+              {
+                src: "/images/portfolio/harvard/parthenon-repatriation-2.avif",
+                alt: "Supporting the return of Greek cultural heritage",
+              },
+              {
+                src: "/images/portfolio/harvard/parthenon-repatriation-3.avif",
+                alt: "Digital petition and awareness campaign",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/harvard/parthenon-wayfinding.avif",
+                alt: "Wayfinding — a structured tour without the herding experience",
+              },
+            ],
+          },
+          {
+            layout: "grid-3",
+            images: [
+              {
+                src: "/images/portfolio/harvard/athena-1.avif",
+                alt: "Concept 1 — AR resurrection of the Statue of Athena",
+              },
+              {
+                src: "/images/portfolio/harvard/athena-2.avif",
+                alt: "Concept 2",
+              },
+              {
+                src: "/images/portfolio/harvard/athena-3.avif",
+                alt: "Concept 3",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Historic Blenheim AR",
+        description:
+          "Historic Blenheim is a 19th century heritage site in Virginia used during the U.S. Civil War. Its interior holds century-old graffiti — some invisible to the naked eye until revealed by laser scanning. I designed an AR app concept that would let visitors use their phone as an x-ray device, revealing hidden inscriptions and telling the stories behind them. The conceptual mockups were completed in about a day and used to align stakeholders and estimate build costs.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/harvard/blenheim-scan-1.avif",
+                alt: "Laser scan revealing partially obscured inscriptions",
+              }
+            ],
+          },
+          {
+            layout: "grid-3",
+            images: [
+              {
+                src: "https://www.youtube.com/watch?v=lkpMbxIDro8",
+                alt: "Historic Blenheim AR — in-depth look",
+              },
+              {
+                src: "/images/portfolio/harvard/blenheim-scan-2.avif",
+                alt: "Inscriptions invisible to the naked eye",
+              },
+              {
+                src: "/images/portfolio/harvard/blenheim-scan-3.avif",
+                alt: "Hidden graffiti revealed",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/harvard/blenheim-story.avif",
+                alt: "The AR app guiding visitors through the site's history",
+              },
+              {
+                src: "/images/portfolio/harvard/blenheim-xray.avif",
+                alt: "AR x-ray — revealing what the naked eye can't see",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "New Alexandria",
+        description:
+          "In collaboration with the Center for Hellenic Studies at Harvard University, I designed a platform for academic commentaries on ancient texts — a sort of Stack Overflow for humanities scholarship. Millennia-old Greek and Latin texts are notoriously difficult to understand; professors spend years writing commentary books translating and interpreting them. The traditional print publishing method is slow, costly, and skewed to the elite few with publisher access. New Alexandria aimed to make commentaries open, peer-reviewed, and accessible to everyone. I designed a split-view reading experience (original text alongside commentary), multi-language support for Latin, Greek, and Arabic scripts, and an invite-only publishing model to cultivate quality before opening access.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/harvard/new-alexandria-hero.avif",
+                alt: "New Alexandria — a home for academic commentaries",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/harvard/new-alexandria-commentary.avif",
+                alt: "Commentary on Homer's Iliad with side-by-side reading",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/harvard/new-alexandria-greek.avif",
+                alt: "Ancient Greek text with multiple available versions and translations",
+              },
+              {
+                src: "/images/portfolio/harvard/new-alexandria-split.avif",
+                alt: "Split view — original text and commentary side by side",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/harvard/new-alexandria-search.avif",
+                alt: "Search across commentaries, texts, and users",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outcome",
+        description: <>The Giza prototype secured subsequent projects including the Zhejiang University Museum AR app and the Parthenon concept. The 3D scan of Meresankh III's tomb was <a href="https://www.theguardian.com/travel/2020/apr/15/egyptian-tomb-ancient-wonders-open-for-virtual-tour-in-lockdown" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">featured in The Guardian</a> and remains publicly accessible via Matterport. This body of work established a repeatable design approach for cultural AR experiences — balancing historical accuracy with intuitive mobile interactions — that I applied across four countries and multiple Harvard collaborations.</>,
         imageBlocks: [],
       },
     ],

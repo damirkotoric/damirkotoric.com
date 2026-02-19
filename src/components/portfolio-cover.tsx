@@ -54,6 +54,21 @@ export function PortfolioCover({ slug, coverImage }: PortfolioCoverProps) {
     );
   }
 
+  if (coverImage.src.endsWith(".mp4")) {
+    return (
+      <div className="overflow-hidden rounded-lg border border-border">
+        <video
+          src={coverImage.src}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="bg-muted aspect-[3/2] w-full object-cover"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="overflow-hidden rounded-lg border border-border">
       <Image
