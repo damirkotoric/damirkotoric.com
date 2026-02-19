@@ -266,7 +266,7 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 1200,
     "height": 630
   },
-  "/images/portfolio/creative-ai/hero.avif": {
+  "/images/portfolio/creative-ai/cover.avif": {
     "width": 3200,
     "height": 2400
   },
@@ -345,6 +345,54 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/images/portfolio/donotstay/donotstay-poster.avif": {
     "width": 2880,
     "height": 2160
+  },
+  "/images/portfolio/envato/api-shipped.avif": {
+    "width": 1600,
+    "height": 900
+  },
+  "/images/portfolio/envato/api-shipped.webp": {
+    "width": 1600,
+    "height": 900
+  },
+  "/images/portfolio/envato/design-party.avif": {
+    "width": 1400,
+    "height": 933
+  },
+  "/images/portfolio/envato/design-party.webp": {
+    "width": 1400,
+    "height": 933
+  },
+  "/images/portfolio/envato/feedback-dot-voting.avif": {
+    "width": 1400,
+    "height": 788
+  },
+  "/images/portfolio/envato/layers-outcome.avif": {
+    "width": 2000,
+    "height": 1116
+  },
+  "/images/portfolio/envato/layers-outcome.webp": {
+    "width": 2000,
+    "height": 1116
+  },
+  "/images/portfolio/envato/sprint-ideas.avif": {
+    "width": 960,
+    "height": 540
+  },
+  "/images/portfolio/envato/sprint-ideas.webp": {
+    "width": 960,
+    "height": 540
+  },
+  "/images/portfolio/envato/sprint-war-room.avif": {
+    "width": 4800,
+    "height": 1070
+  },
+  "/images/portfolio/envato/sprint-wireframes.avif": {
+    "width": 960,
+    "height": 540
+  },
+  "/images/portfolio/envato/unstock.avif": {
+    "width": 2000,
+    "height": 2000
   },
   "/images/portfolio/gsq/_og.jpg": {
     "width": 1200,

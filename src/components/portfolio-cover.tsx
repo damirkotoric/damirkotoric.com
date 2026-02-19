@@ -37,6 +37,23 @@ export function PortfolioCover({ slug, coverImage }: PortfolioCoverProps) {
     return null;
   }
 
+  const youtubeMatch = coverImage.src.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+  if (youtubeMatch) {
+    return (
+      <div className="overflow-hidden rounded-lg border border-border bg-muted">
+        <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+          <iframe
+            src={`https://www.youtube.com/embed/${youtubeMatch[1]}?rel=0`}
+            title={coverImage.alt}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="overflow-hidden rounded-lg border border-border">
       <Image

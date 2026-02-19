@@ -1089,6 +1089,10 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/creative-ai/_og.jpg",
       alt: "creative.ai — machine learning generated images",
     },
+    coverImage: {
+      src: "/images/portfolio/creative-ai/cover.avif",
+      alt: "creative.ai — AI-powered creative tools",
+    },
     testimonial: {
       quote:
         "Damir is a one-of-a-kind excellent designer with a real sense for product: an unbeatable match, making it very satisfying to have been able to work together.",
@@ -1273,6 +1277,134 @@ export const portfolioProjects: PortfolioProject[] = [
       },
     ],
   },
+  {
+    slug: "envato",
+    title: "Envato",
+    description:
+      "UX Designer at one of Australia's largest tech companies, shipping products, running design sprints, and building design culture across the organisation.",
+    role: "UX Designer",
+    year: "2013–2016",
+    client: "Envato",
+    ogImage: {
+      src: "/images/portfolio/envato/_og.jpg",
+      alt: "Envato — design sprints, API design, and user advocacy",
+    },
+    coverImage: {
+      src: "https://www.youtube.com/watch?v=V431PtS6Wfw",
+      alt: "Envato — design sprints, API design, and user advocacy",
+    },
+    testimonial: {
+      quote:
+        "Damir is a true UX designer. He perfectly combines aesthetics with user needs, and both with business requirements and goals.",
+      name: "Fiorella Rizzà",
+      role: "Lead UX Writer, Qonto (formerly Envato)",
+      image: "/images/testimonials/fiorella.avif",
+    },
+    sections: [
+      {
+        heading: "Design Sprints",
+        description:
+          "Design sprints became the most impactful way of working I experienced at Envato. A week of intense problem-solving — titles left at the door — where concept, design, and a working prototype shipped by Friday. For the Layers project, a partnership between Envato and Obox, we ran a full sprint that took a landing page from ideation to shipped product. For Unstock, we applied the same approach to prototype a completely new take on stock photography. In a separate sprint, I designed a prototype by Wednesday, developers coded it by Friday, and management approved two more weeks of investment to ship it — a process that would typically take 4–8 weeks.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/envato/sprint-war-room.avif",
+                alt: "The design war room for the Layers project",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/envato/sprint-wireframes.avif",
+                alt: "Rapid wireframing, feedback, and dot voting",
+              },
+              {
+                src: "/images/portfolio/envato/feedback-dot-voting.avif",
+                alt: "Dot voting to prioritise design directions after a sprint workshop",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/envato/layers-outcome.avif",
+                alt: "The shipped Layers landing page — one week from concept to production",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/envato/unstock.avif",
+                alt: "Unstock — a new take on stock photography, born from a design sprint",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Envato Market API",
+        description:
+          "The existing Envato Market API was archaic and difficult to use. I took it from 'we need a better API' through requirements gathering, paper sketches, feedback rounds, and a working prototype — all in one week. The focus was developer experience design: clear documentation, intuitive onboarding, and a streamlined app registration flow. The redesigned API launched at build.envato.com and has been used to build over 30 apps, from custom dashboards to workflow tools for Envato Market authors.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/envato/api-shipped.avif",
+                alt: "The shipped Envato Market API at build.envato.com",
+              },
+              {
+                src: "https://www.youtube.com/watch?v=CembsWLRlIs",
+                alt: "Video of the Envato Market API in action",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "User Research & Advocacy",
+        description:
+          "I built a repeatable user testing pipeline: Mailchimp campaigns to recruit participants, Calendly for self-service scheduling, live sessions streamed to the team via Google Hangouts, and Slack for real-time questions from observers. Beyond testing, I pushed design thinking across the organisation. I created Design Party — an event where designers and non-designers practiced problem-solving together using storyboarding and rapid prototyping. I set up an Empathy Board next to the kitchen, surfacing real user complaints from the Envato Market forums in the highest-traffic spot in the office.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/envato/user-testing.gif",
+                alt: "Live user testing setup — screen recording, Hangouts streaming, and Slack Q&A",
+              },
+              {
+                src: "/images/portfolio/envato/empathy-board.gif",
+                alt: "The Empathy Board — real user pain points displayed next to the kitchen",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/envato/design-party.avif",
+                alt: "Design Party — company-wide design thinking event",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outcome",
+        description:
+          "Two and a half years at Envato shaped how I think about design at scale — working with passionate communities, shipping through sprints, advocating for users across a growing organisation, and writing production code alongside developers. The Envato Market API remains live at build.envato.com with 30+ community-built apps. The sprint methodology I practiced here became foundational to how I run client engagements today.",
+        imageBlocks: [],
+      },
+    ],
+  },
 ];
 
 export function getProjectBySlug(slug: string): PortfolioProject | undefined {
@@ -1328,5 +1460,13 @@ export const testimonials: Testimonial[] = [
     role: "Director of Product Design, DuckDuckGo",
     image: "/images/testimonials/chris-thelwell.avif",
     linkedIn: "https://www.linkedin.com/in/christhelwell/",
+  },
+  {
+    quote:
+      "Damir is a true UX designer. He perfectly combines aesthetics with user needs, and both with business requirements and goals.",
+    highlight: "Damir is a true UX designer.",
+    name: "Fiorella Rizzà",
+    role: "Lead UX Writer, Qonto (formerly Envato)",
+    image: "/images/testimonials/fiorella.avif",
   },
 ];

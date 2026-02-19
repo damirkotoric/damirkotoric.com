@@ -26,6 +26,11 @@ const nextConfig: NextConfig = {
         destination: "/portfolio/boston-north-end",
         permanent: true,
       },
+      {
+        source: "/portfolio/design-sprint-at-envato",
+        destination: "/portfolio/envato",
+        permanent: true,
+      },
     ];
   },
 };

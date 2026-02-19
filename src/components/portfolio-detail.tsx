@@ -241,7 +241,7 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
     return (
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {block.images.map((image, index) => {
-          if (isVideo(image.src)) {
+          if (isVideo(image.src) || getYouTubeId(image.src)) {
             return <MediaItem key={index} image={image} width={600} />;
           }
           const dims = getImageDimensions(image.src);
@@ -264,7 +264,7 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
     return (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {block.images.map((image, index) => {
-          if (isVideo(image.src)) {
+          if (isVideo(image.src) || getYouTubeId(image.src)) {
             return <MediaItem key={index} image={image} width={400} />;
           }
           const dims = getImageDimensions(image.src);
