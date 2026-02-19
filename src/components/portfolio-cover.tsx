@@ -42,7 +42,7 @@ export function PortfolioCover({ slug, coverImage }: PortfolioCoverProps) {
         height={800}
         priority
         quality={100}
-        className="aspect-[3/2] w-full object-cover"
+        className="bg-muted aspect-[3/2] w-full object-cover"
       />
     </div>
   );

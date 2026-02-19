@@ -159,7 +159,7 @@ function PortfolioShowcaseItem({ item, isPersonalProject }: { item: PortfolioIte
               alt={itemTitle}
               width={1600}
               height={1067}
-              className="aspect-[3/2] w-full object-cover"
+              className="bg-muted aspect-[3/2] w-full object-cover"
               placeholder="blur"
               blurDataURL={blurPlaceholders[item.image]}
             />

@@ -40,7 +40,7 @@ export function ProjectCard({ slug, title, outcome, image }: ProjectCardProps) {
               alt={title}
               width={800}
               height={533}
-              className="aspect-[3/2] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              className="bg-muted aspect-[3/2] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
           ) : (
             <div className="flex aspect-[3/2] w-full items-center justify-center bg-muted text-muted-foreground">
