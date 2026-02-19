@@ -54,6 +54,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2132
   },
+  "/images/portfolio/booking/_booking-cover.jpg": {
+    "width": 1200,
+    "height": 630
+  },
   "/images/portfolio/booking/booking-bg.avif": {
     "width": 2400,
     "height": 1599
@@ -178,6 +182,82 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 1920
   },
+  "/images/portfolio/creative-ai/_ai-design-generator-cover.jpg": {
+    "width": 1200,
+    "height": 630
+  },
+  "/images/portfolio/creative-ai/hero.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/creative-ai/ideaverse-collaborate.avif": {
+    "width": 3200,
+    "height": 2000
+  },
+  "/images/portfolio/creative-ai/ideaverse-collect.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/creative-ai/ideaverse-explore.avif": {
+    "width": 3200,
+    "height": 2000
+  },
+  "/images/portfolio/creative-ai/ideaverse-finetune.avif": {
+    "width": 3200,
+    "height": 2000
+  },
+  "/images/portfolio/creative-ai/ml-images.avif": {
+    "width": 3200,
+    "height": 3220
+  },
+  "/images/portfolio/creative-ai/persona-1.avif": {
+    "width": 2480,
+    "height": 3508
+  },
+  "/images/portfolio/creative-ai/persona-2.avif": {
+    "width": 2480,
+    "height": 3508
+  },
+  "/images/portfolio/creative-ai/persona-3.avif": {
+    "width": 2480,
+    "height": 3508
+  },
+  "/images/portfolio/creative-ai/persona-4.avif": {
+    "width": 2480,
+    "height": 3508
+  },
+  "/images/portfolio/creative-ai/sketching.avif": {
+    "width": 1290,
+    "height": 968
+  },
+  "/images/portfolio/creative-ai/sliders.avif": {
+    "width": 3200,
+    "height": 4020
+  },
+  "/images/portfolio/creative-ai/sprint-day-1.avif": {
+    "width": 4000,
+    "height": 2667
+  },
+  "/images/portfolio/creative-ai/sprint-day-2.avif": {
+    "width": 4000,
+    "height": 2569
+  },
+  "/images/portfolio/creative-ai/style-guide.avif": {
+    "width": 3200,
+    "height": 4020
+  },
+  "/images/portfolio/creative-ai/style-transfer.avif": {
+    "width": 3200,
+    "height": 6060
+  },
+  "/images/portfolio/creative-ai/team.avif": {
+    "width": 890,
+    "height": 667
+  },
+  "/images/portfolio/creative-ai/workshop.avif": {
+    "width": 2248,
+    "height": 1996
+  },
   "/images/portfolio/donotstay-1.jpg": {
     "width": 2560,
     "height": 1914
@@ -217,14 +297,6 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/images/portfolio/gsq-ui-modal.avif": {
     "width": 2720,
     "height": 1600
-  },
-  "/images/portfolio/ideaverse/DSC_0628.jpg": {
-    "width": 1000,
-    "height": 667
-  },
-  "/images/portfolio/ideaverse/photo 2.JPG": {
-    "width": 1296,
-    "height": 968
   },
   "/images/portfolio/nametag/_nametag-cover.jpg": {
     "width": 1200,

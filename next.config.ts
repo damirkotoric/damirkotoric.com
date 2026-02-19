@@ -11,6 +11,16 @@ const nextConfig: NextConfig = {
         destination: "/portfolio/booking-com",
         permanent: true,
       },
+      {
+        source: "/portfolio/ai-design-generator",
+        destination: "/portfolio/creative-ai",
+        permanent: true,
+      },
+      {
+        source: "/portfolio/ideaverse",
+        destination: "/portfolio/creative-ai",
+        permanent: true,
+      },
     ];
   },
 };

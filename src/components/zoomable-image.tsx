@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
 
 type ZoomableImageProps = {
   src: string;
@@ -14,33 +13,33 @@ type ZoomableImageProps = {
 };
 
 /**
- * Zoom and pan effect for portfolio images.
- * On hover, the image zooms in 25% and can be panned by moving the mouse.
+ * Zoom effect for portfolio images.
+ * On hover, the image zooms in toward the cursor position using transform-origin.
  */
 export function ZoomableImage({ src, alt, width, height, caption, aspectRatio }: ZoomableImageProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imageWrapperRef = useRef<HTMLDivElement>(null);
   const hoverTimer = useRef<ReturnType<typeof setTimeout>>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [position, setPosition] = useState({ x: 50, y: 50 });
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current || !imageWrapperRef.current) return;
 
-    const rect = ref.current.getBoundingClientRect();
+    const rect = containerRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
 
-    setPosition({ x, y });
-  };
+    imageWrapperRef.current.style.transformOrigin = `${x}% ${y}%`;
+  }, []);
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     hoverTimer.current = setTimeout(() => setIsHovered(true), 300);
-  };
-  const handleMouseLeave = () => {
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
     if (hoverTimer.current) clearTimeout(hoverTimer.current);
     setIsHovered(false);
-    setPosition({ x: 50, y: 50 });
-  };
+  }, []);
 
   const containerClass = aspectRatio
     ? "relative w-full aspect-[3/2] overflow-hidden rounded-lg border border-border bg-muted cursor-pointer"
@@ -52,7 +51,7 @@ export function ZoomableImage({ src, alt, width, height, caption, aspectRatio }:
 
   return (
     <div
-      ref={ref}
+      ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -63,16 +62,12 @@ export function ZoomableImage({ src, alt, width, height, caption, aspectRatio }:
           {caption}
         </span>
       )}
-      <motion.div
-        animate={{
-          scale: isHovered ? 1.5 : 1,
-          x: isHovered ? `${(50 - position.x) * 0.5}%` : "0%",
-          y: isHovered ? `${(50 - position.y) * 0.5}%` : "0%",
-        }}
-        transition={{
-          scale: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
-          x: { duration: 0.1, ease: "linear" },
-          y: { duration: 0.1, ease: "linear" },
+      <div
+        ref={imageWrapperRef}
+        style={{
+          transform: isHovered ? "scale(1.5)" : "scale(1)",
+          transformOrigin: "50% 50%",
+          transition: "transform 0.3s ease-out",
         }}
         className="w-full h-full"
       >
@@ -84,7 +79,7 @@ export function ZoomableImage({ src, alt, width, height, caption, aspectRatio }:
           quality={100}
           className={imageClass}
         />
-      </motion.div>
+      </div>
     </div>
   );
 }

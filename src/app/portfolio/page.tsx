@@ -87,15 +87,14 @@ const personalProjects = [
 ];
 
 const archiveProjects = [
-  { name: "AI Design Generator", slug: "ai-design-generator" },
   { name: "Boston North End", slug: "boston-north-end-public-art" },
   { name: "Chatbot Learning App", slug: "chatbot-learning-app-for-ios" },
+  { name: "creative.ai", slug: "creative-ai" },
   { name: "Cosmitto", slug: "cosmitto" },
   { name: "Envato Design Sprint", slug: "design-sprint-at-envato" },
   { name: "Event Management App", slug: "event-management-app" },
   { name: "Giza AR", slug: "giza-ar" },
   { name: "Historic Blenheim", slug: "historic-blenheim-ar" },
-  { name: "Ideaverse", slug: "ideaverse" },
   { name: "Krakatoa", slug: "krakatoa" },
   { name: "New Alexandria", slug: "new-alexandria" },
   { name: "Oracy", slug: "oracy" },

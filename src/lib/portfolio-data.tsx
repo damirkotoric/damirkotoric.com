@@ -866,6 +866,185 @@ export const portfolioProjects: PortfolioProject[] = [
       },
     ],
   },
+  {
+    slug: "creative-ai",
+    title: "creative.ai",
+    description:
+      "Led design for a Berlin AI startup in 2016 — exploring text-to-design and AI-powered creative tools years before the industry caught up.",
+    role: "Lead Product Designer",
+    year: "2016",
+    client: "creative.ai",
+    coverImage: {
+      src: "/images/portfolio/creative-ai/hero.avif",
+      alt: "creative.ai — machine learning generated images",
+    },
+    testimonial: {
+      quote:
+        "Damir is a one-of-a-kind excellent designer with a real sense for product: an unbeatable match, making it very satisfying to have been able to work together.",
+      name: "Roelof Pieters",
+      role: "CEO, creative.ai",
+      image: "/images/testimonials/roelof.avif",
+    },
+    sections: [
+      {
+        heading: "The Vision",
+        description:
+          "In 2016, creative.ai was exploring a radical premise: what if AI could be a creative collaborator, not just a tool? I joined the Berlin-based startup as lead designer to give shape to that vision across two products. The first was a text-to-design generator — users would input keywords and the system would produce images, posters, and websites in real time using machine learning. Style transfer let users remix any creative asset with a completely different aesthetic instantly. We explored concepts for voice integration — creative teams describing ideas aloud and having them materialise on screen — though this remained conceptual. This was years before Midjourney, DALL-E, or Stable Diffusion existed.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/creative-ai/ml-images.avif",
+                alt: "Machine learning generated images — text-to-visual output in 2016",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/creative-ai/sliders.avif",
+                alt: "Steering ML output through real-time parameter controls",
+              },
+              {
+                src: "/images/portfolio/creative-ai/style-guide.avif",
+                alt: "Style guide — defining consistent visual language for AI-generated assets",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/creative-ai/style-transfer.avif",
+                alt: "Style transfer — applying different aesthetics to creative assets in real time",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Design Sprint to Prototype",
+        description:
+          "The second product, Ideaverse, needed to go from vague idea to investor-ready prototype in two weeks. I facilitated a remote design sprint across Berlin, Amsterdam, Helsinki, Vienna, and Australia — two days of workshops to align the team on a single product direction. We explored over a dozen concepts, voted on favourites, and narrowed down to one: a universe of ideas where users could explore, collect, and fine-tune AI-generated creative inspiration, then collaborate with teammates on art direction.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/creative-ai/workshop.avif",
+                alt: "Remote design sprint — aligning a distributed team across five cities",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/creative-ai/sprint-day-1.avif",
+                alt: "Day 1 — strategic goals, requirements, and competitive analysis",
+              },
+              {
+                src: "/images/portfolio/creative-ai/sprint-day-2.avif",
+                alt: "Day 2 — ideation, voting, and consensus on product direction",
+              },
+            ],
+          },
+          {
+            layout: "grid-3",
+            images: [
+              {
+                src: "/images/portfolio/creative-ai/persona-4.avif",
+                alt: "Day 1 — strategic goals, requirements, and competitive analysis",
+              },
+              {
+                src: "/images/portfolio/creative-ai/persona-2.avif",
+                alt: "Day 2 — ideation, voting, and consensus on product direction",
+              },
+              {
+                src: "/images/portfolio/creative-ai/persona-3.avif",
+                alt: "Day 2 — ideation, voting, and consensus on product direction",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "The Product",
+        description:
+          "Ideaverse was built around the metaphor of an infinite universe of ideas. Users could explore AI-generated creative concepts, collect inspiration into a personalised vision, fine-tune the creative direction through intuitive controls, and collaborate with teammates using a version control system designed for creatives. I delivered the complete design — from concept through high-fidelity mockups to a clickable prototype — in the second week. The prototype helped reassure investors, clarify requirements for developers, and align the entire team on the road ahead.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/creative-ai/ideaverse-explore.avif",
+                alt: "Explore an infinite universe of ideas",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/creative-ai/ideaverse-collect.avif",
+                alt: "Collect inspiration to form your creative vision",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/creative-ai/ideaverse-finetune.avif",
+                alt: "Fine-tune your creative direction",
+              },
+              {
+                src: "/images/portfolio/creative-ai/ideaverse-collaborate.avif",
+                alt: "Git for creatives — collaborate and version-control creative work",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/creative-ai/prototype-video.mp4",
+                alt: "Clickable prototype walkthrough",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "The Team",
+        description:
+          "creative.ai was a small, ambitious team spread across Europe. I worked closely with the CEO and engineers, often sketching through product concepts together before jumping into Figma. Being the only designer meant owning everything from research and workshop facilitation to visual design and prototyping.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/creative-ai/team.avif",
+                alt: "The creative.ai team — Berlin rooftop",
+              },
+              {
+                src: "/images/portfolio/creative-ai/sketching.avif",
+                alt: "Working through concepts with the CEO",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outcome",
+        description:
+          "Neither product launched — the vision required ML capabilities that weren't mature enough in 2016. But the core thesis was right. Today, tools like Midjourney, DALL-E, and Stable Diffusion have validated everything creative.ai was reaching for. Working at the frontier of AI and design this early shaped how I approach emerging technology products — with the conviction to explore bold ideas and the pragmatism to know when to prototype fast and test assumptions.",
+        imageBlocks: [],
+      },
+    ],
+  },
 ];
 
 export function getProjectBySlug(slug: string): PortfolioProject | undefined {
