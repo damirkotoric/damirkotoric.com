@@ -106,6 +106,38 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2400
   },
+  "/images/portfolio/boston-north-end/ar-1.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/boston-north-end/ar-2.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/boston-north-end/hero.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/boston-north-end/map.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/boston-north-end/north-square.avif": {
+    "width": 2044,
+    "height": 1150
+  },
+  "/images/portfolio/boston-north-end/north-square.webp": {
+    "width": 2044,
+    "height": 1150
+  },
+  "/images/portfolio/boston-north-end/story.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/boston-north-end/write.avif": {
+    "width": 3200,
+    "height": 2400
+  },
   "/images/portfolio/brokerengine/5tHNIK8Ki1uZHAWwcz5rp7UUZ0.avif": {
     "width": 914,
     "height": 526

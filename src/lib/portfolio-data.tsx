@@ -1062,6 +1062,88 @@ export const portfolioProjects: PortfolioProject[] = [
       },
     ],
   },
+  {
+    slug: "boston-north-end",
+    title: "Boston North End Public Art",
+    description:
+      "Turned an iconic Boston neighbourhood into an open-air AR museum, telling the stories of 20th century immigrants.",
+    role: "Product Designer",
+    year: "2019",
+    client: "Archimedes Digital",
+    coverImage: {
+      src: "/images/portfolio/boston-north-end/hero.avif",
+      alt: "Boston North End Public Art — AR museum experience",
+    },
+    sections: [
+      {
+        heading: "The Concept",
+        description:
+          "Boston's North End is one of the city's most historic neighbourhoods — home to generations of 20th century immigrants whose stories are embedded in its streets and buildings. I designed an AR app that turns the neighbourhood into an open-air museum, letting visitors point their phone at locations and discover the stories behind them. The most critical design challenge was permission priming: the app needs both camera and geolocation access to function, two of the most sensitive permissions a phone can grant. Getting users past that gate without breaking trust determined whether the experience worked at all.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/boston-north-end/prototype.mp4",
+                alt: "Prototype walkthrough — app onboarding and first AR experience",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/boston-north-end/map.avif",
+                alt: "Map view — discover stories by exploring the neighbourhood map",
+              },
+              {
+                src: "/images/portfolio/boston-north-end/story.avif",
+                alt: "Story view — immersive AR storytelling triggered by real-world locationsst",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/boston-north-end/write.avif",
+                alt: "Writing the stories — we allowed users to submit their own stories and photos, which we then curated and added to the experience",
+              },
+              {
+                src: "/images/portfolio/boston-north-end/ar-2.avif",
+                alt: "AR in the neighbourhood — users can point their phone at locations to see story markers appear overlaid on the real world",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "North Square",
+        description:
+          "North Square is the neighbourhood's central gathering point, recently restored with a bronze plaque map installed in the ground. I designed an AR feature that interacts with this physical map — point your phone at the bronze cast and see story markers appear over their real-world locations. The result was a clickable prototype delivered in one week from project kickoff, guiding the development team for the build.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/boston-north-end/north-square.avif",
+                alt: "North Square — the neighbourhood's central gathering point",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/boston-north-end/ar-1.avif",
+                alt: "AR experience overlaying story pins on a real-world plaque located in a square in Boston's North End",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getProjectBySlug(slug: string): PortfolioProject | undefined {

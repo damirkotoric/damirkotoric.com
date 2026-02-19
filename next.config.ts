@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
         destination: "/portfolio/creative-ai",
         permanent: true,
       },
+      {
+        source: "/portfolio/boston-north-end-public-art",
+        destination: "/portfolio/boston-north-end",
+        permanent: true,
+      },
     ];
   },
 };
