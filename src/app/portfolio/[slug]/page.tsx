@@ -34,15 +34,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: project.description,
       images: [
         {
-          url: project.coverImage.src,
+          url: project.ogImage.src,
           width: 1200,
           height: 680,
-          alt: project.coverImage.alt,
+          alt: project.ogImage.alt,
         },
       ],
     },
     twitter: {
-      images: [project.coverImage.src],
+      images: [project.ogImage.src],
     },
   };
 }

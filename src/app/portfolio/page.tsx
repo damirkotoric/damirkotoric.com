@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { ProjectCard } from "@/components/project-card";
+import { getFeaturedProjects, getArchiveProjects } from "@/lib/portfolio-data";
 
 export const metadata: Metadata = {
   title: "Portfolio • Damir Kotorić",
@@ -23,89 +24,39 @@ export const metadata: Metadata = {
   },
 };
 
-const featuredProjects = [
-  {
-    slug: "beyondwords",
-    title: "BeyondWords",
-    outcome: "Created a custom design system for an audio AI startup, enabling faster product iteration.",
-    image: "/images/portfolio/beyondwords-ui1.avif",
-  },
-  {
-    slug: "brokerengine",
-    title: "BrokerEngine",
-    outcome: "Redesigned the product over 3 years, leading to a 70% acquisition by a major corporation.",
-    image: "/images/portfolio/brokerengine-1.avif",
-  },
-  {
-    slug: "nametag",
-    title: "Nametag",
-    outcome: "Designed the web3 product from scratch, helping secure a $2M seed round and 60K users.",
-    image: "/images/portfolio/nametag/nametag-1.avif",
-  },
-  {
-    slug: "booking-com",
-    title: "Booking.com",
-    outcome: "Led design across mobile payment, accessibility and performance teams, contributing to a €35M annual conversion boost.",
-    image: "/images/portfolio/booking/bookingcom-1.avif",
-  },
-  {
-    slug: "nsw-climate-data-portal",
-    title: "NSW Climate Data Portal",
-    outcome: "Designed an open data portal for the NSW Government, making petabytes of climate data publicly accessible.",
-    image: null,
-  },
-  {
-    slug: "gsq-open-data-portal",
-    title: "Queensland Open Data Portal",
-    outcome: "Designed a geological data portal for the Queensland Government, serving mining industry and researchers.",
-    image: null,
-  },
-];
+const featuredProjects = getFeaturedProjects().map((p) => ({
+  slug: p.slug,
+  title: p.title,
+  outcome: p.description,
+  image: p.cardImage,
+}));
+
+const archiveProjects = getArchiveProjects();
 
 const personalProjects = [
   {
     title: "DoNotStay",
     description: "AI-powered hotel review analysis for smarter booking decisions.",
     href: "https://donotstay.app",
-    video: "/images/portfolio/donotstay.mp4",
-    poster: "/images/portfolio/donotstay-poster.avif",
+    video: "/images/portfolio/donotstay/donotstay.mp4",
+    poster: "/images/portfolio/donotstay/donotstay-poster.avif",
   },
   {
     title: "Rankdat",
     description: "Global country rankings platform covering healthcare, corruption, and more.",
     href: "https://rankdat.io",
-    video: "/images/portfolio/rankdat.mp4",
-    poster: "/images/portfolio/rankdat-poster.avif",
+    video: "/images/portfolio/rankdat/rankdat.mp4",
+    poster: "/images/portfolio/rankdat/rankdat-poster.avif",
   },
   {
     title: "StyleSpin",
     description: "AI fashion photoshoots for e-commerce sellers.",
     href: "https://stylespin.io",
-    video: "/images/portfolio/stylespin.mp4",
-    poster: "/images/portfolio/stylespin-poster.avif",
+    video: "/images/portfolio/stylespin/stylespin.mp4",
+    poster: "/images/portfolio/stylespin/stylespin-poster.avif",
   },
 ];
 
-const archiveProjects = [
-  { name: "Boston North End", slug: "boston-north-end-public-art" },
-  { name: "Chatbot Learning App", slug: "chatbot-learning-app-for-ios" },
-  { name: "creative.ai", slug: "creative-ai" },
-  { name: "Cosmitto", slug: "cosmitto" },
-  { name: "Envato Design Sprint", slug: "design-sprint-at-envato" },
-  { name: "Event Management App", slug: "event-management-app" },
-  { name: "Giza AR", slug: "giza-ar" },
-  { name: "Historic Blenheim", slug: "historic-blenheim-ar" },
-  { name: "Krakatoa", slug: "krakatoa" },
-  { name: "New Alexandria", slug: "new-alexandria" },
-  { name: "Oracy", slug: "oracy" },
-  { name: "Orpheus", slug: "orpheus" },
-  { name: "Parthenon AR", slug: "parthenon-ar-app" },
-  { name: "Resell Calendar", slug: "resell-calendar" },
-  { name: "Storyverse", slug: "storyverse" },
-  { name: "Teaching at General Assembly", slug: "teaching-ux-design-at-general-assembly" },
-  { name: "Tripureshwor 360° Tour", slug: "tripureshwor-web-360-tour" },
-  { name: "Zhejiang Museum AR", slug: "zhejiang-museum-ar-app" },
-];
 
 export default function PortfolioPage() {
   return (
@@ -119,7 +70,7 @@ export default function PortfolioPage() {
             </Link>
             <span className="opacity-50">/</span>
           </nav>
-          <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="mb-2 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             Selected Work
           </h1>
           <p className="max-w-[520px] text-lg text-muted-foreground">

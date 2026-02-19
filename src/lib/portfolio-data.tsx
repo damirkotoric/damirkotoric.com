@@ -29,7 +29,10 @@ export type PortfolioProject = {
   year: string;
   client: string;
   liveUrl?: string;
-  coverImage: { src: string; alt: string };
+  ogImage: { src: string; alt: string };
+  coverImage?: { src: string; alt: string };
+  cardImage?: string | null;
+  featured?: boolean;
   testimonial?: Testimonial;
   sections: PortfolioSection[];
 };
@@ -44,8 +47,10 @@ export const portfolioProjects: PortfolioProject[] = [
     year: "2024",
     client: "BeyondWords",
     liveUrl: "https://beyondwords.io",
-    coverImage: {
-      src: "/images/portfolio/beyondwords/_beyondwords-cover.jpg",
+    featured: true,
+    cardImage: "/images/portfolio/beyondwords-ui1.avif",
+    ogImage: {
+      src: "/images/portfolio/beyondwords/_og.jpg",
       alt: "BeyondWords design system overview",
     },
     testimonial: {
@@ -189,8 +194,10 @@ export const portfolioProjects: PortfolioProject[] = [
     year: "2021–2024",
     client: "BrokerEngine",
     liveUrl: "https://brokerengine.com.au",
-    coverImage: {
-      src: "/images/portfolio/brokerengine/_brokerengine-cover.jpg",
+    featured: true,
+    cardImage: "/images/portfolio/brokerengine-1.avif",
+    ogImage: {
+      src: "/images/portfolio/brokerengine/_og.jpg",
       alt: "BrokerEngine product overview",
     },
     testimonial: {
@@ -363,8 +370,10 @@ export const portfolioProjects: PortfolioProject[] = [
     role: "Lead Product Designer",
     year: "2022–2023",
     client: "Nametag",
-    coverImage: {
-      src: "/images/portfolio/nametag/_nametag-cover.jpg",
+    featured: true,
+    cardImage: "/images/portfolio/nametag/nametag-1.avif",
+    ogImage: {
+      src: "/images/portfolio/nametag/_og.jpg",
       alt: "Nametag product overview",
     },
     testimonial: {
@@ -552,8 +561,10 @@ export const portfolioProjects: PortfolioProject[] = [
     year: "2018–2019",
     client: "Booking.com",
     liveUrl: "https://booking.com",
-    coverImage: {
-      src: "/images/portfolio/booking/booking-bg.avif",
+    featured: true,
+    cardImage: "/images/portfolio/booking/bookingcom-1.avif",
+    ogImage: {
+      src: "/images/portfolio/booking/_og.jpg",
       alt: "Booking.com product overview",
     },
     testimonial: {
@@ -661,8 +672,10 @@ export const portfolioProjects: PortfolioProject[] = [
     year: "2020",
     client: "NSW Government",
     liveUrl: "https://climatedata.environment.nsw.gov.au",
-    coverImage: {
-      src: "/images/portfolio/nsw-cdp/nsw-cdp-bg.avif",
+    featured: true,
+    cardImage: null,
+    ogImage: {
+      src: "/images/portfolio/nsw-cdp/_og.jpg",
       alt: "NSW Climate Data Portal overview",
     },
     testimonial: {
@@ -791,8 +804,10 @@ export const portfolioProjects: PortfolioProject[] = [
     role: "Product Designer",
     year: "2020",
     client: "Queensland Government",
-    coverImage: {
-      src: "/images/portfolio/gsq-bg.avif",
+    featured: true,
+    cardImage: null,
+    ogImage: {
+      src: "/images/portfolio/gsq/_og.jpg",
       alt: "Queensland Open Data Portal overview",
     },
     testimonial: {
@@ -867,6 +882,202 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    slug: "boston-north-end",
+    title: "Boston North End Public Art",
+    description:
+      "Turned an iconic Boston neighbourhood into an open-air AR museum, telling the stories of 20th century immigrants.",
+    role: "Product Designer",
+    year: "2019",
+    client: "Archimedes Digital",
+    coverImage: {
+      src: "/images/portfolio/boston-north-end/hero.avif",
+      alt: "Boston North End Public Art — AR museum experience",
+    },
+    ogImage: {
+      src: "/images/portfolio/boston-north-end/_og.jpg",
+      alt: "Boston North End Public Art — AR museum experience",
+    },
+    sections: [
+      {
+        heading: "The Concept",
+        description:
+          "Boston's North End is one of the city's most historic neighbourhoods — home to generations of 20th century immigrants whose stories are embedded in its streets and buildings. I designed an AR app that turns the neighbourhood into an open-air museum, letting visitors point their phone at locations and discover the stories behind them. The most critical design challenge was permission priming: the app needs both camera and geolocation access to function, two of the most sensitive permissions a phone can grant. Getting users past that gate without breaking trust determined whether the experience worked at all.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/boston-north-end/prototype.mp4",
+                alt: "Prototype walkthrough — app onboarding and first AR experience",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/boston-north-end/map.avif",
+                alt: "Map view — discover stories by exploring the neighbourhood map",
+              },
+              {
+                src: "/images/portfolio/boston-north-end/story.avif",
+                alt: "Story view — immersive AR storytelling triggered by real-world locations",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/boston-north-end/write.avif",
+                alt: "Writing the stories — we allowed users to submit their own stories and photos, which we then curated and added to the experience",
+              },
+              {
+                src: "/images/portfolio/boston-north-end/ar-2.avif",
+                alt: "AR in the neighbourhood — users can point their phone at locations to see story markers appear overlaid on the real world",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "North Square",
+        description:
+          "North Square is the neighbourhood's central gathering point, recently restored with a bronze plaque map installed in the ground. I designed an AR feature that interacts with this physical map — point your phone at the bronze cast and see story markers appear over their real-world locations. The result was a clickable prototype delivered in one week from project kickoff, guiding the development team for the build.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/boston-north-end/north-square.avif",
+                alt: "North Square — the neighbourhood's central gathering point",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/boston-north-end/ar-1.avif",
+                alt: "AR experience overlaying story pins on a real-world plaque located in a square in Boston's North End",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "cosmitto",
+    title: "Cosmitto",
+    description:
+      "Designed a corporate training marketplace from the ground up, shipping during COVID to capture the spike in remote learning demand.",
+    role: "Product Designer",
+    year: "2020",
+    client: "Cosmitto",
+    ogImage: {
+      src: "/images/portfolio/cosmitto/_og.jpg",
+      alt: "Cosmitto — corporate training marketplace",
+    },
+    coverImage: {
+      src: "/images/portfolio/cosmitto/cover.avif",
+      alt: "Cosmitto — corporate training marketplace",
+    },
+    testimonial: {
+      quote:
+        "Damir is a brilliant designer. What impressed us most was his willingness to meet all of our tight deadlines and nothing was ever too hard. If you are looking for a top 1% product designer then I cannot recommend Damir enough.",
+      highlight: "Damir is a brilliant designer.",
+      name: "Bradley Zarich",
+      role: "Co-Founder, Cosmitto",
+      image: "/images/testimonials/brad.avif",
+      linkedIn: "https://www.linkedin.com/in/bradley-zarich/",
+    },
+    sections: [
+      {
+        heading: "The Product",
+        description:
+          "Cosmitto is a marketplace where corporate training providers list their courses and where organisations can search, compare, and find training — from workshops to online learning to university short courses. My job was to translate the founders' pitch deck and broad product ideas into a complete, development-ready design for the MVP. The platform has two sides: a consumer-facing search experience with category, location, and faceted filtering, and a provider portal where training companies manage their profiles, course listings, and upgrade plans.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/cosmitto/search.avif",
+                alt: "Search experience — find training by category, location, and filters",
+              },
+              {
+                src: "/images/portfolio/cosmitto/search-tablet.avif",
+                alt: "Tablet search — list and map views for different browsing contexts",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/cosmitto/course.avif",
+                alt: "Course detail page — evaluate a course and connect with the provider",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Provider Portal",
+        description:
+          "The other half of the marketplace: a CMS where training providers manage their presence on Cosmitto. I designed the full admin experience — profile management, course listing creation and editing, and an upgrade flow for providers who wanted to list more than two courses. I also designed a direct booking flow for a future release, ensuring the product had a clear path beyond MVP even though budget and complexity pushed it past the initial scope.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/cosmitto/provider-portal.avif",
+                alt: "Provider Portal",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/cosmitto/portal-cms.avif",
+                alt: "Provider CMS — adding and editing courses",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/cosmitto/portal-upgrade.avif",
+                alt: "Upgrade flow — unlocking additional course listings",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/cosmitto/booking-flow.avif",
+                alt: "Booking flow — designed for a future release",
+              },
+              {
+                src: "/images/portfolio/cosmitto/booking-confirmation.avif",
+                alt: "Booking confirmation",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outcome",
+        description:
+          "Cosmitto shipped within a few months — timed to capture the surge in remote corporate training driven by COVID-19. The project spanned 180 hours from pitch deck interpretation through design, QA, and developer handoff. The site launched with search, provider profiles, and course listings, with the booking flow ready for the next phase.",
+        imageBlocks: [],
+      },
+    ],
+  },
+  {
     slug: "creative-ai",
     title: "creative.ai",
     description:
@@ -874,8 +1085,8 @@ export const portfolioProjects: PortfolioProject[] = [
     role: "Lead Product Designer",
     year: "2016",
     client: "creative.ai",
-    coverImage: {
-      src: "/images/portfolio/creative-ai/hero.avif",
+    ogImage: {
+      src: "/images/portfolio/creative-ai/_og.jpg",
       alt: "creative.ai — machine learning generated images",
     },
     testimonial: {
@@ -1020,7 +1231,7 @@ export const portfolioProjects: PortfolioProject[] = [
       },
       {
         heading: "Validation",
-        description: 
+        description:
           "I built a clickable prototype and tested it with designers — former colleagues who represented the target audience. The sessions surfaced valuable insights about how creatives relate to machine-generated work, and where the line sits between useful assistance and unwanted automation.",
         imageBlocks: [
           {
@@ -1062,88 +1273,6 @@ export const portfolioProjects: PortfolioProject[] = [
       },
     ],
   },
-  {
-    slug: "boston-north-end",
-    title: "Boston North End Public Art",
-    description:
-      "Turned an iconic Boston neighbourhood into an open-air AR museum, telling the stories of 20th century immigrants.",
-    role: "Product Designer",
-    year: "2019",
-    client: "Archimedes Digital",
-    coverImage: {
-      src: "/images/portfolio/boston-north-end/hero.avif",
-      alt: "Boston North End Public Art — AR museum experience",
-    },
-    sections: [
-      {
-        heading: "The Concept",
-        description:
-          "Boston's North End is one of the city's most historic neighbourhoods — home to generations of 20th century immigrants whose stories are embedded in its streets and buildings. I designed an AR app that turns the neighbourhood into an open-air museum, letting visitors point their phone at locations and discover the stories behind them. The most critical design challenge was permission priming: the app needs both camera and geolocation access to function, two of the most sensitive permissions a phone can grant. Getting users past that gate without breaking trust determined whether the experience worked at all.",
-        imageBlocks: [
-          {
-            layout: "full",
-            images: [
-              {
-                src: "/images/portfolio/boston-north-end/prototype.mp4",
-                alt: "Prototype walkthrough — app onboarding and first AR experience",
-              },
-            ],
-          },
-          {
-            layout: "grid-2",
-            images: [
-              {
-                src: "/images/portfolio/boston-north-end/map.avif",
-                alt: "Map view — discover stories by exploring the neighbourhood map",
-              },
-              {
-                src: "/images/portfolio/boston-north-end/story.avif",
-                alt: "Story view — immersive AR storytelling triggered by real-world locationsst",
-              },
-            ],
-          },
-          {
-            layout: "grid-2",
-            images: [
-              {
-                src: "/images/portfolio/boston-north-end/write.avif",
-                alt: "Writing the stories — we allowed users to submit their own stories and photos, which we then curated and added to the experience",
-              },
-              {
-                src: "/images/portfolio/boston-north-end/ar-2.avif",
-                alt: "AR in the neighbourhood — users can point their phone at locations to see story markers appear overlaid on the real world",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        heading: "North Square",
-        description:
-          "North Square is the neighbourhood's central gathering point, recently restored with a bronze plaque map installed in the ground. I designed an AR feature that interacts with this physical map — point your phone at the bronze cast and see story markers appear over their real-world locations. The result was a clickable prototype delivered in one week from project kickoff, guiding the development team for the build.",
-        imageBlocks: [
-          {
-            layout: "full",
-            images: [
-              {
-                src: "/images/portfolio/boston-north-end/north-square.avif",
-                alt: "North Square — the neighbourhood's central gathering point",
-              },
-            ],
-          },
-          {
-            layout: "full",
-            images: [
-              {
-                src: "/images/portfolio/boston-north-end/ar-1.avif",
-                alt: "AR experience overlaying story pins on a real-world plaque located in a square in Boston's North End",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
 ];
 
 export function getProjectBySlug(slug: string): PortfolioProject | undefined {
@@ -1160,6 +1289,16 @@ export function getNextProject(currentSlug: string): PortfolioProject {
 
 export function getAllProjectSlugs(): string[] {
   return portfolioProjects.map((project) => project.slug);
+}
+
+export function getFeaturedProjects() {
+  return portfolioProjects.filter((p) => p.featured);
+}
+
+export function getArchiveProjects() {
+  return portfolioProjects
+    .filter((p) => !p.featured)
+    .map((p) => ({ name: p.title, slug: p.slug }));
 }
 
 export const testimonials: Testimonial[] = [

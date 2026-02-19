@@ -2,7 +2,7 @@
 // Run: pnpm tsx scripts/generate-image-dimensions.ts
 
 export const imageDimensions: Record<string, { width: number; height: number }> = {
-  "/images/portfolio/beyondwords/_beyondwords-cover.jpg": {
+  "/images/portfolio/beyondwords/_og.jpg": {
     "width": 1200,
     "height": 630
   },
@@ -54,7 +54,7 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2132
   },
-  "/images/portfolio/booking/_booking-cover.jpg": {
+  "/images/portfolio/booking/_og.jpg": {
     "width": 1200,
     "height": 630
   },
@@ -106,6 +106,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2400
   },
+  "/images/portfolio/boston-north-end/_og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
   "/images/portfolio/boston-north-end/ar-1.avif": {
     "width": 3200,
     "height": 2400
@@ -146,7 +150,7 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 598,
     "height": 400
   },
-  "/images/portfolio/brokerengine/_brokerengine-cover.jpg": {
+  "/images/portfolio/brokerengine/_og.jpg": {
     "width": 1200,
     "height": 630
   },
@@ -214,7 +218,51 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 1920
   },
-  "/images/portfolio/creative-ai/_ai-design-generator-cover.jpg": {
+  "/images/portfolio/cosmitto/_og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
+  "/images/portfolio/cosmitto/booking-confirmation.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/cosmitto/booking-flow.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/cosmitto/course.avif": {
+    "width": 3200,
+    "height": 9740
+  },
+  "/images/portfolio/cosmitto/cover.avif": {
+    "width": 3200,
+    "height": 2132
+  },
+  "/images/portfolio/cosmitto/portal-cms.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/cosmitto/portal-upgrade.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/cosmitto/provider-portal.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/cosmitto/search-tablet.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/cosmitto/search-tablet.png": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/cosmitto/search.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/creative-ai/_og.jpg": {
     "width": 1200,
     "height": 630
   },
@@ -290,21 +338,33 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 2248,
     "height": 1996
   },
-  "/images/portfolio/donotstay-1.jpg": {
+  "/images/portfolio/donotstay/donotstay-1.jpg": {
     "width": 2560,
     "height": 1914
   },
-  "/images/portfolio/donotstay-poster.avif": {
+  "/images/portfolio/donotstay/donotstay-poster.avif": {
     "width": 2880,
     "height": 2160
   },
-  "/images/portfolio/gsq/_gsq-cover.jpg": {
+  "/images/portfolio/gsq/_og.jpg": {
     "width": 1200,
     "height": 630
   },
   "/images/portfolio/gsq/faceted-search.avif": {
     "width": 3200,
     "height": 2400
+  },
+  "/images/portfolio/gsq/gsq-bg.avif": {
+    "width": 3200,
+    "height": 2132
+  },
+  "/images/portfolio/gsq/gsq-ui-desktop.avif": {
+    "width": 2800,
+    "height": 2000
+  },
+  "/images/portfolio/gsq/gsq-ui-modal.avif": {
+    "width": 2720,
+    "height": 1600
   },
   "/images/portfolio/gsq/hero.avif": {
     "width": 3200,
@@ -318,21 +378,9 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2000
   },
-  "/images/portfolio/gsq-bg.avif": {
-    "width": 3200,
-    "height": 2132
-  },
-  "/images/portfolio/gsq-ui-desktop.avif": {
-    "width": 2800,
-    "height": 2000
-  },
-  "/images/portfolio/gsq-ui-modal.avif": {
-    "width": 2720,
-    "height": 1600
-  },
-  "/images/portfolio/nametag/_nametag-cover.jpg": {
+  "/images/portfolio/nametag/_og.jpg": {
     "width": 1200,
-    "height": 675
+    "height": 630
   },
   "/images/portfolio/nametag/auth-options.avif": {
     "width": 3476,
@@ -398,6 +446,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2400
   },
+  "/images/portfolio/nsw-cdp/_og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
   "/images/portfolio/nsw-cdp/analysis.avif": {
     "width": 3200,
     "height": 2000
@@ -454,11 +506,11 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 1744
   },
-  "/images/portfolio/rankdat-poster.avif": {
+  "/images/portfolio/rankdat/rankdat-poster.avif": {
     "width": 2880,
     "height": 2160
   },
-  "/images/portfolio/stylespin-poster.avif": {
+  "/images/portfolio/stylespin/stylespin-poster.avif": {
     "width": 2880,
     "height": 2160
   }

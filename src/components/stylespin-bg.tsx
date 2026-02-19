@@ -31,10 +31,10 @@ export function StyleSpinBg() {
         playsInline
         preload="none"
         aria-hidden="true"
-        poster="/images/portfolio/stylespin-poster.avif"
+        poster="/images/portfolio/stylespin/stylespin-poster.avif"
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/images/portfolio/stylespin.mp4" type="video/mp4" />
+        <source src="/images/portfolio/stylespin/stylespin.mp4" type="video/mp4" />
       </video>
     </div>
   );

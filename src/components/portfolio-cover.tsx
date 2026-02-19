@@ -19,7 +19,7 @@ const interactiveCovers: Record<string, React.ReactNode> = {
 
 type PortfolioCoverProps = {
   slug: string;
-  coverImage: { src: string; alt: string };
+  coverImage?: { src: string; alt: string };
 };
 
 export function PortfolioCover({ slug, coverImage }: PortfolioCoverProps) {
@@ -33,8 +33,12 @@ export function PortfolioCover({ slug, coverImage }: PortfolioCoverProps) {
     );
   }
 
+  if (!coverImage) {
+    return null;
+  }
+
   return (
-    <div className="overflow-hidden rounded-lg">
+    <div className="overflow-hidden rounded-lg border border-border">
       <Image
         src={coverImage.src}
         alt={coverImage.alt}

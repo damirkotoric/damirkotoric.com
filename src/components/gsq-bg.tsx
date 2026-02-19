@@ -49,7 +49,7 @@ export function GsqBg({ compact = false }: GsqBgProps) {
     <div ref={ref} className="relative w-full aspect-[3/2] overflow-hidden">
       {/* Background image */}
       <Image
-        src="/images/portfolio/gsq-bg.avif"
+        src="/images/portfolio/gsq/gsq-bg.avif"
         alt=""
         fill
         className="object-cover"
@@ -79,7 +79,7 @@ export function GsqBg({ compact = false }: GsqBgProps) {
             }}
           >
             <Image
-              src="/images/portfolio/gsq-ui-desktop.avif"
+              src="/images/portfolio/gsq/gsq-ui-desktop.avif"
               alt="GSQ Open Data Portal desktop interface"
               width={2800}
               height={2000}
@@ -101,7 +101,7 @@ export function GsqBg({ compact = false }: GsqBgProps) {
             }}
           >
             <Image
-              src="/images/portfolio/gsq-ui-modal.avif"
+              src="/images/portfolio/gsq/gsq-ui-modal.avif"
               alt="GSQ Open Data Portal map modal"
               width={2720}
               height={1600}

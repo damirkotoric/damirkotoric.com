@@ -29,7 +29,7 @@ export function PortfolioDetail({ project, nextProject }: PortfolioDetailProps) 
             </Link>
             <span className="opacity-50">/</span>
           </nav>
-          <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="mb-2 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             {project.title}
           </h1>
           <p className="mb-8 max-w-xl text-lg text-muted-foreground">

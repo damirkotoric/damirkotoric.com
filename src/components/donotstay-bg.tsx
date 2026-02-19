@@ -31,10 +31,10 @@ export function DoNotStayBg() {
         playsInline
         preload="none"
         aria-hidden="true"
-        poster="/images/portfolio/donotstay-poster.avif"
+        poster="/images/portfolio/donotstay/donotstay-poster.avif"
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/images/portfolio/donotstay.mp4" type="video/mp4" />
+        <source src="/images/portfolio/donotstay/donotstay.mp4" type="video/mp4" />
       </video>
     </div>
   );
