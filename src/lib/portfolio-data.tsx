@@ -1019,6 +1019,22 @@ export const portfolioProjects: PortfolioProject[] = [
         ],
       },
       {
+        heading: "Validation",
+        description: 
+          "I built a clickable prototype and tested it with designers — former colleagues who represented the target audience. The sessions surfaced valuable insights about how creatives relate to machine-generated work, and where the line sits between useful assistance and unwanted automation.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/creative-ai/user-testing.mp4",
+                alt: "User testing the prototype with target users",
+              },
+            ],
+          },
+        ],
+      },
+      {
         heading: "The Team",
         description:
           "creative.ai was a small, ambitious team spread across Europe. I worked closely with the CEO and engineers, often sketching through product concepts together before jumping into Figma. Being the only full-time designer meant owning everything from research and workshop facilitation to visual design and prototyping.",
