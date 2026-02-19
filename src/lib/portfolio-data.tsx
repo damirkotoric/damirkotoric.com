@@ -1579,6 +1579,39 @@ export const portfolioProjects: PortfolioProject[] = [
         ],
       },
       {
+        heading: "Harvard Library AR",
+        description:
+          "For Harvard University Libraries, I designed a mobile app combining interactive maps, AR wayfinding, and on-site discovery for campus libraries. Visitors could locate buildings on a satellite map, then switch to AR mode for guided walking directions overlaid onto the real world. Once inside, the app surfaced rich content about collections and exhibits — Widener Library's 450-language collection, rare artefacts like the Gutenberg Bible (one of 49 surviving copies), and historical photography of the buildings themselves. The design had to serve both Harvard community members navigating between libraries and first-time visitors exploring the campus.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/harvard/library-map.avif",
+                alt: "Map view — locating Harvard libraries on campus",
+              },
+              {
+                src: "/images/portfolio/harvard/library-wayfinding.avif",
+                alt: "AR wayfinding — guided walking directions to Widener Library",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/harvard/library-widener.avif",
+                alt: "Library detail — Widener Library with collection overview and historical photos",
+              },
+              {
+                src: "/images/portfolio/harvard/library-gutenberg.avif",
+                alt: "Exhibit detail — the Gutenberg Bible, one of the earliest books printed in Europe",
+              },
+            ],
+          },
+        ],
+      },
+      {
         heading: "New Alexandria",
         description:
           "In collaboration with the Center for Hellenic Studies at Harvard University, I designed a platform for academic commentaries on ancient texts — a sort of Stack Overflow for humanities scholarship. Millennia-old Greek and Latin texts are notoriously difficult to understand; professors spend years writing commentary books translating and interpreting them. The traditional print publishing method is slow, costly, and skewed to the elite few with publisher access. New Alexandria aimed to make commentaries open, peer-reviewed, and accessible to everyone. I designed a split-view reading experience (original text alongside commentary), multi-language support for Latin, Greek, and Arabic scripts, and an invite-only publishing model to cultivate quality before opening access.",
@@ -1627,7 +1660,7 @@ export const portfolioProjects: PortfolioProject[] = [
       },
       {
         heading: "Outcome",
-        description: <>The Giza prototype secured subsequent projects including the Zhejiang University Museum AR app and the Parthenon concept. The 3D scan of Meresankh III's tomb was <a href="https://www.theguardian.com/travel/2020/apr/15/egyptian-tomb-ancient-wonders-open-for-virtual-tour-in-lockdown" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">featured in The Guardian</a> and remains publicly accessible via Matterport. This body of work established a repeatable design approach for cultural AR experiences — balancing historical accuracy with intuitive mobile interactions — that I applied across four countries and multiple Harvard collaborations.</>,
+        description: <>The Giza prototype secured subsequent projects including the Zhejiang University Museum AR app and the Parthenon concept. The Harvard Library AR app extended the wayfinding patterns we'd developed into Harvard's own campus. The 3D scan of Meresankh III's tomb was <a href="https://www.theguardian.com/travel/2020/apr/15/egyptian-tomb-ancient-wonders-open-for-virtual-tour-in-lockdown" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">featured in The Guardian</a> and remains publicly accessible via Matterport. This body of work established a repeatable design approach for cultural AR and campus experiences — balancing historical accuracy with intuitive mobile interactions — that I applied across four countries and multiple Harvard collaborations.</>,
         imageBlocks: [],
       },
     ],

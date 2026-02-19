@@ -478,6 +478,22 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 1800
   },
+  "/images/portfolio/harvard/library-gutenberg.avif": {
+    "width": 4000,
+    "height": 2250
+  },
+  "/images/portfolio/harvard/library-map.avif": {
+    "width": 4000,
+    "height": 2250
+  },
+  "/images/portfolio/harvard/library-wayfinding.avif": {
+    "width": 4000,
+    "height": 2250
+  },
+  "/images/portfolio/harvard/library-widener.avif": {
+    "width": 4000,
+    "height": 2250
+  },
   "/images/portfolio/harvard/new-alexandria-commentary.avif": {
     "width": 3200,
     "height": 1920
