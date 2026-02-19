@@ -884,6 +884,7 @@ export const portfolioProjects: PortfolioProject[] = [
       name: "Roelof Pieters",
       role: "CEO, creative.ai",
       image: "/images/testimonials/roelof.avif",
+      linkedIn: "https://www.linkedin.com/in/roelofpieters/",
     },
     sections: [
       {
@@ -956,15 +957,15 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/creative-ai/persona-4.avif",
-                alt: "Day 1 — strategic goals, requirements, and competitive analysis",
+                alt: "The Generative Architect persona — a creative director who uses AI to explore and shape ideas",
               },
               {
                 src: "/images/portfolio/creative-ai/persona-2.avif",
-                alt: "Day 2 — ideation, voting, and consensus on product direction",
+                alt: "The Creative Professional persona — a designer or artist using AI to generate inspiration and iterate on concepts",
               },
               {
                 src: "/images/portfolio/creative-ai/persona-3.avif",
-                alt: "Day 2 — ideation, voting, and consensus on product direction",
+                alt: "The Executive persona — a non-creative team member who needs to review and provide feedback on AI-generated concepts",
               },
             ],
           },
@@ -1020,7 +1021,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "The Team",
         description:
-          "creative.ai was a small, ambitious team spread across Europe. I worked closely with the CEO and engineers, often sketching through product concepts together before jumping into Figma. Being the only designer meant owning everything from research and workshop facilitation to visual design and prototyping.",
+          "creative.ai was a small, ambitious team spread across Europe. I worked closely with the CEO and engineers, often sketching through product concepts together before jumping into Figma. Being the only full-time designer meant owning everything from research and workshop facilitation to visual design and prototyping.",
         imageBlocks: [
           {
             layout: "grid-2",
