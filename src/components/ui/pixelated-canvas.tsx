@@ -391,10 +391,10 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
           const delaySeed = hash2D(cx + 7919, cy + 104729);
 
           // Calculate scattered start position for entry animation
-          // Cells rise from below with slight horizontal variance
+          // Cells rise from below with horizontal variance like wind-blown particles
           const scatterRadius = Math.max(displayWidth, displayHeight) * 0.35;
           const verticalOffset = (0.6 + seed * 0.4) * scatterRadius; // Strong downward bias
-          const horizontalVariance = (seed - 0.5) * scatterRadius * 0.4; // Wider horizontal spread
+          const horizontalVariance = (delaySeed - 0.5) * scatterRadius * 0.5; // Decorrelated horizontal spread
           const startX = x + horizontalVariance;
           const startY = y + verticalOffset;
 
@@ -544,14 +544,15 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
             const cellProgress = Math.max(0, Math.min(1, (elapsed - cellDelay) / entryDuration));
             const eased = easeOutExpo(cellProgress);
 
+            // Skip drawing if not yet visible
+            if (cellProgress <= 0) continue;
+
             // Interpolate position
             drawX = s.startX + (targetX - s.startX) * eased;
             drawY = s.startY + (targetY - s.startY) * eased;
+
             // Fade in alpha
             drawAlpha = s.a * eased;
-
-            // Skip drawing if not yet visible
-            if (cellProgress <= 0) continue;
           }
 
           // Ambient animation - applies to all dots when enabled

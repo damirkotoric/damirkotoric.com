@@ -1665,6 +1665,158 @@ export const portfolioProjects: PortfolioProject[] = [
       },
     ],
   },
+  {
+    slug: "orpheus",
+    title: "Orpheus",
+    description:
+      "Led product strategy and design for a digital archiving platform used by Harvard, MIT, and humanities institutions worldwide.",
+    role: "Lead Design Strategist",
+    year: "2019–2020",
+    client: "Archimedes Digital",
+    ogImage: {
+      src: "/images/portfolio/orpheus/_og.jpg",
+      alt: "Orpheus — digital archiving platform",
+    },
+    coverImage: {
+      src: "/images/portfolio/orpheus/cover.avif",
+      alt: "Orpheus — digital archiving platform for Harvard, MIT, and humanities institutions",
+    },
+    sections: [
+      {
+        heading: "The Product",
+        description:
+          "Orpheus is a digital collection tool built by Cambridge startup Archimedes Digital, aimed at Harvard, MIT, and humanities professors and archivists worldwide. My role spanned product design, product management, and front-end development. The product initially suffered from scope creep and a fragmented user experience — my job was to clarify what we were building, reel in the feature list, and create a coherent design direction. The philosophy was simple: Orpheus should be like an art gallery — the UI recedes into the background, letting the content take the spotlight.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/orpheus/villa-romana.mp4",
+                alt: "A digital collection of Villa Romana del Casale on an early Orpheus prototype",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/orpheus/design-system-overview.avif",
+                alt: "One universal design system for XR, web, mobile, and wearables",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Strategy & Alignment",
+        description:
+          <>I facilitated remote design sprint workshops to realign the team's strategy. A lean canvas clarified business goals and constraints. We narrowed the target audience to three personas: the <a href="https://www.youtube.com/watch?v=rOc2kWExEZs" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">tech-savvy archivist</a>, the <a href="https://www.youtube.com/watch?v=yKNbhMCB_3g" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">hardline traditionalist</a>, and the <a href="https://www.youtube.com/watch?v=ZI0dbx2qiHg" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">hobbyist collector</a>. An inspiration board got product ideas out of everyone's heads and onto a shared surface. The workshops ran with a distributed team of six across different locations and time zones.</>,
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/orpheus/sprint-workshops.mp4",
+                alt: "Design sprint workshop results — strategy, personas, and product direction",
+              },
+              {
+                src: "/images/portfolio/orpheus/inspiration-board.avif",
+                alt: "Inspiration board — syncing the team on high-level product direction",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Design System & Internationalisation",
+        description:
+          "I built the Orpheus UI library using Storybook.js alongside web developers, based on a customised Material Design foundation. The platform needed to support the world's cultures — Latin, Greek, Arabic, and minority scripts — in both left-to-right and right-to-left layouts. I chose Google's Noto typeface for its support of over 500 languages. The design system served as the single source of truth across web, mobile, XR, and wearable platforms.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/orpheus/storybook.avif",
+                alt: "Orpheus UI library built with Storybook.js",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/orpheus/internationalisation.avif",
+                alt: "Multilingual publishing — Latin, Greek, and Arabic with RTL support",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "VR Experiments",
+        description: "Orpheus wasn't limited to 2D interfaces. I prototyped a VR exhibition experience using Figma mockups and Vrooms, allowing us to cheaply test the concept before committing to an expensive VR build. Users could explore 3D models of cultural sites, inspect metadata, and start guided tours — all in virtual reality.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/orpheus/vr-vrooms.mp4",
+                alt: "VR prototype built with Vrooms — exploring a 3D model of the Colosseum",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Digital Preservation",
+        description:
+          "Orpheus became the foundation for several digital preservation projects. The platform hosted the Noam Chomsky Personal Archives, the Beyond Words digital exhibition of centuries-old manuscripts, and the Charlie Archive at Harvard Library. I also designed a 360° virtual tour concept for Tripureshwor, Kathmandu's largest Hindu temple, damaged in the 2015 Nepal earthquake — balancing free exploration with structured storytelling, inspired by Google's Bagan experience. The concept included 3D laser scans, aerial 360° drone imagery, video, and audio to create a rich, multi-format exploration.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/orpheus/red-monastery.avif",
+                alt: "Red Monastery — laser scan and digital preservation",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/orpheus/tripureshwor.mp4",
+                alt: "Tripureshwor 360° virtual tour prototype",
+              },
+            ],
+          },
+          {
+            layout: "grid-3",
+            images: [
+              {
+                src: "/images/portfolio/orpheus/tripureshwor-gallery.avif",
+                alt: "Gallery mode for exploration variety",
+              },
+              {
+                src: "/images/portfolio/orpheus/tripureshwor-aerial.avif",
+                alt: "Aerial 360° drone view",
+              },
+              {
+                src: "/images/portfolio/orpheus/tripureshwor-interior.avif",
+                alt: "Touring the temple interior",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outcome",
+        description:
+          "Orpheus serves multiple institutions including Harvard and MIT, hosting digital collections ranging from ancient manuscripts to personal archives. The design system I built supports content across web, mobile, XR, and wearable platforms in over 500 languages. The platform and its digital preservation capabilities laid the groundwork for the team's AR projects at Giza, the Parthenon, and Zhejiang University.",
+        imageBlocks: [],
+      },
+    ],
+  },
 ];
 
 export function getProjectBySlug(slug: string): PortfolioProject | undefined {

@@ -51,6 +51,11 @@ const nextConfig: NextConfig = {
         destination: "/portfolio/harvard",
         permanent: true,
       },
+      {
+        source: "/portfolio/tripureshwor-web-360-tour",
+        destination: "/portfolio/orpheus",
+        permanent: true,
+      },
     ];
   },
 };

@@ -670,6 +670,54 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 1744
   },
+  "/images/portfolio/orpheus/_og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
+  "/images/portfolio/orpheus/cover.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/orpheus/design-system-overview.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/orpheus/inspiration-board.avif": {
+    "width": 2880,
+    "height": 1800
+  },
+  "/images/portfolio/orpheus/internationalisation.avif": {
+    "width": 4800,
+    "height": 3600
+  },
+  "/images/portfolio/orpheus/material-design.avif": {
+    "width": 2880,
+    "height": 1800
+  },
+  "/images/portfolio/orpheus/material-design.png": {
+    "width": 2840,
+    "height": 1760
+  },
+  "/images/portfolio/orpheus/red-monastery.avif": {
+    "width": 3200,
+    "height": 11320
+  },
+  "/images/portfolio/orpheus/storybook.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/orpheus/tripureshwor-aerial.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/orpheus/tripureshwor-gallery.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/orpheus/tripureshwor-interior.avif": {
+    "width": 3200,
+    "height": 2400
+  },
   "/images/portfolio/rankdat/rankdat-poster.avif": {
     "width": 2880,
     "height": 2160
