@@ -1666,6 +1666,184 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    slug: "krakatoa",
+    title: "Krakatoa",
+    description:
+      "Designed a web3 gaming marketplace on Ethereum — featuring crypto payments via Metamask and AI-generated art using Midjourney.",
+    role: "Product Designer",
+    year: "2022",
+    client: "Krakatoa",
+    liveUrl: "https://krakatoa.gg",
+    ogImage: {
+      src: "/images/portfolio/krakatoa/_og.jpg",
+      alt: "Krakatoa — web3 gaming marketplace",
+    },
+    coverImage: {
+      src: "/images/portfolio/krakatoa/cover.avif",
+      alt: "Krakatoa — web3 gaming marketplace on Ethereum",
+    },
+    testimonial: {
+      quote:
+        "Damir is a game-changer. He drove major product decisions, and his suggestions all paid off. I was happy with designers in the past — but after working with Damir once, my view of what a great designer was completely changed.",
+      highlight: "Damir is a game-changer.",
+      name: "Robert C.",
+      role: "Founder, Krakatoa",
+      image: "/images/testimonials/robert.avif",
+    },
+    sections: [
+      {
+        heading: "The Marketplace",
+        description:
+          "Krakatoa is a web3 marketplace where CS:GO players trade weapon skins and artwork using cryptocurrency on the Ethereum blockchain. I designed the complete eCommerce experience: an Apple.com-inspired mega menu surfacing the full product taxonomy, faceted search with game-specific attributes like float value and paint seed, an immersive full-viewport gallery for inspecting skins in detail, and a web3 shopping cart with gas fee breakdowns and Metamask integration. The design was built on a customised Frames X UI library and designed across 5 responsive breakpoints from 320px to 1920px. I also specified Open Graph metadata for every page, ensuring the product looked polished when shared on social media.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/krakatoa/mega-menu.avif",
+                alt: "Apple.com-inspired mega menu — full product taxonomy at a glance",
+                caption: "Apple.com-inspired mega menu",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "https://www.youtube.com/watch?v=QVb9bShGSFQ",
+                alt: "Mobile mega menu walkthrough",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/krakatoa/faceted-search.avif",
+                alt: "Faceted search with game-specific attributes",
+                caption: "Faceted search",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "https://www.youtube.com/watch?v=rQDF8g942mk",
+                alt: "Faceted search walkthrough — filtering by float value, paint seed, and more",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/krakatoa/gallery.avif",
+                alt: "Immersive full-viewport gallery for inspecting skins",
+                caption: "Immersive gallery",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "https://www.youtube.com/watch?v=2WuyLNm72o0",
+                alt: "Gallery walkthrough — zooming in to inspect skin details",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/krakatoa/cart.avif",
+                alt: "Web3 cart — subtotal, gas fee breakdown, and Metamask checkout",
+                caption: "Web3 cart",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/krakatoa/metadata.avif",
+                alt: "Open Graph metadata for every page",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Buyer & Seller Dashboard",
+        description:
+          "Unlike typical eCommerce, Krakatoa lets users bid and make offers to each other, and purchased skins need to transfer between Krakatoa and Steam. I designed the full account dashboard covering purchases, transfers, bids, offers, and account settings. The project took two months to pixel-perfect, with thorough handoff documentation reducing back-and-forth with the development team at Sapient Pro.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/krakatoa/dashboard-1.avif",
+                alt: "Buyer dashboard — purchases and transfers",
+              },
+              {
+                src: "/images/portfolio/krakatoa/dashboard-2.avif",
+                alt: "Seller dashboard — bids and offers",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/krakatoa/handoff.avif",
+                alt: "Detailed handoff notes for every interaction",
+                caption: "Detailed handoff documentation",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/krakatoa/breakpoints.avif",
+                alt: "Designed across 5 responsive breakpoints",
+                caption: "Designed across 5 responsive breakpoints",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "AI-Generated Art",
+        description:
+          "I used Midjourney to create background art matched to each weapon skin — the first time I delivered a machine learning prompt as a design deliverable. Having only used AI art for placeholders before, it instantly became a core part of my toolset.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/krakatoa/midjourney-art.avif",
+                alt: "AI-generated background art using Midjourney — matched to each weapon skin",
+              },
+              {
+                src: "https://www.youtube.com/watch?v=8jSQToeTnPA",
+                alt: "Midjourney prompt engineering walkthrough — how I crafted prompts to generate art that matched each skin's aesthetic",
+              },
+              
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outcome",
+        description:
+          "Krakatoa shipped in two months and launched at krakatoa.gg. The project demonstrated that web3 eCommerce doesn't have to feel alien — familiar patterns like mega menus, faceted search, and conversion-optimised carts work just as well with crypto payments as they do with credit cards.",
+        imageBlocks: [],
+      },
+    ],
+  },
+  {
     slug: "orpheus",
     title: "Orpheus",
     description:
@@ -1680,6 +1858,14 @@ export const portfolioProjects: PortfolioProject[] = [
     coverImage: {
       src: "/images/portfolio/orpheus/cover.avif",
       alt: "Orpheus — digital archiving platform for Harvard, MIT, and humanities institutions",
+    },
+    testimonial: {
+      quote:
+        "Damir is one of the best designers I've worked with in 10+ years. He understands frontend, empathizes with users, and delivers value.",
+      highlight: "Damir is one of the best designers I've worked with in 10+ years.",
+      name: "Daniel Rekshan",
+      role: "Web Developer, Archimedes Digital",
+      image: "/images/testimonials/daniel.avif",
     },
     sections: [
       {
@@ -1770,7 +1956,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Digital Preservation",
         description:
-          "Orpheus became the foundation for several digital preservation projects. The platform hosted the Noam Chomsky Personal Archives, the Beyond Words digital exhibition of centuries-old manuscripts, and the Charlie Archive at Harvard Library. I also designed a 360° virtual tour concept for Tripureshwor, Kathmandu's largest Hindu temple, damaged in the 2015 Nepal earthquake — balancing free exploration with structured storytelling, inspired by Google's Bagan experience. The concept included 3D laser scans, aerial 360° drone imagery, video, and audio to create a rich, multi-format exploration.",
+          "Orpheus became the foundation for several digital preservation projects. I also designed a 360° virtual tour concept for Tripureshwor, Kathmandu's largest Hindu temple, damaged in the 2015 Nepal earthquake — balancing free exploration with structured storytelling, inspired by Google's Bagan experience. The concept included 3D laser scans, aerial 360° drone imagery, video, and audio to create a rich, multi-format exploration.",
         imageBlocks: [
           {
             layout: "full",
@@ -1875,10 +2061,10 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Damir is a true UX designer. He perfectly combines aesthetics with user needs, and both with business requirements and goals.",
-    highlight: "Damir is a true UX designer.",
-    name: "Fiorella Rizzà",
-    role: "Lead UX Writer, Qonto (formerly Envato)",
-    image: "/images/testimonials/fiorella.avif",
+      "Damir is a game-changer. He drove major product decisions, and his suggestions all paid off. I was happy with designers in the past — but after working with Damir once, my view of what a great designer was completely changed.",
+    highlight: "Damir is a game-changer.",
+    name: "Robert C.",
+    role: "Founder, Krakatoa",
+    image: "/images/testimonials/robert.avif",
   },
 ];

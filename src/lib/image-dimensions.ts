@@ -542,6 +542,54 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 2000,
     "height": 1125
   },
+  "/images/portfolio/krakatoa/_og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
+  "/images/portfolio/krakatoa/breakpoints.avif": {
+    "width": 2758,
+    "height": 1942
+  },
+  "/images/portfolio/krakatoa/cart.avif": {
+    "width": 2400,
+    "height": 1800
+  },
+  "/images/portfolio/krakatoa/cover.avif": {
+    "width": 3200,
+    "height": 2132
+  },
+  "/images/portfolio/krakatoa/dashboard-1.avif": {
+    "width": 3120,
+    "height": 4004
+  },
+  "/images/portfolio/krakatoa/dashboard-2.avif": {
+    "width": 3120,
+    "height": 1478
+  },
+  "/images/portfolio/krakatoa/faceted-search.avif": {
+    "width": 2400,
+    "height": 1800
+  },
+  "/images/portfolio/krakatoa/gallery.avif": {
+    "width": 2400,
+    "height": 1800
+  },
+  "/images/portfolio/krakatoa/handoff.avif": {
+    "width": 2242,
+    "height": 2218
+  },
+  "/images/portfolio/krakatoa/mega-menu.avif": {
+    "width": 2340,
+    "height": 1500
+  },
+  "/images/portfolio/krakatoa/metadata.avif": {
+    "width": 3218,
+    "height": 2920
+  },
+  "/images/portfolio/krakatoa/midjourney-art.avif": {
+    "width": 3312,
+    "height": 3505
+  },
   "/images/portfolio/nametag/_og.jpg": {
     "width": 1200,
     "height": 630
