@@ -546,6 +546,14 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 1200,
     "height": 630
   },
+  "/images/portfolio/krakatoa/background.avif": {
+    "width": 3200,
+    "height": 2132
+  },
+  "/images/portfolio/krakatoa/background.png": {
+    "width": 3200,
+    "height": 2132
+  },
   "/images/portfolio/krakatoa/breakpoints.avif": {
     "width": 2758,
     "height": 1942
@@ -565,6 +573,14 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/images/portfolio/krakatoa/dashboard-2.avif": {
     "width": 3120,
     "height": 1478
+  },
+  "/images/portfolio/krakatoa/desktop.avif": {
+    "width": 2800,
+    "height": 2000
+  },
+  "/images/portfolio/krakatoa/desktop.png": {
+    "width": 2800,
+    "height": 2000
   },
   "/images/portfolio/krakatoa/faceted-search.avif": {
     "width": 2400,
@@ -589,6 +605,14 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/images/portfolio/krakatoa/midjourney-art.avif": {
     "width": 3312,
     "height": 3505
+  },
+  "/images/portfolio/krakatoa/mobile.avif": {
+    "width": 640,
+    "height": 1600
+  },
+  "/images/portfolio/krakatoa/mobile.png": {
+    "width": 640,
+    "height": 1600
   },
   "/images/portfolio/nametag/_og.jpg": {
     "width": 1200,

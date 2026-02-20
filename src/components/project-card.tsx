@@ -6,8 +6,8 @@ import { BeyondWordsBg } from "@/components/beyondwords-bg";
 import { BrokerEngineBg } from "@/components/brokerengine-bg";
 import { NametagBg } from "@/components/nametag-bg";
 import { BookingBg } from "@/components/booking-bg";
-import { NswCdpBg } from "@/components/nsw-cdp-bg";
 import { GsqBg } from "@/components/gsq-bg";
+import { KrakatoaBg } from "@/components/krakatoa-bg";
 
 type ProjectCardProps = {
   slug: string;
@@ -21,8 +21,8 @@ const customBackgrounds: Record<string, React.ReactNode> = {
   brokerengine: <BrokerEngineBg compact />,
   nametag: <NametagBg />,
   "booking-com": <BookingBg compact />,
-  "nsw-climate-data-portal": <NswCdpBg compact />,
   "gsq-open-data-portal": <GsqBg compact />,
+  krakatoa: <KrakatoaBg compact />,
 };
 
 export function ProjectCard({ slug, title, outcome, image }: ProjectCardProps) {
