@@ -102,6 +102,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2400
   },
+  "/images/portfolio/booking/prototype.gif": {
+    "width": 424,
+    "height": 718
+  },
   "/images/portfolio/booking/user-testing-report.avif": {
     "width": 3200,
     "height": 2400
@@ -118,6 +122,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2400
   },
+  "/images/portfolio/boston-north-end/ar-discovery.avif": {
+    "width": 3200,
+    "height": 2400
+  },
   "/images/portfolio/boston-north-end/hero.avif": {
     "width": 3200,
     "height": 1800
@@ -127,10 +135,6 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "height": 2400
   },
   "/images/portfolio/boston-north-end/north-square.avif": {
-    "width": 2044,
-    "height": 1150
-  },
-  "/images/portfolio/boston-north-end/north-square.webp": {
     "width": 2044,
     "height": 1150
   },
@@ -366,6 +370,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 1400,
     "height": 933
   },
+  "/images/portfolio/envato/empathy-board.gif": {
+    "width": 700,
+    "height": 394
+  },
   "/images/portfolio/envato/feedback-dot-voting.avif": {
     "width": 1400,
     "height": 788
@@ -398,9 +406,33 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 2000,
     "height": 2000
   },
+  "/images/portfolio/envato/user-testing.gif": {
+    "width": 700,
+    "height": 394
+  },
   "/images/portfolio/gsq/_og.jpg": {
     "width": 1200,
     "height": 630
+  },
+  "/images/portfolio/gsq/colours.avif": {
+    "width": 2160,
+    "height": 2000
+  },
+  "/images/portfolio/gsq/cover.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/gsq/dataset.avif": {
+    "width": 3200,
+    "height": 6180
+  },
+  "/images/portfolio/gsq/downloads.avif": {
+    "width": 3200,
+    "height": 3360
+  },
+  "/images/portfolio/gsq/downloads.png": {
+    "width": 3200,
+    "height": 3360
   },
   "/images/portfolio/gsq/faceted-search.avif": {
     "width": 3200,
@@ -411,22 +443,14 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "height": 2132
   },
   "/images/portfolio/gsq/gsq-ui-desktop.avif": {
-    "width": 2800,
+    "width": 2880,
     "height": 2000
   },
   "/images/portfolio/gsq/gsq-ui-modal.avif": {
     "width": 2720,
     "height": 1600
   },
-  "/images/portfolio/gsq/hero.avif": {
-    "width": 3200,
-    "height": 1800
-  },
-  "/images/portfolio/gsq/portal-1.avif": {
-    "width": 3200,
-    "height": 2000
-  },
-  "/images/portfolio/gsq/portal-2.avif": {
+  "/images/portfolio/gsq/map-region-selector.avif": {
     "width": 3200,
     "height": 2000
   },
@@ -833,6 +857,98 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/images/portfolio/rankdat/rankdat-poster.avif": {
     "width": 2880,
     "height": 2160
+  },
+  "/images/portfolio/resell-calendar/_og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
+  "/images/portfolio/resell-calendar/branding.avif": {
+    "width": 1432,
+    "height": 1416
+  },
+  "/images/portfolio/resell-calendar/branding.webp": {
+    "width": 1432,
+    "height": 1416
+  },
+  "/images/portfolio/resell-calendar/cover.avif": {
+    "width": 3200,
+    "height": 2132
+  },
+  "/images/portfolio/resell-calendar/cover.png": {
+    "width": 3200,
+    "height": 2132
+  },
+  "/images/portfolio/resell-calendar/design-system-1.avif": {
+    "width": 2786,
+    "height": 1528
+  },
+  "/images/portfolio/resell-calendar/design-system-1.webp": {
+    "width": 2786,
+    "height": 1528
+  },
+  "/images/portfolio/resell-calendar/design-system-2.webp": {
+    "width": 2992,
+    "height": 1792
+  },
+  "/images/portfolio/resell-calendar/faceted-search.avif": {
+    "width": 3476,
+    "height": 2226
+  },
+  "/images/portfolio/resell-calendar/item.avif": {
+    "width": 2992,
+    "height": 1792
+  },
+  "/images/portfolio/resell-calendar/item.webp": {
+    "width": 2992,
+    "height": 1792
+  },
+  "/images/portfolio/resell-calendar/light-dark.avif": {
+    "width": 2992,
+    "height": 1776
+  },
+  "/images/portfolio/resell-calendar/meta-tags-1.avif": {
+    "width": 3218,
+    "height": 2144
+  },
+  "/images/portfolio/resell-calendar/meta-tags-2.avif": {
+    "width": 2936,
+    "height": 3355
+  },
+  "/images/portfolio/resell-calendar/news-article.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/resell-calendar/news-overview.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/resell-calendar/newsletter.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/resell-calendar/raffle-counter.avif": {
+    "width": 2356,
+    "height": 1588
+  },
+  "/images/portfolio/resell-calendar/raffle-landing.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/resell-calendar/raffle-modals.avif": {
+    "width": 3476,
+    "height": 2226
+  },
+  "/images/portfolio/resell-calendar/search-results.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/resell-calendar/submit-tip.avif": {
+    "width": 2992,
+    "height": 10916
+  },
+  "/images/portfolio/resell-calendar/submit-tip.png": {
+    "width": 2992,
+    "height": 10916
   },
   "/images/portfolio/stylespin/stylespin-poster.avif": {
     "width": 2880,

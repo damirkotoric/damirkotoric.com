@@ -58,7 +58,7 @@ export function ZoomableImage({ src, alt, width, height, caption, aspectRatio }:
       className={containerClass}
     >
       {caption && (
-        <span className="absolute top-3 left-3 z-10 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm border border-black/10">
+        <span className="absolute top-0 left-0 m-3 z-10 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm border border-black/10">
           {caption}
         </span>
       )}

@@ -189,7 +189,7 @@ function MediaItem({ image, width }: { image: { src: string; alt: string; captio
     return (
       <div className="relative overflow-hidden rounded-lg border border-border bg-muted">
         {image.caption && (
-          <span className="absolute top-3 left-3 z-10 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm border border-black/10">
+          <span className="absolute top-0 left-0 m-3 z-10 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm border border-black/10">
             {image.caption}
           </span>
         )}
@@ -210,7 +210,7 @@ function MediaItem({ image, width }: { image: { src: string; alt: string; captio
   return (
     <div className="relative overflow-hidden rounded-lg border border-border bg-muted">
       {image.caption && (
-        <span className="absolute top-3 left-3 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm border border-black/10">
+        <span className="absolute top-0 left-0 m-3 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm border border-black/10">
           {image.caption}
         </span>
       )}
@@ -241,7 +241,7 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
     return (
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {block.images.map((image, index) => {
-          if (isVideo(image.src) || getYouTubeId(image.src)) {
+          if (isVideo(image.src) || getYouTubeId(image.src) || image.zoomable === false) {
             return <MediaItem key={index} image={image} width={600} />;
           }
           const dims = getImageDimensions(image.src);
@@ -260,11 +260,40 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
     );
   }
 
+  if (block.layout === "grid-2-fluid") {
+    return (
+      <div className="flex flex-col gap-4 md:flex-row">
+        {block.images.map((image, index) => {
+          const dims = getImageDimensions(image.src);
+          const aspect = dims ? dims.width / dims.height : 1;
+          if (isVideo(image.src) || getYouTubeId(image.src) || image.zoomable === false) {
+            return (
+              <div key={index} className="min-w-0 basis-0" style={{ flexGrow: aspect }}>
+                <MediaItem image={image} width={600} />
+              </div>
+            );
+          }
+          return (
+            <div key={index} className="min-w-0 basis-0" style={{ flexGrow: aspect }}>
+              <ZoomableImage
+                src={image.src}
+                alt={image.alt}
+                width={dims?.width ?? 600}
+                height={dims?.height}
+                caption={image.caption}
+              />
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
   if (block.layout === "grid-3") {
     return (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {block.images.map((image, index) => {
-          if (isVideo(image.src) || getYouTubeId(image.src)) {
+          if (isVideo(image.src) || getYouTubeId(image.src) || image.zoomable === false) {
             return <MediaItem key={index} image={image} width={400} />;
           }
           const dims = getImageDimensions(image.src);

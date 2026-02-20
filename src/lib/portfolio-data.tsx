@@ -1,6 +1,6 @@
 export type ImageBlock = {
-  layout: "full" | "grid-2" | "grid-3";
-  images: { src: string; alt: string; caption?: string }[];
+  layout: "full" | "grid-2" | "grid-2-fluid" | "grid-3";
+  images: { src: string; alt: string; caption?: string; zoomable?: boolean }[];
 };
 
 import type { ReactNode } from "react";
@@ -282,6 +282,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/brokerengine/tasks.avif",
                 alt: "Task management interface",
+                caption: "Task management interface — a critical feature for brokers to keep track of their to-dos across multiple deals.",
               },
             ],
           },
@@ -307,10 +308,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/brokerengine/card-payment-system.avif",
                 alt: "Card payment system",
+                caption: "Card payment component.",
               },
               {
                 src: "/images/portfolio/brokerengine/responsive-contact.avif",
                 alt: "Responsive contact details",
+                caption: "Contact details on mobile and desktop.",
               },
             ],
           },
@@ -336,10 +339,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/brokerengine/messaging.avif",
                 alt: "Messaging feature",
+                caption: "Messaging feature — unifying communication between brokers and clients.",
               },
               {
                 src: "/images/portfolio/brokerengine/compose-component.avif",
                 alt: "Compose component",
+                caption: "Compose component — designed to handle a wide range of communication needs, from quick messages to detailed document requests.",
               },
             ],
           },
@@ -349,6 +354,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/brokerengine/comments.avif",
                 alt: "Comments system",
+                caption: "Comments system — enabling collaboration between brokers and their teams within the context of each deal.",
               },
             ],
           },
@@ -405,15 +411,17 @@ export const portfolioProjects: PortfolioProject[] = [
             ],
           },
           {
-            layout: "grid-2",
+            layout: "grid-2-fluid",
             images: [
               {
                 src: "/images/portfolio/nametag/extension.avif",
                 alt: "Chrome extension landing page",
+                caption: "The Chrome extension landing page.",
               },
               {
                 src: "/images/portfolio/nametag/noken-drop.avif",
                 alt: "Noken drop — proprietary digital collectibles",
+                caption: "Noken drop — proprietary digital collectibles.",
               },
             ],
           },
@@ -423,6 +431,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nametag/profile.avif",
                 alt: "Completed user profile showcasing digital collections",
+                caption: "Completed user profile showcasing digital collections.",
               },
             ],
           },
@@ -439,6 +448,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nametag/noken-figma.avif",
                 alt: "Behind the scenes — Noken page mockups and components in Figma",
+                caption: "Behind the scenes — Noken page mockups and components in Figma.",
               },
             ],
           },
@@ -448,6 +458,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nametag/claim-box.avif",
                 alt: "Deep dive on the Claim Box component — dozens of states fully specced",
+                caption: "Deep dive on the Claim Box component — over a dozen states fully specced.",
               },
             ],
           },
@@ -464,6 +475,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nametag/auth-options.avif",
                 alt: "Flexible authentication — social, email, wallet, and QR code",
+                caption: "Flexible authentication — social, email, wallet, and QR code options.",
               },
             ],
           },
@@ -490,6 +502,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nametag/profile-completion.avif",
                 alt: "Profile completion modal — guided steps to finalise setup",
+                caption: "Profile completion modal — users can start using the product immediately, then finalise their profile through guided steps when they're ready.",
               },
             ],
           },
@@ -515,6 +528,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nametag/mobile-concepts-2.avif",
                 alt: "Platform-specific adaptations with shared design language",
+                caption: "Platform-specific adaptations with shared design language.",
               },
             ],
           },
@@ -531,6 +545,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nametag/figma-setup.avif",
                 alt: "Figma project structure — design system architecture",
+                caption: "Figma project structure — design system architecture.",
               },
             ],
           },
@@ -540,6 +555,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nametag/ds-components.avif",
                 alt: "Material Design + iOS strategy — one component, two platforms",
+                caption: "Material Design + iOS strategy — one component, two platforms.",
               },
             ],
           },
@@ -587,6 +603,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/booking/payment-prototype.avif",
                 alt: "Early prototype exploring a new vision for Booking.com's payment system",
+                caption: "Early prototype exploring a new vision for Booking.com's payment system.",
               },
             ],
           },
@@ -596,10 +613,13 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/booking/payment-presentation.avif",
                 alt: "Presenting the new payment vision to leadership — a key moment in securing buy-in for the redesign",
+                caption: "Presenting the new payment vision to the team.",
+                zoomable: false,
               },
               {
                 src: "/images/portfolio/booking/payment-vision.avif",
                 alt: "The new payment vision — a modular system designed to handle complex global requirements while remaining user-friendly",
+                caption: "The new payment vision — a modular system designed to handle complex global requirements.",
               },
             ],
           },
@@ -611,20 +631,19 @@ export const portfolioProjects: PortfolioProject[] = [
           "I prototype early and use it as a research tool rather than spending weeks in discovery. Using a working prototype, I ran remote user testing sessions, compiled the findings into an executive summary with links to key video moments — easy to skim for leadership, with source data available for those who wanted to go deeper. Several assumptions were confirmed: users were comfortable being taken to a separate payment mode before returning to the main site. Others were busted: clicking 'Pay' didn't mean users were ready to pay — they expected one final confirmation step before any money moved.",
         imageBlocks: [
           {
-            layout: "grid-2",
+            layout: "grid-2-fluid",
             images: [
               {
                 src: "/images/portfolio/booking/prototype.gif",
                 alt: "Interactive payment prototype used for user testing",
+                caption: "Interactive payment prototype used for user testing.",
+                zoomable: false,
               },
-            ],
-          },
-          {
-            layout: "full",
-            images: [
               {
                 src: "/images/portfolio/booking/user-testing-report.avif",
                 alt: "User testing summary report with linked video highlights",
+                caption: "User testing summary report with linked video highlights.",
+                zoomable: false,
               },
             ],
           },
@@ -641,6 +660,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/booking/payment-modal.avif",
                 alt: "Payment modal — one of solutions considered during the redesign process",
+                caption: "Payment modal — one of solutions considered during the redesign process.",
               },
             ],
           },
@@ -650,6 +670,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/booking/design-workshop.avif",
                 alt: "Design workshop — mapping the current payment experience",
+                caption: "Design workshop — mapping the current payment experience.",
               },
             ],
           },
@@ -704,7 +725,7 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "full",
             images: [
               {
-                src: "/images/portfolio/gsq/hero.avif",
+                src: "/images/portfolio/gsq/cover.avif",
                 alt: "GSQ Open Data Portal — bridging the gap between scientists and industry",
               },
             ],
@@ -713,8 +734,9 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "full",
             images: [
               {
-                src: "/images/portfolio/gsq/faceted-search.avif",
-                alt: "Discovering datasets using faceted search",
+                src: "/images/portfolio/gsq/dataset.avif",
+                alt: "Dataset detail page",
+                caption: "Dataset detail page — designed to surface critical information while remaining accessible to non-experts.",
               },
             ],
           },
@@ -726,15 +748,32 @@ export const portfolioProjects: PortfolioProject[] = [
           "I leveraged the Queensland Government's Single Website Experience framework for consistency, accessibility, and development speed. The entire design phase — from stakeholder meetings through high-fidelity mockups and a clickable prototype — was delivered in under 40 hours. The tight timeline demanded decisive design choices: no unnecessary exploration, just clear solutions that met user requirements while working within the constraints of CKAN and the government design system.",
         imageBlocks: [
           {
-            layout: "grid-2",
+            layout: "grid-2-fluid",
             images: [
               {
-                src: "/images/portfolio/gsq/portal-1.avif",
-                alt: "Portal design direction",
+                src: "/images/portfolio/gsq/map-region-selector.avif",
+                alt: "Map-based region selector — allowing users to visually explore datasets by geographic area",
+                caption: "Map-based region selector — visual exploration of datasets by geographic area.",
               },
               {
-                src: "/images/portfolio/gsq/portal-2.avif",
-                alt: "Dataset detail and map integration",
+                src: "/images/portfolio/gsq/faceted-search.avif",
+                alt: "Discovering datasets using faceted search",
+                caption: "Faceted search UI.",
+              },
+            ],
+          },
+          {
+            layout: "grid-2-fluid",
+            images: [
+              {
+                src: "/images/portfolio/gsq/downloads.avif",
+                alt: "Dedicated download management interface for large datasets",
+                caption: "Dedicated download management interface for large datasets.",
+              },
+              {
+                src: "/images/portfolio/gsq/colours.avif",
+                alt: "Colour palette for the GSQ brand",
+                caption: "Colour palette for the GSQ brand.",
               },
             ],
           },
@@ -785,10 +824,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/boston-north-end/map.avif",
                 alt: "Map view — discover stories by exploring the neighbourhood map",
+                caption: "Map view — discover stories by exploring the neighbourhood map.",
               },
               {
                 src: "/images/portfolio/boston-north-end/story.avif",
                 alt: "Story view — immersive AR storytelling triggered by real-world locations",
+                caption: "Story view — immersive AR storytelling triggered by real-world locations.",
               },
             ],
           },
@@ -797,11 +838,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/boston-north-end/write.avif",
-                alt: "Writing the stories — we allowed users to submit their own stories and photos, which we then curated and added to the experience",
+                alt: "We allowed users to submit stories, which were then curated",
+                caption: "We allowed users to submit stories, which were then curated.",
               },
               {
-                src: "/images/portfolio/boston-north-end/ar-2.avif",
-                alt: "AR in the neighbourhood — users can point their phone at locations to see story markers appear overlaid on the real world",
+                src: "/images/portfolio/boston-north-end/ar-discovery.avif",
+                alt: "Stories discovery in the neighbourhood using AR",
+                caption: "Stories discovery in the neighbourhood using AR.",
               },
             ],
           },
@@ -827,6 +870,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/boston-north-end/ar-1.avif",
                 alt: "AR experience overlaying story pins on a real-world plaque located in a square in Boston's North End",
+                caption: "AR experience overlaying story pins on a real-world plaque located in a square in Boston's North End.",
               },
             ],
           },
@@ -875,6 +919,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/cosmitto/search-tablet.avif",
                 alt: "Tablet search — list and map views for different browsing contexts",
+                caption: "Tablet search — list and map views for different browsing contexts.",
               },
             ],
           },
@@ -884,6 +929,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/cosmitto/course.avif",
                 alt: "Course detail page — evaluate a course and connect with the provider",
+                caption: "Course detail page — evaluate a course and connect with the provider.",
               },
             ],
           },
@@ -900,6 +946,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/cosmitto/provider-portal.avif",
                 alt: "Provider Portal",
+                caption: "Provider Portal — where training companies manage their presence on Cosmitto.",
               },
             ],
           },
@@ -909,6 +956,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/cosmitto/portal-cms.avif",
                 alt: "Provider CMS — adding and editing courses",
+                caption: "Provider CMS — adding and editing courses.",
               },
             ],
           },
@@ -918,6 +966,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/cosmitto/portal-upgrade.avif",
                 alt: "Upgrade flow — unlocking additional course listings",
+                caption: "Upgrade flow — unlocking additional course listings.",
               },
             ],
           },
@@ -989,10 +1038,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/creative-ai/sliders.avif",
                 alt: "Steering ML output through real-time parameter controls",
+                caption: "Steering ML output through real-time parameter controls.",
               },
               {
                 src: "/images/portfolio/creative-ai/style-guide.avif",
-                alt: "Style guide — defining consistent visual language for AI-generated assets",
+                alt: "Style guides generated automatically from a single image",
+                caption: "Style guides generated automatically from a single image.",
               },
             ],
           },
@@ -1002,6 +1053,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/creative-ai/style-transfer.avif",
                 alt: "Style transfer — applying different aesthetics to creative assets in real time",
+                caption: "Style transfer — applying different aesthetics to creative assets in real time.",
               },
             ],
           },
@@ -1026,11 +1078,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/creative-ai/sprint-day-1.avif",
-                alt: "Day 1 — strategic goals, requirements, and competitive analysis",
+                alt: "Day 1 output — strategic goals, requirements, and competitive analysis",
+                caption: "Day 1 output — strategic goals, requirements, and competitive analysis.",
               },
               {
                 src: "/images/portfolio/creative-ai/sprint-day-2.avif",
-                alt: "Day 2 — ideation, voting, and consensus on product direction",
+                alt: "Day 2 output — ideation, voting, and consensus on product direction",
+                caption: "Day 2 output — ideation, voting, and consensus on product direction.",
               },
             ],
           },
@@ -1073,6 +1127,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/creative-ai/ideaverse-collect.avif",
                 alt: "Collect inspiration to form your creative vision",
+                caption: "Collect inspiration to form your creative vision.",
               },
             ],
           },
@@ -1082,10 +1137,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/creative-ai/ideaverse-finetune.avif",
                 alt: "Fine-tune your creative direction",
+                caption: "Fine-tune your creative direction — intuitive controls to steer AI output towards your vision.",
               },
               {
                 src: "/images/portfolio/creative-ai/ideaverse-collaborate.avif",
                 alt: "Git for creatives — collaborate and version-control creative work",
+                caption: "Git for creatives — collaborate and version-control creative work.",
               },
             ],
           },
@@ -1180,6 +1237,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/envato/sprint-war-room.avif",
                 alt: "The design war room for the Layers project",
+                caption: "The design war room for the Layers project.",
               },
             ],
           },
@@ -1189,10 +1247,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/envato/sprint-wireframes.avif",
                 alt: "Rapid wireframing, feedback, and dot voting",
+                caption: "Rapid wireframing, feedback, and dot voting.",
               },
               {
                 src: "/images/portfolio/envato/feedback-dot-voting.avif",
-                alt: "Dot voting to prioritise design directions after a sprint workshop",
+                alt: "Voting on home page design direction",
+                caption: "Voting on home page design direction.",
               },
             ],
           },
@@ -1202,6 +1262,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/envato/layers-outcome.avif",
                 alt: "The shipped Layers landing page — one week from concept to production",
+                caption: "The shipped Layers landing page — one week from concept to production.",
               },
             ],
           },
@@ -1210,7 +1271,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/envato/unstock.avif",
-                alt: "Unstock — a new take on stock photography, born from a design sprint",
+                alt: "Unstock — a new take on stock photography, born from another design sprint",
+                caption: "Unstock — a new take on stock photography, born from another design sprint.",
               },
             ],
           },
@@ -1226,7 +1288,7 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/envato/api-shipped.avif",
-                alt: "The shipped Envato Market API at build.envato.com",
+                alt: "The shipped Envato Market API",
               },
               {
                 src: "https://www.youtube.com/watch?v=CembsWLRlIs",
@@ -1246,11 +1308,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/envato/user-testing.gif",
-                alt: "Live user testing setup — screen recording, Hangouts streaming, and Slack Q&A",
+                alt: "Team observing highlights from a user interview",
+                caption: "Team observing highlights from a user interview.",
               },
               {
                 src: "/images/portfolio/envato/empathy-board.gif",
-                alt: "The Empathy Board — real user pain points displayed next to the kitchen",
+                alt: "The Empathy Board — real user pain points displayed next to the company kitchen",
+                caption: "The Empathy Board — real user pain points displayed next to the company kitchen.",
               },
             ],
           },
@@ -1260,6 +1324,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/envato/design-party.avif",
                 alt: "Design Party — company-wide design thinking event",
+                caption: "Design Party — company-wide design thinking event.",
               },
             ],
           },
@@ -1300,6 +1365,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/giza-hero.avif",
                 alt: "AR view — hieroglyphs digitally restored to their original colours",
+                caption: "AR view — hieroglyphs digitally restored to their original colours.",
               },
             ],
           },
@@ -1338,6 +1404,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/parthenon-hero.avif",
                 alt: "AR overlay — the Parthenon as it appeared in antiquity",
+                caption: "AR overlay — the Parthenon as it appeared in antiquity.",
               },
             ],
           },
@@ -1347,10 +1414,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/parthenon-annotations.avif",
                 alt: "Annotation bubbles at points of interest",
+                caption: "Annotation bubbles at points of interest.",
               },
               {
                 src: "/images/portfolio/harvard/parthenon-3d.avif",
                 alt: "3D artefact inspection",
+                caption: "3D artefact inspection — exploring the Parthenon's sculptures in detail.",
               },
             ],
           },
@@ -1360,14 +1429,17 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/parthenon-repatriation-1.avif",
                 alt: "Cultural repatriation awareness — the Parthenon marbles",
+                caption: "Cultural repatriation awareness — the Parthenon marbles.",
               },
               {
                 src: "/images/portfolio/harvard/parthenon-repatriation-2.avif",
                 alt: "Supporting the return of Greek cultural heritage",
+                caption: "Supporting the return of Greek cultural heritage.",
               },
               {
                 src: "/images/portfolio/harvard/parthenon-repatriation-3.avif",
-                alt: "Digital petition and awareness campaign",
+                alt: "Cultural reparation petition form",
+                caption: "Cultural reparation petition form.",
               },
             ],
           },
@@ -1377,6 +1449,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/parthenon-wayfinding.avif",
                 alt: "Wayfinding — a structured tour without the herding experience",
+                caption: "Wayfinding — a structured tour without the herding experience.",
               },
             ],
           },
@@ -1386,6 +1459,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/athena-1.avif",
                 alt: "Concept 1 — AR resurrection of the Statue of Athena",
+                caption: "AR resurrection of the Statue of Athena.",
               },
               {
                 src: "/images/portfolio/harvard/athena-2.avif",
@@ -1423,10 +1497,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/blenheim-scan-2.avif",
                 alt: "Inscriptions invisible to the naked eye",
+                caption: "Inscriptions invisible to the naked eye — revealed through laser scanning.",
               },
               {
                 src: "/images/portfolio/harvard/blenheim-scan-3.avif",
                 alt: "Hidden graffiti revealed",
+                caption: "Hidden graffiti revealed — uncovering stories from the past.",
               },
             ],
           },
@@ -1436,10 +1512,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/blenheim-story.avif",
                 alt: "The AR app guiding visitors through the site's history",
+                caption: "The AR app guiding visitors through the site's history.",
               },
               {
                 src: "/images/portfolio/harvard/blenheim-xray.avif",
                 alt: "AR x-ray — revealing what the naked eye can't see",
+                caption: "AR x-ray — revealing what the naked eye can't see.",
               },
             ],
           },
@@ -1456,10 +1534,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/library-map.avif",
                 alt: "Map view — locating Harvard libraries on campus",
+                caption: "Map view — locating Harvard libraries on campus.",
               },
               {
                 src: "/images/portfolio/harvard/library-wayfinding.avif",
                 alt: "AR wayfinding — guided walking directions to Widener Library",
+                caption: "AR wayfinding — guided walking directions to Widener Library.",
               },
             ],
           },
@@ -1469,10 +1549,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/library-widener.avif",
                 alt: "Library detail — Widener Library with collection overview and historical photos",
+                caption: "Library detail — Widener Library with collection overview and historical photos.",
               },
               {
                 src: "/images/portfolio/harvard/library-gutenberg.avif",
                 alt: "Exhibit detail — the Gutenberg Bible, one of the earliest books printed in Europe",
+                caption: "Exhibit detail — the Gutenberg Bible, one of the earliest books printed in Europe.",
               },
             ],
           },
@@ -1507,10 +1589,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/new-alexandria-greek.avif",
                 alt: "Ancient Greek text with multiple available versions and translations",
+                caption: "Ancient Greek text with multiple available versions and translations.",
               },
               {
                 src: "/images/portfolio/harvard/new-alexandria-split.avif",
                 alt: "Split view — original text and commentary side by side",
+                caption: "Split view — original text and commentary side by side.",
               },
             ],
           },
@@ -1520,6 +1604,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/new-alexandria-search.avif",
                 alt: "Search across commentaries, texts, and users",
+                caption: "Search across commentaries, texts, and users.",
               },
             ],
           },
@@ -1565,6 +1650,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nsw-cdp/analysis.avif",
                 alt: "Thorough analysis of the existing landscape and stakeholder requirements",
+                caption: "Thorough analysis of the existing landscape and stakeholder requirements.",
               },
             ],
           },
@@ -1581,6 +1667,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nsw-cdp/dataset-page.avif",
                 alt: "Dataset page — download the full dataset or customise to a specific region",
+                caption: "Dataset page — download the full dataset or customise to a specific region.",
               },
             ],
           },
@@ -1590,6 +1677,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nsw-cdp/faceted-search.avif",
                 alt: "Faceted search — helping users find a needle in a haystack",
+                caption: "Faceted search — helping users find a needle in a haystack.",
               },
             ],
           },
@@ -1599,6 +1687,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nsw-cdp/scale-download.avif",
                 alt: "Designing for scale — making massive datasets manageable",
+                caption: "Designing for scale — making massive datasets manageable.",
               },
             ],
           },
@@ -1608,6 +1697,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nsw-cdp/reports.avif",
                 alt: "Reports — summarising datasets in a human-readable format",
+                caption: "Reports — summarising datasets in a human-readable format.",
               },
             ],
           },
@@ -1624,10 +1714,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nsw-cdp/testing-1.avif",
                 alt: "Tree test results",
+                caption: "Tree test results — validating the navigation structure with target users.",
               },
               {
                 src: "/images/portfolio/nsw-cdp/testing-2.avif",
                 alt: "Click test heatmap",
+                caption: "Click test heatmap — evaluating the homepage layout and user interactions.",
               },
             ],
           },
@@ -1637,10 +1729,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nsw-cdp/testing-3.avif",
                 alt: "User testing analysis",
+                caption: "User testing analysis.",
               },
               {
                 src: "/images/portfolio/nsw-cdp/testing-4.avif",
                 alt: "Task completion findings",
+                caption: "Task completion findings.",
               },
             ],
           },
@@ -1649,7 +1743,7 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/nsw-cdp/testing-summary.avif",
-                alt: "Summary of user testing findings with actionable recommendations for the next iteration",
+                alt: "Summary of user testing findings",
               },
             ],
           },
@@ -2090,6 +2184,160 @@ export const portfolioProjects: PortfolioProject[] = [
         description:
           "Orpheus serves multiple institutions including Harvard and MIT, hosting digital collections ranging from ancient manuscripts to personal archives. The design system I built supports content across web, mobile, XR, and wearable platforms in over 500 languages. The platform and its digital preservation capabilities laid the groundwork for the team's AR projects at Giza, the Parthenon, and Zhejiang University.",
         imageBlocks: [],
+      },
+    ],
+  },
+  {
+    slug: "resell-calendar",
+    title: "Resell Calendar",
+    description:
+      "Zero-to-one product design for a resale community hub — 14,000 email signups within the first year.",
+    role: "Lead Product Designer",
+    year: "2023",
+    client: "Resell Calendar",
+    liveUrl: "https://resellcalendar.com",
+    ogImage: {
+      src: "/images/portfolio/resell-calendar/_og.jpg",
+      alt: "Resell Calendar — resale community hub and information platform",
+    },
+    coverImage: {
+      src: "/images/portfolio/resell-calendar/cover.avif",
+      alt: "Resell Calendar — resale community hub and information platform",
+    },
+    testimonial: {
+      quote:
+        "Damir is a game-changer! He drove major product decisions, and his suggestions all paid off. I was happy with designers in the past — but after working with Damir once, my view of what a great designer was completely changed.",
+      name: "Robert C.",
+      role: "Founder of Resell Calendar",
+      image: "/images/testimonials/robert.avif",
+    },
+    sections: [
+      {
+        heading: "The Product",
+        description:
+          <>Resell Calendar is an information hub and community for the booming resale market — people buying items to sell high based on price trends, pricing errors, and insider information. I worked with founder Robert C. and the dev team at <a href="https://sapient.pro/" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">SapientPro</a> to take this from idea to shipped product. Within a year of launch, the site generated over 14,000 email newsletter signups.</>,
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/resell-calendar/item.avif",
+                alt: "Resell Calendar — the main product overview",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Raffle System",
+        description:
+          "Raffles are time-limited opportunities for resellers to win high-value items at low prices. I designed every possible state — active, countdown, sold out, winner announced — along with the full modal flow for the raffle experience.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/resell-calendar/raffle-landing.avif",
+                alt: "Raffle landing page with active and upcoming raffles",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/resell-calendar/raffle-modals.avif",
+                alt: "Raffle modal states — active, countdown, sold out, and winner announced",
+                caption: "Raffle modal states",
+              },
+              {
+                src: "/images/portfolio/resell-calendar/raffle-counter.avif",
+                alt: "Raffle countdown counter component deep dive",
+                caption: "Raffle countdown counter component",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Search & Content",
+        description:
+          "Built out faceted search with custom filter components, a news and blog section, and the email newsletter design. I wrote the UX copy myself, balancing the hustle culture vernacular of the resell community with professional SaaS credibility.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/resell-calendar/news-overview.avif",
+                alt: "News overview page with latest resale market updates",
+                caption: "News overview",
+              },
+              {
+                src: "/images/portfolio/resell-calendar/news-article.avif",
+                alt: "News article page layout",
+                caption: "News article layout",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/resell-calendar/search-results.avif",
+                alt: "Search results overview with product listings",
+                caption: "Search results overview",
+              },
+            ],
+          },
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/resell-calendar/faceted-search.avif",
+                alt: "Faceted search filter components",
+                caption: "Faceted search with custom filter components",
+              },
+              {
+                src: "/images/portfolio/resell-calendar/newsletter.avif",
+                alt: "Email newsletter design",
+                caption: "Email newsletter design",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Brand & Design System",
+        description:
+          "Created the typographic logomark — designed to remain legible at favicon scale — selected the Oxanium typeface, and customised UntitledUI as the component library foundation. The design system included light and dark mode support, and I designed meta tags for every page to optimise social sharing and SEO.",
+        imageBlocks: [
+          {
+            layout: "grid-2-fluid",
+            images: [
+              {
+                src: "/images/portfolio/resell-calendar/branding.avif",
+                alt: "Resell Calendar branding and typographic logomark",
+              },
+              {
+                src: "/images/portfolio/resell-calendar/design-system-1.avif",
+                alt: "Design system component library — light mode",
+              },
+            ],
+          },
+          {
+            layout: "grid-2-fluid",
+            images: [
+              {
+                src: "/images/portfolio/resell-calendar/meta-tags-1.avif",
+                alt: "Meta tag designs for social sharing previews",
+              },
+              {
+                src: "/images/portfolio/resell-calendar/meta-tags-2.avif",
+                alt: "Meta tag designs for SEO optimisation",
+              },
+            ],
+          },
+        ],
       },
     ],
   },

@@ -17,7 +17,7 @@ function scanDirectory(dir: string, map: Record<string, Dimensions>) {
 
     if (stat.isDirectory()) {
       scanDirectory(fullPath, map);
-    } else if (/\.(avif|webp|png|jpg|jpeg)$/i.test(entry)) {
+    } else if (/\.(avif|webp|png|jpg|jpeg|gif)$/i.test(entry)) {
       try {
         const buffer = readFileSync(fullPath);
         const result = imageSize(buffer);
@@ -62,7 +62,7 @@ if (process.argv.includes("--watch")) {
   let timeout: ReturnType<typeof setTimeout> | null = null;
 
   watch(PORTFOLIO_DIR, { recursive: true }, (_event, filename) => {
-    if (!filename || !/\.(avif|webp|png|jpg|jpeg)$/i.test(filename)) return;
+    if (!filename || !/\.(avif|webp|png|jpg|jpeg|gif)$/i.test(filename)) return;
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => {
       console.log(`Image changed: ${filename}`);

@@ -69,19 +69,21 @@ export function KrakatoaBg({ compact = false }: KrakatoaBgProps) {
           className="absolute z-10"
           style={{ width: "120%", top: "10%", left: "7%" }}
         >
-          <div
-            className="relative rounded-md overflow-hidden shadow-2xl"
-            style={{
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 12px 24px -8px rgba(0, 0, 0, 0.15)",
-            }}
-          >
-            <Image
-              src="/images/portfolio/krakatoa/desktop.avif"
-              alt="Krakatoa desktop interface"
-              width={2800}
-              height={2000}
-              className="w-full h-auto"
-            />
+          <div className="transition-transform duration-300 ease-out group-hover:-translate-x-[10px]">
+            <div
+              className="relative rounded-md overflow-hidden shadow-2xl"
+              style={{
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 12px 24px -8px rgba(0, 0, 0, 0.15)",
+              }}
+            >
+              <Image
+                src="/images/portfolio/krakatoa/desktop.avif"
+                alt="Krakatoa desktop interface"
+                width={2800}
+                height={2000}
+                className="w-full h-auto"
+              />
+            </div>
           </div>
         </motion.div>
 
@@ -92,18 +94,23 @@ export function KrakatoaBg({ compact = false }: KrakatoaBgProps) {
           style={{ width: "22%", top: "30%", right: "7%" }}
         >
           <div
-            className="relative rounded-md overflow-hidden shadow-2xl"
-            style={{
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 12px 24px -8px rgba(0, 0, 0, 0.2)",
-            }}
+            className="transition-transform duration-300 ease-out group-hover:-translate-x-[10px]"
+            style={{ transitionDelay: "75ms" }}
           >
-            <Image
-              src="/images/portfolio/krakatoa/mobile.avif"
-              alt="Krakatoa mobile interface"
-              width={640}
-              height={1600}
-              className="w-full h-auto"
-            />
+            <div
+              className="relative rounded-md overflow-hidden shadow-2xl"
+              style={{
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 12px 24px -8px rgba(0, 0, 0, 0.2)",
+              }}
+            >
+              <Image
+                src="/images/portfolio/krakatoa/mobile.avif"
+                alt="Krakatoa mobile interface"
+                width={640}
+                height={1600}
+                className="w-full h-auto"
+              />
+            </div>
           </div>
         </motion.div>
       </motion.div>

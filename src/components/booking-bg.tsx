@@ -82,18 +82,23 @@ export function BookingBg({ compact = false }: BookingBgProps) {
               }}
             >
               <div
-                className="relative h-full rounded-md overflow-hidden shadow-2xl"
-                style={{
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 12px 24px -8px rgba(0, 0, 0, 0.3)",
-                }}
+                className="h-full transition-transform duration-300 ease-out group-hover:-translate-x-[10px]"
+                style={{ transitionDelay: `${index * 75}ms` }}
               >
-                <Image
-                  src={phone.src}
-                  alt={phone.alt}
-                  width={390}
-                  height={844}
-                  className="h-full w-auto"
-                />
+                <div
+                  className="relative h-full rounded-md overflow-hidden shadow-2xl"
+                  style={{
+                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 12px 24px -8px rgba(0, 0, 0, 0.3)",
+                  }}
+                >
+                  <Image
+                    src={phone.src}
+                    alt={phone.alt}
+                    width={390}
+                    height={844}
+                    className="h-full w-auto"
+                  />
+                </div>
               </div>
             </motion.div>
           ))}
