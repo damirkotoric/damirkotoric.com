@@ -56,9 +56,6 @@ export function GsqBg({ compact = false }: GsqBgProps) {
         aria-hidden="true"
       />
 
-      {/* Blur overlay */}
-      <div className="absolute inset-0 bg-black/20 backdrop-blur-xl" />
-
       {/* UI mockups */}
       <motion.div
         variants={containerVariants}

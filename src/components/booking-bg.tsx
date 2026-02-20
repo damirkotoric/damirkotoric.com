@@ -63,9 +63,6 @@ export function BookingBg({ compact = false }: BookingBgProps) {
         aria-hidden="true"
       />
 
-      {/* Blur overlay */}
-      <div className="absolute inset-0 bg-black/10 backdrop-blur-xl" />
-
       {/* Phone mockups */}
       <motion.div
         variants={containerVariants}

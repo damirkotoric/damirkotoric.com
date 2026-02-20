@@ -6,8 +6,8 @@ import { motion, useInView, Variants } from "motion/react";
 
 /**
  * Animated background for Krakatoa portfolio card.
- * Features a blurred background with desktop and mobile UI mockups
- * that animate in from the right with staggered expo ease-out timing.
+ * Desktop and mobile UI mockups animate in from the right
+ * with staggered expo ease-out timing over a pre-blurred background image.
  */
 type KrakatoaBgProps = {
   compact?: boolean;
@@ -55,9 +55,6 @@ export function KrakatoaBg({ compact = false }: KrakatoaBgProps) {
         className="object-cover"
         aria-hidden="true"
       />
-
-      {/* Blur overlay */}
-      <div className="absolute inset-0 bg-white/30 backdrop-blur-xl" />
 
       {/* UI mockups */}
       <motion.div

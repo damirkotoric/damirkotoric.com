@@ -147,8 +147,8 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "height": 526
   },
   "/images/portfolio/brokerengine/_brokerengine-bg-poster.avif": {
-    "width": 598,
-    "height": 400
+    "width": 1280,
+    "height": 856
   },
   "/images/portfolio/brokerengine/_og.jpg": {
     "width": 1200,
@@ -541,6 +541,14 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/images/portfolio/harvard/parthenon-wayfinding.avif": {
     "width": 2000,
     "height": 1125
+  },
+  "/images/portfolio/krakatoa/404.avif": {
+    "width": 2080,
+    "height": 1090
+  },
+  "/images/portfolio/krakatoa/503.avif": {
+    "width": 2080,
+    "height": 1072
   },
   "/images/portfolio/krakatoa/_og.jpg": {
     "width": 1200,

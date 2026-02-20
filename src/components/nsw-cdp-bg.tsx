@@ -56,9 +56,6 @@ export function NswCdpBg({ compact = false }: NswCdpBgProps) {
         aria-hidden="true"
       />
 
-      {/* Blur overlay */}
-      <div className="absolute inset-0 bg-white/30 backdrop-blur-xl" />
-
       {/* UI mockups */}
       <motion.div
         variants={containerVariants}

@@ -40,11 +40,8 @@ export function BrokerEngineBg({ compact = false }: BrokerEngineBgProps) {
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/images/portfolio/brokerengine/_brokerengine-bg.mp4" type="video/mp4" />
+        <source src="/images/portfolio/brokerengine/_brokerengine-bg.mp4?v=2" type="video/mp4" />
       </video>
-
-      {/* Blur overlay */}
-      <div className="absolute inset-0 bg-black/[0.01] backdrop-blur-lg" />
 
       {/* Centered UI image with comet card effect */}
       <div className="absolute inset-0 flex items-center justify-center z-10 perspective-distant">

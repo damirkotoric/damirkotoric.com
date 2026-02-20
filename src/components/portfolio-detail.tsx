@@ -189,7 +189,7 @@ function MediaItem({ image, width }: { image: { src: string; alt: string; captio
     return (
       <div className="relative overflow-hidden rounded-lg border border-border bg-muted">
         {image.caption && (
-          <span className="absolute top-3 left-3 z-10 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm">
+          <span className="absolute top-3 left-3 z-10 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm border border-black/10">
             {image.caption}
           </span>
         )}
@@ -210,7 +210,7 @@ function MediaItem({ image, width }: { image: { src: string; alt: string; captio
   return (
     <div className="relative overflow-hidden rounded-lg border border-border bg-muted">
       {image.caption && (
-        <span className="absolute top-3 left-3 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm">
+        <span className="absolute top-3 left-3 text-xs font-medium bg-white/70 text-black px-2 py-1 rounded backdrop-blur-sm border border-black/10">
           {image.caption}
         </span>
       )}

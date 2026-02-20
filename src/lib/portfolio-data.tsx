@@ -1769,6 +1769,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/krakatoa/metadata.avif",
                 alt: "Open Graph metadata for every page",
+                caption: "Designing Open Graph metadata for polished social media sharing",
               },
             ],
           },
@@ -1809,6 +1810,21 @@ export const portfolioProjects: PortfolioProject[] = [
                 src: "/images/portfolio/krakatoa/breakpoints.avif",
                 alt: "Designed across 5 responsive breakpoints",
                 caption: "Designed across 5 responsive breakpoints",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/krakatoa/404.avif",
+                alt: "404 page — error handling and user guidance",
+                caption: "ASCII art 404 error page",
+              },
+              {
+                src: "/images/portfolio/krakatoa/503.avif",
+                alt: "503 error page — error handling and user guidance",
+                caption: "ASCII art 503 error page",
               },
             ],
           },
