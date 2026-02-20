@@ -2149,12 +2149,4 @@ export const testimonials: Testimonial[] = [
     image: "/images/testimonials/chris-thelwell.avif",
     linkedIn: "https://www.linkedin.com/in/christhelwell/",
   },
-  {
-    quote:
-      "Damir is a game-changer. He drove major product decisions, and his suggestions all paid off. I was happy with designers in the past — but after working with Damir once, my view of what a great designer was completely changed.",
-    highlight: "Damir is a game-changer.",
-    name: "Robert C.",
-    role: "Founder, Krakatoa",
-    image: "/images/testimonials/robert.avif",
-  },
 ];
