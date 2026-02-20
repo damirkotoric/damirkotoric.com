@@ -1860,6 +1860,80 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    slug: "oracy",
+    title: "Oracy",
+    description:
+      "A streamlined audiobook player for free public domain books — built with my late colleague Cipriano Freitas.",
+    role: "Designer & Developer",
+    year: "2017",
+    client: "Side Project",
+    ogImage: {
+      src: "/images/portfolio/oracy/_og.jpg",
+      alt: "Oracy audiobook player",
+    },
+    coverImage: {
+      src: "/images/portfolio/oracy/cover.avif",
+      alt: "Oracy audiobook player — dark and light mode",
+    },
+    sections: [
+      {
+        heading: "The Idea",
+        description:
+          "Free public domain audiobooks have been available on Librivox and archive.org for years, but the listening experience never matched modern expectations. Oracy set out to change that — a streamlined audiobook player that connected to archive.org's API and wrapped thousands of free audiobooks in a clean, simple UI with automatic dark mode support.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/oracy/app.avif",
+                alt: "Oracy app — light and dark mode",
+              },
+              {
+                src: "/images/portfolio/oracy/player.avif",
+                alt: "Oracy audiobook player — clean and intuitive controls",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Building Together",
+        description:
+          "What started as a solo side project with Node.js, HTML, and jQuery became a proper collaboration when my Booking.com colleague Cipriano Freitas joined. Together we rebuilt the app in React, improving the architecture and the experience. Cipriano was a talented engineer and a generous collaborator.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/oracy/audiobook.avif",
+                alt: "Oracy audiobook view — browsing and playing free public domain books from archive.org",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/oracy/code.avif",
+                alt: "Oracy codebase — React and TypeScript",
+              },
+              {
+                src: "/images/portfolio/oracy/audiobook-2.avif",
+                alt: "Oracy audiobook view — browsing and playing free public domain books from archive.org",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "In Memory",
+        description:
+          "My friend Cipriano is no longer with us. This page remains as a reminder of what we built together 🌷",
+        imageBlocks: [],
+      },
+    ],
+  },
+  {
     slug: "orpheus",
     title: "Orpheus",
     description:

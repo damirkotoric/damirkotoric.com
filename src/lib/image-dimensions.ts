@@ -750,6 +750,38 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 1744
   },
+  "/images/portfolio/oracy/_og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
+  "/images/portfolio/oracy/app.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/oracy/audiobook-2.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/oracy/audiobook.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/oracy/code.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/oracy/cover.avif": {
+    "width": 3200,
+    "height": 2132
+  },
+  "/images/portfolio/oracy/cover.png": {
+    "width": 3200,
+    "height": 2132
+  },
+  "/images/portfolio/oracy/player.avif": {
+    "width": 3200,
+    "height": 2400
+  },
   "/images/portfolio/orpheus/_og.jpg": {
     "width": 1200,
     "height": 630
