@@ -526,6 +526,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2000
   },
+  "/images/portfolio/harvard/_og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
   "/images/portfolio/harvard/athena-1.avif": {
     "width": 4000,
     "height": 2250
@@ -1061,6 +1065,62 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/images/portfolio/stylespin/stylespin-poster.avif": {
     "width": 2880,
     "height": 2160
+  },
+  "/images/portfolio/zhejiang/_og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
+  "/images/portfolio/zhejiang/app-in-use.avif": {
+    "width": 1831,
+    "height": 1221
+  },
+  "/images/portfolio/zhejiang/ar-prototype.mp4": {
+    "width": 608,
+    "height": 1080
+  },
+  "/images/portfolio/zhejiang/ar-camera.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/zhejiang/ar-interaction.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/zhejiang/cover.avif": {
+    "width": 3200,
+    "height": 2120
+  },
+  "/images/portfolio/zhejiang/figma-frames.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/zhejiang/figma-prototype.avif": {
+    "width": 3200,
+    "height": 1800
+  },
+  "/images/portfolio/zhejiang/flow.avif": {
+    "width": 3200,
+    "height": 2400
+  },
+  "/images/portfolio/zhejiang/museum-exterior-2.avif": {
+    "width": 2400,
+    "height": 1600
+  },
+  "/images/portfolio/zhejiang/museum-exterior-2.jpg": {
+    "width": 2400,
+    "height": 1600
+  },
+  "/images/portfolio/zhejiang/museum-exterior.avif": {
+    "width": 1780,
+    "height": 1000
+  },
+  "/images/portfolio/zhejiang/museum-interior.avif": {
+    "width": 1958,
+    "height": 1468
+  },
+  "/images/portfolio/zhejiang/onboarding-permission.avif": {
+    "width": 3200,
+    "height": 2400
   }
 };
 

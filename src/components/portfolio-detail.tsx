@@ -241,7 +241,7 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
     return (
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {block.images.map((image, index) => {
-          if (isVideo(image.src) || getYouTubeId(image.src) || image.zoomable === false) {
+          if (isVideo(image.src) || getYouTubeId(image.src) || !image.zoomable) {
             return <MediaItem key={index} image={image} width={600} />;
           }
           const dims = getImageDimensions(image.src);
@@ -266,7 +266,7 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
         {block.images.map((image, index) => {
           const dims = getImageDimensions(image.src);
           const aspect = dims ? dims.width / dims.height : 1;
-          if (isVideo(image.src) || getYouTubeId(image.src) || image.zoomable === false) {
+          if (isVideo(image.src) || getYouTubeId(image.src) || !image.zoomable) {
             return (
               <div key={index} className="min-w-0 basis-0" style={{ flexGrow: aspect }}>
                 <MediaItem image={image} width={600} />
@@ -293,7 +293,7 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
     return (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {block.images.map((image, index) => {
-          if (isVideo(image.src) || getYouTubeId(image.src) || image.zoomable === false) {
+          if (isVideo(image.src) || getYouTubeId(image.src) || !image.zoomable) {
             return <MediaItem key={index} image={image} width={400} />;
           }
           const dims = getImageDimensions(image.src);
@@ -318,7 +318,7 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
         {block.images.map((image, index) => {
           const dims = getImageDimensions(image.src);
           const aspect = dims ? dims.width / dims.height : 1;
-          if (isVideo(image.src) || getYouTubeId(image.src) || image.zoomable === false) {
+          if (isVideo(image.src) || getYouTubeId(image.src) || !image.zoomable) {
             return (
               <div key={index} className="min-w-0 basis-0" style={{ flexGrow: aspect }}>
                 <MediaItem image={image} width={400} />
