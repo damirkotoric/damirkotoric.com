@@ -410,6 +410,78 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 700,
     "height": 394
   },
+  "/images/portfolio/general-assembly/_og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
+  "/images/portfolio/general-assembly/card-sorting-convenient.avif": {
+    "width": 1760,
+    "height": 1320
+  },
+  "/images/portfolio/general-assembly/card-sorting-inconvenient.avif": {
+    "width": 1760,
+    "height": 989
+  },
+  "/images/portfolio/general-assembly/card-sorting-inconvenient.webp": {
+    "width": 1760,
+    "height": 989
+  },
+  "/images/portfolio/general-assembly/cover.avif": {
+    "width": 2000,
+    "height": 880
+  },
+  "/images/portfolio/general-assembly/design-studio.avif": {
+    "width": 1760,
+    "height": 1320
+  },
+  "/images/portfolio/general-assembly/improv-kanban.webp": {
+    "width": 1400,
+    "height": 1050
+  },
+  "/images/portfolio/general-assembly/moodboard.avif": {
+    "width": 1760,
+    "height": 1320
+  },
+  "/images/portfolio/general-assembly/service-blueprint.avif": {
+    "width": 1760,
+    "height": 987
+  },
+  "/images/portfolio/general-assembly/service-blueprint.webp": {
+    "width": 1760,
+    "height": 987
+  },
+  "/images/portfolio/general-assembly/speaker-chris.gif": {
+    "width": 728,
+    "height": 399
+  },
+  "/images/portfolio/general-assembly/speaker-dan.avif": {
+    "width": 552,
+    "height": 414
+  },
+  "/images/portfolio/general-assembly/speaker-fabiano.gif": {
+    "width": 728,
+    "height": 399
+  },
+  "/images/portfolio/general-assembly/speaker-fiorella.gif": {
+    "width": 728,
+    "height": 399
+  },
+  "/images/portfolio/general-assembly/speaker-ioanis.gif": {
+    "width": 728,
+    "height": 399
+  },
+  "/images/portfolio/general-assembly/speaker-julian.avif": {
+    "width": 552,
+    "height": 414
+  },
+  "/images/portfolio/general-assembly/speaker-julian.jpg": {
+    "width": 552,
+    "height": 414
+  },
+  "/images/portfolio/general-assembly/whiteboard.avif": {
+    "width": 1760,
+    "height": 1320
+  },
   "/images/portfolio/gsq/_og.jpg": {
     "width": 1200,
     "height": 630

@@ -1,5 +1,5 @@
 export type ImageBlock = {
-  layout: "full" | "grid-2" | "grid-2-fluid" | "grid-3";
+  layout: "full" | "grid-2" | "grid-2-fluid" | "grid-3" | "grid-3-fluid";
   images: { src: string; alt: string; caption?: string; zoomable?: boolean }[];
 };
 
@@ -2439,6 +2439,164 @@ export const portfolioProjects: PortfolioProject[] = [
             ],
           },
         ],
+      },
+    ],
+  },
+  {
+    slug: "teaching-at-general-assembly",
+    title: "Teaching at General Assembly",
+    description:
+      "Co-instructed a 3-month UX Design Immersive in Melbourne, kickstarting 18 new design careers.",
+    role: "Lead Instructor",
+    year: "2016",
+    client: "General Assembly",
+    ogImage: {
+      src: "/images/portfolio/general-assembly/_og.jpg",
+      alt: "Teaching UX Design at General Assembly Melbourne",
+    },
+    coverImage: {
+      src: "/images/portfolio/general-assembly/cover.avif",
+      alt: "Teaching UX Design at General Assembly Melbourne",
+    },
+    testimonial: {
+      quote:
+        "Damir is highly empathetic and measured which made him an excellent mentor and guide to others in their UX journey.",
+      name: "Matt Johnson",
+      role: "Program Producer at General Assembly",
+      image: "/images/testimonials/matt.avif",
+    },
+    sections: [
+      {
+        heading: "The Course",
+        description:
+          "General Assembly asked me to co-instruct a 3-month UX Design Immersive in Melbourne, preparing 18 students to be job-ready designers. I taught beyond the standard curriculum — design sprint facilitation, stakeholder management, success metrics, and hard-won lessons from industry. Co-instructed with Nigel Quinlan, a graduate-turned-instructor who knew the curriculum inside out.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "https://www.youtube.com/watch?v=aoZ83Tg1734",
+                alt: "A look back at the 3-month journey at General Assembly",
+                caption:
+                  "A look back at the 3-month journey at General Assembly",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Teaching Philosophy",
+        description:
+          "No hand-holding. I pushed students to measure their own impact, involve stakeholders in the design process, and practice relentlessly. Theory followed by exercises, repeat. The best moments were seeing students independently run their own design sprints and service blueprint sessions weeks after being taught.",
+        imageBlocks: [
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/general-assembly/whiteboard.avif",
+                alt: "Students self-improvising after a lecture on paper prototyping",
+                caption:
+                  "Students self-improvising after a lecture on paper prototyping",
+              },
+              {
+                src: "/images/portfolio/general-assembly/moodboard.avif",
+                alt: "Putting ideas out in the open and discussing them as a team",
+                caption:
+                  "Putting ideas out in the open and discussing them as a team",
+              },
+            ],
+          },
+          {
+            layout: "grid-2-fluid",
+            images: [
+              {
+                src: "/images/portfolio/general-assembly/service-blueprint.avif",
+                alt: "Students running their own service blueprint exercise",
+                caption:
+                  "Students running their own service blueprint exercise",
+              },
+              {
+                src: "/images/portfolio/general-assembly/card-sorting-inconvenient.avif",
+                alt: "Card sorting — the inconvenient way",
+                caption: "Card sorting — the inconvenient way",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/general-assembly/card-sorting-convenient.avif",
+                alt: "Card sorting — the convenient way",
+                caption: "Card sorting — the convenient way",
+              },
+              {
+                src: "/images/portfolio/general-assembly/design-studio.avif",
+                alt: "Ideas being explored in a design studio",
+                caption: "Ideas being explored in a design studio",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Guest Speakers",
+        description:
+          "I brought in experts from my Envato network to give students exposure beyond the curriculum — product management, marketing, design leadership, Agile facilitation, UX copywriting, and design anthropology.",
+        imageBlocks: [
+          {
+            layout: "grid-3-fluid",
+            images: [
+              {
+                src: "/images/portfolio/general-assembly/speaker-julian.avif",
+                alt: "Guest speaker",
+                caption: "Julian, Product Manager at Envato",
+                zoomable: false,
+              },
+              {
+                src: "/images/portfolio/general-assembly/speaker-dan.avif",
+                alt: "Guest speaker",
+                caption: "Dan, Marketing Manager at Envato",
+                zoomable: false,
+              },
+              {
+                src: "/images/portfolio/general-assembly/speaker-chris.gif",
+                alt: "Guest speaker",
+                caption: "Chris, Head of UX at Envato",
+                zoomable: false,
+              },
+            ],
+          },
+          {
+            layout: "grid-3",
+            images: [
+              {
+                src: "/images/portfolio/general-assembly/speaker-fabiano.gif",
+                alt: "Guest speaker",
+                caption: "Fabiano, Agile Coach at Envato",
+                zoomable: false,
+              },
+              {
+                src: "/images/portfolio/general-assembly/speaker-fiorella.gif",
+                alt: "Guest speaker",
+                caption: "Fiorella, UX Copywriter at Envato",
+                zoomable: false,
+              },
+              {
+                src: "/images/portfolio/general-assembly/speaker-ioanis.gif",
+                alt: "Guest speaker",
+                caption: "Ioanis, Design Anthropologist at Envato",
+                zoomable: false,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outcome",
+        description:
+          "All 18 students secured industry placements at the end of the course. In loving memory of my dear friend and colleague, Alex Lieberman 🌷",
+        imageBlocks: [],
       },
     ],
   },

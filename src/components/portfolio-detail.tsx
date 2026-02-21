@@ -312,5 +312,34 @@ function ImageBlockRenderer({ block }: { block: ImageBlock }) {
     );
   }
 
+  if (block.layout === "grid-3-fluid") {
+    return (
+      <div className="flex flex-col gap-4 md:flex-row">
+        {block.images.map((image, index) => {
+          const dims = getImageDimensions(image.src);
+          const aspect = dims ? dims.width / dims.height : 1;
+          if (isVideo(image.src) || getYouTubeId(image.src) || image.zoomable === false) {
+            return (
+              <div key={index} className="min-w-0 basis-0" style={{ flexGrow: aspect }}>
+                <MediaItem image={image} width={400} />
+              </div>
+            );
+          }
+          return (
+            <div key={index} className="min-w-0 basis-0" style={{ flexGrow: aspect }}>
+              <ZoomableImage
+                src={image.src}
+                alt={image.alt}
+                width={dims?.width ?? 400}
+                height={dims?.height}
+                caption={image.caption}
+              />
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
   return null;
 }
