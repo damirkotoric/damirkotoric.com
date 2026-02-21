@@ -2804,7 +2804,7 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/zhejiang/museum-exterior.avif",
-                alt: "Zhejiang University Museum of Art and Archaeology aerial view",
+                alt: "25,000 sqm — aerial view of the museum",
                 zoomable: true,
               },
               {
@@ -2814,7 +2814,7 @@ export const portfolioProjects: PortfolioProject[] = [
               },
               {
                 src: "/images/portfolio/zhejiang/museum-interior.avif",
-                alt: "Museum interior showing the exhibition space",
+                alt: "The exhibition space housing centuries-old artwork",
                 zoomable: true,
               },
             ],
@@ -2830,7 +2830,7 @@ export const portfolioProjects: PortfolioProject[] = [
             layout: "grid-2-fluid",
             images: [
               {
-                src: "/images/portfolio/zhejiang/ar-prototype.mp4",
+                src: "/images/portfolio/zhejiang/ar-prototype.mp4?v=2",
                 alt: "Early prototype — AR artwork animation and annotation markers",
                 caption:
                   "Early prototype — AR artwork animation and annotation markers",

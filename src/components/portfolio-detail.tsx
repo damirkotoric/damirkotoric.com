@@ -159,7 +159,7 @@ export function PortfolioDetail({ project, nextProject }: PortfolioDetailProps) 
 }
 
 function isVideo(src: string) {
-  return /\.(mp4|webm|mov)$/i.test(src);
+  return /\.(mp4|webm|mov)(\?.*)?$/i.test(src);
 }
 
 function getYouTubeId(src: string): string | null {
@@ -200,7 +200,7 @@ function MediaItem({ image, width }: { image: { src: string; alt: string; captio
           playsInline
           className="w-full h-auto"
         >
-          <source src={image.src} type={`video/${image.src.split('.').pop()}`} />
+          <source src={image.src} type={`video/${image.src.split('.').pop()?.split('?')[0]}`} />
         </video>
       </div>
     );

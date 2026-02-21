@@ -138,6 +138,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 2044,
     "height": 1150
   },
+  "/images/portfolio/boston-north-end/prototype.mp4": {
+    "width": 1824,
+    "height": 1336
+  },
   "/images/portfolio/boston-north-end/story.avif": {
     "width": 3200,
     "height": 2400
@@ -151,6 +155,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "height": 526
   },
   "/images/portfolio/brokerengine/_brokerengine-bg-poster.avif": {
+    "width": 1280,
+    "height": 856
+  },
+  "/images/portfolio/brokerengine/_brokerengine-bg.mp4": {
     "width": 1280,
     "height": 856
   },
@@ -310,6 +318,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 2480,
     "height": 3508
   },
+  "/images/portfolio/creative-ai/prototype-video.mp4": {
+    "width": 1920,
+    "height": 960
+  },
   "/images/portfolio/creative-ai/sketching.avif": {
     "width": 1290,
     "height": 968
@@ -338,6 +350,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 890,
     "height": 667
   },
+  "/images/portfolio/creative-ai/user-testing.mp4": {
+    "width": 1920,
+    "height": 1080
+  },
   "/images/portfolio/creative-ai/workshop.avif": {
     "width": 2248,
     "height": 1996
@@ -347,6 +363,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "height": 1914
   },
   "/images/portfolio/donotstay/donotstay-poster.avif": {
+    "width": 2880,
+    "height": 2160
+  },
+  "/images/portfolio/donotstay/donotstay.mp4": {
     "width": 2880,
     "height": 2160
   },
@@ -566,6 +586,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 4000,
     "height": 2400
   },
+  "/images/portfolio/harvard/cover.mp4": {
+    "width": 1920,
+    "height": 1080
+  },
   "/images/portfolio/harvard/giza-360.avif": {
     "width": 2048,
     "height": 1280
@@ -758,6 +782,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2132
   },
+  "/images/portfolio/nametag/nametag.mp4": {
+    "width": 1920,
+    "height": 1080
+  },
   "/images/portfolio/nametag/noken-drop.avif": {
     "width": 2992,
     "height": 4345
@@ -914,6 +942,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 11320
   },
+  "/images/portfolio/orpheus/sprint-workshops.mp4": {
+    "width": 1728,
+    "height": 1080
+  },
   "/images/portfolio/orpheus/storybook.avif": {
     "width": 3200,
     "height": 1800
@@ -930,7 +962,23 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 3200,
     "height": 2400
   },
+  "/images/portfolio/orpheus/tripureshwor.mp4": {
+    "width": 2880,
+    "height": 1800
+  },
+  "/images/portfolio/orpheus/villa-romana.mp4": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/images/portfolio/orpheus/vr-vrooms.mp4": {
+    "width": 1920,
+    "height": 1080
+  },
   "/images/portfolio/rankdat/rankdat-poster.avif": {
+    "width": 2880,
+    "height": 2160
+  },
+  "/images/portfolio/rankdat/rankdat.mp4": {
     "width": 2880,
     "height": 2160
   },
@@ -1066,6 +1114,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 2880,
     "height": 2160
   },
+  "/images/portfolio/stylespin/stylespin.mp4": {
+    "width": 2880,
+    "height": 2160
+  },
   "/images/portfolio/zhejiang/_og.jpg": {
     "width": 1200,
     "height": 630
@@ -1074,10 +1126,6 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 1831,
     "height": 1221
   },
-  "/images/portfolio/zhejiang/ar-prototype.mp4": {
-    "width": 608,
-    "height": 1080
-  },
   "/images/portfolio/zhejiang/ar-camera.avif": {
     "width": 3200,
     "height": 2400
@@ -1085,6 +1133,10 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/images/portfolio/zhejiang/ar-interaction.avif": {
     "width": 3200,
     "height": 2400
+  },
+  "/images/portfolio/zhejiang/ar-prototype.mp4": {
+    "width": 540,
+    "height": 1080
   },
   "/images/portfolio/zhejiang/cover.avif": {
     "width": 3200,
@@ -1125,5 +1177,6 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
 };
 
 export function getImageDimensions(src: string): { width: number; height: number } | undefined {
-  return imageDimensions[src];
+  const key = src.split("?")[0];
+  return imageDimensions[key];
 }

@@ -1,12 +1,30 @@
 import { readdirSync, readFileSync, statSync, writeFileSync, watch } from "fs";
 import { join, relative } from "path";
 import imageSize from "image-size";
+import { execFileSync } from "child_process";
 
 const PUBLIC_DIR = join(process.cwd(), "public");
 const PORTFOLIO_DIR = join(PUBLIC_DIR, "images/portfolio");
 const OUTPUT_FILE = join(process.cwd(), "src/lib/image-dimensions.ts");
 
 type Dimensions = { width: number; height: number };
+
+function getVideoDimensions(fullPath: string): Dimensions | null {
+  try {
+    const output = execFileSync("ffprobe", [
+      "-v", "error",
+      "-select_streams", "v:0",
+      "-show_entries", "stream=width,height",
+      "-of", "csv=p=0",
+      fullPath,
+    ], { encoding: "utf-8" }).trim();
+    const [w, h] = output.split(",").map(Number);
+    if (w && h) return { width: w, height: h };
+  } catch {
+    console.error(`Failed to read video dimensions for ${fullPath}`);
+  }
+  return null;
+}
 
 function scanDirectory(dir: string, map: Record<string, Dimensions>) {
   const entries = readdirSync(dir);
@@ -30,6 +48,12 @@ function scanDirectory(dir: string, map: Record<string, Dimensions>) {
         }
       } catch (err) {
         console.error(`Failed to read dimensions for ${fullPath}:`, err);
+      }
+    } else if (/\.(mp4|webm|mov)$/i.test(entry)) {
+      const dims = getVideoDimensions(fullPath);
+      if (dims) {
+        const relativePath = "/" + relative(PUBLIC_DIR, fullPath);
+        map[relativePath] = dims;
       }
     }
   }
@@ -62,7 +86,7 @@ if (process.argv.includes("--watch")) {
   let timeout: ReturnType<typeof setTimeout> | null = null;
 
   watch(PORTFOLIO_DIR, { recursive: true }, (_event, filename) => {
-    if (!filename || !/\.(avif|webp|png|jpg|jpeg|gif)$/i.test(filename)) return;
+    if (!filename || !/\.(avif|webp|png|jpg|jpeg|gif|mp4|webm|mov)$/i.test(filename)) return;
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => {
       console.log(`Image changed: ${filename}`);
