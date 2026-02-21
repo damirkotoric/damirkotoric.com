@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView, Variants } from "motion/react";
+import { useImagesLoaded } from "@/hooks/use-images-loaded";
 
 /**
  * Animated background for Booking.com portfolio card.
@@ -44,6 +45,7 @@ const phoneVariants: Variants = {
 export function BookingBg({ compact = false }: BookingBgProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px", amount: 0.3 });
+  const { ready, onImageLoad } = useImagesLoaded(5);
 
   const phones = [
     { src: "/images/portfolio/booking/booking-ui-1.avif", alt: "Booking.com search results" },
@@ -61,13 +63,14 @@ export function BookingBg({ compact = false }: BookingBgProps) {
         fill
         className="object-cover"
         aria-hidden="true"
+        onLoad={onImageLoad}
       />
 
       {/* Phone mockups */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        animate={isInView && ready ? "visible" : "hidden"}
         className="absolute inset-0 flex items-center justify-center"
       >
         <div className="relative flex items-end h-[85%]" style={{ marginLeft: "8%" }}>
@@ -97,6 +100,7 @@ export function BookingBg({ compact = false }: BookingBgProps) {
                     width={390}
                     height={844}
                     className="h-full w-auto"
+                    onLoad={onImageLoad}
                   />
                 </div>
               </div>

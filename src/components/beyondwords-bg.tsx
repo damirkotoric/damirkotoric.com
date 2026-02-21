@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "motion/react";
+import { useImagesLoaded } from "@/hooks/use-images-loaded";
 import { CometCard } from "@/components/ui/comet-card";
 
 /**
@@ -18,6 +19,7 @@ export function BeyondWordsBg({ compact = false }: BeyondWordsBgProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { margin: "-100px", amount: 0.3 });
   const isVisible = useInView(ref, { margin: "100px" });
+  const { ready, onImageLoad } = useImagesLoaded(1);
 
   const DURATION = 5;
   const ARCS_PER_CORNER = 2;
@@ -39,7 +41,7 @@ export function BeyondWordsBg({ compact = false }: BeyondWordsBgProps) {
       <div className="absolute inset-0 flex items-center justify-center z-10 perspective-distant">
         <motion.div
           initial={{ rotateX: 12, rotateY: -8, opacity: 0 }}
-          animate={isInView ? { rotateX: 0, rotateY: 0, opacity: 1 } : { rotateX: 12, rotateY: -8, opacity: 0 }}
+          animate={isInView && ready ? { rotateX: 0, rotateY: 0, opacity: 1 } : { rotateX: 12, rotateY: -8, opacity: 0 }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="w-[80%] transform-3d"
         >
@@ -49,6 +51,7 @@ export function BeyondWordsBg({ compact = false }: BeyondWordsBgProps) {
               alt="BeyondWords UI"
               width={1280}
               height={853}
+              onLoad={onImageLoad}
               className={`w-full h-auto rounded-sm ${compact ? "lg:rounded-lg" : "lg:rounded-2xl"}`}
             />
           </CometCard>

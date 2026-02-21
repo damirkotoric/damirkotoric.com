@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView, Variants } from "motion/react";
+import { useImagesLoaded } from "@/hooks/use-images-loaded";
 
 /**
  * Animated background for Resell Calendar portfolio card.
@@ -44,6 +45,7 @@ const uiVariants: Variants = {
 export function ResellCalendarBg({ compact = false }: ResellCalendarBgProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px", amount: 0.3 });
+  const { ready, onImageLoad } = useImagesLoaded(3);
 
   return (
     <div ref={ref} className="relative w-full aspect-[3/2] overflow-hidden">
@@ -54,13 +56,14 @@ export function ResellCalendarBg({ compact = false }: ResellCalendarBgProps) {
         fill
         className="object-cover"
         aria-hidden="true"
+        onLoad={onImageLoad}
       />
 
       {/* UI mockups */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        animate={isInView && ready ? "visible" : "hidden"}
         className="absolute inset-0"
       >
         {/* Desktop UI */}
@@ -82,6 +85,7 @@ export function ResellCalendarBg({ compact = false }: ResellCalendarBgProps) {
                 width={2800}
                 height={1749}
                 className="w-full h-auto"
+                onLoad={onImageLoad}
               />
             </div>
           </div>
@@ -109,6 +113,7 @@ export function ResellCalendarBg({ compact = false }: ResellCalendarBgProps) {
                 width={640}
                 height={1572}
                 className="w-full h-auto"
+                onLoad={onImageLoad}
               />
             </div>
           </div>
