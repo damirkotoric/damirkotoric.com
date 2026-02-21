@@ -982,6 +982,18 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 2880,
     "height": 2160
   },
+  "/images/portfolio/resell-calendar/_bg.avif": {
+    "width": 3200,
+    "height": 2132
+  },
+  "/images/portfolio/resell-calendar/_desktop.avif": {
+    "width": 2800,
+    "height": 1749
+  },
+  "/images/portfolio/resell-calendar/_mobile.avif": {
+    "width": 640,
+    "height": 1572
+  },
   "/images/portfolio/resell-calendar/_og.jpg": {
     "width": 1200,
     "height": 630
@@ -1177,6 +1189,5 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
 };
 
 export function getImageDimensions(src: string): { width: number; height: number } | undefined {
-  const key = src.split("?")[0];
-  return imageDimensions[key];
+  return imageDimensions[src];
 }

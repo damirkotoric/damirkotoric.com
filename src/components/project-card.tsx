@@ -8,6 +8,7 @@ import { NametagBg } from "@/components/nametag-bg";
 import { BookingBg } from "@/components/booking-bg";
 import { GsqBg } from "@/components/gsq-bg";
 import { KrakatoaBg } from "@/components/krakatoa-bg";
+import { ResellCalendarBg } from "@/components/resell-calendar-bg";
 
 type ProjectCardProps = {
   slug: string;
@@ -23,6 +24,7 @@ const customBackgrounds: Record<string, React.ReactNode> = {
   "booking-com": <BookingBg compact />,
   "gsq-open-data-portal": <GsqBg compact />,
   krakatoa: <KrakatoaBg compact />,
+  "resell-calendar": <ResellCalendarBg compact />,
 };
 
 export function ProjectCard({ slug, title, outcome, image }: ProjectCardProps) {

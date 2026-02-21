@@ -401,8 +401,8 @@ export const portfolioProjects: PortfolioProject[] = [
     slug: "nametag",
     title: "Nametag",
     description:
-      "Designed the web3 product from scratch, helping secure a $2M seed round and 60K users.",
-    descriptionRich: <>Designed the web3 product from scratch, helping secure a <a href="https://finance.yahoo.com/news/okx-ventures-gsrv-co-lead-032400725.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">$2M seed round</a> and 60K users.</>,
+      "Designed the product from scratch, helping secure a $2M seed round and 60K users.",
+    descriptionRich: <>Designed the product from scratch, helping secure a <a href="https://finance.yahoo.com/news/okx-ventures-gsrv-co-lead-032400725.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">$2M seed round</a> and 60K users.</>,
     role: "Lead Product Designer",
     year: "2022–2023",
     client: "Nametag",
@@ -1901,7 +1901,6 @@ export const portfolioProjects: PortfolioProject[] = [
     year: "2022",
     client: "Krakatoa",
     liveUrl: "https://krakatoa.gg",
-    featured: true,
     cardImage: null,
     ogImage: {
       src: "/images/portfolio/krakatoa/_og.jpg",
@@ -2366,6 +2365,7 @@ export const portfolioProjects: PortfolioProject[] = [
     year: "2023",
     client: "Resell Calendar",
     liveUrl: "https://resellcalendar.com",
+    featured: true,
     ogImage: {
       src: "/images/portfolio/resell-calendar/_og.jpg",
       alt: "Resell Calendar — resale community hub and information platform",

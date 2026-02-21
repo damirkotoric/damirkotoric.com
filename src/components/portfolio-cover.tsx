@@ -8,6 +8,7 @@ import { BookingBg } from "@/components/booking-bg";
 import { NswCdpBg } from "@/components/nsw-cdp-bg";
 import { GsqBg } from "@/components/gsq-bg";
 import { KrakatoaBg } from "@/components/krakatoa-bg";
+import { ResellCalendarBg } from "@/components/resell-calendar-bg";
 
 const interactiveCovers: Record<string, React.ReactNode> = {
   beyondwords: <BeyondWordsBg />,
@@ -17,6 +18,7 @@ const interactiveCovers: Record<string, React.ReactNode> = {
   "nsw-climate-data-portal": <NswCdpBg />,
   "gsq-open-data-portal": <GsqBg />,
   krakatoa: <KrakatoaBg />,
+  "resell-calendar": <ResellCalendarBg />,
 };
 
 type PortfolioCoverProps = {
