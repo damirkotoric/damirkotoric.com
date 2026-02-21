@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
+import { ContactFormTrigger } from "@/components/contact-form/contact-form-trigger";
 import { Testimonial } from "@/components/testimonial";
 import { PortfolioCover } from "@/components/portfolio-cover";
 import { ZoomableImage } from "@/components/zoomable-image";
@@ -147,9 +147,7 @@ export function PortfolioDetail({ project, nextProject }: PortfolioDetailProps) 
           <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
             Ready to work together?
           </h2>
-          <Button asChild size="lg">
-            <Link href="#">Start the conversation</Link>
-          </Button>
+          <ContactFormTrigger />
         </section>
       </main>
 

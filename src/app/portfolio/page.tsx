@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
+import { ContactFormTrigger } from "@/components/contact-form/contact-form-trigger";
 import { ProjectCard } from "@/components/project-card";
 import { getFeaturedProjects, getArchiveProjects } from "@/lib/portfolio-data";
 
@@ -154,9 +154,7 @@ export default function PortfolioPage() {
             <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
               Ready to work together?
             </h2>
-            <Button asChild size="lg">
-              <Link href="#">Start the conversation</Link>
-            </Button>
+            <ContactFormTrigger />
           </div>
         </section>
       </main>

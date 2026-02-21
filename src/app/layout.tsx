@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ContactFormProvider } from "@/components/contact-form/contact-form-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -53,7 +54,9 @@ export default function RootLayout({
           Skip to main content
         </a>
         <ThemeProvider>
-          <main id="main-content">{children}</main>
+          <ContactFormProvider>
+            <main id="main-content">{children}</main>
+          </ContactFormProvider>
         </ThemeProvider>
       </body>
     </html>

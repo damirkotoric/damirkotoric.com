@@ -8,6 +8,7 @@ import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
 import { PortfolioShowcase } from "@/components/portfolio-showcase";
+import { ContactFormTrigger } from "@/components/contact-form/contact-form-trigger";
 import { BeyondWordsBg } from "@/components/beyondwords-bg";
 import { BrokerEngineBg } from "@/components/brokerengine-bg";
 import { NametagBg } from "@/components/nametag-bg";
@@ -115,9 +116,7 @@ export default function HomePage() {
                       roles.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
-                      <Button asChild size="lg" className="w-full sm:w-auto">
-                        <Link href="#">Start the conversation</Link>
-                      </Button>
+                      <ContactFormTrigger className="w-full sm:w-auto" />
                       <AnimateIn delay={0.3}>
                         <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
                           <Link href="/portfolio">View portfolio</Link>
@@ -222,9 +221,7 @@ export default function HomePage() {
           <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
             Ready to work together?
           </h2>
-          <Button asChild size="lg">
-            <Link href="#">Start the conversation</Link>
-          </Button>
+          <ContactFormTrigger />
         </div>
       </section>
 
