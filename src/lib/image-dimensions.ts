@@ -950,6 +950,42 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 2992,
     "height": 10916
   },
+  "/images/portfolio/storyverse/_og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
+  "/images/portfolio/storyverse/ar.gif": {
+    "width": 800,
+    "height": 450
+  },
+  "/images/portfolio/storyverse/concept-angkor-wat.avif": {
+    "width": 2000,
+    "height": 2000
+  },
+  "/images/portfolio/storyverse/concept-bali.avif": {
+    "width": 2000,
+    "height": 2000
+  },
+  "/images/portfolio/storyverse/concept-great-wall.avif": {
+    "width": 2000,
+    "height": 2000
+  },
+  "/images/portfolio/storyverse/concept-new-york.avif": {
+    "width": 3840,
+    "height": 2160
+  },
+  "/images/portfolio/storyverse/concept-pyramids.avif": {
+    "width": 2000,
+    "height": 2000
+  },
+  "/images/portfolio/storyverse/concept.avif": {
+    "width": 3200,
+    "height": 2132
+  },
+  "/images/portfolio/storyverse/cover.avif": {
+    "width": 2826,
+    "height": 1590
+  },
   "/images/portfolio/stylespin/stylespin-poster.avif": {
     "width": 2880,
     "height": 2160

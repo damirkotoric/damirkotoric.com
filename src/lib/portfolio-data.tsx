@@ -66,7 +66,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "UI Library",
         description:
-          "We chose shadcn as the foundation of the new design system, built on top of Tailwind CSS for robust, highly-customisable styling. From there, I created a custom component library tailored to BeyondWords' specific product needs — balancing consistency with the flexibility the team needed to move fast.",
+          "We chose shadcn as the foundation of the new design system, built on Tailwind CSS. From there, I created a custom component library tailored to BeyondWords' specific product needs.",
         imageBlocks: [
           {
             layout: "full",
@@ -82,11 +82,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/beyondwords/ui-library-component-details.avif",
-                alt: "Component details",
+                alt: "Component anatomy and variant documentation",
+                caption: "Component anatomy and variant documentation",
               },
               {
                 src: "/images/portfolio/beyondwords/ui-library-usage.avif",
-                alt: "Component usage",
+                alt: "Usage guidelines for the engineering team",
+                caption: "Usage guidelines for the engineering team",
               },
             ],
           },
@@ -95,7 +97,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Semantic Colours",
         description:
-          "A semantic colour system standardised how the product handled interactive states, text hierarchy, secondary elements, and backgrounds. This removed guesswork from design decisions and gave the engineering team a reliable contract — leading to perfect consistency across every screen.",
+          "A semantic colour system standardised how the product handled interactive states, text hierarchy, and backgrounds.",
         imageBlocks: [
           {
             layout: "full",
@@ -111,7 +113,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Data Dashboard",
         description:
-          "Leveraging shadcn's chart components saved significant development time while still delivering a polished analytics experience. I designed dashboard views that surfaced key metrics for publishers — listening time, engagement rates, and audience growth — without overwhelming users with data.",
+          "Dashboard views that surfaced key metrics for publishers — listening time, engagement rates, and audience growth — without overwhelming users with data. Built on shadcn's chart primitives, saving weeks of development time.",
         imageBlocks: [
           {
             layout: "full",
@@ -144,10 +146,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/beyondwords/security.avif",
                 alt: "Security settings interface",
+                caption: "Two-factor authentication and security settings",
               },
               {
                 src: "/images/portfolio/beyondwords/plan-management.avif",
                 alt: "Account management interface",
+                caption: "Account and plan management",
               },
             ],
           },
@@ -169,7 +173,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Homepage Concept",
         description:
-          "I created a concept for a new marketing homepage that extended the design system beyond the product. The goal was to show how the same visual language could work across both internal SaaS pages and the external site — giving BeyondWords a cohesive brand presence. The client ultimately chose a different direction, but the exercise validated the system's versatility.",
+          "A concept for a new marketing homepage that extended the design system beyond the product — showing how the same visual language could unify the SaaS experience and the public-facing site.",
         imageBlocks: [
           {
             layout: "full",
@@ -193,7 +197,6 @@ export const portfolioProjects: PortfolioProject[] = [
     role: "Lead Product Designer",
     year: "2021–2024",
     client: "BrokerEngine",
-    liveUrl: "https://brokerengine.com.au",
     featured: true,
     cardImage: "/images/portfolio/brokerengine-1.avif",
     ogImage: {
@@ -213,7 +216,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Design Overhaul",
         description:
-          "BrokerEngine is a deal management platform for mortgage brokers — think JIRA meets Intercom for real estate. When I joined, the UI was dense, boxy, and relied heavily on visual clutter to communicate hierarchy. Over three years, I led a systematic redesign that stripped back the noise — using colour more purposefully, whitespace more generously, and leaning on typography and spacing instead of borders and boxes. The result was a product that felt calmer and more confident, despite handling deeply complex workflows.",
+          "BrokerEngine is a deal management platform for mortgage brokers — think JIRA meets Intercom for real estate. Over three years, I led a systematic redesign that stripped back the noise — using colour more purposefully, whitespace more generously, and leaning on typography instead of borders and boxes.",
         imageBlocks: [
           {
             layout: "grid-2",
@@ -291,7 +294,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Design System",
         description:
-          "The project used Ant Design as its component foundation. I extended it with a custom UI library to cover BrokerEngine's specific needs — hundreds of custom components across 9 Figma files, each with fully specced states and variants so developers never had to guess. Component variables laid out every possible state: default, hover, active, disabled, error. This rigour eliminated back-and-forth and let the engineering team ship with confidence.",
+          "The project used Ant Design as its component foundation. I extended it with a custom UI library — hundreds of custom components across 9 Figma files, each specced across every state: default, hover, active, disabled, error. This rigour eliminated back-and-forth and let the engineering team ship with confidence.",
         imageBlocks: [
           {
             layout: "full",
@@ -299,6 +302,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/brokerengine/figma-files.avif",
                 alt: "Nine Figma project files",
+                caption: "Nine Figma project files covering the full product",
               },
             ],
           },
@@ -308,12 +312,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/brokerengine/card-payment-system.avif",
                 alt: "Card payment system",
-                caption: "Card payment component.",
+                caption: "Card payment system with validation states",
               },
               {
                 src: "/images/portfolio/brokerengine/responsive-contact.avif",
                 alt: "Responsive contact details",
-                caption: "Contact details on mobile and desktop.",
+                caption: "Responsive contact details across breakpoints",
               },
             ],
           },
@@ -322,7 +326,7 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/brokerengine/onboarding.avif",
-                alt: "Onboarding experience",
+                alt: "Onboarding flow for new brokers",
               },
             ],
           },
@@ -331,7 +335,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Messaging & Communication",
         description:
-          "I proposed and designed a revamped messaging architecture that became a core product feature. The new system unified how brokers communicated with clients, replacing scattered touchpoints with a single threaded conversation model. Comments powered the collaboration between brokers and their teams, while the compose component handled everything from quick notes to document requests.",
+          "I designed a revamped messaging architecture that became a core product feature. The new system unified how brokers communicated with clients, replacing scattered touchpoints with a single threaded conversation model. Comments powered team collaboration, while the compose component handled everything from quick notes to document requests.",
         imageBlocks: [
           {
             layout: "grid-2",
@@ -339,12 +343,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/brokerengine/messaging.avif",
                 alt: "Messaging feature",
-                caption: "Messaging feature — unifying communication between brokers and clients.",
+                caption: "Threaded conversations replacing scattered email chains",
               },
               {
                 src: "/images/portfolio/brokerengine/compose-component.avif",
                 alt: "Compose component",
-                caption: "Compose component — designed to handle a wide range of communication needs, from quick messages to detailed document requests.",
+                caption: "The compose component — quick notes to document requests",
               },
             ],
           },
@@ -354,7 +358,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/brokerengine/comments.avif",
                 alt: "Comments system",
-                caption: "Comments system — enabling collaboration between brokers and their teams within the context of each deal.",
+                caption: "Team collaboration through inline comments",
               },
             ],
           },
@@ -362,7 +366,7 @@ export const portfolioProjects: PortfolioProject[] = [
       },
       {
         heading: "Outcome",
-        description: <>BrokerEngine was acquired by Australian Finance Group (AFG), one of the country's largest finance broking groups, during my tenure. The <a href="https://www.afgonline.com.au/afg-acquires-brokerengine-to-drive-further-growth-in-the-australian-mortgage-broker-market/" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">70% acquisition</a> validated the product direction and the design investment. This was my longest freelancing engagement — three years of deep product work that taught me the value of patience, systematic thinking, and building trust with a team over time.</>,
+        description: <>BrokerEngine was acquired by Australian Finance Group (AFG), one of the country's largest finance broking groups, during my tenure. The <a href="https://www.afgonline.com.au/afg-acquires-brokerengine-to-drive-further-growth-in-the-australian-mortgage-broker-market/" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">70% acquisition</a> validated the product direction and the design investment — three years of deep, systematic product work.</>,
         imageBlocks: [],
       },
     ],
@@ -395,7 +399,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Product Design",
         description:
-          "Nametag adds a web3 layer on top of Twitter and Discord, letting users showcase their digital collections — including NFTs — directly on their social media profiles. I joined when the product was an early alpha prototype and led the design through to a fully shipped product with 60,000 users and a 4.9-star rating on the Chrome Web Store. The core experience spans collectible spaces, a Chrome extension overlay, creator-driven drops called Nokens, and rich user profiles.",
+          "Nametag adds a web3 layer on top of Twitter and Discord, letting users showcase their digital collections directly on their social media profiles. I joined when the product was an early alpha prototype and led the design through to a fully shipped product with 60,000 users and a 4.9-star rating on the Chrome Web Store.",
         imageBlocks: [
           {
             layout: "full",
@@ -407,6 +411,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nametag/space.avif",
                 alt: "Collectible spaces — themed collections from artists and creators",
+                caption: "Collectible spaces — themed collections from artists and creators",
               },
             ],
           },
@@ -416,12 +421,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nametag/extension.avif",
                 alt: "Chrome extension landing page",
-                caption: "The Chrome extension landing page.",
+                caption: "Chrome extension landing page",
               },
               {
                 src: "/images/portfolio/nametag/noken-drop.avif",
-                alt: "Noken drop — proprietary digital collectibles",
-                caption: "Noken drop — proprietary digital collectibles.",
+                alt: "Nokens — proprietary digital collectibles with timed drops",
+                caption: "Nokens — proprietary digital collectibles with timed drops",
               },
             ],
           },
@@ -431,7 +436,6 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nametag/profile.avif",
                 alt: "Completed user profile showcasing digital collections",
-                caption: "Completed user profile showcasing digital collections.",
               },
             ],
           },
@@ -448,7 +452,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nametag/noken-figma.avif",
                 alt: "Behind the scenes — Noken page mockups and components in Figma",
-                caption: "Behind the scenes — Noken page mockups and components in Figma.",
+                caption: "Behind the scenes — Noken page mockups and components in Figma",
               },
             ],
           },
@@ -457,8 +461,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/nametag/claim-box.avif",
-                alt: "Deep dive on the Claim Box component — dozens of states fully specced",
-                caption: "Deep dive on the Claim Box component — over a dozen states fully specced.",
+                alt: "The Claim Box — dozens of states fully specced",
+                caption: "The Claim Box — dozens of states fully specced",
               },
             ],
           },
@@ -467,15 +471,15 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Onboarding & Auth",
         description:
-          "We deliberately made signup as frictionless as possible — social channels, email, web3 wallets like MetaMask, and even QR codes. Instead of separating 'sign up' from 'log in', we unified the flow: pick your method, and we either recognise your account or start onboarding. This removed a common drop-off point and reflected our philosophy that the product should be useful before users jump through every hoop. Post-onboarding, we used a soft completion model — users could start using Nametag immediately, then finalise their profile through guided steps when they were ready.",
+          "We deliberately made signup as frictionless as possible — social channels, email, web3 wallets like MetaMask, and QR codes. Instead of separating 'sign up' from 'log in', we unified the flow: pick your method, and we either recognise your account or start onboarding. This removed a common drop-off point. Post-onboarding, users could start using Nametag immediately, then finalise their profile through guided steps when ready.",
         imageBlocks: [
           {
             layout: "full",
             images: [
               {
                 src: "/images/portfolio/nametag/auth-options.avif",
-                alt: "Flexible authentication — social, email, wallet, and QR code",
-                caption: "Flexible authentication — social, email, wallet, and QR code options.",
+                alt: "One flow for sign up and log in — social, email, wallet, or QR",
+                caption: "One flow for sign up and log in — social, email, wallet, or QR",
               },
             ],
           },
@@ -501,8 +505,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/nametag/profile-completion.avif",
-                alt: "Profile completion modal — guided steps to finalise setup",
-                caption: "Profile completion modal — users can start using the product immediately, then finalise their profile through guided steps when they're ready.",
+                alt: "Soft completion — finalise your profile when you're ready",
+                caption: "Soft completion — finalise your profile when you're ready",
               },
             ],
           },
@@ -511,14 +515,15 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "iOS & Android Concepts",
         description:
-          "Before pivoting to a web-only strategy, I designed native app concepts for both iOS and Android. The challenge was making each platform feel native — respecting iOS and Material Design conventions for navigation, iconography, and button radii — while maintaining a distinctly Nametag identity through custom typography, a unified component library, and a consistent colour scheme across platforms.",
+          "Before pivoting to a web-only strategy, I designed native app concepts for both iOS and Android. The challenge was making each platform feel native — respecting iOS and Material Design conventions for navigation, iconography, and button radii — while maintaining a distinctly Nametag identity across both.",
         imageBlocks: [
           {
             layout: "full",
             images: [
               {
                 src: "/images/portfolio/nametag/mobile-concepts-1.avif",
-                alt: "iOS and Android app concepts — native feel, unified brand",
+                alt: "iOS and Android — native feel, unified brand",
+                caption: "iOS and Android — native feel, unified brand.",
               },
             ],
           },
@@ -527,8 +532,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/nametag/mobile-concepts-2.avif",
-                alt: "Platform-specific adaptations with shared design language",
-                caption: "Platform-specific adaptations with shared design language.",
+                alt: "Platform-specific adaptations for navigation and interaction patterns",
+                caption: "Platform-specific adaptations for navigation and interaction patterns",
               },
             ],
           },
@@ -537,15 +542,15 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Design System",
         description:
-          "As a solo designer doing the work of an entire team, I needed to work smart. I built a design system in Figma that used Material Design as the foundation for both web and Android, with a separate iOS layer on top. This meant each custom component only needed two variations instead of three — a 33% reduction in design cost. The setup scaled across multiple Figma files and gave the engineering team a single source of truth.",
+          "As a solo designer doing the work of an entire team, I needed to work smart. I built a design system in Figma using Material Design as the foundation for both web and Android, with a separate iOS layer on top. Each custom component only needed two variations instead of three — a 33% reduction in design effort. The system scaled across multiple Figma files and gave the engineering team a single source of truth.",
         imageBlocks: [
           {
             layout: "full",
             images: [
               {
                 src: "/images/portfolio/nametag/figma-setup.avif",
-                alt: "Figma project structure — design system architecture",
-                caption: "Figma project structure — design system architecture.",
+                alt: "Design system architecture across multiple Figma files",
+                caption: "Design system architecture across multiple Figma files",
               },
             ],
           },
@@ -554,8 +559,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/nametag/ds-components.avif",
-                alt: "Material Design + iOS strategy — one component, two platforms",
-                caption: "Material Design + iOS strategy — one component, two platforms.",
+                alt: "One component, two platforms — Material Design + iOS",
+                caption: "One component, two platforms — Material Design + iOS",
               },
             ],
           },
@@ -563,7 +568,7 @@ export const portfolioProjects: PortfolioProject[] = [
       },
       {
         heading: "Outcome",
-        description: <>Nametag secured a <a href="https://finance.yahoo.com/news/okx-ventures-gsrv-co-lead-032400725.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">$2M seed round</a> co-led by OKX Ventures and GSRV as a direct result of this work. The product grew to 60,000 users with a 4.9-star rating on the Chrome Web Store before the service was eventually shut down. Despite that, this remains one of the highest-ROI engagements of my career — taking a product from alpha prototype to funded and shipped as a solo designer in under a year.</>,
+        description: <>Nametag secured a <a href="https://finance.yahoo.com/news/okx-ventures-gsrv-co-lead-032400725.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">$2M seed round</a> co-led by OKX Ventures and GSRV as a direct result of this work. The product grew to 60,000 users with a 4.9-star rating on the Chrome Web Store before the service was eventually shut down. Alpha prototype to funded and shipped, as a solo designer, in under a year.</>,
         imageBlocks: [],
       },
     ],
@@ -595,15 +600,15 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Payment Redesign",
         description:
-          "Booking.com processes tens of millions of euros in transactions daily across 140 countries, 50+ currencies, and 40+ languages. Unlike simpler payment models that only accept card payments, Booking supports over a dozen payment methods — from credit cards to PayPal instalments to WeChat Pay — with multiple ways to structure each payment. I led the initial effort to redesign this system, creating a future-proof payment experience that worked across mobile web, desktop web, iOS, and Android.",
+          "Booking.com processes tens of millions of euros in transactions daily across 140 countries, 50+ currencies, and 40+ languages. The platform supports over a dozen payment methods — from credit cards to PayPal instalments to WeChat Pay — with multiple ways to structure each payment. I led the initial effort to redesign this system, creating a future-proof payment experience across mobile web, desktop web, iOS, and Android.",
         imageBlocks: [
           {
             layout: "full",
             images: [
               {
                 src: "/images/portfolio/booking/payment-prototype.avif",
-                alt: "Early prototype exploring a new vision for Booking.com's payment system",
-                caption: "Early prototype exploring a new vision for Booking.com's payment system.",
+                alt: "Early prototype exploring a new vision for the payment system",
+                caption: "Early prototype exploring a new vision for the payment system",
               },
             ],
           },
@@ -612,14 +617,14 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/booking/payment-presentation.avif",
-                alt: "Presenting the new payment vision to leadership — a key moment in securing buy-in for the redesign",
-                caption: "Presenting the new payment vision to the team.",
+                alt: "Presenting the redesign vision to all product teams",
+                caption: "Presenting the new payment vision to all product teams",
                 zoomable: false,
               },
               {
                 src: "/images/portfolio/booking/payment-vision.avif",
-                alt: "The new payment vision — a modular system designed to handle complex global requirements while remaining user-friendly",
-                caption: "The new payment vision — a modular system designed to handle complex global requirements.",
+                alt: "The modular payment system — designed for global complexity",
+                caption: "The modular payment system — designed for global complexity",
               },
             ],
           },
@@ -628,21 +633,21 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Research & Prototyping",
         description:
-          "I prototype early and use it as a research tool rather than spending weeks in discovery. Using a working prototype, I ran remote user testing sessions, compiled the findings into an executive summary with links to key video moments — easy to skim for leadership, with source data available for those who wanted to go deeper. Several assumptions were confirmed: users were comfortable being taken to a separate payment mode before returning to the main site. Others were busted: clicking 'Pay' didn't mean users were ready to pay — they expected one final confirmation step before any money moved.",
+          "I prototype early and use it as a research tool. Using a working prototype, I ran remote user testing sessions, compiled the findings into an executive summary with links to key video moments — easy to skim for leadership, with source data available for those who wanted to go deeper. Several assumptions were confirmed: users were comfortable being taken to a separate payment mode before returning to the main site. Others were busted: clicking 'Pay' didn't mean users were ready to pay — they expected one final confirmation step before any money moved.",
         imageBlocks: [
           {
             layout: "grid-2-fluid",
             images: [
               {
                 src: "/images/portfolio/booking/prototype.gif",
-                alt: "Interactive payment prototype used for user testing",
-                caption: "Interactive payment prototype used for user testing.",
+                alt: "Interactive prototype used for remote user testing",
+                caption: "Interactive prototype used for remote user testing",
                 zoomable: false,
               },
               {
                 src: "/images/portfolio/booking/user-testing-report.avif",
-                alt: "User testing summary report with linked video highlights",
-                caption: "User testing summary report with linked video highlights.",
+                alt: "Executive summary with linked video highlights for stakeholders",
+                caption: "Executive summary with linked video highlights for stakeholders",
                 zoomable: false,
               },
             ],
@@ -652,15 +657,15 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Conversion Optimisation",
         description:
-          "I was the lead designer on two teams simultaneously — Accessibility and Mobile Payments — each consisting of 6–8 people across development, analytics, UX writing, research, and management. Every design change was A/B tested with roughly a month of data collection before we reviewed metrics and decided whether to ship. We measured direct conversion impact alongside secondary metrics like support ticket volume and abandonment rates. Due to confidentiality I can't share specifics of each test, but the cumulative impact was substantial.",
+          "I was the lead designer on two teams simultaneously — Accessibility and Mobile Payments — each consisting of 6–8 people across development, analytics, UX writing, research, and management. Every design change was A/B tested with roughly a month of data collection before we reviewed metrics and decided whether to ship. We measured direct conversion impact alongside secondary metrics like support ticket volume and abandonment rates. Due to confidentiality I can't share specifics of each test.",
         imageBlocks: [
           {
             layout: "full",
             images: [
               {
                 src: "/images/portfolio/booking/payment-modal.avif",
-                alt: "Payment modal — one of solutions considered during the redesign process",
-                caption: "Payment modal — one of solutions considered during the redesign process.",
+                alt: "Payment modal — one of several solutions explored during the redesign",
+                caption: "Payment modal — one of several solutions explored during the redesign",
               },
             ],
           },
@@ -669,8 +674,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/booking/design-workshop.avif",
-                alt: "Design workshop — mapping the current payment experience",
-                caption: "Design workshop — mapping the current payment experience.",
+                alt: "Mapping the current payment experience with the team",
+                caption: "Mapping the current payment experience with the team",
               },
             ],
           },
@@ -710,7 +715,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "The Challenge",
         description:
-          "Queensland's Department of Natural Resources, Mines and Energy needed to make vast geological datasets publicly accessible to support strategic decision-making across the state's $38 billion mining industry. The portal's audience spans corporate teams in city offices to field surveyors on remote sites — each with different needs, connectivity constraints, and technical literacy. My role was to lead the design phase: gather requirements from stakeholders, create a design direction built on CKAN and the Queensland Government's design framework, and deliver high-fidelity mockups with a clickable prototype.",
+          "Queensland's mining industry is worth $38 billion. The Department of Natural Resources, Mines and Energy needed to make vast geological datasets publicly accessible to support strategic decision-making across that sector. The portal's audience spans corporate teams in city offices to field surveyors on remote sites — each with different needs, connectivity constraints, and technical literacy.",
         imageBlocks: [
           {
             layout: "full",
@@ -736,7 +741,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/gsq/dataset.avif",
                 alt: "Dataset detail page",
-                caption: "Dataset detail page — designed to surface critical information while remaining accessible to non-experts.",
+                caption: "Dataset detail page — designed to surface critical information while remaining accessible to non-experts",
               },
             ],
           },
@@ -745,7 +750,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Design & Delivery",
         description:
-          "I leveraged the Queensland Government's Single Website Experience framework for consistency, accessibility, and development speed. The entire design phase — from stakeholder meetings through high-fidelity mockups and a clickable prototype — was delivered in under 40 hours. The tight timeline demanded decisive design choices: no unnecessary exploration, just clear solutions that met user requirements while working within the constraints of CKAN and the government design system.",
+          "I leveraged the Queensland Government's Single Website Experience framework for consistency, accessibility, and development speed. The entire design phase — from stakeholder meetings through high-fidelity mockups and a clickable prototype — was delivered in under 40 hours. The tight timeline demanded decisive design choices: no unnecessary exploration, just clear solutions that met user requirements while working within CKAN and the government design system.",
         imageBlocks: [
           {
             layout: "grid-2-fluid",
@@ -753,12 +758,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/gsq/map-region-selector.avif",
                 alt: "Map-based region selector — allowing users to visually explore datasets by geographic area",
-                caption: "Map-based region selector — visual exploration of datasets by geographic area.",
+                caption: "Map-based region selector — visual exploration of datasets by geographic area",
               },
               {
                 src: "/images/portfolio/gsq/faceted-search.avif",
-                alt: "Discovering datasets using faceted search",
-                caption: "Faceted search UI.",
+                alt: "Faceted search across geological datasets",
+                caption: "Faceted search across geological datasets",
               },
             ],
           },
@@ -768,12 +773,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/gsq/downloads.avif",
                 alt: "Dedicated download management interface for large datasets",
-                caption: "Dedicated download management interface for large datasets.",
+                caption: "Dedicated download management interface for large datasets",
               },
               {
                 src: "/images/portfolio/gsq/colours.avif",
                 alt: "Colour palette for the GSQ brand",
-                caption: "Colour palette for the GSQ brand.",
+                caption: "Colour palette for the GSQ brand",
               },
             ],
           },
@@ -782,7 +787,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Outcome",
         description:
-          "The GSQ Open Data Portal launched in 2020 and continues to serve Queensland's mining industry, researchers, and government agencies. Delivering a complete design direction in under 40 hours — from requirements gathering to clickable prototype — demonstrated that rigorous design doesn't require months of process when the scope is clear and decisions are made quickly.",
+          "The GSQ Open Data Portal launched in 2020 and continues to serve Queensland's mining industry, researchers, and government agencies.",
         imageBlocks: [],
       },
     ],
@@ -807,7 +812,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "The Concept",
         description:
-          "Boston's North End is one of the city's most historic neighbourhoods — home to generations of 20th century immigrants whose stories are embedded in its streets and buildings. I designed an AR app that turns the neighbourhood into an open-air museum, letting visitors point their phone at locations and discover the stories behind them. The most critical design challenge was permission priming: the app needs both camera and geolocation access to function, two of the most sensitive permissions a phone can grant. Getting users past that gate without breaking trust determined whether the experience worked at all.",
+          "Boston's North End is one of the city's most historic neighbourhoods — home to generations of 20th century immigrants whose stories are embedded in its streets and buildings. I designed an AR app that turns the neighbourhood into an open-air museum, letting visitors point their phone at locations and discover the stories behind them. The most critical design challenge was permission priming: the app needs both camera and geolocation access to function. Getting users past that gate without breaking trust determined whether the experience worked at all.",
         imageBlocks: [
           {
             layout: "full",
@@ -823,13 +828,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/boston-north-end/map.avif",
-                alt: "Map view — discover stories by exploring the neighbourhood map",
-                caption: "Map view — discover stories by exploring the neighbourhood map.",
+                alt: "Discover stories by exploring the neighbourhood map",
+                caption: "Discover stories by exploring the neighbourhood map",
               },
               {
                 src: "/images/portfolio/boston-north-end/story.avif",
-                alt: "Story view — immersive AR storytelling triggered by real-world locations",
-                caption: "Story view — immersive AR storytelling triggered by real-world locations.",
+                alt: "Immersive storytelling triggered by real-world locations",
+                caption: "Immersive storytelling triggered by real-world locations",
               },
             ],
           },
@@ -838,13 +843,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/boston-north-end/write.avif",
-                alt: "We allowed users to submit stories, which were then curated",
-                caption: "We allowed users to submit stories, which were then curated.",
+                alt: "User-submitted stories, curated and added to the experience",
+                caption: "User-submitted stories, curated and added to the experience",
               },
               {
                 src: "/images/portfolio/boston-north-end/ar-discovery.avif",
-                alt: "Stories discovery in the neighbourhood using AR",
-                caption: "Stories discovery in the neighbourhood using AR.",
+                alt: "Story markers overlaid on the real world through AR",
+                caption: "Story markers overlaid on the real world through AR",
               },
             ],
           },
@@ -853,7 +858,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "North Square",
         description:
-          "North Square is the neighbourhood's central gathering point, recently restored with a bronze plaque map installed in the ground. I designed an AR feature that interacts with this physical map — point your phone at the bronze cast and see story markers appear over their real-world locations. The result was a clickable prototype delivered in one week from project kickoff, guiding the development team for the build.",
+          "North Square is the neighbourhood's central gathering point, recently restored with a bronze plaque map installed in the ground. I designed an AR feature that interacts with this physical map — point your phone at the bronze cast and see story markers appear over their real-world locations. Clickable prototype delivered in one week from kickoff.",
         imageBlocks: [
           {
             layout: "full",
@@ -869,8 +874,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/boston-north-end/ar-1.avif",
-                alt: "AR experience overlaying story pins on a real-world plaque located in a square in Boston's North End",
-                caption: "AR experience overlaying story pins on a real-world plaque located in a square in Boston's North End.",
+                alt: "AR story pins overlaid on the physical plaque",
+                caption: "AR story pins overlaid on the physical plaque",
               },
             ],
           },
@@ -907,19 +912,20 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "The Product",
         description:
-          "Cosmitto is a marketplace where corporate training providers list their courses and where organisations can search, compare, and find training — from workshops to online learning to university short courses. My job was to translate the founders' pitch deck and broad product ideas into a complete, development-ready design for the MVP. The platform has two sides: a consumer-facing search experience with category, location, and faceted filtering, and a provider portal where training companies manage their profiles, course listings, and upgrade plans.",
+          "Cosmitto is a marketplace where corporate training providers list their courses and organisations search, compare, and book training — from workshops to online learning to university short courses. My job was to translate the founders' pitch deck into a complete, development-ready design for the MVP.",
         imageBlocks: [
           {
             layout: "grid-2",
             images: [
               {
                 src: "/images/portfolio/cosmitto/search.avif",
-                alt: "Search experience — find training by category, location, and filters",
+                alt: "Search by category, location, and filters",
+                caption: "Search by category, location, and filters",
               },
               {
                 src: "/images/portfolio/cosmitto/search-tablet.avif",
-                alt: "Tablet search — list and map views for different browsing contexts",
-                caption: "Tablet search — list and map views for different browsing contexts.",
+                alt: "List and map views on tablet",
+                caption: "List and map views on tablet",
               },
             ],
           },
@@ -929,7 +935,6 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/cosmitto/course.avif",
                 alt: "Course detail page — evaluate a course and connect with the provider",
-                caption: "Course detail page — evaluate a course and connect with the provider.",
               },
             ],
           },
@@ -938,7 +943,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Provider Portal",
         description:
-          "The other half of the marketplace: a CMS where training providers manage their presence on Cosmitto. I designed the full admin experience — profile management, course listing creation and editing, and an upgrade flow for providers who wanted to list more than two courses. I also designed a direct booking flow for a future release, ensuring the product had a clear path beyond MVP even though budget and complexity pushed it past the initial scope.",
+          "The other half of the marketplace: a CMS where training providers manage their presence on Cosmitto. I designed the full admin experience — profile management, course listing creation and editing, and an upgrade flow for providers who wanted to list more than two courses. I also designed a direct booking flow for a future release, giving the product a clear path beyond MVP.",
         imageBlocks: [
           {
             layout: "full",
@@ -946,7 +951,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/cosmitto/provider-portal.avif",
                 alt: "Provider Portal",
-                caption: "Provider Portal — where training companies manage their presence on Cosmitto.",
+                caption: "Provider dashboard — manage profile and listings",
               },
             ],
           },
@@ -955,8 +960,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/cosmitto/portal-cms.avif",
-                alt: "Provider CMS — adding and editing courses",
-                caption: "Provider CMS — adding and editing courses.",
+                alt: "Adding and editing course listings",
+                caption: "Adding and editing course listings",
               },
             ],
           },
@@ -965,8 +970,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/cosmitto/portal-upgrade.avif",
-                alt: "Upgrade flow — unlocking additional course listings",
-                caption: "Upgrade flow — unlocking additional course listings.",
+                alt: "Upgrade flow for additional course slots",
+                caption: "Upgrade flow for additional course slots",
               },
             ],
           },
@@ -975,7 +980,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/cosmitto/booking-flow.avif",
-                alt: "Booking flow — designed for a future release",
+                alt: "Booking flow — designed for post-MVP release",
+                caption: "Booking flow — designed for post-MVP release",
               },
               {
                 src: "/images/portfolio/cosmitto/booking-confirmation.avif",
@@ -988,7 +994,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Outcome",
         description:
-          "Cosmitto shipped within a few months — timed to capture the surge in remote corporate training driven by COVID-19. The project spanned 180 hours from pitch deck interpretation through design, QA, and developer handoff. The site launched with search, provider profiles, and course listings, with the booking flow ready for the next phase.",
+          "Cosmitto shipped within a few months — timed to capture the surge in remote corporate training driven by COVID-19. The full design phase spanned 180 hours from brief through QA and developer handoff.",
         imageBlocks: [],
       },
     ],
@@ -1021,7 +1027,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "The Vision",
         description:
-          "In 2016, creative.ai was exploring a radical premise: what if AI could be a creative collaborator, not just a tool? I joined the Berlin-based startup as lead designer to give shape to that vision across two products. The first was a text-to-design generator — users would input keywords and the system would produce images, posters, and websites in real time using machine learning. Style transfer let users remix any creative asset with a completely different aesthetic instantly. We explored concepts for voice integration — creative teams describing ideas aloud and having them materialise on screen — though this remained conceptual. This was years before Midjourney, DALL-E, or Stable Diffusion existed.",
+          "In 2016, creative.ai was exploring a radical premise: what if AI could be a creative collaborator, not just a tool? I joined the Berlin-based startup as lead designer to give shape to that vision across two products. The first was a text-to-design generator — users would input keywords and the system would produce images, posters, and websites in real time using machine learning. Style transfer let users remix any creative asset with a completely different aesthetic instantly. This was years before Midjourney, DALL-E, or Stable Diffusion existed.",
         imageBlocks: [
           {
             layout: "full",
@@ -1037,13 +1043,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/creative-ai/sliders.avif",
-                alt: "Steering ML output through real-time parameter controls",
-                caption: "Steering ML output through real-time parameter controls.",
+                alt: "Real-time parameter controls for steering ML output",
+                caption: "Real-time parameter controls for steering ML output",
               },
               {
                 src: "/images/portfolio/creative-ai/style-guide.avif",
-                alt: "Style guides generated automatically from a single image",
-                caption: "Style guides generated automatically from a single image.",
+                alt: "Defining consistent visual language for AI-generated assets",
+                caption: "Defining consistent visual language for AI-generated assets",
               },
             ],
           },
@@ -1052,8 +1058,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/creative-ai/style-transfer.avif",
-                alt: "Style transfer — applying different aesthetics to creative assets in real time",
-                caption: "Style transfer — applying different aesthetics to creative assets in real time.",
+                alt: "Style transfer — applying different aesthetics instantly",
+                caption: "Style transfer — applying different aesthetics instantly",
               },
             ],
           },
@@ -1062,14 +1068,15 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Design Sprint to Prototype",
         description:
-          "The second product, Ideaverse, needed to go from vague idea to investor-ready prototype in two weeks. I facilitated a remote design sprint across Berlin, Amsterdam, Helsinki, Vienna, and Australia — two days of workshops to align the team on a single product direction. We explored over a dozen concepts, voted on favourites, and narrowed down to one: a universe of ideas where users could explore, collect, and fine-tune AI-generated creative inspiration, then collaborate with teammates on art direction.",
+          "The second product, Ideaverse, needed to go from vague idea to investor-ready prototype in two weeks. I facilitated a remote design sprint across Berlin, Amsterdam, Helsinki, Vienna, and Australia — two days of workshops to align the team on a single product direction. We narrowed a dozen concepts down to one: a universe of ideas where users could explore, collect, and fine-tune AI-generated creative inspiration, then collaborate with teammates on art direction.",
         imageBlocks: [
           {
             layout: "full",
             images: [
               {
                 src: "/images/portfolio/creative-ai/workshop.avif",
-                alt: "Remote design sprint — aligning a distributed team across five cities",
+                alt: "Remote design sprint across five cities",
+                caption: "Remote design sprint across five cities",
               },
             ],
           },
@@ -1078,13 +1085,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/creative-ai/sprint-day-1.avif",
-                alt: "Day 1 output — strategic goals, requirements, and competitive analysis",
-                caption: "Day 1 output — strategic goals, requirements, and competitive analysis.",
+                alt: "Strategic goals, requirements, and competitive analysis",
+                caption: "Strategic goals, requirements, and competitive analysis",
               },
               {
                 src: "/images/portfolio/creative-ai/sprint-day-2.avif",
-                alt: "Day 2 output — ideation, voting, and consensus on product direction",
-                caption: "Day 2 output — ideation, voting, and consensus on product direction.",
+                alt: "Ideation, voting, and consensus on product direction",
+                caption: "Ideation, voting, and consensus on product direction",
               },
             ],
           },
@@ -1110,14 +1117,15 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "The Product",
         description:
-          "Ideaverse was built around the metaphor of an infinite universe of ideas. Users could explore AI-generated creative concepts, collect inspiration into a personalised vision, fine-tune the creative direction through intuitive controls, and collaborate with teammates using a version control system designed for creatives. I delivered the complete design — from concept through high-fidelity mockups to a clickable prototype — in the second week. The prototype helped reassure investors, clarify requirements for developers, and align the entire team on the road ahead.",
+          "Ideaverse was built around the metaphor of an infinite universe of ideas. Users could explore AI-generated creative concepts, collect inspiration, fine-tune creative direction through intuitive controls, and collaborate with teammates using version control designed for creatives. I delivered the complete design — concept through clickable prototype — in the second week. The prototype helped reassure investors, clarify requirements for developers, and align the team on the road ahead.",
         imageBlocks: [
           {
             layout: "full",
             images: [
               {
                 src: "/images/portfolio/creative-ai/ideaverse-explore.avif",
-                alt: "Explore an infinite universe of ideas",
+                alt: "Explore an infinite universe of ideas ",
+                caption: "Explore an infinite universe of ideas",
               },
             ],
           },
@@ -1126,8 +1134,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/creative-ai/ideaverse-collect.avif",
-                alt: "Collect inspiration to form your creative vision",
-                caption: "Collect inspiration to form your creative vision.",
+                alt: "Collect inspiration to form a creative vision",
+                caption: "Collect inspiration to form a creative vision",
               },
             ],
           },
@@ -1136,13 +1144,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/creative-ai/ideaverse-finetune.avif",
-                alt: "Fine-tune your creative direction",
-                caption: "Fine-tune your creative direction — intuitive controls to steer AI output towards your vision.",
+                alt: "Fine-tune creative direction with intuitive controls",
+                caption: "Fine-tune creative direction with intuitive controls",
               },
               {
                 src: "/images/portfolio/creative-ai/ideaverse-collaborate.avif",
-                alt: "Git for creatives — collaborate and version-control creative work",
-                caption: "Git for creatives — collaborate and version-control creative work.",
+                alt: "Git for creatives — version control for design work",
+                caption: "Git for creatives — version control for design work",
               },
             ],
           },
@@ -1183,11 +1191,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/creative-ai/team.avif",
-                alt: "The creative.ai team — Berlin rooftop",
+                alt: "The creative.ai team — Vienna workshop",
+                caption: "The creative.ai team — Vienna workshop",
               },
               {
                 src: "/images/portfolio/creative-ai/sketching.avif",
-                alt: "Working through concepts with the CEO",
+                alt: "Working through product concepts before jumping into Figma",
+                caption: "Working through product concepts before jumping into Figma",
               },
             ],
           },
@@ -1196,7 +1206,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Outcome",
         description:
-          "Neither product launched — the vision required ML capabilities that weren't mature enough in 2016. But the core thesis was right. Today, tools like Midjourney, DALL-E, and Stable Diffusion have validated everything creative.ai was reaching for. Working at the frontier of AI and design this early shaped how I approach emerging technology products — with the conviction to explore bold ideas and the pragmatism to know when to prototype fast and test assumptions.",
+          "Neither product launched — the vision required ML capabilities that weren't mature enough in 2016. But the core thesis was right. Today, tools like Midjourney, DALL-E, and Stable Diffusion have validated everything creative.ai was reaching for.",
         imageBlocks: [],
       },
     ],
@@ -1229,15 +1239,15 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Design Sprints",
         description:
-          "Design sprints became the most impactful way of working I experienced at Envato. A week of intense problem-solving — titles left at the door — where concept, design, and a working prototype shipped by Friday. For the Layers project, a partnership between Envato and Obox, we ran a full sprint that took a landing page from ideation to shipped product. For Unstock, we applied the same approach to prototype a completely new take on stock photography. In a separate sprint, I designed a prototype by Wednesday, developers coded it by Friday, and management approved two more weeks of investment to ship it — a process that would typically take 4–8 weeks.",
+          "Design sprints became the most impactful way of working I experienced at Envato. A week of intense problem-solving — titles left at the door — where concept, design, and a working prototype shipped by Friday. For the Layers project, a partnership between Envato and Obox, we ran a full sprint that took a landing page from ideation to shipped product. For Unstock, we applied the same approach to prototype a completely new take on stock photography.",
         imageBlocks: [
           {
             layout: "full",
             images: [
               {
                 src: "/images/portfolio/envato/sprint-war-room.avif",
-                alt: "The design war room for the Layers project",
-                caption: "The design war room for the Layers project.",
+                alt: "The design war room for the Layers sprint",
+                caption: "The design war room for the Layers sprint",
               },
             ],
           },
@@ -1246,13 +1256,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/envato/sprint-wireframes.avif",
-                alt: "Rapid wireframing, feedback, and dot voting",
-                caption: "Rapid wireframing, feedback, and dot voting.",
+                alt: "Rapid wireframing and feedback rounds",
+                caption: "Rapid wireframing and feedback rounds",
               },
               {
                 src: "/images/portfolio/envato/feedback-dot-voting.avif",
-                alt: "Voting on home page design direction",
-                caption: "Voting on home page design direction.",
+                alt: "Dot voting to prioritise design directions",
+                caption: "Dot voting to prioritise design directions",
               },
             ],
           },
@@ -1261,8 +1271,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/envato/layers-outcome.avif",
-                alt: "The shipped Layers landing page — one week from concept to production",
-                caption: "The shipped Layers landing page — one week from concept to production.",
+                alt: "Layers — one week from concept to production",
+                caption: "Layers — one week from concept to production",
               },
             ],
           },
@@ -1271,8 +1281,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/envato/unstock.avif",
-                alt: "Unstock — a new take on stock photography, born from another design sprint",
-                caption: "Unstock — a new take on stock photography, born from another design sprint.",
+                alt: "Unstock — a new take on stock photography",
+                caption: "Unstock — a new take on stock photography",
               },
             ],
           },
@@ -1301,7 +1311,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "User Research & Advocacy",
         description:
-          "I built a repeatable user testing pipeline: Mailchimp campaigns to recruit participants, Calendly for self-service scheduling, live sessions streamed to the team via Google Hangouts, and Slack for real-time questions from observers. Beyond testing, I pushed design thinking across the organisation. I created Design Party — an event where designers and non-designers practiced problem-solving together using storyboarding and rapid prototyping. I set up an Empathy Board next to the kitchen, surfacing real user complaints from the Envato Market forums in the highest-traffic spot in the office.",
+          "I built a repeatable user testing pipeline: Mailchimp campaigns to recruit participants, Calendly for self-service scheduling, live sessions streamed to the team via Google Hangouts, and Slack for real-time questions from observers. Beyond testing, I pushed design thinking across the organisation — creating Design Party, an event where designers and non-designers practiced problem-solving together, and setting up an Empathy Board next to the kitchen, surfacing real user complaints in the highest-traffic spot in the office.",
         imageBlocks: [
           {
             layout: "grid-2",
@@ -1333,7 +1343,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Outcome",
         description:
-          "Envato shaped how I think about design at scale — working with passionate communities, shipping through sprints, advocating for users across a growing organisation, and writing production code alongside developers. The Envato Market API remains live at build.envato.com with 30+ community-built apps. The sprint methodology I practiced here became foundational to how I run client engagements today.",
+          "Two and a half years at Envato shaped how I think about design at scale. The sprint methodology I practiced here became foundational to how I run client engagements today.",
         imageBlocks: [],
       },
     ],
@@ -1357,7 +1367,7 @@ export const portfolioProjects: PortfolioProject[] = [
     sections: [
       {
         heading: "Giza AR",
-        description: <>In collaboration with the Giza Project at Harvard University, I designed an AR app for the tombs of the Giza Necropolis. The concept: point your phone at ancient hieroglyphs and see them digitally restored to their original vivid colours, as interpreted by Harvard Egyptology professors. My responsibility was to create the conceptual designs and collaborate with developers on the prototype. We ran a week-long hackathon in Cairo and tested the app on-site in the actual tombs. The team also captured a 3D laser scan of the tomb of Meresankh III using Matterport, which was later <a href="https://www.theguardian.com/travel/2020/apr/15/egyptian-tomb-ancient-wonders-open-for-virtual-tour-in-lockdown" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">featured in The Guardian</a>.</>,
+        description: <>In collaboration with the Giza Project at Harvard University, I designed an AR app for the tombs of the Giza Necropolis. The concept: point your phone at ancient hieroglyphs and see them digitally restored to their original vivid colours, as interpreted by Harvard Egyptology professors. We ran a week-long hackathon in Cairo and tested the app on-site in the actual tombs. The team also captured a 3D laser scan of the tomb of Meresankh III using Matterport, later <a href="https://www.theguardian.com/travel/2020/apr/15/egyptian-tomb-ancient-wonders-open-for-virtual-tour-in-lockdown" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">featured in The Guardian</a>.</>,
         imageBlocks: [
           {
             layout: "full",
@@ -1378,7 +1388,8 @@ export const portfolioProjects: PortfolioProject[] = [
               },
               {
                 src: "/images/portfolio/harvard/giza-concepts.avif",
-                alt: "Conceptual designs — map navigation, guided tours, and artefact exploration",
+                alt: "Map navigation, guided tours, and artefact exploration",
+                caption: "Map navigation, guided tours, and artefact exploration"
               },
             ],
           },
@@ -1387,7 +1398,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/harvard/giza-360.avif",
-                alt: "360-degree webGL experience — exploring the tomb of Meresankh III in immersive 3D",
+                alt: "360° WebGL experience inside the tomb of Meresankh III",
+                caption: "360° WebGL experience inside the tomb of Meresankh III",
               },
             ],
           },
@@ -1396,7 +1408,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Parthenon AR",
         description:
-          "For IARPS, a cultural institution in Greece, I created conceptual designs for an AR experience at the Acropolis of Athens. The app would use object recognition to overlay 3D models showing what the Parthenon looked like millennia ago. I designed features for annotation overlays, 3D artefact inspection, wayfinding tours, and a cultural repatriation awareness campaign — illustrating how AR could support the case for returning the Parthenon marbles from the British Museum. The concept also explored an AR 'resurrection' of the lost Statue of Athena, a gold and marble monument that once towered inside the Parthenon.",
+          "For IARPS, a cultural institution in Greece, I designed an AR experience at the Acropolis of Athens. The app would use object recognition to overlay 3D models showing what the Parthenon looked like millennia ago. I designed annotation overlays, 3D artefact inspection, wayfinding tours, and a cultural repatriation awareness campaign — illustrating how AR could support the case for returning the Parthenon marbles. The concept also explored an AR 'resurrection' of the lost Statue of Athena, a monument that once towered inside the Parthenon.",
         imageBlocks: [
           {
             layout: "full",
@@ -1404,7 +1416,6 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/parthenon-hero.avif",
                 alt: "AR overlay — the Parthenon as it appeared in antiquity",
-                caption: "AR overlay — the Parthenon as it appeared in antiquity.",
               },
             ],
           },
@@ -1418,8 +1429,8 @@ export const portfolioProjects: PortfolioProject[] = [
               },
               {
                 src: "/images/portfolio/harvard/parthenon-3d.avif",
-                alt: "3D artefact inspection",
-                caption: "3D artefact inspection — exploring the Parthenon's sculptures in detail.",
+                alt: "Inspecting artefacts in 3D",
+                caption: "Inspecting artefacts in 3D",
               },
             ],
           },
@@ -1428,18 +1439,16 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/harvard/parthenon-repatriation-1.avif",
-                alt: "Cultural repatriation awareness — the Parthenon marbles",
-                caption: "Cultural repatriation awareness — the Parthenon marbles.",
+                alt: "Cultural repatriation — the case for returning the marbles",
+                caption: "Cultural repatriation — the case for returning the marbles",
               },
               {
                 src: "/images/portfolio/harvard/parthenon-repatriation-2.avif",
                 alt: "Supporting the return of Greek cultural heritage",
-                caption: "Supporting the return of Greek cultural heritage.",
               },
               {
                 src: "/images/portfolio/harvard/parthenon-repatriation-3.avif",
                 alt: "Cultural reparation petition form",
-                caption: "Cultural reparation petition form.",
               },
             ],
           },
@@ -1448,8 +1457,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/harvard/parthenon-wayfinding.avif",
-                alt: "Wayfinding — a structured tour without the herding experience",
-                caption: "Wayfinding — a structured tour without the herding experience.",
+                alt: "Self-guided tours without the herding experience",
+                caption: "Self-guided tours without the herding experience",
               },
             ],
           },
@@ -1458,8 +1467,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/harvard/athena-1.avif",
-                alt: "Concept 1 — AR resurrection of the Statue of Athena",
-                caption: "AR resurrection of the Statue of Athena.",
+                alt: "Concept 1 — AR resurrection of the lost Statue of Athena",
+                caption: "AR resurrection of the lost Statue of Athena",
               },
               {
                 src: "/images/portfolio/harvard/athena-2.avif",
@@ -1497,12 +1506,11 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/blenheim-scan-2.avif",
                 alt: "Inscriptions invisible to the naked eye",
-                caption: "Inscriptions invisible to the naked eye — revealed through laser scanning.",
+                caption: "Inscriptions invisible to the naked eye",
               },
               {
                 src: "/images/portfolio/harvard/blenheim-scan-3.avif",
                 alt: "Hidden graffiti revealed",
-                caption: "Hidden graffiti revealed — uncovering stories from the past.",
               },
             ],
           },
@@ -1512,12 +1520,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/blenheim-story.avif",
                 alt: "The AR app guiding visitors through the site's history",
-                caption: "The AR app guiding visitors through the site's history.",
+                caption: "The AR app guiding visitors through the site's history",
               },
               {
                 src: "/images/portfolio/harvard/blenheim-xray.avif",
-                alt: "AR x-ray — revealing what the naked eye can't see",
-                caption: "AR x-ray — revealing what the naked eye can't see.",
+                alt: "Phone as x-ray — revealing what the naked eye can't see",
+                caption: "Phone as x-ray — revealing what the naked eye can't see",
               },
             ],
           },
@@ -1526,7 +1534,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Harvard Library AR",
         description:
-          "For Harvard University Libraries, I designed a mobile app combining interactive maps, AR wayfinding, and on-site discovery for campus libraries. Visitors could locate buildings on a satellite map, then switch to AR mode for guided walking directions overlaid onto the real world. Once inside, the app surfaced rich content about collections and exhibits — Widener Library's 450-language collection, rare artefacts like the Gutenberg Bible (one of 49 surviving copies), and historical photography of the buildings themselves. The design had to serve both Harvard community members navigating between libraries and first-time visitors exploring the campus.",
+          "For Harvard University Libraries, I designed a mobile app combining interactive maps, AR wayfinding, and on-site discovery for campus libraries. Visitors could locate buildings on a satellite map, switch to AR mode for guided walking directions, and explore rich content about collections and exhibits once inside. The design had to serve both Harvard community members navigating between libraries and first-time visitors exploring the campus.",
         imageBlocks: [
           {
             layout: "grid-2",
@@ -1534,12 +1542,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/library-map.avif",
                 alt: "Map view — locating Harvard libraries on campus",
-                caption: "Map view — locating Harvard libraries on campus.",
+                caption: "Map view — locating Harvard libraries on campus",
               },
               {
                 src: "/images/portfolio/harvard/library-wayfinding.avif",
                 alt: "AR wayfinding — guided walking directions to Widener Library",
-                caption: "AR wayfinding — guided walking directions to Widener Library.",
+                caption: "AR wayfinding — guided walking directions to Widener Library",
               },
             ],
           },
@@ -1549,12 +1557,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/library-widener.avif",
                 alt: "Library detail — Widener Library with collection overview and historical photos",
-                caption: "Library detail — Widener Library with collection overview and historical photos.",
+                caption: "Library detail — Widener Library with collection overview and historical photos",
               },
               {
                 src: "/images/portfolio/harvard/library-gutenberg.avif",
                 alt: "Exhibit detail — the Gutenberg Bible, one of the earliest books printed in Europe",
-                caption: "Exhibit detail — the Gutenberg Bible, one of the earliest books printed in Europe.",
+                caption: "Exhibit detail — the Gutenberg Bible, one of the earliest books printed in Europe",
               },
             ],
           },
@@ -1563,7 +1571,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "New Alexandria",
         description:
-          "In collaboration with the Center for Hellenic Studies at Harvard University, I designed a platform for academic commentaries on ancient texts — a sort of Stack Overflow for humanities scholarship. Millennia-old Greek and Latin texts are notoriously difficult to understand; professors spend years writing commentary books translating and interpreting them. The traditional print publishing method is slow, costly, and skewed to the elite few with publisher access. New Alexandria aimed to make commentaries open, peer-reviewed, and accessible to everyone. I designed a split-view reading experience (original text alongside commentary), multi-language support for Latin, Greek, and Arabic scripts, and an invite-only publishing model to cultivate quality before opening access.",
+          "In collaboration with the Center for Hellenic Studies at Harvard University, I designed a platform for academic commentaries on ancient texts — a sort of Stack Overflow for humanities scholarship. Professors spend years writing commentary books translating and interpreting millennia-old texts, but traditional publishing is slow, costly, and accessible to few. New Alexandria aimed to make commentaries open, peer-reviewed, and accessible to everyone. I designed a split-view reading experience, multi-language support for Latin, Greek, and Arabic scripts, and an invite-only publishing model to cultivate quality before opening access.",
         imageBlocks: [
           {
             layout: "full",
@@ -1580,6 +1588,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/harvard/new-alexandria-commentary.avif",
                 alt: "Commentary on Homer's Iliad with side-by-side reading",
+                caption: "Commentary on Homer's Iliad with side-by-side reading.",
               },
             ],
           },
@@ -1588,13 +1597,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/harvard/new-alexandria-greek.avif",
-                alt: "Ancient Greek text with multiple available versions and translations",
-                caption: "Ancient Greek text with multiple available versions and translations.",
+                alt: "Ancient Greek text with multiple translations",
+                caption: "Ancient Greek text with multiple translations",
               },
               {
                 src: "/images/portfolio/harvard/new-alexandria-split.avif",
-                alt: "Split view — original text and commentary side by side",
-                caption: "Split view — original text and commentary side by side.",
+                alt: "Split view — original text alongside commentary",
+                caption: "Split view — original text alongside commentary",
               },
             ],
           },
@@ -1603,8 +1612,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/harvard/new-alexandria-search.avif",
-                alt: "Search across commentaries, texts, and users",
-                caption: "Search across commentaries, texts, and users.",
+                alt: "Search across commentaries, texts, and scholars",
+                caption: "Search across commentaries, texts, and scholars",
               },
             ],
           },
@@ -1612,7 +1621,7 @@ export const portfolioProjects: PortfolioProject[] = [
       },
       {
         heading: "Outcome",
-        description: <>The Giza prototype secured subsequent projects including the Zhejiang University Museum AR app and the Parthenon concept. The Harvard Library AR app extended the wayfinding patterns we'd developed into Harvard's own campus. The 3D scan of Meresankh III's tomb was <a href="https://www.theguardian.com/travel/2020/apr/15/egyptian-tomb-ancient-wonders-open-for-virtual-tour-in-lockdown" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">featured in The Guardian</a> and remains publicly accessible via Matterport. This body of work established a repeatable design approach for cultural AR and campus experiences — balancing historical accuracy with intuitive mobile interactions — that I applied across four countries and multiple Harvard collaborations.</>,
+        description: <>The Giza prototype secured subsequent projects including the Zhejiang University Museum AR app and the Parthenon concept. The Harvard Library AR app extended the wayfinding patterns we'd developed into Harvard's own campus. The 3D scan of Meresankh III's tomb was <a href="https://www.theguardian.com/travel/2020/apr/15/egyptian-tomb-ancient-wonders-open-for-virtual-tour-in-lockdown" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">featured in The Guardian</a> and remains publicly accessible via Matterport.</>,
         imageBlocks: [],
       },
     ],
@@ -1642,15 +1651,15 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "The Challenge",
         description:
-          "The NSW Climate Data Portal needed to make petabytes of climate data available to researchers, emergency services, government agencies, media, and the general public. As the sole designer on a team of engineers and government stakeholders, my job was to synthesise competing requirements into a single coherent design direction — then validate it. The portal is built on CKAN, an open-source data platform, and needed to comply with the NSW Government design system while solving for the unique challenges of navigating and downloading massive datasets.",
+          "The NSW Climate Data Portal needed to make petabytes of climate data available to researchers, emergency services, government agencies, media, and the general public. As the sole designer on a team of engineers and government stakeholders, my job was to synthesise competing requirements into a single coherent design direction. The portal is built on CKAN, an open-source data platform, and needed to comply with the NSW Government design system while solving for the unique challenges of navigating and downloading massive datasets.",
         imageBlocks: [
           {
             layout: "full",
             images: [
               {
                 src: "/images/portfolio/nsw-cdp/analysis.avif",
-                alt: "Thorough analysis of the existing landscape and stakeholder requirements",
-                caption: "Thorough analysis of the existing landscape and stakeholder requirements.",
+                alt: "Landscape analysis and stakeholder requirements synthesis",
+                caption: "Landscape analysis and stakeholder requirements synthesis",
               },
             ],
           },
@@ -1666,8 +1675,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/nsw-cdp/dataset-page.avif",
-                alt: "Dataset page — download the full dataset or customise to a specific region",
-                caption: "Dataset page — download the full dataset or customise to a specific region.",
+                alt: "Dataset page — download the full dataset or customise by region",
+                caption: "Dataset page — download the full dataset or customise by region",
               },
             ],
           },
@@ -1676,8 +1685,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/nsw-cdp/faceted-search.avif",
-                alt: "Faceted search — helping users find a needle in a haystack",
-                caption: "Faceted search — helping users find a needle in a haystack.",
+                alt: "Faceted search — finding a needle in a haystack",
+                caption: "Faceted search — finding a needle in a haystack",
               },
             ],
           },
@@ -1687,7 +1696,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nsw-cdp/scale-download.avif",
                 alt: "Designing for scale — making massive datasets manageable",
-                caption: "Designing for scale — making massive datasets manageable.",
+                caption: "Designing for scale — making massive datasets manageable",
               },
             ],
           },
@@ -1696,8 +1705,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/nsw-cdp/reports.avif",
-                alt: "Reports — summarising datasets in a human-readable format",
-                caption: "Reports — summarising datasets in a human-readable format.",
+                alt: "Reports — raw data summarised in human-readable format",
+                caption: "Reports — raw data summarised in human-readable format",
               },
             ],
           },
@@ -1713,13 +1722,13 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/nsw-cdp/testing-1.avif",
-                alt: "Tree test results",
-                caption: "Tree test results — validating the navigation structure with target users.",
+                alt: "Tree test — validating the navigation structure with 20 target users",
+                caption: "Tree test — validating the navigation structure with 20 target users",
               },
               {
                 src: "/images/portfolio/nsw-cdp/testing-2.avif",
-                alt: "Click test heatmap",
-                caption: "Click test heatmap — evaluating the homepage layout and user interactions.",
+                alt: "Click test heatmap — evaluating homepage layout",
+                caption: "Click test heatmap — evaluating homepage layout",
               },
             ],
           },
@@ -1729,12 +1738,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/nsw-cdp/testing-3.avif",
                 alt: "User testing analysis",
-                caption: "User testing analysis.",
+                caption: "User testing analysis",
               },
               {
                 src: "/images/portfolio/nsw-cdp/testing-4.avif",
                 alt: "Task completion findings",
-                caption: "Task completion findings.",
+                caption: "Task completion findings",
               },
             ],
           },
@@ -1752,7 +1761,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Outcome",
         description:
-          "The portal was delivered in a few months — from stakeholder analysis through design iterations, prototyping, and user testing. It now makes NSW's climate data publicly accessible, enabling better-informed decisions across government, research, and emergency services. Working as the sole designer with dozens of technical and government stakeholders sharpened my ability to synthesise complex requirements into clear, actionable design direction.",
+          "The portal was delivered in a few months — from stakeholder analysis through design iterations, prototyping, and user testing. It now makes NSW's climate data publicly accessible, enabling better-informed decisions across government, research, and emergency services.",
         imageBlocks: [],
       },
     ],
@@ -1788,7 +1797,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "The Marketplace",
         description:
-          "Krakatoa is a web3 marketplace where CS:GO players trade weapon skins and artwork using cryptocurrency on the Ethereum blockchain. I designed the complete eCommerce experience: an Apple.com-inspired mega menu surfacing the full product taxonomy, faceted search with game-specific attributes like float value and paint seed, an immersive full-viewport gallery for inspecting skins in detail, and a web3 shopping cart with gas fee breakdowns and Metamask integration. The design was built on a customised Frames X UI library and designed across 5 responsive breakpoints from 320px to 1920px. I also specified Open Graph metadata for every page, ensuring the product looked polished when shared on social media.",
+          "Krakatoa is a web3 marketplace where CS:GO players trade weapon skins and artwork using cryptocurrency on the Ethereum blockchain. I designed the complete eCommerce experience — from browsing and search through to checkout via Metamask. The design was built on a customised Frames X UI library and designed across 5 responsive breakpoints.",
         imageBlocks: [
           {
             layout: "full",
@@ -1796,7 +1805,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/krakatoa/mega-menu.avif",
                 alt: "Apple.com-inspired mega menu — full product taxonomy at a glance",
-                caption: "Apple.com-inspired mega menu",
+                caption: "Apple.com-inspired mega menu — full product taxonomy at a glance",
               },
             ],
           },
@@ -1814,8 +1823,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/krakatoa/faceted-search.avif",
-                alt: "Faceted search with game-specific attributes",
-                caption: "Faceted search",
+                alt: "Faceted search with game-specific attributes like float value and paint seed",
+                caption: "Faceted search with game-specific attributes like float value and paint seed",
               },
             ],
           },
@@ -1834,7 +1843,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/krakatoa/gallery.avif",
                 alt: "Immersive full-viewport gallery for inspecting skins",
-                caption: "Immersive gallery",
+                caption: "Immersive full-viewport gallery for inspecting skins",
               },
             ],
           },
@@ -1853,7 +1862,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/krakatoa/cart.avif",
                 alt: "Web3 cart — subtotal, gas fee breakdown, and Metamask checkout",
-                caption: "Web3 cart",
+                caption: "Web3 cart — subtotal, gas fee breakdown, and Metamask checkout",
               },
             ],
           },
@@ -1862,8 +1871,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/krakatoa/metadata.avif",
-                alt: "Open Graph metadata for every page",
-                caption: "Designing Open Graph metadata for polished social media sharing",
+                alt: "Open Graph metadata designed for every page",
+                caption: "Open Graph metadata designed for every page",
               },
             ],
           },
@@ -1872,7 +1881,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Buyer & Seller Dashboard",
         description:
-          "Unlike typical eCommerce, Krakatoa lets users bid and make offers to each other, and purchased skins need to transfer between Krakatoa and Steam. I designed the full account dashboard covering purchases, transfers, bids, offers, and account settings. The project took two months to pixel-perfect, with thorough handoff documentation reducing back-and-forth with the development team at Sapient Pro.",
+          "Unlike typical eCommerce, Krakatoa lets users bid and make offers to each other, and purchased skins need to transfer between Krakatoa and Steam. I designed the full account dashboard covering purchases, transfers, bids, offers, and account settings, with thorough handoff documentation reducing back-and-forth with the development team.",
         imageBlocks: [
           {
             layout: "full",
@@ -1880,10 +1889,12 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/krakatoa/dashboard-1.avif",
                 alt: "Buyer dashboard — purchases and transfers",
+                caption: "Buyer dashboard — purchases and transfers",
               },
               {
                 src: "/images/portfolio/krakatoa/dashboard-2.avif",
                 alt: "Seller dashboard — bids and offers",
+                caption: "Seller dashboard — bids and offers",
               },
             ],
           },
@@ -1893,7 +1904,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/krakatoa/handoff.avif",
                 alt: "Detailed handoff notes for every interaction",
-                caption: "Detailed handoff documentation",
+                caption: "Detailed handoff notes for every interaction",
               },
             ],
           },
@@ -1902,8 +1913,8 @@ export const portfolioProjects: PortfolioProject[] = [
             images: [
               {
                 src: "/images/portfolio/krakatoa/breakpoints.avif",
-                alt: "Designed across 5 responsive breakpoints",
-                caption: "Designed across 5 responsive breakpoints",
+                alt: "Responsive design across 5 breakpoints",
+                caption: "Responsive design across 5 breakpoints",
               },
             ],
           },
@@ -1927,18 +1938,18 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "AI-Generated Art",
         description:
-          "I used Midjourney to create background art matched to each weapon skin — the first time I delivered a machine learning prompt as a design deliverable. Having only used AI art for placeholders before, it instantly became a core part of my toolset.",
+          "I used Midjourney to create background art matched to each weapon skin — the first time I delivered a machine learning prompt as a design deliverable.",
         imageBlocks: [
           {
             layout: "full",
             images: [
               {
                 src: "/images/portfolio/krakatoa/midjourney-art.avif",
-                alt: "AI-generated background art using Midjourney — matched to each weapon skin",
+                alt: "Midjourney-generated art matched to each weapon skin",
               },
               {
                 src: "https://www.youtube.com/watch?v=8jSQToeTnPA",
-                alt: "Midjourney prompt engineering walkthrough — how I crafted prompts to generate art that matched each skin's aesthetic",
+                alt: "Midjourney-generated art matched to each weapon skin",
               },
               
             ],
@@ -1948,7 +1959,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Outcome",
         description:
-          "Krakatoa shipped in two months and launched at krakatoa.gg. The project demonstrated that web3 eCommerce doesn't have to feel alien — familiar patterns like mega menus, faceted search, and conversion-optimised carts work just as well with crypto payments as they do with credit cards.",
+          "Krakatoa shipped in two months and launched at krakatoa.gg. The project demonstrated that web3 eCommerce doesn't have to feel alien — familiar patterns like mega menus, faceted search, and conversion-optimised carts work just as well with crypto payments.",
         imageBlocks: [],
       },
     ],
@@ -2055,7 +2066,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "The Product",
         description:
-          "Orpheus is a digital collection tool built by Cambridge startup Archimedes Digital, aimed at Harvard, MIT, and humanities professors and archivists worldwide. My role spanned product design, product management, and front-end development. The product initially suffered from scope creep and a fragmented user experience — my job was to clarify what we were building, reel in the feature list, and create a coherent design direction. The philosophy was simple: Orpheus should be like an art gallery — the UI recedes into the background, letting the content take the spotlight.",
+          "Orpheus is a digital collection tool built by Cambridge startup Archimedes Digital, aimed at Harvard, MIT, and humanities professors and archivists worldwide. The product initially suffered from scope creep and a fragmented user experience — my job was to clarify what we were building, reel in the feature list, and create a coherent design direction. The philosophy was simple: Orpheus should be like an art gallery — the UI recedes into the background, letting the content take the spotlight.",
         imageBlocks: [
           {
             layout: "full",
@@ -2072,6 +2083,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/orpheus/design-system-overview.avif",
                 alt: "One universal design system for XR, web, mobile, and wearables",
+                caption: "One universal design system for XR, web, mobile, and wearables",
               },
             ],
           },
@@ -2080,7 +2092,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Strategy & Alignment",
         description:
-          <>I facilitated remote design sprint workshops to realign the team's strategy. A lean canvas clarified business goals and constraints. We narrowed the target audience to three personas: the <a href="https://www.youtube.com/watch?v=rOc2kWExEZs" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">tech-savvy archivist</a>, the <a href="https://www.youtube.com/watch?v=yKNbhMCB_3g" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">hardline traditionalist</a>, and the <a href="https://www.youtube.com/watch?v=ZI0dbx2qiHg" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">hobbyist collector</a>. An inspiration board got product ideas out of everyone's heads and onto a shared surface. The workshops ran with a distributed team of six across different locations and time zones.</>,
+          <>I facilitated remote design sprint workshops to realign the team's strategy. A lean canvas clarified business goals and constraints. We narrowed the target audience to three personas: the <a href="https://www.youtube.com/watch?v=rOc2kWExEZs" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">tech-savvy archivist</a>, the <a href="https://www.youtube.com/watch?v=yKNbhMCB_3g" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">hardline traditionalist</a>, and the <a href="https://www.youtube.com/watch?v=ZI0dbx2qiHg" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">hobbyist collector</a>. The workshops ran with a distributed team of six across different locations and time zones.</>,
         imageBlocks: [
           {
             layout: "grid-2",
@@ -2091,7 +2103,8 @@ export const portfolioProjects: PortfolioProject[] = [
               },
               {
                 src: "/images/portfolio/orpheus/inspiration-board.avif",
-                alt: "Inspiration board — syncing the team on high-level product direction",
+                alt: "Inspiration board — syncing the team on product direction",
+                caption: "Inspiration board — syncing the team on product direction",
               },
             ],
           },
@@ -2108,6 +2121,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/orpheus/storybook.avif",
                 alt: "Orpheus UI library built with Storybook.js",
+                caption: "Orpheus UI library built with Storybook.js",
               },
             ],
           },
@@ -2117,6 +2131,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/orpheus/internationalisation.avif",
                 alt: "Multilingual publishing — Latin, Greek, and Arabic with RTL support",
+                caption: "Multilingual publishing — Latin, Greek, and Arabic with RTL support", 
               },
             ],
           },
@@ -2124,7 +2139,7 @@ export const portfolioProjects: PortfolioProject[] = [
       },
       {
         heading: "VR Experiments",
-        description: "Orpheus wasn't limited to 2D interfaces. I prototyped a VR exhibition experience using Figma mockups and Vrooms, allowing us to cheaply test the concept before committing to an expensive VR build. Users could explore 3D models of cultural sites, inspect metadata, and start guided tours — all in virtual reality.",
+        description: "Orpheus wasn't limited to 2D interfaces. I prototyped a VR exhibition experience using Figma mockups and Vrooms, testing the concept before committing to an expensive VR build. Users could explore 3D models of cultural sites, inspect metadata, and start guided tours — all in virtual reality.",
         imageBlocks: [
           {
             layout: "full",
@@ -2148,6 +2163,7 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/orpheus/red-monastery.avif",
                 alt: "Red Monastery — laser scan and digital preservation",
+                caption: "Red Monastery — laser scan and digital preservation",
               },
             ],
           },
@@ -2166,14 +2182,17 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/orpheus/tripureshwor-gallery.avif",
                 alt: "Gallery mode for exploration variety",
+                caption: "Gallery mode for exploration variety",
               },
               {
                 src: "/images/portfolio/orpheus/tripureshwor-aerial.avif",
                 alt: "Aerial 360° drone view",
+                caption: "Aerial 360° drone view",
               },
               {
                 src: "/images/portfolio/orpheus/tripureshwor-interior.avif",
                 alt: "Touring the temple interior",
+                caption: "Touring the temple interior",
               },
             ],
           },
@@ -2182,7 +2201,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         heading: "Outcome",
         description:
-          "Orpheus serves multiple institutions including Harvard and MIT, hosting digital collections ranging from ancient manuscripts to personal archives. The design system I built supports content across web, mobile, XR, and wearable platforms in over 500 languages. The platform and its digital preservation capabilities laid the groundwork for the team's AR projects at Giza, the Parthenon, and Zhejiang University.",
+          "Orpheus serves multiple institutions including Harvard and MIT, hosting digital collections ranging from ancient manuscripts to personal archives. The design system supports content across web, mobile, XR, and wearable platforms in over 500 languages.",
         imageBlocks: [],
       },
     ],
@@ -2334,6 +2353,88 @@ export const portfolioProjects: PortfolioProject[] = [
               {
                 src: "/images/portfolio/resell-calendar/meta-tags-2.avif",
                 alt: "Meta tag designs for SEO optimisation",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "storyverse",
+    title: "Storyverse",
+    description:
+      "A product concept for location-based storytelling — stories pinned to real places, unlocked only by being there.",
+    role: "Product Designer",
+    year: "2016",
+    client: "Concept Project",
+    ogImage: {
+      src: "/images/portfolio/storyverse/_og.jpg",
+      alt: "Storyverse — location-based storytelling app concept",
+    },
+    coverImage: {
+      src: "/images/portfolio/storyverse/cover.avif",
+      alt: "Storyverse — location-based storytelling app concept",
+    },
+    sections: [
+      {
+        heading: "The Concept",
+        description:
+          "A location-based storytelling app where stories are pinned to real-world places. The catch: you have to physically be at the location to unlock and read them — a mechanic inspired by geocaching. Both author and reader share the same place at different points in time, adding a layer of connection that traditional social media can't replicate. The idea predates Pokémon GO, which later proved that location-gating creates powerful engagement.",
+        imageBlocks: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: "/images/portfolio/storyverse/concept.avif",
+                alt: "Storyverse — location-based storytelling app concept",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "The Experience",
+        description:
+          "Users explore a map to discover nearby stories — historical facts, personal memories, attempts at humour. Authors place stories at specific geolocations using the app. The UI was designed around the constraint that browsing from the couch isn't an option — every interaction begins with movement.",
+        imageBlocks: [
+          {
+            layout: "grid-2-fluid",
+            images: [
+              {
+                src: "/images/portfolio/storyverse/ar.gif",
+                alt: "AR exploration of nearby stories",
+                caption: "AR exploration of nearby stories",
+              },
+              {
+                src: "/images/portfolio/storyverse/concept-great-wall.avif",
+                alt: "Concept sketch of a story pinned to the Great Wall of China",
+              },
+            ],
+          },
+          {
+            layout: "grid-2",
+            images: [
+              {
+                src: "/images/portfolio/storyverse/concept-angkor-wat.avif",
+                alt: "Concept sketch of a story pinned to Angkor Wat",
+              },
+              {
+                src: "/images/portfolio/storyverse/concept-pyramids.avif",
+                alt: "Concept sketch of a story pinned to the Pyramids of Giza",
+              },
+            ],
+          },
+          {
+            layout: "grid-2-fluid",
+            images: [
+              {
+                src: "/images/portfolio/storyverse/concept-bali.avif",
+                alt: "Concept sketch of a story pinned to a street in Bali",
+              },
+              {
+                src: "/images/portfolio/storyverse/concept-new-york.avif",
+                alt: "Concept sketch of a story pinned to a street in New York",
               },
             ],
           },
