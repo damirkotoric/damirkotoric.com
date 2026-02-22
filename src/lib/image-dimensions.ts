@@ -1189,5 +1189,6 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
 };
 
 export function getImageDimensions(src: string): { width: number; height: number } | undefined {
-  return imageDimensions[src];
+  const key = src.split("?")[0];
+  return imageDimensions[key];
 }
