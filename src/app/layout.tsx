@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ContactFormProvider } from "@/components/contact-form/contact-form-provider";
 
@@ -58,6 +59,7 @@ export default function RootLayout({
             <main id="main-content">{children}</main>
           </ContactFormProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
