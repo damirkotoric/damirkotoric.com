@@ -1,6 +1,6 @@
 # damirkotoric.com
 
-Personal portfolio website.
+Design Engineer. I build with React, Next.js, TypeScript. See my work at damirkotoric.com
 
 ## Tech Stack
 
