@@ -7,7 +7,7 @@ interface TestimonialProps {
   quote: string;
   highlight?: string;
   name: string;
-  role: string;
+  title: string;
   image?: string;
   linkedIn?: string;
   variant?: "card" | "featured";
@@ -17,31 +17,25 @@ export function Testimonial({
   quote,
   highlight,
   name,
-  role,
+  title,
   image,
   linkedIn,
   variant = "card",
 }: TestimonialProps) {
   const isFeatured = variant === "featured";
   const nameSize = isFeatured ? "text-sm" : "text-base";
-  const quoteSize = isFeatured ? "text-xl font-medium" : "";
+  const quoteSize = isFeatured ? "text-base" : "";
   const quoteMargin = isFeatured ? "mb-6" : "mb-5";
   const maxWidth = isFeatured ? "max-w-xl" : "max-w-md";
 
   const renderQuote = () => {
-    // Featured variant (portfolio detail) doesn't use bold highlighting
     if (!highlight || isFeatured) {
       return quote;
     }
-
-    const highlightIndex = quote.indexOf(highlight);
-    if (highlightIndex === -1) {
-      return quote;
-    }
-
-    const before = quote.slice(0, highlightIndex);
-    const after = quote.slice(highlightIndex + highlight.length);
-
+    const idx = quote.indexOf(highlight);
+    if (idx === -1) return quote;
+    const before = quote.slice(0, idx);
+    const after = quote.slice(idx + highlight.length);
     return (
       <>
         {before}
@@ -52,7 +46,7 @@ export function Testimonial({
   };
 
   return (
-    <div className={maxWidth}>
+    <div className={`${maxWidth} flex h-full flex-col justify-between`}>
       <blockquote className={`${quoteMargin} leading-relaxed ${quoteSize}`}>
         {isFeatured && <>&ldquo;</>}
         {renderQuote()}
@@ -103,7 +97,7 @@ export function Testimonial({
               name
             )}
           </div>
-          <div className="text-sm text-muted-foreground">{role}</div>
+          <div className="text-sm text-muted-foreground">{title}</div>
         </div>
       </div>
     </div>

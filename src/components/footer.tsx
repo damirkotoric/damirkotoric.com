@@ -12,6 +12,9 @@ export function Footer() {
           <Link href="/portfolio" className="hover:text-foreground">
             Portfolio
           </Link>
+          <Link href="/testimonials" className="hover:text-foreground">
+            Testimonials
+          </Link>
           <a
             href="https://www.linkedin.com/in/damirkotoric/"
             target="_blank"

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { Testimonial } from "@/components/testimonial";
-import { testimonials } from "@/lib/portfolio-data";
+import { testimonials } from "@/data/testimonials";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
@@ -166,19 +166,50 @@ export default function HomePage() {
         <h2 className="mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           Testimonials
         </h2>
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-          {testimonials.map((testimonial) => (
-            <Testimonial key={testimonial.name} {...testimonial} />
-          ))}
-        </div>
+        {(() => {
+          const homepageNames = ["Craig Vaughan", "Bradley Zarich", "Chris Thelwell"];
+          const homepageTestimonials = homepageNames
+            .map((name) => testimonials.find((t) => t.name === name))
+            .filter((t): t is NonNullable<typeof t> => Boolean(t));
+          return (
+            <>
+              {/* Desktop: static 3-col grid */}
+              <div className="hidden lg:grid lg:grid-cols-3 gap-12">
+                {homepageTestimonials.map((t) => (
+                  <Testimonial
+                    key={t.name}
+                    quote={t.summary}
+                    highlight={t.highlight}
+                    name={t.name}
+                    title={t.title}
+                    image={t.image}
+                    linkedIn={t.linkedIn}
+                  />
+                ))}
+              </div>
+              {/* Mobile: horizontal scroll-snap */}
+              <div className="lg:hidden -mx-6 px-6 flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+                {homepageTestimonials.map((t) => (
+                  <div key={t.name} className="snap-start shrink-0 w-[calc(100%-1.5rem)]">
+                    <Testimonial
+                      quote={t.summary}
+                      highlight={t.highlight}
+                      name={t.name}
+                      title={t.title}
+                      image={t.image}
+                      linkedIn={t.linkedIn}
+                    />
+                  </div>
+                ))}
+              </div>
+            </>
+          );
+        })()}
         <Link
-          href="https://www.linkedin.com/in/damirkotoric/details/recommendations/?detailScreenTabIndex=0"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Read more recommendations on LinkedIn (opens in new tab)"
+          href="/testimonials"
           className="mt-8 inline-block text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
-          Read more on LinkedIn ↗
+          See all {testimonials.filter((t) => !t.hidden).length} testimonials →
         </Link>
       </section>
 
@@ -190,7 +221,7 @@ export default function HomePage() {
               Meet Damir
             </h2>
             <p className="mb-6 leading-relaxed">
-              I&apos;ve been <strong>designing since 2009</strong>, and <strong>nomadic since 2018</strong>, working remotely with teams
+              I&apos;ve been <strong>designing since 2009</strong>, and <strong>remote since 2018</strong>, working remotely with teams
               across time zones. I care about craft, clear communication, and
               shipping work that actually moves the needle.
             </p>

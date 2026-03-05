@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { ContactFormTrigger } from "@/components/contact-form/contact-form-trigger";
 import { Testimonial } from "@/components/testimonial";
+import { getTestimonialByName } from "@/data/testimonials";
 import { PortfolioCover } from "@/components/portfolio-cover";
 import { ZoomableImage } from "@/components/zoomable-image";
 import type { PortfolioProject, ImageBlock } from "@/lib/portfolio-data";
@@ -14,6 +15,10 @@ type PortfolioDetailProps = {
 };
 
 export function PortfolioDetail({ project, nextProject }: PortfolioDetailProps) {
+  const testimonial = project.testimonialName
+    ? getTestimonialByName(project.testimonialName)
+    : undefined;
+
   return (
     <>
       <main>
@@ -80,16 +85,15 @@ export function PortfolioDetail({ project, nextProject }: PortfolioDetailProps) 
         </section>
 
         {/* Testimonial */}
-        {project.testimonial && (
+        {testimonial && (
           <section className="px-6 py-12 lg:px-16 2xl:px-40 3xl:px-80">
             <div className="pb-12">
               <Testimonial
-                quote={project.testimonial.quote}
-                highlight={project.testimonial.highlight}
-                name={project.testimonial.name}
-                role={project.testimonial.role}
-                image={project.testimonial.image}
-                linkedIn={project.testimonial.linkedIn}
+                quote={testimonial.quote}
+                name={testimonial.name}
+                title={testimonial.title}
+                image={testimonial.image}
+                linkedIn={testimonial.linkedIn}
                 variant="featured"
               />
             </div>

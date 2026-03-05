@@ -11,15 +11,6 @@ export type PortfolioSection = {
   imageBlocks: ImageBlock[];
 };
 
-export type Testimonial = {
-  quote: string;
-  highlight?: string;
-  name: string;
-  role: string;
-  image: string;
-  linkedIn?: string;
-};
-
 export type PortfolioProject = {
   slug: string;
   title: string;
@@ -33,7 +24,7 @@ export type PortfolioProject = {
   coverImage?: { src: string; alt: string };
   cardImage?: string | null;
   featured?: boolean;
-  testimonial?: Testimonial;
+  testimonialName?: string;
   sections: PortfolioSection[];
 };
 
@@ -53,15 +44,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/beyondwords/_og.jpg",
       alt: "BeyondWords design system overview",
     },
-    testimonial: {
-      quote:
-        "Damir built our new dashboard from scratch, delivering a balanced design. We're thrilled with the result and eager to work with him again.",
-      highlight: "",
-      name: "Patrick O'Flaherty",
-      role: "Co-Founder and CEO at BeyondWords",
-      image: "/images/testimonials/patrick.avif",
-      linkedIn: "https://www.linkedin.com/in/patrickaboflaherty/",
-    },
+    testimonialName: "Patrick O'Flaherty",
     sections: [
       {
         heading: "UI Library",
@@ -214,15 +197,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/brokerengine/_og.jpg",
       alt: "BrokerEngine product overview",
     },
-    testimonial: {
-      quote:
-        "Damir is a legend. He completely transformed BrokerEngine. He is not a 'yes man' and will 100% push back on you when he doesn't like the direction.",
-      highlight: "Damir is a legend.",
-      name: "Craig Vaughan",
-      role: "Co-Founder, BrokerEngine",
-      image: "/images/testimonials/craig.avif",
-      linkedIn: "https://www.linkedin.com/in/maphomeloans/",
-    },
+    testimonialName: "Craig Vaughan",
     sections: [
       {
         heading: "Design Overhaul",
@@ -412,15 +387,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/nametag/_og.jpg",
       alt: "Nametag product overview",
     },
-    testimonial: {
-      quote:
-        "Damir is a brilliant designer. What impressed us most about him was his willingness to meet all of our tight deadlines and nothing was ever too hard. If you are looking for a top 1% product designer then I cannot recommend Damir enough.",
-      highlight: "Damir is a brilliant designer.",
-      name: "Bradley Zarich",
-      role: "Co-Founder, Nametag & Cosmitto",
-      image: "/images/testimonials/brad.avif",
-      linkedIn: "https://www.linkedin.com/in/bradley-zarich/",
-    },
+    testimonialName: "Bradley Zarich",
     sections: [
       {
         heading: "Product Design",
@@ -629,14 +596,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/booking/_og.jpg",
       alt: "Booking.com product overview",
     },
-    testimonial: {
-      quote:
-        "Damir brought substantial positive change to our team soon after joining, taking over the visual side of our project, championing the user research, and driving the communication of product vision with the wider design community within the company.",
-      name: "Veniamin Kleshchenkov",
-      role: "Senior Full Stack Developer, Booking.com",
-      image: "/images/testimonials/veniamin.avif",
-      linkedIn: "https://www.linkedin.com/in/vtambourine/",
-    },
+    testimonialName: "Veniamin Kleshchenkov",
     sections: [
       {
         heading: "Payment Redesign",
@@ -748,14 +708,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/gsq/_og.jpg",
       alt: "Queensland Open Data Portal overview",
     },
-    testimonial: {
-      quote:
-        "Damir has the experience and initiative to take on a brief and work with all the key stakeholders to get a successful outcome.",
-      name: "John Corlett",
-      role: "Technical Product Owner, Link Digital",
-      image: "/images/testimonials/john-corlett.avif",
-      linkedIn: "https://www.linkedin.com/in/corlettjohn/",
-    },
+    testimonialName: "John Corlett",
     sections: [
       {
         heading: "The Challenge",
@@ -956,15 +909,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/cosmitto/cover.avif",
       alt: "Cosmitto — corporate training marketplace",
     },
-    testimonial: {
-      quote:
-        "Damir is a brilliant designer. What impressed us most was his willingness to meet all of our tight deadlines and nothing was ever too hard. If you are looking for a top 1% product designer then I cannot recommend Damir enough.",
-      highlight: "Damir is a brilliant designer.",
-      name: "Bradley Zarich",
-      role: "Co-Founder, Cosmitto",
-      image: "/images/testimonials/brad.avif",
-      linkedIn: "https://www.linkedin.com/in/bradley-zarich/",
-    },
+    testimonialName: "Bradley Zarich",
     sections: [
       {
         heading: "The Product",
@@ -1080,14 +1025,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/creative-ai/cover.avif",
       alt: "creative.ai — AI-powered creative tools",
     },
-    testimonial: {
-      quote:
-        "Damir is a one-of-a-kind excellent designer with a real sense for product: an unbeatable match, making it very satisfying to have been able to work together.",
-      name: "Roelof Pieters",
-      role: "CEO, creative.ai",
-      image: "/images/testimonials/roelof.avif",
-      linkedIn: "https://www.linkedin.com/in/roelofpieters/",
-    },
+    testimonialName: "Roelof Pieters",
     sections: [
       {
         heading: "The Vision",
@@ -1308,14 +1246,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "https://www.youtube.com/watch?v=V431PtS6Wfw",
       alt: "Envato — design sprints, API design, and user advocacy",
     },
-    testimonial: {
-      quote:
-        "Damir is a true UX designer. He perfectly combines aesthetics with user needs, and both with business requirements and goals.",
-      name: "Fiorella Rizzà",
-      role: "Lead UX Writer, Qonto (formerly Envato)",
-      image: "/images/testimonials/fiorella.avif",
-      linkedIn: "https://www.linkedin.com/in/fiorellarizza/",
-    },
+    testimonialName: "Fiorella Rizzà",
     sections: [
       {
         heading: "Design Sprints",
@@ -1755,14 +1686,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/nsw-cdp/_og.jpg",
       alt: "NSW Climate Data Portal overview",
     },
-    testimonial: {
-      quote:
-        "Damir has the experience and initiative to take on a brief and work with all the key stakeholders to get a successful outcome.",
-      name: "John Corlett",
-      role: "Technical Product Owner, Link Digital",
-      image: "/images/testimonials/john-corlett.avif",
-      linkedIn: "https://www.linkedin.com/in/corlettjohn/",
-    },
+    testimonialName: "John Corlett",
     sections: [
       {
         heading: "The Challenge",
@@ -1910,14 +1834,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/krakatoa/cover.avif",
       alt: "Krakatoa — web3 gaming marketplace on Ethereum",
     },
-    testimonial: {
-      quote:
-        "Damir is a game-changer. He drove major product decisions, and his suggestions all paid off. I was happy with designers in the past — but after working with Damir once, my view of what a great designer was completely changed.",
-      highlight: "Damir is a game-changer.",
-      name: "Robert C.",
-      role: "Founder, Krakatoa",
-      image: "/images/testimonials/robert.avif",
-    },
+    testimonialName: "Robert C.",
     sections: [
       {
         heading: "The Marketplace",
@@ -2196,14 +2113,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/orpheus/cover.avif",
       alt: "Orpheus — digital archiving platform for Harvard, MIT, and humanities institutions",
     },
-    testimonial: {
-      quote:
-        "Damir is one of the best designers I've worked with in 10+ years. He understands frontend, empathizes with users, and delivers value.",
-      highlight: "Damir is one of the best designers I've worked with in 10+ years.",
-      name: "Daniel Rekshan",
-      role: "Web Developer, Archimedes Digital",
-      image: "/images/testimonials/daniel.avif",
-    },
+    testimonialName: "Daniel Rekshan",
     sections: [
       {
         heading: "The Product",
@@ -2374,13 +2284,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/resell-calendar/cover.avif",
       alt: "Resell Calendar — resale community hub and information platform",
     },
-    testimonial: {
-      quote:
-        "Damir is a game-changer! He drove major product decisions, and his suggestions all paid off. I was happy with designers in the past — but after working with Damir once, my view of what a great designer was completely changed.",
-      name: "Robert C.",
-      role: "Founder of Resell Calendar",
-      image: "/images/testimonials/robert.avif",
-    },
+    testimonialName: "Robert C.",
     sections: [
       {
         heading: "The Product",
@@ -2629,13 +2533,7 @@ export const portfolioProjects: PortfolioProject[] = [
       src: "/images/portfolio/general-assembly/cover.avif",
       alt: "Teaching UX Design at General Assembly Melbourne",
     },
-    testimonial: {
-      quote:
-        "Damir is highly empathetic and measured which made him an excellent mentor and guide to others in their UX journey.",
-      name: "Matt Johnson",
-      role: "Program Producer at General Assembly",
-      image: "/images/testimonials/matt.avif",
-    },
+    testimonialName: "Matthew McCrae Johnson",
     sections: [
       {
         heading: "The Course",
@@ -2912,32 +2810,3 @@ export function getArchiveProjects() {
     .map((p) => ({ name: p.title, slug: p.slug }));
 }
 
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      "Damir is a legend. He is not a 'yes man' and will 100% push back on you when he doesn't like the direction.",
-    highlight: "Damir is a legend.",
-    name: "Craig Vaughan",
-    role: "Co-Founder, BrokerEngine",
-    image: "/images/testimonials/craig.avif",
-    linkedIn: "https://www.linkedin.com/in/maphomeloans/",
-  },
-  {
-    quote:
-      "Damir is a brilliant designer. If you are looking for a top 1% product designer then I cannot recommend Damir enough.",
-    highlight: "Damir is a brilliant designer.",
-    name: "Bradley Zarich",
-    role: "Co-Founder, Nametag & Cosmitto",
-    image: "/images/testimonials/brad.avif",
-    linkedIn: "https://www.linkedin.com/in/bradley-zarich/",
-  },
-  {
-    quote:
-      "Damir is a great all-rounder. He is capable of running projects with little assistance due to his wide skill set.",
-    highlight: "Damir is a great all-rounder.",
-    name: "Chris Thelwell",
-    role: "Director of Product Design, DuckDuckGo",
-    image: "/images/testimonials/chris-thelwell.avif",
-    linkedIn: "https://www.linkedin.com/in/christhelwell/",
-  },
-];
