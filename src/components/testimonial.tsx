@@ -60,7 +60,7 @@ export function Testimonial({
             rel="noopener noreferrer"
             aria-label={`View ${name}'s LinkedIn profile (opens in new tab)`}
           >
-            <Avatar className="size-16 bg-background border border-background shadow-lg transition-transform duration-300 ease-out hover:rotate-[2deg]">
+            <Avatar className="size-16 bg-muted border border-background shadow-lg transition-transform duration-300 ease-out hover:rotate-[2deg]">
               {image ? (
                 <Image src={image} alt={name} fill className="object-cover" />
               ) : (
