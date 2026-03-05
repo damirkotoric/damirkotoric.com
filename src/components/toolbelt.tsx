@@ -21,7 +21,7 @@ type ToolCategory = {
 
 const toolCategories: ToolCategory[] = [
   {
-    name: "Research, Design & Prototyping",
+    name: "Research & Design",
     tools: [
       { name: "Claude", slug: "claude" },
       { name: "Figma", slug: "figma" },
