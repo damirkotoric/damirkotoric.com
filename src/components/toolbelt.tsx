@@ -133,9 +133,9 @@ export function Toolbelt() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                 transition={{
-                  duration: 0.25,
+                  duration: 0.4,
                   ease: [0.5, 1, 0.89, 1],
-                  delay: headingIndex * 0.01,
+                  delay: headingIndex * 0.02,
                 }}
               >
                 {category.name}
@@ -150,9 +150,9 @@ export function Toolbelt() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                       transition={{
-                        duration: 0.25,
+                        duration: 0.4,
                         ease: [0.5, 1, 0.89, 1],
-                        delay: itemIndex * 0.01,
+                        delay: itemIndex * 0.02,
                       }}
                     >
                       <ToolIcon tool={tool} />
