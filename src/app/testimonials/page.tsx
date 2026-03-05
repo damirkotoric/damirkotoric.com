@@ -10,7 +10,7 @@ import { testimonials, getTestimonialByName } from "@/data/testimonials";
 export const metadata: Metadata = {
   title: "Testimonials • Damir Kotorić",
   description:
-    "What clients and former colleagues say about Damir Kotorić.",
+    "What clients and former colleagues say about me.",
   openGraph: {
     images: [
       {
