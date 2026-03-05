@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="py-12 text-sm text-muted-foreground px-6 lg:px-16 2xl:px-40 3xl:px-80">
       <div>
-        <div className="mb-4 flex gap-6">
+        <div className="mb-4 flex flex-wrap gap-6">
           <Link href="/" className="hover:text-foreground">
             Home
           </Link>
@@ -21,7 +21,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="hover:text-foreground"
           >
-            LinkedIn ↗
+            <span className="whitespace-nowrap">LinkedIn ↗</span>
           </a>
         </div>
         <div className="flex items-center justify-between">
