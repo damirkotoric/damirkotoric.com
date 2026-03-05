@@ -43,7 +43,7 @@ export default function TestimonialsPage() {
             Testimonials
           </h1>
           <p className="max-w-[520px] text-lg text-muted-foreground">
-            What clients and former colleagues say about Damir.
+            What clients and former colleagues say about me.
           </p>
           <Button asChild variant="outline" size="sm" className="mt-4">
             <a
