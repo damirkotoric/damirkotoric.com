@@ -9,6 +9,7 @@ import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
 import { PortfolioShowcase } from "@/components/portfolio-showcase";
 import { ContactFormTrigger } from "@/components/contact-form/contact-form-trigger";
+import { Toolbelt } from "@/components/toolbelt";
 import { BeyondWordsBg } from "@/components/beyondwords-bg";
 import { BrokerEngineBg } from "@/components/brokerengine-bg";
 import { NametagBg } from "@/components/nametag-bg";
@@ -243,7 +244,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section 5: My Products */}
+      {/* Section 6: Toolbelt */}
+      <Toolbelt />
+
+      {/* Section 7: My Products */}
       <PortfolioShowcase title="My products" items={products} isPersonalProject />
 
       {/* Section 6: CTA */}
