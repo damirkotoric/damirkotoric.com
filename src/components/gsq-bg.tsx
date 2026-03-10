@@ -84,6 +84,7 @@ export function GsqBg({ compact = false }: GsqBgProps) {
                 alt="GSQ Open Data Portal desktop interface"
                 width={2800}
                 height={2000}
+                loading="eager"
                 className="w-full h-auto"
                 onLoad={onImageLoad}
               />
@@ -112,6 +113,7 @@ export function GsqBg({ compact = false }: GsqBgProps) {
                 alt="GSQ Open Data Portal map modal"
                 width={2720}
                 height={1600}
+                loading="eager"
                 className="w-full h-auto"
                 onLoad={onImageLoad}
               />

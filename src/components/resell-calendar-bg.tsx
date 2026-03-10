@@ -84,6 +84,7 @@ export function ResellCalendarBg({ compact = false }: ResellCalendarBgProps) {
                 alt="Resell Calendar desktop interface"
                 width={2800}
                 height={1749}
+                loading="eager"
                 className="w-full h-auto"
                 onLoad={onImageLoad}
               />
@@ -112,6 +113,7 @@ export function ResellCalendarBg({ compact = false }: ResellCalendarBgProps) {
                 alt="Resell Calendar mobile interface"
                 width={640}
                 height={1572}
+                loading="eager"
                 className="w-full h-auto"
                 onLoad={onImageLoad}
               />

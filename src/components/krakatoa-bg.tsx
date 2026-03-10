@@ -84,6 +84,7 @@ export function KrakatoaBg({ compact = false }: KrakatoaBgProps) {
                 alt="Krakatoa desktop interface"
                 width={2800}
                 height={2000}
+                loading="eager"
                 className="w-full h-auto"
                 onLoad={onImageLoad}
               />
@@ -112,6 +113,7 @@ export function KrakatoaBg({ compact = false }: KrakatoaBgProps) {
                 alt="Krakatoa mobile interface"
                 width={640}
                 height={1600}
+                loading="eager"
                 className="w-full h-auto"
                 onLoad={onImageLoad}
               />

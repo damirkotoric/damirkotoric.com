@@ -83,6 +83,7 @@ export function NswCdpBg({ compact = false }: NswCdpBgProps) {
               alt="NSW Climate Data Portal desktop interface"
               width={2800}
               height={2000}
+              loading="eager"
               className="w-full h-auto"
               onLoad={onImageLoad}
             />
@@ -106,6 +107,7 @@ export function NswCdpBg({ compact = false }: NswCdpBgProps) {
               alt="NSW Climate Data Portal mobile interface"
               width={640}
               height={1400}
+              loading="eager"
               className="w-full h-auto"
               onLoad={onImageLoad}
             />

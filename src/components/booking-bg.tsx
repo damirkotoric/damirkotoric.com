@@ -99,6 +99,7 @@ export function BookingBg({ compact = false }: BookingBgProps) {
                     alt={phone.alt}
                     width={390}
                     height={844}
+                    loading="eager"
                     className="h-full w-auto"
                     onLoad={onImageLoad}
                   />
