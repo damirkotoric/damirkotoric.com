@@ -5,19 +5,18 @@ import Image from "next/image";
 import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
 import { cn } from "@/lib/utils";
 
-/** Returns a responsive cell size for the large variant based on viewport width */
-function useLargeCellSize() {
-  const [cellSize, setCellSize] = useState(12);
+/** Returns responsive cell size and dot scale for the large variant based on viewport width */
+function useLargeCellParams() {
+  const [params, setParams] = useState({ cellSize: 12, dotScale: 0.9 });
 
   const update = useCallback(() => {
     const w = window.innerWidth;
     if (w < 1280) {
-      // Laptops / smaller screens: smaller cells for finer detail
-      setCellSize(8);
+      setParams({ cellSize: 8, dotScale: 0.75 });
     } else if (w < 1920) {
-      setCellSize(10);
+      setParams({ cellSize: 10, dotScale: 0.82 });
     } else {
-      setCellSize(12);
+      setParams({ cellSize: 12, dotScale: 0.9 });
     }
   }, []);
 
@@ -27,7 +26,7 @@ function useLargeCellSize() {
     return () => window.removeEventListener("resize", update);
   }, [update]);
 
-  return cellSize;
+  return params;
 }
 
 type PixelatedAvatarProps = {
@@ -75,7 +74,7 @@ export function PixelatedAvatar({
   revealOn = "scroll",
   entryAnimation = false,
 }: PixelatedAvatarProps) {
-  const largeCellSize = useLargeCellSize();
+  const { cellSize: largeCellSize, dotScale: largeDotScale } = useLargeCellParams();
   const heightClass = size === "medium" ? "h-[60vh]" : size === "fill" ? "h-full" : "h-screen";
   const innerHeight = size === "fill" ? "100%" : "110%";
   const bottomClass = size === "fill" ? "bottom-0" : "bottom-0";
@@ -229,6 +228,7 @@ export function PixelatedAvatar({
             <PixelatedCanvas
               {...baseProps}
               cellSize={largeCellSize}
+              dotScale={largeDotScale}
               distortionRadius={100}
               objectFit="cover"
               fillContainer
@@ -253,6 +253,7 @@ export function PixelatedAvatar({
         <PixelatedCanvas
           {...baseProps}
           cellSize={largeCellSize}
+          dotScale={largeDotScale}
           distortionRadius={100}
           objectFit="cover"
           fillContainer
