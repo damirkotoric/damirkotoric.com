@@ -44,6 +44,8 @@ export const TextHoverEffect = ({
       onMouseLeave={() => setHovered(false)}
       onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
       className="select-none"
+      role="img"
+      aria-label={text}
     >
       <defs>
         <linearGradient
@@ -93,6 +95,7 @@ export const TextHoverEffect = ({
         strokeWidth="1.5"
         className="fill-transparent stroke-neutral-600 font-[helvetica] text-8xl font-bold dark:stroke-neutral-400"
         style={{ opacity: hovered ? 1 : 0 }}
+        aria-hidden="true"
       >
         {text}
       </text>
@@ -113,6 +116,7 @@ export const TextHoverEffect = ({
           duration: 2,
           ease: "easeOut",
         }}
+        aria-hidden="true"
       >
         {text}
       </motion.text>
@@ -125,6 +129,7 @@ export const TextHoverEffect = ({
         strokeWidth="1"
         mask={`url(#${textMaskId})`}
         className="fill-transparent font-[helvetica] text-8xl font-bold"
+        aria-hidden="true"
       >
         {text}
       </text>

@@ -52,7 +52,7 @@ const selectedWork = [
 ];
 
 const outcomes = [
-  { number: "€35M", description: "Annual revenue increase at Booking.com" },
+  { number: "€35M", description: "Conversion uplift at Booking.com" },
   { number: "70%", description: "Acquisition secured for BrokerEngine" },
   { number: "$2M", description: "Seed round raised for Nametag" },
 ];
