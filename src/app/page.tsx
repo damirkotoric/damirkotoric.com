@@ -52,9 +52,9 @@ const selectedWork = [
 ];
 
 const outcomes = [
-  { number: "€35M", description: "Conversion uplift at Booking.com" },
-  { number: "70%", description: "Acquisition secured for BrokerEngine" },
-  { number: "$2M", description: "Seed round raised for Nametag" },
+  { number: "€35M", label: "Conversion uplift at", name: "Booking.com", href: "/portfolio/booking-com" },
+  { number: "70%", label: "Acquisition secured for", name: "BrokerEngine", href: "/portfolio/brokerengine" },
+  { number: "$2M", label: "Seed round raised for", name: "Nametag", href: "/portfolio/nametag" },
 ];
 
 
@@ -155,7 +155,10 @@ export default function HomePage() {
                 <TextHoverEffect text={outcome.number} />
               </div>
               <div className="text-base text-muted-foreground">
-                {outcome.description}
+                {outcome.label}{" "}
+                <Link href={outcome.href} className="underline hover:text-foreground transition-colors">
+                  {outcome.name}
+                </Link>
               </div>
             </div>
           ))}
