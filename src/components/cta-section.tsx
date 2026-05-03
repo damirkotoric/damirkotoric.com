@@ -14,11 +14,17 @@ export function CtaSection({ className }: { className?: string }) {
     setHasAnimated(!!sessionStorage.getItem(CTA_HIGHLIGHT_KEY));
     sessionStorage.setItem(CTA_HIGHLIGHT_KEY, "1");
 
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    setIsDark(mq.matches || document.documentElement.classList.contains("dark"));
-    const handler = (e: MediaQueryListEvent) => setIsDark(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
+    const checkDark = () =>
+      document.documentElement.classList.contains("dark");
+
+    setIsDark(checkDark());
+
+    const observer = new MutationObserver(() => setIsDark(checkDark()));
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
   }, []);
 
   return (
