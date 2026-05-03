@@ -59,6 +59,7 @@ export function Testimonial({
           delay={hasAnimated ? 0 : highlightDelay}
           isView={!hasAnimated}
           animationDuration={hasAnimated ? 0 : 600}
+          activeClassName="text-highlight-foreground transition-colors"
         >
           <span className="font-semibold">{highlight}</span>
         </Highlighter>

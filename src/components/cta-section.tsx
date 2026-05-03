@@ -8,10 +8,17 @@ const CTA_HIGHLIGHT_KEY = "highlight-seen-cta";
 
 export function CtaSection({ className }: { className?: string }) {
   const [hasAnimated, setHasAnimated] = useState<boolean | null>(null);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     setHasAnimated(!!sessionStorage.getItem(CTA_HIGHLIGHT_KEY));
     sessionStorage.setItem(CTA_HIGHLIGHT_KEY, "1");
+
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    setIsDark(mq.matches || document.documentElement.classList.contains("dark"));
+    const handler = (e: MediaQueryListEvent) => setIsDark(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
   }, []);
 
   return (
@@ -20,7 +27,7 @@ export function CtaSection({ className }: { className?: string }) {
         <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
           Ready to work together?
         </h2>
-        {hasAnimated === null ? (
+        {hasAnimated === null || isDark ? (
           <ContactFormTrigger />
         ) : (
           <Highlighter
