@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
-import { ContactFormTrigger } from "@/components/contact-form/contact-form-trigger";
+import { CtaSection } from "@/components/cta-section";
 import { ProjectCard } from "@/components/project-card";
 import { getFeaturedProjects, getArchiveProjects } from "@/lib/portfolio-data";
 
@@ -149,14 +149,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* CTA */}
-        <section className="bg-muted px-6 py-24 lg:px-16 lg:py-48 2xl:px-40 3xl:px-80">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
-              Ready to work together?
-            </h2>
-            <ContactFormTrigger />
-          </div>
-        </section>
+        <CtaSection className="bg-muted px-6 py-24 lg:px-16 lg:py-48 2xl:px-40 3xl:px-80" />
       </main>
 
       <Footer />

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Testimonial } from "@/components/testimonial";
-import { ContactFormTrigger } from "@/components/contact-form/contact-form-trigger";
+import { CtaSection } from "@/components/cta-section";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { testimonials, getTestimonialByName } from "@/data/testimonials";
 
@@ -105,14 +105,7 @@ export default function TestimonialsPage() {
         </section>
       </main>
 
-      <section className="bg-muted px-6 py-24 lg:py-48 lg:px-16 2xl:px-40 3xl:px-80">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
-            Ready to work together?
-          </h2>
-          <ContactFormTrigger />
-        </div>
-      </section>
+      <CtaSection className="bg-muted px-6 py-24 lg:py-48 lg:px-16 2xl:px-40 3xl:px-80" />
 
       <Footer />
     </>

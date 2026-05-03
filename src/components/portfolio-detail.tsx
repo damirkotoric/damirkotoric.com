@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
-import { ContactFormTrigger } from "@/components/contact-form/contact-form-trigger";
+import { CtaSection } from "@/components/cta-section";
 import { Testimonial } from "@/components/testimonial";
 import { getTestimonialByName } from "@/data/testimonials";
 import { PortfolioCover } from "@/components/portfolio-cover";
@@ -147,12 +147,7 @@ export function PortfolioDetail({ project, nextProject }: PortfolioDetailProps) 
         </section>
 
         {/* CTA */}
-        <section className="mx-6 rounded-xl bg-muted px-6 py-24 text-center lg:mx-16 lg:py-32 2xl:mx-40 3xl:mx-80">
-          <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
-            Ready to work together?
-          </h2>
-          <ContactFormTrigger />
-        </section>
+        <CtaSection className="mx-6 rounded-xl bg-muted px-6 py-24 text-center lg:mx-16 lg:py-32 2xl:mx-40 3xl:mx-80" />
       </main>
 
       <Footer />

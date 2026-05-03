@@ -10,6 +10,8 @@ import { LogoReel } from "@/components/logo-reel";
 import { PortfolioShowcase } from "@/components/portfolio-showcase";
 import { ContactFormTrigger } from "@/components/contact-form/contact-form-trigger";
 import { Toolbelt } from "@/components/toolbelt";
+import { Highlighter } from "@/components/ui/highlighter";
+import { CtaSection } from "@/components/cta-section";
 import { BeyondWordsBg } from "@/components/beyondwords-bg";
 import { BrokerEngineBg } from "@/components/brokerengine-bg";
 import { NametagBg } from "@/components/nametag-bg";
@@ -108,8 +110,8 @@ export default function HomePage() {
                     <h1 className="mb-3 text-5xl font-black leading-[1.05] sm:text-6xl lg:text-[72px]">
                       Damir Kotorić
                     </h1>
-                    <p className="mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
-                      Design Engineer
+                    <p className="relative mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
+                      <Highlighter color="var(--highlight)" delay={1500} isView activeClassName="text-highlight-foreground transition-colors">Design Engineer</Highlighter>
                     </p>
                     <p className="mb-6 leading-relaxed">
                       I partner with funded startups and product teams on end-to-end
@@ -179,11 +181,12 @@ export default function HomePage() {
             <>
               {/* Desktop: static 3-col grid */}
               <div className="hidden lg:grid lg:grid-cols-3 gap-12">
-                {homepageTestimonials.map((t) => (
+                {homepageTestimonials.map((t, i) => (
                   <Testimonial
                     key={t.name}
                     quote={t.summary}
                     highlight={t.highlight}
+                    highlightDelay={[0, 1000, 1500][i]}
                     name={t.name}
                     title={t.title}
                     image={t.image}
@@ -193,11 +196,12 @@ export default function HomePage() {
               </div>
               {/* Mobile: horizontal scroll-snap */}
               <div className="lg:hidden -mx-6 px-6 flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
-                {homepageTestimonials.map((t) => (
+                {homepageTestimonials.map((t, i) => (
                   <div key={t.name} className="snap-start shrink-0 w-[calc(100%-1.5rem)]">
                     <Testimonial
                       quote={t.summary}
                       highlight={t.highlight}
+                      highlightDelay={i * 250}
                       name={t.name}
                       title={t.title}
                       image={t.image}
@@ -254,14 +258,7 @@ export default function HomePage() {
       <PortfolioShowcase title="My products" items={products} isPersonalProject />
 
       {/* Section 6: CTA */}
-      <section className="bg-muted px-6 py-24 lg:py-48 lg:px-16 2xl:px-40 3xl:px-80">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
-            Ready to work together?
-          </h2>
-          <ContactFormTrigger />
-        </div>
-      </section>
+      <CtaSection />
 
       <Footer />
     </div>

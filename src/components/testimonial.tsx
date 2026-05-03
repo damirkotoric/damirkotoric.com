@@ -1,7 +1,12 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Highlighter } from "@/components/ui/highlighter";
+
 
 interface TestimonialProps {
   quote: string;
@@ -11,6 +16,7 @@ interface TestimonialProps {
   image?: string;
   linkedIn?: string;
   variant?: "card" | "featured";
+  highlightDelay?: number;
 }
 
 export function Testimonial({
@@ -21,7 +27,16 @@ export function Testimonial({
   image,
   linkedIn,
   variant = "card",
+  highlightDelay = 0,
 }: TestimonialProps) {
+  const [hasAnimated, setHasAnimated] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const key = `highlight-seen-${name}`;
+    setHasAnimated(!!sessionStorage.getItem(key));
+    sessionStorage.setItem(key, "1");
+  }, [name]);
+
   const isFeatured = variant === "featured";
   const nameSize = isFeatured ? "text-sm" : "text-base";
   const quoteSize = isFeatured ? "text-base" : "";
@@ -29,7 +44,7 @@ export function Testimonial({
   const maxWidth = isFeatured ? "max-w-xl" : "max-w-md";
 
   const renderQuote = () => {
-    if (!highlight || isFeatured) {
+    if (!highlight || isFeatured || hasAnimated === null) {
       return quote;
     }
     const idx = quote.indexOf(highlight);
@@ -39,7 +54,14 @@ export function Testimonial({
     return (
       <>
         {before}
-        <span className="font-semibold">{highlight}</span>
+        <Highlighter
+          color="var(--highlight)"
+          delay={hasAnimated ? 0 : highlightDelay}
+          isView={!hasAnimated}
+          animationDuration={hasAnimated ? 0 : 600}
+        >
+          <span className="font-semibold">{highlight}</span>
+        </Highlighter>
         {after}
       </>
     );
@@ -47,7 +69,7 @@ export function Testimonial({
 
   return (
     <div className={`${maxWidth} flex h-full flex-col justify-between`}>
-      <blockquote className={`${quoteMargin} leading-relaxed ${quoteSize}`}>
+      <blockquote className={`relative ${quoteMargin} leading-relaxed ${quoteSize}`}>
         {isFeatured && <>&ldquo;</>}
         {renderQuote()}
         {isFeatured && <>&rdquo;</>}
