@@ -102,9 +102,9 @@ export default function HomePage() {
               >
                 <div className="py-12 lg:py-24">
                   <HeroContent>
-                    <div className="mb-4 flex gap-2">
+                    <div className="mb-2 flex gap-2">
                       <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs text-muted-foreground">
-                        Previously at Booking.com
+                        €35M uplift at Booking.com
                       </span>
                     </div>
                     <h1 className="mb-3 text-5xl font-black leading-[1.05] sm:text-6xl lg:text-[72px]">
