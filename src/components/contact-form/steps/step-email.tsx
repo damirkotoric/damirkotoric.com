@@ -39,7 +39,7 @@ export function StepEmail() {
     <div>
       <label
         htmlFor="contact-email"
-        className="mb-4 block text-3xl font-bold sm:text-4xl"
+        className="mb-4 block text-3xl font-bold sm:text-4xl tracking-tight"
       >
         What&apos;s your email?
       </label>

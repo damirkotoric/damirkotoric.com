@@ -30,7 +30,7 @@ export function StepName() {
     <div>
       <label
         htmlFor="contact-name"
-        className="mb-4 block text-3xl font-bold sm:text-4xl"
+        className="mb-4 block text-3xl font-bold sm:text-4xl tracking-tight"
       >
         What&apos;s your name?
       </label>

@@ -41,7 +41,7 @@ export function StepProject() {
     <div>
       <label
         htmlFor="contact-project"
-        className="mb-4 block text-3xl font-bold sm:text-4xl"
+        className="mb-4 block text-3xl font-bold sm:text-4xl tracking-tight"
       >
         Tell me about your project
       </label>

@@ -7,7 +7,7 @@ export function StepConfirmation() {
 
   return (
     <div className="text-center">
-      <h2 className="text-3xl font-bold sm:text-4xl">
+      <h2 className="text-3xl font-bold sm:text-4xl tracking-tight">
         Thanks {name || "there"}, I&apos;ll be in touch soon.
       </h2>
     </div>
