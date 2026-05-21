@@ -30,7 +30,7 @@ export function CtaSection({ className }: { className?: string }) {
   return (
     <section className={className ?? "relative bg-muted px-6 py-24 lg:py-48 lg:px-16 2xl:px-40 3xl:px-80"}>
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="mb-8 text-3xl font-bold sm:text-4xl">
+        <h2 className="mb-8 text-3xl font-bold sm:text-4xl tracking-tight">
           Ready to work together?
         </h2>
         {hasAnimated === null || isDark ? (

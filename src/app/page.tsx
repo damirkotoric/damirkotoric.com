@@ -107,11 +107,11 @@ export default function HomePage() {
                         €35M uplift at Booking.com
                       </span>
                     </div>
-                    <h1 className="mb-3 text-5xl font-black leading-[1.05] sm:text-6xl lg:text-[72px]">
+                    <h1 className="mb-3 text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-[72px]">
                       Damir Kotorić
                     </h1>
                     <p className="relative mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
-                      <Highlighter color="var(--highlight)" delay={1500} isView activeClassName="text-highlight-foreground transition-colors">Design Engineer</Highlighter>
+                      <Highlighter color="var(--highlight)" delay={1500} isView activeClassName="text-highlight-foreground transition-colors tracking-tight">Design Engineer</Highlighter>
                     </p>
                     <p className="mb-6 leading-relaxed">
                       I partner with funded startups and product teams on end-to-end
