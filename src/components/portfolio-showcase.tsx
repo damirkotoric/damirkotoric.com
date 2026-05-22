@@ -129,7 +129,7 @@ function PortfolioShowcaseItem({ item, isPersonalProject }: { item: PortfolioIte
     >
       {/* Text content */}
       <motion.div variants={textVariants}>
-        <h3 className="mb-2 lg:mb-3 text-xl lg:text-3xl font-bold leading-tight tracking-tight">
+        <h3 className="mb-2 text-xl lg:text-3xl font-bold leading-tight tracking-tight">
           {itemTitle}
         </h3>
         <p className="text-muted-foreground lg:text-lg mb-3 lg:mb-4">{item.description}</p>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -8,6 +9,21 @@ import { ContactFormProvider } from "@/components/contact-form/contact-form-prov
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+});
+
+const generalSans = localFont({
+  src: [
+    {
+      path: "./fonts/GeneralSans-Variable.woff2",
+      style: "normal",
+    },
+    {
+      path: "./fonts/GeneralSans-VariableItalic.woff2",
+      style: "italic",
+    },
+  ],
+  variable: "--font-general-sans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -47,7 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="overflow-x-clip">
-      <body className={`${inter.variable} antialiased overflow-x-clip`}>
+      <body className={`${inter.variable} ${generalSans.variable} antialiased overflow-x-clip`}>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:rounded-md focus:outline-ring"

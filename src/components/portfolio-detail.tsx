@@ -136,7 +136,7 @@ export function PortfolioDetail({ project, nextProject }: PortfolioDetailProps) 
             </div>
             <Link
               href={`/portfolio/${nextProject.slug}`}
-              className="group inline-flex items-center gap-3 text-2xl font-bold tracking-tight transition-opacity hover:opacity-70 sm:text-3xl"
+              className="group inline-flex items-center gap-3 text-2xl font-bold tracking-tight transition-opacity hover:opacity-70 sm:text-3xl" style={{ fontFamily: "var(--font-general-sans)" }}
             >
               {nextProject.title}
               <span className="text-xl transition-transform duration-200 group-hover:translate-x-1">

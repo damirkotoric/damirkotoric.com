@@ -50,7 +50,7 @@ export function ProjectCard({ slug, title, outcome, image }: ProjectCardProps) {
             </div>
           )}
         </div>
-        <h3 className="mb-1 flex items-center gap-1 text-lg font-semibold">
+        <h3 className="mb-1 flex items-center gap-1 text-xl font-semibold">
           {title}
           <span className="-translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100">
             →

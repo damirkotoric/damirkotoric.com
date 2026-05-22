@@ -133,7 +133,7 @@ export default function PortfolioPage() {
                       <source src={project.video} type="video/mp4" />
                     </video>
                   </div>
-                  <h3 className="mb-1 flex items-center gap-1 text-lg font-semibold">
+                  <h3 className="mb-1 flex items-center gap-1 text-xl font-semibold">
                     {project.title}
                     <span className="-translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100">
                       ↗

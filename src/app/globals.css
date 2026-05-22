@@ -142,6 +142,15 @@
   body {
     @apply bg-background text-foreground;
   }
+  h1, h2, h3, h4, h5, h6,
+  label {
+    font-family: var(--font-general-sans);
+  }
+}
+
+/* Prevent rough-notation SVG overlays from blocking text selection */
+svg.rough-annotation {
+  pointer-events: none !important;
 }
 
 /* Hide scrollbar for horizontal scroll containers */
