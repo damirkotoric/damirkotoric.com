@@ -111,7 +111,7 @@ export default function HomePage() {
                       Damir Kotorić
                     </h1>
                     <p className="relative mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
-                      <Highlighter color="var(--highlight)" delay={1500} isView activeClassName="text-highlight-foreground transition-colors tracking-tight">Design Engineer</Highlighter>
+                      <Highlighter color="var(--highlight)" delay={1500} isView className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">Design Engineer</Highlighter>
                     </p>
                     <p className="mb-6 leading-relaxed">
                       I partner with funded startups and product teams on end-to-end
