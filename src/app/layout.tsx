@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/og.png",
+        url: "/images/og.jpg",
         width: 1200,
         height: 630,
         alt: "Damir Kotorić - Design Engineer",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Damir Kotorić • Design Engineer",
     description:
       "I partner with funded startups and product teams on end-to-end product design, typically 3+ month engagements or full-time roles.",
-    images: ["/images/og.png"],
+    images: ["/images/og.jpg"],
   },
 };
 
