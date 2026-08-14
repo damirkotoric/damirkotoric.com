@@ -114,9 +114,8 @@ export default function HomePage() {
                       <Highlighter color="var(--highlight)" delay={1500} isView className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">AI Product Developer</Highlighter>
                     </p>
                     <p className="mb-6 leading-relaxed">
-                      I partner with funded startups and product teams on end-to-end
-                      product design, typically 3+ month engagements or full-time
-                      roles.
+                      I partner with funded startups and product teams on the
+                      end-to-end creation of AI-powered software products.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
                       <ContactFormTrigger className="w-full sm:w-auto" />

@@ -29,11 +29,11 @@ const generalSans = localFont({
 export const metadata: Metadata = {
   title: "Damir Kotorić • AI Product Developer",
   description:
-    "I partner with funded startups and product teams on end-to-end product design, typically 3+ month engagements or full-time roles.",
+    "I partner with funded startups and product teams on the end-to-end creation of AI-powered software products.",
   openGraph: {
     title: "Damir Kotorić • AI Product Developer",
     description:
-      "I partner with funded startups and product teams on end-to-end product design, typically 3+ month engagements or full-time roles.",
+      "I partner with funded startups and product teams on the end-to-end creation of AI-powered software products.",
     url: "/",
     siteName: "Damir Kotorić",
     locale: "en_US",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Damir Kotorić • AI Product Developer",
     description:
-      "I partner with funded startups and product teams on end-to-end product design, typically 3+ month engagements or full-time roles.",
+      "I partner with funded startups and product teams on the end-to-end creation of AI-powered software products.",
     images: ["/images/og.jpg"],
   },
 };
