@@ -15,7 +15,7 @@ export const metadata: Metadata = {
         url: "/images/og.jpg",
         width: 1200,
         height: 630,
-        alt: "Damir Kotorić - Design Engineer",
+        alt: "Damir Kotorić - AI Product Developer",
       },
     ],
   },

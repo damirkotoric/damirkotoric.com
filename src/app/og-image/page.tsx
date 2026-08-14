@@ -21,7 +21,7 @@ export default function OgImagePage() {
           Damir Kotorić
         </h1>
         <p className="relative text-[28px] font-semibold text-muted-foreground mt-3 tracking-tight">
-          <Highlighter color="var(--highlight)" delay={0} className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">Design Engineer</Highlighter>
+          <Highlighter color="var(--highlight)" delay={0} className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">AI Product Developer</Highlighter>
         </p>
       </div>
 
