@@ -1,6 +1,6 @@
 # damirkotoric.com
 
-AI Product Developer. I build with React, Next.js, TypeScript. See my work at https://damirkotoric.com
+Design Engineer. I build with React, Next.js, TypeScript. See my work at https://damirkotoric.com
 
 ## Tech Stack
 

@@ -35,6 +35,8 @@ const toolCategories: ToolCategory[] = [
   {
     name: "Dev & Deployment",
     tools: [
+      { name: "Xcode (iOS)", icon: "/images/tools/tool-xcode.svg" },
+      { name: "Android Studio", icon: "/images/tools/tool-android-studio.svg" },
       { name: "Next.js", slug: "nextdotjs", darkColor: "ffffff" },
       { name: "React", slug: "react" },
       { name: "TypeScript", slug: "typescript" },
@@ -64,7 +66,7 @@ const toolCategories: ToolCategory[] = [
       { name: "ScreenStudio", icon: "/images/tools/tool-screenstudio.webp" },
       { name: "CapCut", icon: "/images/tools/tool-capcut.svg", darkInvert: true },
       { name: "Kling.ai", icon: "/images/tools/tool-kling.svg", darkInvert: true },
-      { name: "Gemini (Nano Banana)", icon: "/images/tools/tool-gemini.svg" },
+      { name: "Gemini", icon: "/images/tools/tool-gemini.svg" },
     ],
   },
   {

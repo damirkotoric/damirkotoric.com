@@ -27,11 +27,11 @@ const generalSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Damir Kotorić • AI Product Developer",
+  title: "Damir Kotorić • Design Engineer",
   description:
     "I partner with funded startups and product teams on the end-to-end creation of AI-powered software products.",
   openGraph: {
-    title: "Damir Kotorić • AI Product Developer",
+    title: "Damir Kotorić • Design Engineer",
     description:
       "I partner with funded startups and product teams on the end-to-end creation of AI-powered software products.",
     url: "/",
@@ -43,13 +43,13 @@ export const metadata: Metadata = {
         url: "/images/og.jpg",
         width: 1200,
         height: 630,
-        alt: "Damir Kotorić - AI Product Developer",
+        alt: "Damir Kotorić - Design Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Damir Kotorić • AI Product Developer",
+    title: "Damir Kotorić • Design Engineer",
     description:
       "I partner with funded startups and product teams on the end-to-end creation of AI-powered software products.",
     images: ["/images/og.jpg"],
