@@ -111,7 +111,7 @@ export default function HomePage() {
                       Damir Kotorić
                     </h1>
                     <p className="relative mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
-                      <Highlighter color="var(--highlight)" delay={1500} isView className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">AI Product Developer</Highlighter>
+                      <Highlighter color="var(--highlight)" delay={1500} isView className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">Design Engineer</Highlighter>
                     </p>
                     <p className="mb-6 leading-relaxed">
                       I partner with funded startups and product teams on the
@@ -194,9 +194,9 @@ export default function HomePage() {
                 ))}
               </div>
               {/* Mobile: horizontal scroll-snap */}
-              <div className="lg:hidden -mx-6 px-6 flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+              <div className="lg:hidden -mx-6 flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
                 {homepageTestimonials.map((t, i) => (
-                  <div key={t.name} className="snap-start shrink-0 w-[calc(100%-1.5rem)]">
+                  <div key={t.name} className={`snap-start shrink-0 w-[calc(100%-1.5rem)] ${i === 0 ? "pl-6" : ""} ${i === homepageTestimonials.length - 1 ? "pr-6" : ""}`}>
                     <Testimonial
                       quote={t.summary}
                       highlight={t.highlight}
