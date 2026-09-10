@@ -81,7 +81,7 @@ const products = [
     id: "stylespin",
     name: "StyleSpin",
     description: "AI fashion photoshoots for e-commerce sellers.",
-    href: "https://stylespin.io",
+    href: "https://stylespin.vercel.app",
     customBg: <StyleSpinBg />,
   },
 ];

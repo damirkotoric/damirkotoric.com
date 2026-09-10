@@ -51,7 +51,7 @@ const personalProjects = [
   {
     title: "StyleSpin",
     description: "AI fashion photoshoots for e-commerce sellers.",
-    href: "https://stylespin.io",
+    href: "https://stylespin.vercel.app",
     video: "/images/portfolio/stylespin/stylespin.mp4",
     poster: "/images/portfolio/stylespin/stylespin-poster.avif",
   },
