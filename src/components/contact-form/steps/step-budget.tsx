@@ -5,6 +5,7 @@ import { useContactForm } from "../contact-form-provider";
 import { track } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { EMAIL, socials } from "@/data/socials";
 
 const budgetOptions = [
   "Under $5K USD/month",
@@ -94,10 +95,10 @@ export function StepBudget() {
             <p>
               Something went wrong. Please email me directly at{" "}
               <a
-                href="mailto:mail@damirkotoric.com"
+                href={socials.email}
                 className="underline hover:text-foreground"
               >
-                mail@damirkotoric.com
+                {EMAIL}
               </a>
             </p>
           ) : (

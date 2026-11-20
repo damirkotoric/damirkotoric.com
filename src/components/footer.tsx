@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ThemeSwitcher } from "./theme-switcher";
+import { socials } from "@/data/socials";
 
 export function Footer() {
   return (
@@ -16,7 +17,7 @@ export function Footer() {
             Testimonials
           </Link>
           <a
-            href="https://www.linkedin.com/in/damirkotoric/"
+            href={socials.linkedIn}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-foreground"

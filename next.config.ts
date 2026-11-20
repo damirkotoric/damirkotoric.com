@@ -4,6 +4,14 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async headers() {
+    return [
+      {
+        source: "/:file*.pkpass",
+        headers: [{ key: "Content-Type", value: "application/vnd.apple.pkpass" }],
+      },
+    ];
+  },
   async redirects() {
     return [
       {
