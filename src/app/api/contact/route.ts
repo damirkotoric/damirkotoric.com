@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { EMAIL } from "@/data/socials";
 
 export async function POST(request: Request) {
   try {
@@ -24,7 +25,7 @@ export async function POST(request: Request) {
 
     await resend.emails.send({
       from: "Contact Form <contact@damirkotoric.com>",
-      to: "mail@damirkotoric.com",
+      to: EMAIL,
       replyTo: email,
       subject: `New inquiry from ${name}`,
       text: [

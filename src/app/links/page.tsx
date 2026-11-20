@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import {
+  EnvelopeSimple,
   Globe,
   LinkedinLogo,
   TelegramLogo,
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 
 const links = [
   { label: "Website", href: SITE_URL, Icon: Globe },
+  { label: "Email", href: socials.email, Icon: EnvelopeSimple },
   { label: "WhatsApp", href: socials.whatsApp, Icon: WhatsappLogo },
   { label: "Telegram", href: socials.telegram, Icon: TelegramLogo },
   { label: "LinkedIn", href: socials.linkedIn, Icon: LinkedinLogo },
