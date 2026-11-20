@@ -5,13 +5,20 @@ import {
   Globe,
   LinkedinLogo,
   TelegramLogo,
+  UserPlus,
   WhatsappLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
-import { SITE_URL, socials } from "@/data/socials";
+import {
+  CONTACT_CARD_PATH,
+  FULL_NAME,
+  ROLE,
+  SITE_URL,
+  socials,
+} from "@/data/socials";
 
 export const metadata: Metadata = {
-  title: "Links • Damir Kotorić",
+  title: `Links • ${FULL_NAME}`,
   robots: { index: false, follow: false },
 };
 
@@ -28,16 +35,14 @@ export default function LinksPage() {
     <div className="mx-auto flex min-h-svh max-w-sm flex-col items-center justify-center px-6 py-16 text-center">
       <Image
         src="/images/damir.avif"
-        alt="Damir Kotorić"
+        alt={FULL_NAME}
         width={112}
         height={112}
         priority
         className="mb-5 size-28 rounded-full bg-muted object-cover"
       />
-      <h1 className="text-3xl font-black tracking-tight">Damir Kotorić</h1>
-      <p className="mb-8 text-lg font-semibold text-muted-foreground">
-        Design Engineer
-      </p>
+      <h1 className="text-3xl font-black tracking-tight">{FULL_NAME}</h1>
+      <p className="mb-8 text-lg font-semibold text-muted-foreground">{ROLE}</p>
       <ul className="flex w-full flex-col gap-3">
         {links.map(({ label, href, Icon }) => (
           <li key={label}>
@@ -55,6 +60,16 @@ export default function LinksPage() {
           </li>
         ))}
       </ul>
+      <Button
+        asChild
+        size="lg"
+        className="mt-6 w-full"
+        leadingIcon={<UserPlus weight="fill" className="size-5" />}
+      >
+        <a href={CONTACT_CARD_PATH}>
+          Save contact
+        </a>
+      </Button>
     </div>
   );
 }
