@@ -39,7 +39,7 @@ export default function LinksPage() {
         width={112}
         height={112}
         priority
-        className="mb-5 size-28 rounded-full bg-muted object-cover"
+        className="mb-5 size-28 rounded-full bg-black object-cover shadow-layered"
       />
       <h1 className="text-3xl font-black tracking-tight">{FULL_NAME}</h1>
       <p className="mb-8 text-lg font-semibold text-muted-foreground">{ROLE}</p>
