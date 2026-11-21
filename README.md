@@ -69,3 +69,11 @@ Animated cover backgrounds are mapped in `src/components/portfolio-cover.tsx`:
 ## Path Aliases
 
 `@/*` maps to `./src/*` (configured in `tsconfig.json`). Use `@/components`, `@/lib`, etc. for all imports.
+
+## Email
+
+Mail for @damirkotoric.com goes through [Forward Email](https://forwardemail.net) (Enhanced Protection plan, account damirkotoric@gmail.com; set up 21 Nov 2026).
+
+- **Receiving:** a catch-all, *@damirkotoric.com, forwards to damirkotoric@gmail.com. Change it under Domains → damirkotoric.com → Mailboxes.
+- **Sending:** Forward Email's SMTP (smtp.forwardemail.net, port 465, username = the address, password generated under Mailboxes → Catch-all Passwords), used from Gmail's "Send mail as".
+- **DNS (Cloudflare, DNS only):** MX mx1/mx2.forwardemail.net, the forward-email-site-verification TXT, SPF `include:spf.forwardemail.net`, DKIM `fe-*._domainkey`, CNAME fe-bounces → forwardemail.net, DMARC reports to Forward Email. Replaces Cloudflare Email Routing, which is switched off. Resend (send.damirkotoric.com) is separate and unchanged; DMARC stays p=none.
