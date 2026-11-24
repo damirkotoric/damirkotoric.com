@@ -11,9 +11,9 @@ import { FULL_NAME } from "@/data/socials";
 import { getProjectBySlug } from "@/lib/portfolio-data";
 import { DetailsNav } from "./details-nav";
 
-const TITLE = "The details nobody asked for";
+const TITLE = "The details that make or break a product";
 const DESCRIPTION =
-  "The small things clients rarely ask for and always notice when they are missing. This is where the extra money goes.";
+  "The small things that decide whether people find your product, trust it and come back. Most get skipped because nobody thinks to ask for them.";
 
 // Draft: reachable by URL, kept out of search and the sitemap until it is finished.
 export const metadata: Metadata = {
@@ -141,8 +141,8 @@ function BeamyVertical() {
 type Detail = {
   id: string;
   title: string;
-  missed: string;
-  done: string;
+  what: string;
+  why: string;
   media: ReactNode;
 };
 
@@ -152,23 +152,23 @@ const groups: { name: string; details: Detail[] }[] = [
     details: [
       {
         id: "share-cards",
-        title: "Every page gets its own share card",
-        missed: "Most sites have one share image for the homepage, or none. Every link pasted into Slack or LinkedIn looks the same, or looks broken.",
-        done: "Each page gets a title, a description and an image written for it. These are the real cards from this site.",
+        title: "A share card for every page",
+        what: "When someone pastes your link into Slack, WhatsApp or LinkedIn, the app shows a preview: an image, a title and a line of text. Every page needs its own. These are real ones from this site.",
+        why: "Without one, your link shows up as a bare URL or a grey box, and people scroll past it. Every time someone shares your product is a free ad. Most products waste it.",
         media: <ShareCards />,
       },
       {
         id: "lighthouse",
-        title: "A Lighthouse pass before launch",
-        missed: "Speed and accessibility get checked after a customer complains, if ever.",
-        done: "I run Google's own audit before anything ships and fix what it finds. These are this site's scores.",
+        title: "A Lighthouse audit before launch",
+        what: "Google's own test of a page. It scores how fast the page loads, whether it works with a screen reader and whether search engines can read it, each out of 100. These are this site's scores.",
+        why: "A slow page loses people before they have seen anything, and Google uses speed as a ranking signal. An inaccessible page shuts out some of your customers entirely.",
         media: <LighthouseScores />,
       },
       {
         id: "sitemap",
-        title: "A sitemap that tells Google the truth",
-        missed: "The sitemap gets set up on day one and never touched again. This site's listed 2 pages while 21 existed.",
-        done: "The sitemap is built from the same data as the pages, so a new page cannot be forgotten.",
+        title: "A complete sitemap",
+        what: "A file that gives Google the list of every page on your site. It should update itself whenever a page is added.",
+        why: "Pages missing from the list can take weeks to show up in search, or never do. This site's sitemap listed 2 pages when 21 existed. I found that in an audit, not by luck.",
         media: <SitemapCount />,
       },
     ],
@@ -179,15 +179,15 @@ const groups: { name: string; details: Detail[] }[] = [
       {
         id: "dark-mode",
         title: "Dark mode that is designed, not inverted",
-        missed: "Dark mode gets bolted on late. Shadows vanish, borders glow and one chart stays white.",
-        done: "Every colour is a named token with a light and a dark value from the first commit.",
+        what: "A second colour scheme for people who keep their phone or laptop in dark mode. Try the switch. Every colour here has a light and a dark value, set from the first commit.",
+        why: "Many people leave dark mode on all day. An app that ignores it blasts white at them at night. An app that bolts it on late has vanishing shadows and one chart that stays white. Both look unfinished.",
         media: <ThemeToggle />,
       },
       {
         id: "small-touches",
-        title: "Small things that make a long session easy",
-        missed: "The happy path works. Nobody thought about the person who scrubs four hours ahead by accident.",
-        done: "In Beamy, playback stops at the end of a chapter, one tap undoes a slip, and a skip rewinds out loud so you hear where you landed.",
+        title: "Controls that forgive mistakes",
+        what: "The small behaviours around the main feature. In Beamy, playback stops at the end of a chapter, one tap undoes an accidental skip, and a skip rewinds out loud so you hear where you landed.",
+        why: "Nobody praises an audiobook app for playing audio. They praise it for not losing their place. These details are what people mention in reviews, and what makes them stay.",
         media: <BeamyBg />,
       },
     ],
@@ -197,16 +197,16 @@ const groups: { name: string; details: Detail[] }[] = [
     details: [
       {
         id: "app-store",
-        title: "On the App Store, not on a staging link",
-        missed: "The app is finished, and then the listing, the screenshots, the review notes and the rejections take another month.",
-        done: "I design the listing, cut the video and handle the submission. Beamy is live for iPhone, iPad, Mac, Apple TV and CarPlay.",
+        title: "An App Store listing that sells",
+        what: "The store page for your app: icon, screenshots, preview video and description. Behind it sits Apple's review, which every release has to pass.",
+        why: "The listing is where people decide whether to download. A rejected submission can cost you weeks. I design the listing, cut the video and handle the review. Beamy is live for iPhone, iPad, Mac, Apple TV and CarPlay.",
         media: <BeamyVertical />,
       },
       {
         id: "ab-testing",
         title: "Changes that get measured",
-        missed: "A redesign ships because it looks better. Nobody can say what it did to revenue.",
-        done: "At Booking.com every change I made to payments shipped as an A/B test. Together they added about €35M a year.",
+        what: "An A/B test ships a change to half your users and compares their numbers with the other half.",
+        why: "Without it, a redesign is a guess, and nobody can say what it did to revenue. At Booking.com every change I made to payments shipped as a test. Together they added about €35M a year.",
         media: (
           <div className="h-40 w-full max-w-[560px] p-6 sm:h-56">
             <TextHoverEffect text="€35M" />
@@ -273,12 +273,12 @@ export default function DetailsPage() {
                   </h2>
                   <dl className="grid max-w-[900px] grid-cols-1 gap-8 sm:grid-cols-2">
                     <div>
-                      <dt className="mb-2 text-sm font-semibold text-muted-foreground">What gets missed</dt>
-                      <dd className="leading-relaxed text-pretty">{detail.missed}</dd>
+                      <dt className="mb-2 text-sm font-semibold text-muted-foreground">What it is</dt>
+                      <dd className="leading-relaxed text-pretty">{detail.what}</dd>
                     </div>
                     <div>
-                      <dt className="mb-2 text-sm font-semibold text-muted-foreground">What I do</dt>
-                      <dd className="leading-relaxed text-pretty">{detail.done}</dd>
+                      <dt className="mb-2 text-sm font-semibold text-muted-foreground">Why it matters</dt>
+                      <dd className="leading-relaxed text-pretty">{detail.why}</dd>
                     </div>
                   </dl>
                 </section>
