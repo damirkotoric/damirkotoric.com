@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { FULL_NAME, ROLE } from "@/data/socials";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -8,7 +9,8 @@ import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { testimonials, getTestimonialByName } from "@/data/testimonials";
 
 export const metadata: Metadata = {
-  title: "Testimonials • Damir Kotorić",
+  title: `Testimonials • ${FULL_NAME}`,
+  alternates: { canonical: "/testimonials" },
   description:
     "What clients and former colleagues say about me.",
   openGraph: {
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
         url: "/images/og.jpg",
         width: 1200,
         height: 630,
-        alt: "Damir Kotorić - Design Engineer",
+        alt: `${FULL_NAME} - ${ROLE}`,
       },
     ],
   },

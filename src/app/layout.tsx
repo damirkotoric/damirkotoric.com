@@ -5,6 +5,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ContactFormProvider } from "@/components/contact-form/contact-form-provider";
+import { FULL_NAME, ROLE, SITE_DESCRIPTION, SITE_URL } from "@/data/socials";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -26,16 +27,17 @@ const generalSans = localFont({
   display: "swap",
 });
 
+const title = `${FULL_NAME} • ${ROLE}`;
+
 export const metadata: Metadata = {
-  title: "Damir Kotorić • Design Engineer",
-  description:
-    "I partner with funded startups and product teams on the end-to-end creation of AI-powered software products.",
+  metadataBase: new URL(SITE_URL),
+  title,
+  description: SITE_DESCRIPTION,
   openGraph: {
-    title: "Damir Kotorić • Design Engineer",
-    description:
-      "I partner with funded startups and product teams on the end-to-end creation of AI-powered software products.",
+    title,
+    description: SITE_DESCRIPTION,
     url: "/",
-    siteName: "Damir Kotorić",
+    siteName: FULL_NAME,
     locale: "en_US",
     type: "website",
     images: [
@@ -43,15 +45,14 @@ export const metadata: Metadata = {
         url: "/images/og.jpg",
         width: 1200,
         height: 630,
-        alt: "Damir Kotorić - Design Engineer",
+        alt: `${FULL_NAME} - ${ROLE}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Damir Kotorić • Design Engineer",
-    description:
-      "I partner with funded startups and product teams on the end-to-end creation of AI-powered software products.",
+    title,
+    description: SITE_DESCRIPTION,
     images: ["/images/og.jpg"],
   },
 };
