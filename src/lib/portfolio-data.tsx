@@ -14,6 +14,7 @@ export type PortfolioSection = {
 export type PortfolioProject = {
   slug: string;
   title: string;
+  seoTitle: string;
   description: string;
   descriptionRich?: ReactNode;
   role: string;
@@ -32,6 +33,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "beyondwords",
     title: "BeyondWords",
+    seoTitle: "BeyondWords design system case study",
     description:
       "Created a custom design system for an audio AI startup, enabling faster product iteration.",
     role: "Design System Designer",
@@ -185,6 +187,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "brokerengine",
     title: "BrokerEngine",
+    seoTitle: "BrokerEngine SaaS redesign case study",
     description:
       "Redesigned the product over 3 years, leading to a 70% acquisition by a major corporation.",
     descriptionRich: <>Redesigned the product over 3 years, leading to a <a href="https://www.afgonline.com.au/afg-acquires-brokerengine-to-drive-further-growth-in-the-australian-mortgage-broker-market/" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">70% acquisition</a> by a major corporation.</>,
@@ -375,6 +378,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "nametag",
     title: "Nametag",
+    seoTitle: "Nametag: 0-to-1 product design, $2M seed round",
     description:
       "Designed the product from scratch, helping secure a $2M seed round and 60K users.",
     descriptionRich: <>Designed the product from scratch, helping secure a <a href="https://finance.yahoo.com/news/okx-ventures-gsrv-co-lead-032400725.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">$2M seed round</a> and 60K users.</>,
@@ -584,6 +588,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "booking-com",
     title: "Booking.com",
+    seoTitle: "Booking.com payment UX: €35M conversion uplift",
     description:
       "Led design across mobile payment, accessibility and performance teams, contributing to a €35M annual conversion boost.",
     role: "Product Designer",
@@ -697,6 +702,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "gsq-open-data-portal",
     title: "Queensland Open Data Portal",
+    seoTitle: "Queensland Open Data Portal UX design",
     description:
       "Designed a geological data portal for the Queensland Government, serving the state's $38B mining industry.",
     role: "Product Designer",
@@ -799,6 +805,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "boston-north-end",
     title: "Boston North End Public Art",
+    seoTitle: "Boston North End AR museum app design",
     description:
       "Turned an iconic Boston neighbourhood into an open-air AR museum, telling the stories of 20th century immigrants.",
     role: "Product Designer",
@@ -896,6 +903,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "cosmitto",
     title: "Cosmitto",
+    seoTitle: "Cosmitto: training marketplace product design",
     description:
       "Designed a corporate training marketplace from the ground up, shipping during COVID to capture the spike in remote learning demand.",
     role: "Product Designer",
@@ -1012,6 +1020,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "creative-ai",
     title: "creative.ai",
+    seoTitle: "creative.ai: AI design tool UX from 2016",
     description:
       "Led design for a Berlin AI startup in 2016 — exploring text-to-design and AI-powered creative tools years before the industry caught up.",
     role: "Lead Product Designer",
@@ -1233,6 +1242,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "envato",
     title: "Envato",
+    seoTitle: "Envato: UX design and design sprints",
     description:
       "UX Designer at one of Australia's largest tech companies, shipping products, running design sprints, and building design culture across the organisation.",
     role: "UX Designer",
@@ -1372,6 +1382,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "harvard",
     title: "Harvard",
+    seoTitle: "Harvard: AR and digital humanities design",
     description:
       "Led design on a series of AR and digital humanities projects in collaboration with Harvard University, from the tombs of Giza to the Acropolis of Athens.",
     role: "Lead Product Designer",
@@ -1676,6 +1687,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "nsw-climate-data-portal",
     title: "NSW Climate Data Portal",
+    seoTitle: "NSW Climate Data Portal UX design",
     description:
       "Designed an open data portal for the NSW Government, making petabytes of climate data publicly accessible.",
     role: "Product Designer",
@@ -1819,6 +1831,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "krakatoa",
     title: "Krakatoa",
+    seoTitle: "Krakatoa: web3 gaming marketplace design",
     description:
       "Designed a web3 gaming marketplace on Ethereum — featuring crypto payments via Metamask and AI-generated art using Midjourney.",
     role: "Product Designer",
@@ -2021,6 +2034,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "oracy",
     title: "Oracy",
+    seoTitle: "Oracy: audiobook player design and build",
     description:
       "A streamlined audiobook player for free public domain books — built with my late colleague Cipriano Freitas.",
     role: "Designer & Developer",
@@ -2100,6 +2114,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "orpheus",
     title: "Orpheus",
+    seoTitle: "Orpheus: digital archiving platform design",
     description:
       "Led product strategy and design for a digital archiving platform used by Harvard, MIT, and humanities institutions worldwide.",
     role: "Lead Design Strategist",
@@ -2269,6 +2284,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "resell-calendar",
     title: "Resell Calendar",
+    seoTitle: "Resell Calendar: 0-to-1 product design",
     description:
       "Zero-to-one product design for a resale community hub — 14,000 email signups within the first year.",
     role: "Lead Product Designer",
@@ -2431,6 +2447,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "storyverse",
     title: "Storyverse",
+    seoTitle: "Storyverse: location-based storytelling app concept",
     description:
       "A product concept for location-based storytelling — stories pinned to real places, unlocked only by being there.",
     role: "Product Designer",
@@ -2520,6 +2537,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "teaching-at-general-assembly",
     title: "Teaching at General Assembly",
+    seoTitle: "Teaching UX Design at General Assembly",
     description:
       "Co-instructed a 3-month UX Design Immersive in Melbourne, kickstarting 18 new design careers.",
     role: "Lead Instructor",
@@ -2678,6 +2696,7 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "zhejiang-museum-ar",
     title: "Zhejiang Museum AR App",
+    seoTitle: "Zhejiang Museum AR app design",
     description:
       "Designed an AR tour experience for one of China's premier archaeological museums, delivered in time for its grand opening.",
     role: "Lead Product Designer",

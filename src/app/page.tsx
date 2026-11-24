@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
@@ -25,6 +26,43 @@ import {
   ScrollSection,
   ScrollMediaItem,
 } from "@/components/scroll-linked-layout";
+import {
+  FULL_NAME,
+  PERSON_ID,
+  ROLE,
+  ROLE_TAGLINE,
+  SITE_DESCRIPTION,
+  SITE_URL,
+  socials,
+} from "@/data/socials";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": PERSON_ID,
+      name: FULL_NAME,
+      alternateName: FULL_NAME.normalize("NFD").replace(/\p{M}/gu, ""),
+      jobTitle: ROLE,
+      description: SITE_DESCRIPTION,
+      url: SITE_URL,
+      image: `${SITE_URL}/images/og.jpg`,
+      sameAs: [socials.linkedIn],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: FULL_NAME,
+      url: SITE_URL,
+      author: { "@id": PERSON_ID },
+    },
+  ],
+};
 
 const selectedWork = [
   {
@@ -89,6 +127,10 @@ const products = [
 export default function HomePage() {
   return (
     <div className="overflow-x-clip">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Section 1: Hero + Logo Reel */}
       <section className="min-h-screen grid grid-rows-[1fr_auto]">
         <div className="h-full overflow-hidden">
@@ -108,10 +150,11 @@ export default function HomePage() {
                       </span>
                     </div>
                     <h1 className="mb-3 text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-[72px]">
-                      Damir Kotorić
+                      {FULL_NAME}
                     </h1>
                     <p className="relative mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
-                      <Highlighter color="var(--highlight)" delay={1500} isView className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">Design Engineer</Highlighter>
+                      <Highlighter color="var(--highlight)" delay={1500} isView className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">{ROLE}</Highlighter>,{" "}
+                      <span className="whitespace-nowrap">{ROLE_TAGLINE}</span>
                     </p>
                     <p className="mb-6 leading-relaxed">
                       I partner with funded startups and product teams on the

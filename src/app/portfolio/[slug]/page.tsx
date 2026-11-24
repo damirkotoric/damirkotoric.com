@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PortfolioDetail } from "@/components/portfolio-detail";
+import { FULL_NAME, PERSON_ID, SITE_URL } from "@/data/socials";
 import {
   getProjectBySlug,
   getNextProject,
@@ -26,11 +27,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const title = `${project.seoTitle} • ${FULL_NAME}`;
+
   return {
-    title: `${project.title} • Damir Kotorić`,
+    title,
     description: project.description,
+    alternates: { canonical: `/portfolio/${project.slug}` },
     openGraph: {
-      title: `${project.title} • Damir Kotorić`,
+      title,
       description: project.description,
       images: [
         {
@@ -56,6 +60,44 @@ export default async function PortfolioProjectPage({ params }: Props) {
   }
 
   const nextProject = getNextProject(slug);
+  const url = `${SITE_URL}/portfolio/${project.slug}`;
 
-  return <PortfolioDetail project={project} nextProject={nextProject} />;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        "@id": `${url}#case-study`,
+        name: project.title,
+        headline: project.seoTitle,
+        description: project.description,
+        url,
+        image: `${SITE_URL}${project.ogImage.src}`,
+        creator: { "@id": PERSON_ID },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Portfolio",
+            item: `${SITE_URL}/portfolio`,
+          },
+          { "@type": "ListItem", position: 3, name: project.title, item: url },
+        ],
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <PortfolioDetail project={project} nextProject={nextProject} />
+    </>
+  );
 }

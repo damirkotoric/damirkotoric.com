@@ -1,6 +1,6 @@
 # damirkotoric.com
 
-Design Engineer. I build with React, Next.js, TypeScript. See my work at https://damirkotoric.com
+Product Engineer. I build with React, Next.js, TypeScript. See my work at https://damirkotoric.com
 
 ## Tech Stack
 

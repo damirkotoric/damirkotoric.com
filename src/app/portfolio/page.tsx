@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { FULL_NAME, ROLE } from "@/data/socials";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { CtaSection } from "@/components/cta-section";
@@ -6,7 +7,8 @@ import { ProjectCard } from "@/components/project-card";
 import { getFeaturedProjects, getArchiveProjects } from "@/lib/portfolio-data";
 
 export const metadata: Metadata = {
-  title: "Portfolio • Damir Kotorić",
+  title: `Portfolio • ${FULL_NAME}`,
+  alternates: { canonical: "/portfolio" },
   description:
     "Selected projects from 17+ years of product design work across startups, scale-ups, and enterprise.",
   openGraph: {
@@ -15,7 +17,7 @@ export const metadata: Metadata = {
         url: "/images/og.jpg",
         width: 1200,
         height: 630,
-        alt: "Damir Kotorić - Design Engineer",
+        alt: `${FULL_NAME} - ${ROLE}`,
       },
     ],
   },
