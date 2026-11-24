@@ -6,6 +6,14 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
     "width": 1200,
     "height": 900
   },
+  "/images/portfolio/beamy/beamy-vertical-poster.jpg": {
+    "width": 900,
+    "height": 1600
+  },
+  "/images/portfolio/beamy/beamy-vertical.mp4": {
+    "width": 900,
+    "height": 1600
+  },
   "/images/portfolio/beamy/beamy.mp4": {
     "width": 1200,
     "height": 900
