@@ -30,7 +30,6 @@ import {
   FULL_NAME,
   PERSON_ID,
   ROLE,
-  ROLE_TAGLINE,
   SITE_DESCRIPTION,
   SITE_URL,
   socials,
@@ -153,12 +152,14 @@ export default function HomePage() {
                       {FULL_NAME}
                     </h1>
                     <p className="relative mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
-                      <Highlighter color="var(--highlight)" delay={1500} isView className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">{ROLE}</Highlighter>,{" "}
-                      <span className="whitespace-nowrap">{ROLE_TAGLINE}</span>
+                      <Highlighter color="var(--highlight)" delay={1500} isView className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">{ROLE}</Highlighter>
                     </p>
-                    <p className="mb-6 leading-relaxed">
-                      I partner with funded startups and product teams on the
-                      end-to-end creation of AI-powered web, iOS and Android products.
+                    <p className="mb-6 leading-relaxed text-pretty">
+                      I partner with funded startups and product teams on the{" "}
+                      <span className="whitespace-nowrap">end-to-end</span> design and
+                      development of{" "}
+                      <span className="whitespace-nowrap">AI-powered</span> web, iOS and
+                      Android products.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
                       <ContactFormTrigger className="w-full sm:w-auto" />
