@@ -38,7 +38,7 @@ export function StepBudget() {
   return (
     <div>
       <h2 className="mb-6 text-3xl font-bold sm:text-4xl">
-        What&apos;s your monthly design budget?
+        What&apos;s your monthly design and development budget?
       </h2>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         {budgetOptions.map((option) => (

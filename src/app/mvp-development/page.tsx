@@ -34,31 +34,49 @@ export const metadata: Metadata = {
   openGraph: { title, description: DESCRIPTION, url: PATH },
 };
 
-// Bar widths are a share of the largest figure on the chart ($43K).
+// Bar widths are a share of the largest figure on the chart ($50K).
 const costRows = [
   {
     label: "A senior engineer plus a product designer, 5 weeks",
     total: "$34K",
     bars: [
-      { width: "46.5%", label: "Engineer $20K", className: "bg-foreground text-background" },
-      { width: "33.5%", label: "Designer $14K", className: "bg-muted-foreground text-background" },
+      { width: "40%", label: "Engineer $20K", className: "bg-foreground text-background" },
+      { width: "28.8%", label: "Designer $14K", className: "bg-muted-foreground text-background" },
     ],
   },
   {
-    label: "A cheap AI build, then the rescue or rebuild",
-    total: "$15K to $43K",
+    label: "A cheap AI build, then the professional rebuild",
+    total: "+ $5K to $50K",
     bars: [
-      { width: "7%", label: "", className: "bg-foreground" },
-      { width: "28%", label: "Rebuild from $12K", className: "bg-muted-foreground text-background" },
-      { width: "65%", label: "up to $40K", className: "border border-dashed border-muted-foreground text-muted-foreground" },
+      { width: "6%", label: "", className: "bg-foreground" },
+      { width: "94%", label: "Rebuild: $5K to $50K", className: "border border-dashed border-muted-foreground text-muted-foreground" },
     ],
   },
   {
     label: "One product engineer who also designs",
     total: `From ${PRICE_FLOOR}`,
     bars: [
-      { width: "35%", label: "Design and build", className: "bg-highlight text-highlight-foreground" },
+      { width: "30%", label: "Design and build", className: "bg-highlight text-highlight-foreground" },
     ],
+  },
+];
+
+const sources = [
+  {
+    label: "YunoJuno 2026 rates report, senior software engineer at $100 an hour",
+    href: "https://www.yunojuno.com/freelancer-rates-report/software-engineering-contractor-rates",
+  },
+  {
+    label: "YunoJuno 2026 rates report, product designer at $72 an hour",
+    href: "https://www.yunojuno.com/freelance-rates/design",
+  },
+  {
+    label: "HatchWorks, rebuilds at $5K to $30K",
+    href: "https://hatchworks.com/blog/gendd/cost-of-vibe-coding/",
+  },
+  {
+    label: "Vibe Code Rescue, fixed-price rebuilds at $15K to $50K",
+    href: "https://justinmckelvey.com/vibe-code-rescue",
   },
 ];
 
@@ -220,8 +238,9 @@ export default function MvpDevelopmentPage() {
                 </h3>
                 <p className="leading-relaxed text-pretty">
                   A senior freelance engineer and a product designer for the
-                  same five weeks cost about $27K to $34K. You get both in one
-                  person, and the design and the code never drift apart.
+                  same five weeks cost about $34K at published contractor
+                  rates. You get both in one person, and the design and the
+                  code never drift apart.
                 </p>
               </div>
               <div>
@@ -229,9 +248,10 @@ export default function MvpDevelopmentPage() {
                   The cheap build gets paid for twice
                 </h3>
                 <p className="leading-relaxed text-pretty">
-                  A $3K <span className="whitespace-nowrap">AI-generated</span>{" "}
-                  MVP looks fine in a demo. Then real users arrive. Rescuing or
-                  rebuilding one is now its own service, priced at $12K to $40K.
+                  A cheap <span className="whitespace-nowrap">AI-generated</span>{" "}
+                  MVP looks fine in a demo. Then real users arrive. Rebuilding
+                  one properly is now its own service, with published prices
+                  from $5K to $50K.
                 </p>
               </div>
             </div>
@@ -259,9 +279,21 @@ export default function MvpDevelopmentPage() {
                 ))}
               </div>
               <figcaption className="mt-8 max-w-[560px] text-xs leading-relaxed text-muted-foreground">
-                Freelance rates from YunoJuno&apos;s 2026 rates report, at 200
-                hours each. Rescue and rebuild prices from published 2026 agency
-                price lists. All figures in USD.
+                Sources:{" "}
+                {sources.map((source, index) => (
+                  <span key={source.href}>
+                    <a
+                      href={source.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline transition-colors hover:text-foreground"
+                    >
+                      {source.label}
+                    </a>
+                    {index < sources.length - 1 ? "; " : ". "}
+                  </span>
+                ))}
+                Freelance costs assume 200 hours each. All figures in USD.
               </figcaption>
             </figure>
           </div>
