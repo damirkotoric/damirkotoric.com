@@ -127,8 +127,8 @@ export default function HomePage() {
         <LogoReel />
       </section>
 
-      {/* Section 2: Selected work */}
-      <PortfolioShowcase title="Selected work" items={selectedWork} />
+      {/* Section 2: My products */}
+      <PortfolioShowcase title="Products I designed and built" items={products} isPersonalProject />
 
       {/* Section 3: Outcomes */}
       <section className="px-6 lg:pt-24 lg:px-16 2xl:px-40 3xl:px-80">
@@ -239,8 +239,8 @@ export default function HomePage() {
       {/* Section 6: Toolbelt */}
       <Toolbelt />
 
-      {/* Section 7: My Products */}
-      <PortfolioShowcase title="My products" items={products} isPersonalProject />
+      {/* Section 7: Client work */}
+      <PortfolioShowcase title="Client work" items={selectedWork} />
 
       {/* Section 6: CTA */}
       <CtaSection />
