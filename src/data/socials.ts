@@ -3,9 +3,8 @@ export const SITE_URL = "https://damirkotoric.com";
 export const NAME = { first: "Damir", last: "Kotorić" } as const;
 export const FULL_NAME = `${NAME.first} ${NAME.last}`;
 export const ROLE = "Product Engineer";
-export const ROLE_TAGLINE = "17 years a designer";
 export const SITE_DESCRIPTION =
-  "I partner with funded startups and product teams on the end-to-end creation of AI-powered software products.";
+  "I partner with funded startups and product teams on the end-to-end design and development of AI-powered software products.";
 
 export const EMAIL = "mail@damirkotoric.com";
 export const HANDLE = "damirkotoric";

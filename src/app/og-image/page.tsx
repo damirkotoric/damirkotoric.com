@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { Highlighter } from "@/components/ui/highlighter";
-import { FULL_NAME, ROLE, ROLE_TAGLINE } from "@/data/socials";
+import { FULL_NAME, ROLE } from "@/data/socials";
 
 export const metadata: Metadata = {
   robots: {
@@ -22,7 +22,7 @@ export default function OgImagePage() {
           {FULL_NAME}
         </h1>
         <p className="relative text-[28px] font-semibold text-muted-foreground mt-3 tracking-tight">
-          <Highlighter color="var(--highlight)" delay={0} className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">{ROLE}</Highlighter>, {ROLE_TAGLINE}
+          <Highlighter color="var(--highlight)" delay={0} className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">{ROLE}</Highlighter>
         </p>
       </div>
 
