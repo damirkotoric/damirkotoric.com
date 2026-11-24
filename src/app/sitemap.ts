@@ -1,9 +1,11 @@
 import { MetadataRoute } from "next";
 import { SITE_URL } from "@/data/socials";
+import { getAllPosts } from "@/lib/blog";
 import { getAllProjectSlugs } from "@/lib/portfolio-data";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
+  const posts = (await getAllPosts()).filter((post) => !post.draft);
 
   return [
     {
@@ -34,6 +36,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}/portfolio/${slug}`,
       lastModified,
       changeFrequency: "yearly" as const,
+      priority: 0.7,
+    })),
+    ...(posts.length > 0
+      ? [
+          {
+            url: `${SITE_URL}/blog`,
+            lastModified,
+            changeFrequency: "weekly" as const,
+            priority: 0.7,
+          },
+        ]
+      : []),
+    ...posts.map((post) => ({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
   ];

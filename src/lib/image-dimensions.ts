@@ -2,6 +2,14 @@
 // Run: pnpm tsx scripts/generate-image-dimensions.ts
 
 export const imageDimensions: Record<string, { width: number; height: number }> = {
+  "/images/portfolio/beamy/beamy-poster.jpg": {
+    "width": 1200,
+    "height": 900
+  },
+  "/images/portfolio/beamy/beamy.mp4": {
+    "width": 1200,
+    "height": 900
+  },
   "/images/portfolio/beyondwords/_og.jpg": {
     "width": 1200,
     "height": 630
