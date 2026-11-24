@@ -10,7 +10,7 @@ import { Highlighter } from "@/components/ui/highlighter";
 import { PortfolioShowcase } from "@/components/portfolio-showcase";
 import { ContactFormTrigger } from "@/components/contact-form/contact-form-trigger";
 import { CtaSection } from "@/components/cta-section";
-import { nametagWork, products, resellCalendarWork } from "@/data/showcase";
+import { products } from "@/data/showcase";
 import { FULL_NAME, PERSON_ID, SITE_URL } from "@/data/socials";
 
 const PATH = "/mvp-development";
@@ -327,21 +327,28 @@ export default function MvpDevelopmentPage() {
             </h2>
             <p className="text-lg leading-relaxed text-pretty">
               Seventeen years of product design go into every screen. Investors
-              and first customers see something finished, not a template. Judge
-              it by the work.
+              and first customers see something finished, not a template. These
+              are products I designed, built and shipped on my own.
             </p>
           </div>
         </section>
         <PortfolioShowcase
-          title="First versions I designed"
-          items={[nametagWork, resellCalendarWork]}
-          className="pb-24 lg:pb-32"
-        />
-        <PortfolioShowcase
           title="Products I designed and built alone"
           items={products}
           isPersonalProject
+          className="pb-24 lg:pb-32"
         />
+        <section className={`${gutter} pb-24 lg:pb-40`}>
+          <div className="rounded-lg border border-dashed border-muted-foreground p-8 lg:p-12">
+            <p className="mb-3 text-sm font-semibold text-muted-foreground">
+              In the works
+            </p>
+            <p className="max-w-[720px] text-2xl font-bold leading-tight tracking-tight text-balance lg:text-3xl">
+              A website, an iOS app and an Android app for a European travel
+              company. One design system across all three. Live soon.
+            </p>
+          </div>
+        </section>
 
         {/* How it runs */}
         <section className={`${gutter} bg-muted py-24 lg:py-40`}>

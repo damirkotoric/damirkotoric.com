@@ -1,28 +1,10 @@
+import { BeamyBg } from "@/components/beamy-bg";
 import { BeyondWordsBg } from "@/components/beyondwords-bg";
 import { BrokerEngineBg } from "@/components/brokerengine-bg";
 import { NametagBg } from "@/components/nametag-bg";
 import { DoNotStayBg } from "@/components/donotstay-bg";
 import { RankdatBg } from "@/components/rankdat-bg";
 import { StyleSpinBg } from "@/components/stylespin-bg";
-import { ResellCalendarBg } from "@/components/resell-calendar-bg";
-
-export const nametagWork = {
-    id: "nametag",
-    title: "Nametag",
-    description:
-      "Designed the product from scratch, helping secure a $2M seed round and 60K users.",
-    href: "/portfolio/nametag",
-    customBg: <NametagBg />,
-  };
-
-export const resellCalendarWork = {
-  id: "resell-calendar",
-  title: "Resell Calendar",
-  description:
-    "Designed the product from zero to one. 14,000 email signups within the first year.",
-  href: "/portfolio/resell-calendar",
-  customBg: <ResellCalendarBg />,
-};
 
 export const selectedWork = [
   {
@@ -41,10 +23,25 @@ export const selectedWork = [
     href: "/portfolio/brokerengine",
     customBg: <BrokerEngineBg />,
   },
-  nametagWork,
+  {
+    id: "nametag",
+    title: "Nametag",
+    description:
+      "Designed the product from scratch, helping secure a $2M seed round and 60K users.",
+    href: "/portfolio/nametag",
+    customBg: <NametagBg />,
+  },
 ];
 
 export const products = [
+  {
+    id: "beamy",
+    name: "Beamy",
+    description:
+      "An audiobook player for iPhone, iPad, Mac, Apple TV and CarPlay. Live on the App Store.",
+    href: "https://getbeamy.app",
+    customBg: <BeamyBg />,
+  },
   {
     id: "donotstay",
     name: "DoNotStay",
