@@ -94,7 +94,7 @@ export default function HomePage() {
                       {FULL_NAME}
                     </h1>
                     <p className="relative mb-3 text-2xl font-semibold text-muted-foreground sm:text-[28px]">
-                      <Highlighter color="var(--highlight)" delay={1500} isView className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">{ROLE}</Highlighter>
+                      <Highlighter color="var(--highlight)" delay={700} isView className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">{ROLE}</Highlighter>
                     </p>
                     <p className="mb-6 leading-relaxed text-pretty">
                       I partner with funded startups and product teams on the{" "}
