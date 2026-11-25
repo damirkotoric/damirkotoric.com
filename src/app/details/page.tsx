@@ -9,6 +9,7 @@ import { FULL_NAME } from "@/data/socials";
 import { getProjectBySlug } from "@/lib/portfolio-data";
 import { DetailsNav } from "./details-nav";
 import { LighthouseScores } from "./lighthouse-scores";
+import { ThemedImage } from "@/components/themed-image";
 import { ThemeToggle } from "./theme-toggle";
 import { UndoDemo } from "./undo-demo";
 
@@ -122,11 +123,6 @@ function SitemapGraphs() {
 
 const APP_STORE_URL = "https://apps.apple.com/app/id6825644259";
 
-const appStoreShots = [
-  { src: "/images/details/app-store-listing-light.webp", className: "dark:hidden" },
-  { src: "/images/details/app-store-listing-dark.webp", className: "hidden dark:block" },
-];
-
 function AppStoreListing() {
   return (
     <a
@@ -135,17 +131,14 @@ function AppStoreListing() {
       rel="noopener noreferrer"
       className="m-6 block max-w-3xl overflow-hidden rounded-lg border border-border lg:m-10"
     >
-      {appStoreShots.map(({ src, className }) => (
-        <Image
-          key={src}
-          src={src}
-          alt="Beamy's App Store listing: icon, title, and four screenshots I designed"
-          width={2041}
-          height={1870}
-          sizes="(min-width: 1024px) 768px, 100vw"
-          className={className}
-        />
-      ))}
+      <ThemedImage
+        light="/images/details/app-store-listing-light.webp"
+        dark="/images/details/app-store-listing-dark.webp"
+        alt="Beamy's App Store listing: icon, title, and four screenshots I designed"
+        width={2041}
+        height={1870}
+        sizes="(min-width: 1024px) 768px, 100vw"
+      />
     </a>
   );
 }
@@ -200,7 +193,7 @@ const groups: { name: string; details: Detail[] }[] = [
       {
         id: "small-touches",
         title: "Controls that forgive mistakes",
-        what: "The small behaviours around the main feature. In Beamy, playback stops at the end of a chapter, one tap undoes an accidental skip, and a skip rewinds out loud so you hear where you landed.",
+        what: "The small behaviours around the main feature. In Beamy, playback stops at the end of a chapter and one tap undoes an accidental skip.",
         why: "Nobody praises an audiobook app for playing audio. They praise it for not losing their place. These details are what people mention in reviews, and what makes them stay.",
         media: <UndoDemo />,
       },
