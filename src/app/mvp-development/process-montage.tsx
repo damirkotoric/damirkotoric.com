@@ -61,9 +61,9 @@ function Prompt() {
   return (
     <div className="flex w-[90%] flex-col gap-4">
       <div className={card}>
-        <ThemedImage
-          light={`${DIR}/cards-light.webp`}
-          dark={`${DIR}/cards-dark.webp`}
+        {/* Light capture in both themes: the hard shadows this prompt is about vanish on the dark one. */}
+        <Image
+          src={`${DIR}/cards-light.webp`}
           alt="Three link cards on the Beamy website, each with a hard shadow"
           width={1356}
           height={456}
