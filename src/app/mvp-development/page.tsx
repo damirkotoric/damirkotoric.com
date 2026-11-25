@@ -11,6 +11,7 @@ import { PortfolioShowcase } from "@/components/portfolio-showcase";
 import { ContactFormTrigger } from "@/components/contact-form/contact-form-trigger";
 import { CtaSection } from "@/components/cta-section";
 import { products } from "@/data/showcase";
+import { ProcessMontage } from "./process-montage";
 import { FULL_NAME, PERSON_ID, SITE_URL } from "@/data/socials";
 
 const PATH = "/mvp-development";
@@ -217,7 +218,7 @@ export default function MvpDevelopmentPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <main>
-        {/* Hero: the offer on the left, the price on the right */}
+        {/* Hero: the offer on the left, how a project runs on the right */}
         <section className={`${gutter} grid min-h-[88vh] grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16 lg:py-24`}>
           <div className="max-w-[600px]">
             <HeroContent>
@@ -244,10 +245,21 @@ export default function MvpDevelopmentPage() {
                   </Button>
                 </AnimateIn>
               </div>
+              <p className="mt-6 text-sm text-muted-foreground">
+                Projects from {PRICE_FLOOR}. {PRICE_RANGE}
+              </p>
             </HeroContent>
           </div>
 
           <AnimateIn delay={0.6} fadeOnly className="lg:justify-self-end lg:w-full lg:max-w-[640px]">
+            <ProcessMontage />
+          </AnimateIn>
+        </section>
+
+        {/* Why $15K: the cost comparison */}
+        <section id="why" className={`${gutter} scroll-mt-12 bg-muted py-24 lg:py-40`}>
+          <h2 className={sectionLabel}>Why {PRICE_FLOOR}</h2>
+          <div className="mb-16 max-w-[640px] lg:mb-24">
             <p className="text-lg font-semibold text-muted-foreground sm:text-xl">
               Projects from
             </p>
@@ -269,12 +281,7 @@ export default function MvpDevelopmentPage() {
             <p className="mt-3 max-w-[440px] text-sm text-muted-foreground">
               {TIMELINE}
             </p>
-          </AnimateIn>
-        </section>
-
-        {/* Why $15K: the cost comparison */}
-        <section id="why" className={`${gutter} scroll-mt-12 bg-muted py-24 lg:py-40`}>
-          <h2 className={sectionLabel}>Why {PRICE_FLOOR}</h2>
+          </div>
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-24">
             <div className="flex max-w-[520px] flex-col gap-12">
               <div>
