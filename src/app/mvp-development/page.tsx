@@ -160,6 +160,51 @@ const sectionLabel =
   "mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground";
 const gutter = "px-6 lg:px-16 2xl:px-40 3xl:px-80";
 
+const skeleton = "rounded-sm bg-muted-foreground/25";
+const deviceFrame = "absolute top-0 border border-muted-foreground bg-background";
+
+// Three unnamed devices, cut off and fading out at the bottom: a hint at the project, not a reveal.
+function DeviceSilhouettes() {
+  return (
+    <div
+      aria-hidden="true"
+      className="relative mx-8 h-52 [mask-image:linear-gradient(to_bottom,black_35%,transparent)] lg:mx-12 lg:mt-12 lg:h-auto lg:min-h-64"
+    >
+      <div className={`${deviceFrame} left-0 h-80 w-[62%] rounded-xl`}>
+        <div className="flex items-center gap-1.5 border-b border-muted-foreground px-3 py-2.5">
+          <span className="size-2 rounded-full bg-muted-foreground/40" />
+          <span className="size-2 rounded-full bg-muted-foreground/40" />
+          <span className="size-2 rounded-full bg-muted-foreground/40" />
+          <span className="ml-3 h-3 flex-1 rounded-full bg-muted-foreground/15" />
+        </div>
+        <div className="space-y-3 p-4 blur-[2px]">
+          <div className={`${skeleton} h-24`} />
+          <div className={`${skeleton} h-6 w-2/3 rounded-full`} />
+          <div className="grid grid-cols-3 gap-3">
+            <div className={`${skeleton} h-20`} />
+            <div className={`${skeleton} h-20`} />
+            <div className={`${skeleton} h-20`} />
+          </div>
+        </div>
+      </div>
+      {[
+        { position: "right-[19%] top-8", radius: "rounded-[26px]", camera: "h-3 w-10 rounded-full" },
+        { position: "right-0 top-14", radius: "rounded-[18px]", camera: "size-2.5 rounded-full" },
+      ].map(({ position, radius, camera }) => (
+        <div key={position} className={`${deviceFrame} ${position} ${radius} h-80 w-[17%] min-w-24 p-2.5`}>
+          <div className={`mx-auto mb-3 bg-muted-foreground/40 ${camera}`} />
+          <div className="space-y-2.5 blur-[2px]">
+            <div className={`${skeleton} h-20`} />
+            <div className={`${skeleton} h-4 w-3/4 rounded-full`} />
+            <div className={`${skeleton} h-12`} />
+            <div className={`${skeleton} h-12`} />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function MvpDevelopmentPage() {
   const pageTestimonials = testimonialNames
     .map((name) => getTestimonialByName(name))
@@ -339,14 +384,17 @@ export default function MvpDevelopmentPage() {
           className="pb-24 lg:pb-32"
         />
         <section className={`${gutter} pb-24 lg:pb-40`}>
-          <div className="rounded-lg border border-dashed border-muted-foreground p-8 lg:p-12">
-            <p className="mb-3 text-sm font-semibold text-muted-foreground">
-              In the works
-            </p>
-            <p className="max-w-[720px] text-2xl font-bold leading-tight tracking-tight text-balance lg:text-3xl">
-              A website, an iOS app and an Android app for a European travel
-              company. One design system across all three. Live soon.
-            </p>
+          <div className="grid grid-cols-1 overflow-hidden rounded-lg border border-dashed border-muted-foreground lg:grid-cols-2">
+            <div className="p-8 lg:p-12">
+              <p className="mb-3 text-sm font-semibold text-muted-foreground">
+                In the works
+              </p>
+              <p className="max-w-[720px] text-2xl font-bold leading-tight tracking-tight text-balance lg:text-3xl">
+                A website, an iOS app and an Android app for a European travel
+                company. One design system across all three. Live soon.
+              </p>
+            </div>
+            <DeviceSilhouettes />
           </div>
         </section>
 
