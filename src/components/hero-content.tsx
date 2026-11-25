@@ -1,7 +1,9 @@
-"use client";
+import { Children, isValidElement, ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
-import { motion } from "motion/react";
-import { Children, ReactNode } from "react";
+// CSS-driven so the entrance starts on first paint instead of waiting for JavaScript.
+const enter =
+  "animate-in fill-mode-both duration-700 ease-out motion-reduce:animate-none";
 
 interface HeroContentProps {
   children: ReactNode;
@@ -11,7 +13,7 @@ interface HeroContentProps {
 
 export function HeroContent({
   children,
-  staggerDelay = 0.2,
+  staggerDelay = 0.06,
   baseDelay = 0,
 }: HeroContentProps) {
   const childArray = Children.toArray(children);
@@ -19,18 +21,18 @@ export function HeroContent({
   return (
     <>
       {childArray.map((child, index) => (
-        <motion.div
+        <div
           key={index}
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 1.6,
-            ease: [0.16, 1, 0.3, 1],
-            delay: baseDelay + index * staggerDelay,
-          }}
+          // The headline slides but never fades, so it is readable on the first frame.
+          className={cn(
+            enter,
+            "slide-in-from-bottom-6",
+            !(isValidElement(child) && child.type === "h1") && "fade-in"
+          )}
+          style={{ animationDelay: `${baseDelay + index * staggerDelay}s` }}
         >
           {child}
-        </motion.div>
+        </div>
       ))}
     </>
   );
@@ -45,17 +47,11 @@ interface AnimateInProps {
 
 export function AnimateIn({ children, delay = 0, className, fadeOnly = false }: AnimateInProps) {
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: fadeOnly ? 0 : 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 1.6,
-        ease: [0.16, 1, 0.3, 1],
-        delay,
-      }}
+    <div
+      className={cn(enter, "fade-in", !fadeOnly && "slide-in-from-bottom-6", className)}
+      style={{ animationDelay: `${delay}s` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

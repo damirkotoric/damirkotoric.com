@@ -19,7 +19,7 @@ interface LogoReelProps {
   animationDelay?: number;
 }
 
-export function LogoReel({ animationDelay = 1.2 }: LogoReelProps) {
+export function LogoReel({ animationDelay = 0.2 }: LogoReelProps) {
   const [playMarquee, setPlayMarquee] = useState(false);
 
   return (
@@ -28,7 +28,7 @@ export function LogoReel({ animationDelay = 1.2 }: LogoReelProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{
-        duration: 1.6,
+        duration: 0.6,
         ease: [0.16, 1, 0.3, 1],
         delay: animationDelay,
       }}
