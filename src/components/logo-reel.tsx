@@ -19,7 +19,7 @@ interface LogoReelProps {
   animationDelay?: number;
 }
 
-export function LogoReel({ animationDelay = 0.2 }: LogoReelProps) {
+export function LogoReel({ animationDelay = 0 }: LogoReelProps) {
   const [playMarquee, setPlayMarquee] = useState(false);
 
   return (
