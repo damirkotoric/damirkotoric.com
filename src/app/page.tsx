@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { preload } from "react-dom";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
@@ -66,6 +67,9 @@ const outcomes = [
 
 
 export default function HomePage() {
+  // The avatar canvas fetches this from JavaScript. Preloading lets it draw as soon as it mounts.
+  preload("/images/damir.avif", { as: "image", fetchPriority: "high" });
+
   return (
     <div className="overflow-x-clip">
       <script
