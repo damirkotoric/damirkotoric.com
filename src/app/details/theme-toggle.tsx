@@ -6,9 +6,9 @@ import { Monitor, Moon, Sun } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 
 const options = [
+  { value: "system", label: "Match my device", icon: Monitor },
   { value: "light", label: "Light", icon: Sun },
   { value: "dark", label: "Dark", icon: Moon },
-  { value: "system", label: "Match my device", icon: Monitor },
 ] as const;
 
 export function ThemeToggle() {
