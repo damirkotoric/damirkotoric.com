@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useInView } from "motion/react";
 
 // Lighthouse 13.6, desktop preset, run against damirkotoric.com on 25 November 2026.
@@ -9,6 +10,11 @@ const scores = [
   { label: "Accessibility", score: 100 },
   { label: "Best practices", score: 100 },
   { label: "SEO", score: 100 },
+];
+
+const reports = [
+  { src: "/images/details/lighthouse-report-light.webp", className: "dark:hidden" },
+  { src: "/images/details/lighthouse-report-dark.webp", className: "hidden dark:block" },
 ];
 
 const RADIUS = 44;
@@ -88,8 +94,21 @@ export function LighthouseScores() {
         ))}
       </div>
       <p className="mt-8 text-center text-xs text-muted-foreground">
-        This site, desktop, 25 November 2026.
+        This site, desktop, 25 November 2026. The report itself:
       </p>
+      <div className="mx-auto mt-4 max-w-3xl overflow-hidden rounded-lg border border-border">
+        {reports.map(({ src, className }) => (
+          <Image
+            key={src}
+            src={src}
+            alt="Lighthouse report for damirkotoric.com: Performance 99, Accessibility 100, Best Practices 100, SEO 100. First Contentful Paint 0.3 s, Largest Contentful Paint 0.3 s, Total Blocking Time 20 ms, Cumulative Layout Shift 0.008, Speed Index 1.4 s."
+            width={2200}
+            height={1560}
+            sizes="(min-width: 1024px) 768px, 100vw"
+            className={className}
+          />
+        ))}
+      </div>
     </div>
   );
 }
