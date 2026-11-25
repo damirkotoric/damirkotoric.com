@@ -6,8 +6,8 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 import { CheckCircle, Microphone, PhoneX, VideoCamera } from "@phosphor-icons/react";
 import { ThemedImage } from "@/components/themed-image";
 
-// One real project, Beamy, from the first chat to the App Store. Everything shown is the real
-// thing except the call, which is a sketch: no faces on this page.
+// One real project, Beamy, from first contact to the App Store. Everything shown is the real
+// thing except the client chat and the call, which are sketches: Beamy had no client.
 const SCENE_MS = 3600;
 const LONG_SCENE_MS = 6400;
 const DIR = "/images/mvp-montage";
@@ -26,52 +26,52 @@ const item: Variants = {
 const card = "overflow-hidden rounded-xl border border-border bg-background shadow-layered";
 const bubble = "max-w-[85%] self-end rounded-2xl rounded-br-sm bg-foreground px-4 py-2.5 text-sm text-background sm:text-base";
 
+const reply = "max-w-[85%] self-start rounded-2xl rounded-bl-sm bg-muted px-4 py-2.5 text-sm sm:text-base";
+
+// A sketch of a first client conversation, not a real one.
 function Chat() {
   return (
     <div className="flex w-[82%] flex-col gap-3">
-      <motion.p variants={item} className={bubble}>
-        how to listen to audiobooks across devices with auto resume?
+      <motion.p variants={item} className={reply}>
+        We&apos;ve raised our seed round. We have an idea and no product team.
       </motion.p>
       <motion.p variants={item} className={bubble}>
-        should I make an app for this that just works better?
+        Send me what you have. In a week you get a scope, a prototype and a fixed price.
       </motion.p>
-      <motion.p variants={item} className="max-w-[85%] self-start rounded-2xl rounded-bl-sm bg-muted px-4 py-2.5 text-sm sm:text-base">
-        No. The market is already crowded…
-      </motion.p>
-      <motion.p variants={item} className={bubble}>
-        yeah this is something I&apos;d use personally
+      <motion.p variants={item} className={reply}>
+        When can you start?
       </motion.p>
     </div>
   );
 }
 
-// Real prompts from the Beamy build, typos included. Each one types itself out in turn.
-const prompts = [
-  "this looks like msclipart my dude. do better",
-  "keep iterating until even the ghost of Steve Jobs would approve",
-  "The 3 seconds rewind thing after interruption is too much. It should be 2 seconds.",
-  "ok not that comically big",
-];
+// A real prompt from the Beamy build, next to the cards it was about. It types itself out.
+const PROMPT =
+  "the shadow should just be a shadow. I think it's just those interactive elements that need that lighter shadow to indicate, hey, I'm interactive. Call it interactive shadow, if you will.";
 const TYPE_MS = 20;
-const PAUSE_TICKS = 14;
 
-function Prompts() {
-  const [ticks, setTicks] = useState(0);
+function Prompt() {
+  const [typed, setTyped] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => setTicks((current) => current + 1), TYPE_MS);
+    const timer = setInterval(() => setTyped((current) => Math.min(current + 1, PROMPT.length)), TYPE_MS);
     return () => clearInterval(timer);
   }, []);
 
-  const typed = prompts.reduce<{ text: string; left: number }[]>((done, prompt) => {
-    const left = done.length ? done[done.length - 1].left - PAUSE_TICKS : ticks;
-    return [...done, { text: prompt.slice(0, Math.max(0, left)), left: left - prompt.length }];
-  }, []);
-
   return (
-    <div className="flex w-[82%] flex-col gap-3">
-      <p className="self-end text-xs font-semibold text-muted-foreground">Me, to Claude</p>
-      {typed.map(({ text }, position) => text && <p key={prompts[position]} className={bubble}>{text}</p>)}
+    <div className="flex w-[90%] flex-col gap-4">
+      <div className={card}>
+        <ThemedImage
+          light={`${DIR}/cards-light.webp`}
+          dark={`${DIR}/cards-dark.webp`}
+          alt="Three link cards on the Beamy website, each with a hard shadow"
+          width={1356}
+          height={456}
+          sizes={SIZES}
+        />
+      </div>
+      <p className="self-end text-xs font-semibold text-muted-foreground">Me, to Claude, about these cards</p>
+      <p className={`${bubble} min-h-12`}>{PROMPT.slice(0, typed)}</p>
     </div>
   );
 }
@@ -249,7 +249,7 @@ const scenes: { label: string; ms?: number; render: (active: boolean) => ReactNo
     label: "A design system before any screen",
     render: () => <Shot name="design-system" alt="Beamy's colours, type and buttons" width={1200} height={900} className="w-[84%]" />,
   },
-  { label: "I direct every detail", ms: LONG_SCENE_MS, render: (active) => active && <Prompts /> },
+  { label: "I direct every detail", ms: LONG_SCENE_MS, render: (active) => active && <Prompt /> },
   { label: "Calls with you along the way", render: () => <Call /> },
   { label: "The website", render: (active) => <Website active={active} /> },
   { label: "The apps, running in the simulators", ms: LONG_SCENE_MS, render: (active) => <Apps active={active} /> },
@@ -314,7 +314,7 @@ export function ProcessMontage() {
           ))}
         </div>
         <p className="mt-3 text-sm text-muted-foreground">
-          Beamy, a product I designed and built alone. The chats are recreated from my real messages.
+          Beamy, a product I designed and built alone. The client chat and the call are sketches.
         </p>
       </figcaption>
     </figure>
