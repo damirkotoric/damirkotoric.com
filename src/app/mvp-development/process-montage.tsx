@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import { Microphone, PhoneX, VideoCamera } from "@phosphor-icons/react";
+import { CheckCircle, Microphone, PhoneX, VideoCamera } from "@phosphor-icons/react";
 import { ThemedImage } from "@/components/themed-image";
 
 // One real project, Beamy, from the first chat to the App Store. Everything shown is the real
 // thing except the call, which is a sketch: no faces on this page.
 const SCENE_MS = 3600;
+const LONG_SCENE_MS = 6400;
 const DIR = "/images/mvp-montage";
 const SIZES = "(min-width: 1024px) 640px, 100vw";
 
@@ -129,44 +130,104 @@ function Website({ active }: { active: boolean }) {
   );
 }
 
-const storeShots = [
-  { file: "store-1.webp", tilt: "-rotate-6 translate-y-4" },
-  { file: "store-2.webp", tilt: "z-10" },
-  { file: "store-3.webp", tilt: "rotate-6 translate-y-4" },
-];
+const wireframes = ["wireframe-1.webp", "wireframe-2.webp", "wireframe-3.webp"];
 
-function StoreShots() {
+function Wireframes() {
   return (
-    <div className="flex w-[86%] items-center justify-center">
-      {storeShots.map(({ file, tilt }) => (
-        <motion.div key={file} variants={item} className="-mx-3 w-[34%]">
-          <Image
-            src={`${DIR}/${file}`}
-            alt="Beamy App Store screenshot"
-            width={598}
-            height={1300}
-            sizes="220px"
-            className={`rounded-2xl border border-border shadow-layered ${tilt}`}
-          />
+    <div className="flex w-[84%] items-center justify-center gap-4">
+      {wireframes.map((file, position) => (
+        <motion.div key={file} variants={item} className={`${card} w-[30%] ${position === 1 ? "" : "translate-y-5"}`}>
+          <Image src={`${DIR}/${file}`} alt="Beamy wireframe" width={585} height={1266} sizes="200px" />
         </motion.div>
       ))}
     </div>
   );
 }
 
-const scenes: { label: string; render: (active: boolean) => ReactNode }[] = [
+// A simulator recording that restarts each time its scene comes round.
+function Clip({ name, active, width, height }: { name: string; active: boolean; width: number; height: number }) {
+  const video = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const element = video.current;
+    if (!element) return;
+    if (!active) return element.pause();
+    element.currentTime = 0;
+    void element.play();
+  }, [active]);
+
+  return (
+    <video
+      ref={video}
+      muted
+      playsInline
+      loop
+      preload="none"
+      width={width}
+      height={height}
+      poster={`${DIR}/${name}-poster.jpg`}
+      className="block h-auto w-full"
+    >
+      <source src={`${DIR}/${name}.mp4`} type="video/mp4" />
+    </video>
+  );
+}
+
+const deviceFrame = "overflow-hidden border-4 border-foreground bg-foreground shadow-layered";
+
+function Apps({ active }: { active: boolean }) {
+  return (
+    <div className="flex w-[88%] items-center gap-5">
+      <motion.div variants={item} className={`${deviceFrame} w-[30%] rounded-[1.75rem]`}>
+        <Clip name="iphone" active={active} width={420} height={914} />
+      </motion.div>
+      <div className="flex flex-1 flex-col gap-5">
+        <motion.div variants={item} className={`${deviceFrame} rounded-lg`}>
+          <Clip name="tv" active={active} width={800} height={450} />
+        </motion.div>
+        <motion.div variants={item} className={`${card} w-[70%] self-end`}>
+          <Image src={`${DIR}/carplay.webp`} alt="Beamy on CarPlay" width={1000} height={422} sizes="300px" />
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+// Counted from Beamy's UI test targets on 25 November 2026.
+const testRuns = [
+  { device: "iPhone and iPad", tests: "19 UI tests" },
+  { device: "Apple TV", tests: "1 UI test" },
+];
+
+function Tests() {
+  return (
+    <div className="flex w-[70%] flex-col gap-3">
+      {testRuns.map(({ device, tests }) => (
+        <motion.div key={device} variants={item} className={`${card} flex items-center gap-3 px-5 py-4`}>
+          <CheckCircle size={24} weight="fill" />
+          <span className="font-semibold">{device}</span>
+          <span className="ml-auto text-sm text-muted-foreground">{tests}</span>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+const scenes: { label: string; ms?: number; render: (active: boolean) => ReactNode }[] = [
   { label: "It starts with a conversation", render: () => <Chat /> },
-  {
-    label: "An audit of every build",
-    render: () => <Shot name="lighthouse" alt="Lighthouse report for getbeamy.app" width={1500} height={1050} className="w-[90%]" />,
-  },
+  { label: "Wireframes first", render: () => <Wireframes /> },
   {
     label: "A design system before any screen",
     render: () => <Shot name="design-system" alt="Beamy's colours, type and buttons" width={1200} height={900} className="w-[84%]" />,
   },
   { label: "Calls with you along the way", render: () => <Call /> },
   { label: "The website", render: (active) => <Website active={active} /> },
-  { label: "The apps", render: () => <StoreShots /> },
+  { label: "The apps, running in the simulators", ms: LONG_SCENE_MS, render: (active) => <Apps active={active} /> },
+  { label: "Automated tests", render: () => <Tests /> },
+  {
+    label: "An audit before launch",
+    render: () => <Shot name="lighthouse" alt="Lighthouse report for getbeamy.app" width={1500} height={1050} className="w-[90%]" />,
+  },
   {
     label: "Live on the App Store",
     render: () => (
@@ -190,9 +251,9 @@ export function ProcessMontage() {
 
   useEffect(() => {
     if (reduced) return;
-    const timer = setInterval(() => setIndex((current) => (current + 1) % scenes.length), SCENE_MS);
-    return () => clearInterval(timer);
-  }, [reduced]);
+    const timer = setTimeout(() => setIndex((index + 1) % scenes.length), scenes[index].ms ?? SCENE_MS);
+    return () => clearTimeout(timer);
+  }, [reduced, index]);
 
   // With reduced motion there is no loop: show where the project ends up.
   const active = reduced ? scenes.length - 1 : index;
