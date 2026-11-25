@@ -32,17 +32,46 @@ function Chat() {
       <motion.p variants={item} className={bubble}>
         how to listen to audiobooks across devices with auto resume?
       </motion.p>
-      <motion.div variants={item} className="flex gap-1.5 self-start rounded-2xl rounded-bl-sm bg-muted px-4 py-3.5">
-        {[0, 1, 2].map((dot) => (
-          <span key={dot} className="size-1.5 rounded-full bg-muted-foreground" />
-        ))}
-      </motion.div>
       <motion.p variants={item} className={bubble}>
         should I make an app for this that just works better?
+      </motion.p>
+      <motion.p variants={item} className="max-w-[85%] self-start rounded-2xl rounded-bl-sm bg-muted px-4 py-2.5 text-sm sm:text-base">
+        No. The market is already crowded…
       </motion.p>
       <motion.p variants={item} className={bubble}>
         yeah this is something I&apos;d use personally
       </motion.p>
+    </div>
+  );
+}
+
+// Real prompts from the Beamy build, typos included. Each one types itself out in turn.
+const prompts = [
+  "this looks like msclipart my dude. do better",
+  "keep iterating until even the ghost of Steve Jobs would approve",
+  "The 3 seconds rewind thing after interruption is too much. It should be 2 seconds.",
+  "ok not that comically big",
+];
+const TYPE_MS = 20;
+const PAUSE_TICKS = 14;
+
+function Prompts() {
+  const [ticks, setTicks] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => setTicks((current) => current + 1), TYPE_MS);
+    return () => clearInterval(timer);
+  }, []);
+
+  const typed = prompts.reduce<{ text: string; left: number }[]>((done, prompt) => {
+    const left = done.length ? done[done.length - 1].left - PAUSE_TICKS : ticks;
+    return [...done, { text: prompt.slice(0, Math.max(0, left)), left: left - prompt.length }];
+  }, []);
+
+  return (
+    <div className="flex w-[82%] flex-col gap-3">
+      <p className="self-end text-xs font-semibold text-muted-foreground">Me, to Claude</p>
+      {typed.map(({ text }, position) => text && <p key={prompts[position]} className={bubble}>{text}</p>)}
     </div>
   );
 }
@@ -220,6 +249,7 @@ const scenes: { label: string; ms?: number; render: (active: boolean) => ReactNo
     label: "A design system before any screen",
     render: () => <Shot name="design-system" alt="Beamy's colours, type and buttons" width={1200} height={900} className="w-[84%]" />,
   },
+  { label: "I direct every detail", ms: LONG_SCENE_MS, render: (active) => active && <Prompts /> },
   { label: "Calls with you along the way", render: () => <Call /> },
   { label: "The website", render: (active) => <Website active={active} /> },
   { label: "The apps, running in the simulators", ms: LONG_SCENE_MS, render: (active) => <Apps active={active} /> },
@@ -284,7 +314,7 @@ export function ProcessMontage() {
           ))}
         </div>
         <p className="mt-3 text-sm text-muted-foreground">
-          Beamy, a product I designed and built alone. The chat is recreated from my real messages.
+          Beamy, a product I designed and built alone. The chats are recreated from my real messages.
         </p>
       </figcaption>
     </figure>
