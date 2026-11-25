@@ -4,17 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { CtaSection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
-import { BeamyBg } from "@/components/beamy-bg";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { FULL_NAME } from "@/data/socials";
 import { getProjectBySlug } from "@/lib/portfolio-data";
 import { DetailsNav } from "./details-nav";
 import { LighthouseScores } from "./lighthouse-scores";
 import { ThemeToggle } from "./theme-toggle";
+import { UndoDemo } from "./undo-demo";
 
 const TITLE = "The details that make or break a product";
 const DESCRIPTION =
-  "The small things that decide whether people find your product, trust it and come back. Most get skipped because nobody thinks to ask for them.";
+  "The small things that decide whether people find your product, trust it and pay. Most get skipped because nobody thinks to ask for them.";
 
 // Draft: reachable by URL, kept out of search and the sitemap until it is finished.
 export const metadata: Metadata = {
@@ -24,17 +24,25 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const shareCardSlugs = ["booking-com", "beyondwords", "brokerengine"];
+const SHARE_SLUG = "booking-com";
 
 function ShareCards() {
-  const cards = shareCardSlugs
-    .map((slug) => getProjectBySlug(slug))
-    .filter((project): project is NonNullable<typeof project> => Boolean(project));
+  const project = getProjectBySlug(SHARE_SLUG);
+  if (!project) return null;
+
+  const url = `damirkotoric.com/portfolio/${SHARE_SLUG}`;
 
   return (
-    <div className="grid w-full grid-cols-1 gap-6 p-6 sm:grid-cols-3 lg:p-10">
-      {cards.map((project) => (
-        <div key={project.slug} className="overflow-hidden rounded-lg border border-border bg-background shadow-layered">
+    <div className="grid w-full grid-cols-1 items-start gap-10 p-6 sm:grid-cols-2 lg:p-10">
+      <figure>
+        <figcaption className="mb-3 text-sm font-semibold text-muted-foreground">Without a share card</figcaption>
+        <div className="rounded-lg border border-border bg-background p-4 shadow-layered">
+          <p className="text-sm break-all underline">{url}</p>
+        </div>
+      </figure>
+      <figure>
+        <figcaption className="mb-3 text-sm font-semibold text-muted-foreground">The same link with one</figcaption>
+        <div className="overflow-hidden rounded-lg border border-border bg-background shadow-layered">
           <Image
             src={project.ogImage.src}
             alt={project.ogImage.alt}
@@ -47,39 +55,98 @@ function ShareCards() {
             <p className="text-sm font-semibold leading-snug">{project.seoTitle}</p>
           </div>
         </div>
-      ))}
+      </figure>
     </div>
   );
 }
 
-function SitemapCount() {
+// Page dots on two rings around the sitemap. Before the audit only two of them were listed.
+const SITEMAP_RINGS = [
+  { count: 8, radius: 52 },
+  { count: 14, radius: 88 },
+];
+
+function SitemapGraph({ pages, listed, caption }: { pages: number; listed: number; caption: string }) {
+  const nodes = SITEMAP_RINGS.flatMap(({ count, radius }, ring) =>
+    Array.from({ length: count }, (_, index) => {
+      const angle = (index / count) * Math.PI * 2 + ring * 0.22;
+      return { x: 110 + Math.cos(angle) * radius, y: 110 + Math.sin(angle) * radius };
+    })
+  ).slice(0, pages);
+
   return (
-    <div className="flex w-full items-baseline justify-center gap-6 p-6 lg:gap-10 lg:p-10">
-      <div className="text-center">
-        <p className="text-7xl font-black tracking-tight text-muted-foreground line-through sm:text-9xl">2</p>
-        <p className="mt-2 text-sm text-muted-foreground">pages Google was told about</p>
-      </div>
-      <div className="text-center">
-        <p className="text-7xl font-black tracking-tight sm:text-9xl">22</p>
-        <p className="mt-2 text-sm text-muted-foreground">pages that exist</p>
-      </div>
+    <figure className="text-center">
+      <svg viewBox="0 0 220 220" className="mx-auto w-full max-w-[340px]" role="img" aria-label={caption}>
+        {nodes.slice(0, listed).map(({ x, y }) => (
+          <line key={`${x}-${y}`} x1="110" y1="110" x2={x} y2={y} strokeWidth="1" className="stroke-foreground" />
+        ))}
+        {nodes.map(({ x, y }, index) =>
+          index < listed ? (
+            <circle key={`${x}-${y}`} cx={x} cy={y} r="5" className="fill-foreground" />
+          ) : (
+            <circle
+              key={`${x}-${y}`}
+              cx={x}
+              cy={y}
+              r="4.5"
+              strokeWidth="1"
+              strokeDasharray="2 2"
+              className="fill-none stroke-muted-foreground"
+            />
+          )
+        )}
+        <circle cx="110" cy="110" r="20" className="fill-foreground" />
+        <text
+          x="110"
+          y="110"
+          textAnchor="middle"
+          dominantBaseline="central"
+          className="fill-background text-[8px] font-semibold"
+        >
+          Google
+        </text>
+      </svg>
+      <figcaption className="mt-4 text-sm text-muted-foreground">{caption}</figcaption>
+    </figure>
+  );
+}
+
+function SitemapGraphs() {
+  return (
+    <div className="grid w-full grid-cols-1 gap-10 p-6 sm:grid-cols-2 lg:p-10">
+      <SitemapGraph pages={21} listed={2} caption="Before: Google was told about 2 of 21 pages" />
+      <SitemapGraph pages={22} listed={22} caption="Now: all 22 pages" />
     </div>
   );
 }
 
-function BeamyVertical() {
+const APP_STORE_URL = "https://apps.apple.com/app/id6825644259";
+
+const appStoreShots = [
+  { src: "/images/details/app-store-listing-light.webp", className: "dark:hidden" },
+  { src: "/images/details/app-store-listing-dark.webp", className: "hidden dark:block" },
+];
+
+function AppStoreListing() {
   return (
-    <video
-      loop
-      muted
-      playsInline
-      autoPlay
-      aria-hidden="true"
-      poster="/images/portfolio/beamy/beamy-vertical-poster.jpg"
-      className="h-[70vh] w-auto rounded-lg"
+    <a
+      href={APP_STORE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="m-6 block max-w-3xl overflow-hidden rounded-lg border border-border lg:m-10"
     >
-      <source src="/images/portfolio/beamy/beamy-vertical.mp4" type="video/mp4" />
-    </video>
+      {appStoreShots.map(({ src, className }) => (
+        <Image
+          key={src}
+          src={src}
+          alt="Beamy's App Store listing: icon, title, and four screenshots I designed"
+          width={2041}
+          height={1870}
+          sizes="(min-width: 1024px) 768px, 100vw"
+          className={className}
+        />
+      ))}
+    </a>
   );
 }
 
@@ -99,7 +166,7 @@ const groups: { name: string; details: Detail[] }[] = [
       {
         id: "share-cards",
         title: "A share card for every page",
-        what: "When someone pastes your link into Slack, WhatsApp or LinkedIn, the app shows a preview: an image, a title and a line of text. Every page needs its own. These are real ones from this site.",
+        what: "When someone pastes your link into Slack, WhatsApp or LinkedIn, the app shows a preview: an image, a title and a line of text. Every page needs its own. This is one link from this site, with and without.",
         why: "Without one, your link shows up as a bare URL or a grey box, and people scroll past it. Every time someone shares your product is a free ad. Most products waste it.",
         media: <ShareCards />,
       },
@@ -115,7 +182,7 @@ const groups: { name: string; details: Detail[] }[] = [
         title: "A complete sitemap",
         what: "A file that gives Google the list of every page on your site. It should update itself whenever a page is added.",
         why: "Pages missing from the list can take weeks to show up in search, or never do. This site's sitemap listed 2 pages when 21 existed. I found that in an audit, not by luck.",
-        media: <SitemapCount />,
+        media: <SitemapGraphs />,
       },
     ],
   },
@@ -135,7 +202,7 @@ const groups: { name: string; details: Detail[] }[] = [
         title: "Controls that forgive mistakes",
         what: "The small behaviours around the main feature. In Beamy, playback stops at the end of a chapter, one tap undoes an accidental skip, and a skip rewinds out loud so you hear where you landed.",
         why: "Nobody praises an audiobook app for playing audio. They praise it for not losing their place. These details are what people mention in reviews, and what makes them stay.",
-        media: <BeamyBg />,
+        media: <UndoDemo />,
       },
     ],
   },
@@ -147,7 +214,7 @@ const groups: { name: string; details: Detail[] }[] = [
         title: "An App Store listing that sells",
         what: "The store page for your app: icon, screenshots, preview video and description. Behind it sits Apple's review, which every release has to pass.",
         why: "The listing is where people decide whether to download. A rejected submission can cost you weeks. I design the listing, cut the video and handle the review. Beamy is live for iPhone, iPad, Mac, Apple TV and CarPlay.",
-        media: <BeamyVertical />,
+        media: <AppStoreListing />,
       },
       {
         id: "ab-testing",
@@ -210,7 +277,7 @@ export default function DetailsPage() {
                 <section
                   key={detail.id}
                   id={detail.id}
-                  className="flex min-h-[80vh] scroll-mt-12 flex-col justify-center border-t border-border py-16"
+                  className="flex min-h-[80vh] scroll-mt-12 flex-col justify-center py-16"
                 >
                   <div className="mb-10 flex min-h-[48vh] items-center justify-center overflow-hidden rounded-lg bg-muted">
                     {detail.media}
@@ -245,7 +312,7 @@ export default function DetailsPage() {
               ))
             )}
 
-            <section className="border-t border-border py-16">
+            <section className="py-16">
               <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                 Still to come
               </h2>
