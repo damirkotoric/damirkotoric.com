@@ -84,7 +84,7 @@ export default function HomePage() {
               <ScrollSection
                 id="intro"
                 mobileMedia={
-                  <PixelatedAvatar variant="mobile" entryAnimation />
+                  <PixelatedAvatar variant="mobile" />
                 }
               >
                 <div className="py-12 lg:py-24">
@@ -122,7 +122,7 @@ export default function HomePage() {
 
             <ScrollLinkedMedia className="h-full flex items-center">
               <ScrollMediaItem sectionId="intro" className="h-full">
-                <PixelatedAvatar variant="large" size="fill" entryAnimation />
+                <PixelatedAvatar variant="large" size="fill" />
               </ScrollMediaItem>
             </ScrollLinkedMedia>
           </ScrollLinkedProvider>
