@@ -88,6 +88,7 @@ type Detail = {
   title: string;
   what: string;
   why: string;
+  source?: { label: string; href: string };
   media: ReactNode;
 };
 
@@ -125,7 +126,8 @@ const groups: { name: string; details: Detail[] }[] = [
         id: "dark-mode",
         title: "Dark mode that is designed, not inverted",
         what: "A second colour scheme for people who keep their phone or laptop in dark mode. Try the switch. Every colour here has a light and a dark value, set from the first commit.",
-        why: "People who set their phone to dark mode expect every app to follow. An app that ignores it blasts white at them at night. An app that adds it as an afterthought looks broken. Shadows disappear on a dark background, and there is always one chart or image left bright white.",
+        why: "In a Nielsen Norman Group survey, a third of people kept their phone in dark mode and another third switched between the two. Skip it or bolt it on late, and your app looks broken to two in three customers.",
+        source: { label: "Nielsen Norman Group", href: "https://www.nngroup.com/articles/dark-mode-users-issues/" },
         media: <ThemeToggle />,
       },
       {
@@ -224,6 +226,19 @@ export default function DetailsPage() {
                     <div>
                       <dt className="mb-2 text-sm font-semibold text-muted-foreground">Why it matters</dt>
                       <dd className="leading-relaxed text-pretty">{detail.why}</dd>
+                      {detail.source && (
+                        <dd className="mt-3 text-sm text-muted-foreground">
+                          Source:{" "}
+                          <a
+                            href={detail.source.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline transition-colors hover:text-foreground"
+                          >
+                            {detail.source.label}
+                          </a>
+                        </dd>
+                      )}
                     </div>
                   </dl>
                 </section>
