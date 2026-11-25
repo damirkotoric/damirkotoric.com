@@ -279,13 +279,15 @@ export default function MvpDevelopmentPage() {
             <div className="flex max-w-[520px] flex-col gap-12">
               <div>
                 <h3 className="mb-3 text-2xl font-bold leading-tight tracking-tight lg:text-3xl">
-                  You would otherwise hire two people
+                  You would otherwise hire at least two people
                 </h3>
                 <p className="leading-relaxed text-pretty">
                   A senior freelance engineer and a product designer for the
                   same five weeks cost about $34K at published contractor
-                  rates. You get both in one person, and the design and the
-                  code never drift apart.
+                  rates. Many teams split it further: a design system
+                  designer, an interaction designer, a web developer, an iOS
+                  developer and an Android developer. You get all of it in one
+                  person, and the design and the code never drift apart.
                 </p>
               </div>
               <div>
