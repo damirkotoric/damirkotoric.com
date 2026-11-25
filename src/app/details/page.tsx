@@ -4,12 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { CtaSection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { BeamyBg } from "@/components/beamy-bg";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { FULL_NAME } from "@/data/socials";
 import { getProjectBySlug } from "@/lib/portfolio-data";
 import { DetailsNav } from "./details-nav";
+import { LighthouseScores } from "./lighthouse-scores";
+import { ThemeToggle } from "./theme-toggle";
 
 const TITLE = "The details that make or break a product";
 const DESCRIPTION =
@@ -22,14 +23,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/details" },
   robots: { index: false, follow: false },
 };
-
-// Lighthouse 13.6, desktop preset, run against damirkotoric.com on 24 November 2026.
-const lighthouseScores = [
-  { label: "Performance", score: 94 },
-  { label: "Accessibility", score: 100 },
-  { label: "Best practices", score: 100 },
-  { label: "SEO", score: 100 },
-];
 
 const shareCardSlugs = ["booking-com", "beyondwords", "brokerengine"];
 
@@ -59,43 +52,6 @@ function ShareCards() {
   );
 }
 
-function LighthouseScores() {
-  const circumference = 2 * Math.PI * 44;
-
-  return (
-    <div className="w-full p-6 lg:p-10">
-      <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-        {lighthouseScores.map(({ label, score }) => (
-          <div key={label} className="text-center">
-            <svg viewBox="0 0 100 100" className="mx-auto mb-3 w-full max-w-[180px]" role="img" aria-label={`${label}: ${score} out of 100`}>
-              <circle cx="50" cy="50" r="44" fill="none" strokeWidth="6" className="stroke-border" />
-              <circle
-                cx="50"
-                cy="50"
-                r="44"
-                fill="none"
-                strokeWidth="6"
-                strokeLinecap="round"
-                strokeDasharray={circumference}
-                strokeDashoffset={circumference * (1 - score / 100)}
-                transform="rotate(-90 50 50)"
-                className="stroke-foreground"
-              />
-              <text x="50" y="50" textAnchor="middle" dominantBaseline="central" className="fill-foreground text-[28px] font-bold">
-                {score}
-              </text>
-            </svg>
-            <p className="text-sm font-semibold">{label}</p>
-          </div>
-        ))}
-      </div>
-      <p className="mt-8 text-center text-xs text-muted-foreground">
-        This site, desktop, 24 November 2026.
-      </p>
-    </div>
-  );
-}
-
 function SitemapCount() {
   return (
     <div className="flex w-full items-baseline justify-center gap-6 p-6 lg:gap-10 lg:p-10">
@@ -107,17 +63,6 @@ function SitemapCount() {
         <p className="text-7xl font-black tracking-tight sm:text-9xl">22</p>
         <p className="mt-2 text-sm text-muted-foreground">pages that exist</p>
       </div>
-    </div>
-  );
-}
-
-function ThemeToggle() {
-  return (
-    <div className="flex w-full flex-col items-center justify-center gap-10 p-10">
-      <div className="scale-[2.5]">
-        <ThemeSwitcher />
-      </div>
-      <p className="text-sm text-muted-foreground">Flip it. The whole page follows.</p>
     </div>
   );
 }
