@@ -125,7 +125,7 @@ const groups: { name: string; details: Detail[] }[] = [
         id: "dark-mode",
         title: "Dark mode that is designed, not inverted",
         what: "A second colour scheme for people who keep their phone or laptop in dark mode. Try the switch. Every colour here has a light and a dark value, set from the first commit.",
-        why: "Many people leave dark mode on all day. An app that ignores it blasts white at them at night. An app that adds it as an afterthought looks broken. Shadows disappear on a dark background, and there is always one chart or image left bright white.",
+        why: "People who set their phone to dark mode expect every app to follow. An app that ignores it blasts white at them at night. An app that adds it as an afterthought looks broken. Shadows disappear on a dark background, and there is always one chart or image left bright white.",
         media: <ThemeToggle />,
       },
       {
