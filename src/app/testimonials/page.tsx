@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { FULL_NAME, ROLE } from "@/data/socials";
+import { pageMetadata } from "@/lib/page-metadata";
+import { FULL_NAME } from "@/data/socials";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -8,25 +9,11 @@ import { CtaSection } from "@/components/cta-section";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { testimonials, getTestimonialByName } from "@/data/testimonials";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: `Testimonials • ${FULL_NAME}`,
-  alternates: { canonical: "/testimonials" },
-  description:
-    "What clients and former colleagues say about me.",
-  openGraph: {
-    images: [
-      {
-        url: "/images/og.jpg",
-        width: 1200,
-        height: 630,
-        alt: `${FULL_NAME} - ${ROLE}`,
-      },
-    ],
-  },
-  twitter: {
-    images: ["/images/og.jpg"],
-  },
-};
+  description: "What clients and former colleagues say about me.",
+  path: "/testimonials",
+});
 
 export default function TestimonialsPage() {
   const featured = getTestimonialByName("Chris Thelwell")!;

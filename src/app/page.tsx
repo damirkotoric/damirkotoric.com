@@ -22,6 +22,7 @@ import {
   ScrollMediaItem,
 } from "@/components/scroll-linked-layout";
 import {
+  EMAIL,
   FULL_NAME,
   PERSON_ID,
   ROLE,
@@ -54,6 +55,28 @@ const structuredData = {
       name: FULL_NAME,
       url: SITE_URL,
       author: { "@id": PERSON_ID },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${SITE_URL}/#practice`,
+      name: FULL_NAME,
+      description: SITE_DESCRIPTION,
+      url: SITE_URL,
+      image: `${SITE_URL}/images/og.jpg`,
+      founder: { "@id": PERSON_ID },
+      employee: { "@id": PERSON_ID },
+      email: EMAIL,
+      sameAs: [socials.linkedIn],
+      areaServed: "Worldwide",
+      knowsAbout: [
+        "Product design",
+        "Product engineering",
+        "MVP development",
+        "AI product development",
+        "iOS and Android app development",
+        "Conversion rate optimisation",
+        "Design systems",
+      ],
     },
   ],
 };

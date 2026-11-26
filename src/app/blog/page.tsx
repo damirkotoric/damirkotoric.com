@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
@@ -8,11 +9,11 @@ import { formatPostDate, getAllPosts } from "@/lib/blog";
 const DESCRIPTION =
   "Notes on designing and building AI-powered products: the tools, the details and what actually moves the numbers.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: `Blog • ${FULL_NAME}`,
   description: DESCRIPTION,
-  alternates: { canonical: "/blog" },
-};
+  path: "/blog",
+});
 
 export default async function BlogPage() {
   const posts = await getAllPosts();
