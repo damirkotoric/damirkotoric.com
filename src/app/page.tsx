@@ -5,8 +5,6 @@ import { Footer } from "@/components/footer";
 import { Testimonial } from "@/components/testimonial";
 import { testimonials } from "@/data/testimonials";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
-import { HeroShowreel } from "@/components/hero-showreel";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
@@ -82,20 +80,12 @@ export default function HomePage() {
               <ScrollSection
                 id="intro"
                 mobileMedia={
-                  <HeroShowreel variant="mobile" delay={0.5} className="pb-8" />
+                  <PixelatedAvatar variant="mobile" entryAnimation />
                 }
               >
                 <div className="py-12 lg:py-24">
                   <HeroContent>
-                    <div className="mb-4 flex items-center gap-3">
-                      <Avatar size="lg">
-                        <AvatarImage
-                          src="/images/damir-contact.jpg"
-                          alt={FULL_NAME}
-                          className="object-cover"
-                        />
-                        <AvatarFallback>DK</AvatarFallback>
-                      </Avatar>
+                    <div className="mb-2 flex gap-2">
                       <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs tracking-tight font-medium text-muted-foreground">
                         €35M uplift at Booking.com
                       </span>
@@ -126,9 +116,9 @@ export default function HomePage() {
               </ScrollSection>
             </ScrollLinkedContent>
 
-            <ScrollLinkedMedia className="h-full hidden lg:flex items-center">
-              <ScrollMediaItem sectionId="intro" className="h-full w-full">
-                <HeroShowreel />
+            <ScrollLinkedMedia className="h-full flex items-center">
+              <ScrollMediaItem sectionId="intro" className="h-full">
+                <PixelatedAvatar variant="large" size="fill" entryAnimation />
               </ScrollMediaItem>
             </ScrollLinkedMedia>
           </ScrollLinkedProvider>
