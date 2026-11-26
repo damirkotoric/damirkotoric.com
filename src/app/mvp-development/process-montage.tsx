@@ -32,7 +32,7 @@ const appear = (delay: number, duration = 0.4) => ({
 });
 
 // A named pointer that travels through a list of positions, like a collaborator on a canvas.
-function Pointer({ name, solid, left, top, duration, delay = 0 }: { name: string; solid?: boolean; left: string[]; top: string[]; duration: number; delay?: number }) {
+function Pointer({ name, solid, left, top, duration, delay = 0 }: { name?: string; solid?: boolean; left: string[]; top: string[]; duration: number; delay?: number }) {
   return (
     <motion.div
       className="absolute z-20 flex items-start"
@@ -40,10 +40,12 @@ function Pointer({ name, solid, left, top, duration, delay = 0 }: { name: string
       animate={{ left, top, opacity: 1 }}
       transition={{ duration, delay, ease: "easeInOut", opacity: { duration: 0.3, delay } }}
     >
-      <Cursor size={16} weight="fill" className="-scale-x-100" />
-      <span className={`mt-3 rounded-full px-2 py-0.5 text-[10px] font-semibold ${solid ? "bg-foreground text-background" : "border border-border bg-background"}`}>
-        {name}
-      </span>
+      <Cursor size={16} weight="fill" />
+      {name && (
+        <span className={`mt-3 rounded-full px-2 py-0.5 text-[10px] font-semibold ${solid ? "bg-foreground text-background" : "border border-border bg-background"}`}>
+          {name}
+        </span>
+      )}
     </motion.div>
   );
 }
@@ -334,7 +336,7 @@ function BuildAndDirect() {
         </motion.div>
         <Comment at={GAP_AT} text="Tighten this gap" className="top-[23%] left-[36%]" />
         <Comment at={CAROUSEL_AT} text="Make this an interactive carousel" className="top-[52%] left-[14%]" />
-        <Comment at={BLEED_AT} text="Bleed it to the edges of the viewport" className="top-[70%] left-[22%]" />
+        <Comment at={BLEED_AT} text="Run it edge to edge" className="top-[70%] left-[22%]" />
         <Comment at={COPY_AT} text="The messaging is off. Simplify." className="top-[14%] left-[20%]" />
       </motion.div>
     </div>
@@ -348,21 +350,34 @@ const sceneItem: Variants = {
   show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
+// The left person talks, then the right, then the left again.
+const CALL_S = 6;
+const turns = [
+  [1, 1, 0, 0, 1, 1],
+  [0, 0, 1, 1, 0, 0],
+];
+const turnTimes = [0, 0.3, 0.35, 0.63, 0.68, 1];
+
 function Call() {
   return (
     <div className="flex w-[82%] flex-col items-center gap-5">
       <div className="grid w-full grid-cols-2 gap-4">
-        {[true, false].map((speaking) => (
+        {turns.map((speaking, person) => (
           <motion.div
-            key={String(speaking)}
-            variants={sceneItem}
-            className={`relative flex aspect-[4/3] items-end justify-center overflow-hidden rounded-xl border ${speaking ? "border-2 border-foreground" : "border-muted-foreground"}`}
+            key={person}
+            {...pop(0.1 + person * 0.2)}
+            className="relative flex aspect-[4/3] items-end justify-center overflow-hidden rounded-xl border border-muted-foreground"
           >
             <div className="flex flex-col items-center gap-2">
               <span className="size-14 rounded-full bg-muted-foreground/30" />
               <span className="h-12 w-28 rounded-t-full bg-muted-foreground/30" />
             </div>
-            {speaking && (
+            <motion.div
+              className="absolute inset-0 rounded-xl border-2 border-foreground"
+              initial={{ opacity: speaking[0] }}
+              animate={{ opacity: speaking }}
+              transition={{ duration: CALL_S, times: turnTimes }}
+            >
               <div className="absolute bottom-3 left-3 flex h-4 items-center gap-0.5">
                 {[0, 1, 2, 3].map((line) => (
                   <motion.span
@@ -373,11 +388,11 @@ function Call() {
                   />
                 ))}
               </div>
-            )}
+            </motion.div>
           </motion.div>
         ))}
       </div>
-      <motion.div variants={sceneItem} className="flex gap-3">
+      <motion.div {...pop(0.5)} className="flex gap-3">
         {[Microphone, VideoCamera, PhoneX].map((Icon) => (
           <span key={Icon.displayName} className="flex size-11 items-center justify-center rounded-full border border-muted-foreground">
             <Icon size={18} />
@@ -416,7 +431,7 @@ function Quality() {
           ))}
         </motion.div>
       ))}
-      <Pointer name="Damir" solid left={["70%", "91%", "91%", "91%", "91%"]} top={["95%", "30%", "46%", "62%", "78%"]} duration={checks[1].rows.length * ROW_S} delay={checks[1].at - ROW_S} />
+      <Pointer name="Damir" solid left={["70%", "92.5%", "92.5%", "92.5%", "92.5%"]} top={["95%", "30%", "46%", "62%", "78%"]} duration={checks[1].rows.length * ROW_S} delay={checks[1].at - ROW_S} />
     </div>
   );
 }
@@ -492,12 +507,50 @@ function LighthouseReport() {
   );
 }
 
-/* 10. Live on the App Store: a real screenshot */
+/* 10. Live on the App Store: Beamy's listing, rebuilt from its real icon and screenshots */
 
-function Shot({ light, dark, alt, width, height, className }: { light: string; dark: string; alt: string; width: number; height: number; className: string }) {
+const storeShots = ["store-1.webp", "store-2.webp", "store-3.webp", "store-4.webp"];
+const GET_AT = 4.2;
+
+function AppStore() {
   return (
-    <motion.div variants={sceneItem} className={`${card} ${className}`}>
-      <ThemedImage light={light} dark={dark} alt={alt} width={width} height={height} sizes={SIZES} />
+    <motion.div {...pop(0.1)} className={`${card} relative w-[90%] p-5`}>
+      <div className="flex items-center gap-4">
+        <motion.div {...pop(0.4)} className="shrink-0">
+          <Image src={`${DIR}/beamy-icon.webp`} alt="" width={192} height={192} className="size-16 rounded-[22%] border border-border" />
+        </motion.div>
+        <motion.div {...appear(0.7)} className="min-w-0 flex-1">
+          <p className="truncate font-semibold">Beamy – Audiobook Player</p>
+          <p className="truncate text-sm text-muted-foreground">Audiobooks you own, in sync</p>
+        </motion.div>
+        <motion.div {...pop(1)}>
+          <motion.div
+            className="relative min-w-16 rounded-full bg-foreground px-4 py-1.5 text-center text-sm font-bold text-background"
+            animate={{ scale: [1, 0.88, 1] }}
+            transition={{ delay: GET_AT, duration: 0.3 }}
+          >
+            <motion.span className="block" animate={{ opacity: 0 }} transition={{ delay: GET_AT + 0.2, duration: 0.2 }}>
+              Get
+            </motion.span>
+            <motion.span className="absolute inset-0 flex items-center justify-center" {...appear(GET_AT + 0.4, 0.2)}>
+              Open
+            </motion.span>
+          </motion.div>
+        </motion.div>
+      </div>
+      <div className="mt-5 grid grid-cols-4 gap-3">
+        {storeShots.map((file, position) => (
+          <motion.div
+            key={file}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.4 + position * 0.2, duration: 0.5, ease: "easeOut" }}
+          >
+            <Image src={`${DIR}/${file}`} alt="Beamy App Store screenshot" width={300} height={652} sizes="150px" className="rounded-lg border border-border" />
+          </motion.div>
+        ))}
+      </div>
+      <Pointer left={["55%", "92%"]} top={["75%", "19%"]} duration={1} delay={GET_AT - 1.2} />
     </motion.div>
   );
 }
@@ -510,24 +563,11 @@ const slides: { title: string; ms?: number; fresh?: boolean; render: (active: bo
   { title: "Lightning fast wireframes", fresh: true, render: () => <WireframeFlow /> },
   { title: "Design system creation", fresh: true, render: () => <DesignSystem /> },
   { title: "Claude builds, I direct every detail", ms: 10500, fresh: true, render: () => <BuildAndDirect /> },
-  { title: "Calls with you along the way", ms: 5000, render: () => <Call /> },
+  { title: "Calls with you along the way", ms: CALL_S * 1000, fresh: true, render: () => <Call /> },
   { title: "Automated tests and manual quality analysis", fresh: true, render: () => <Quality /> },
   { title: "The product", ms: 10000, render: (active) => <Film active={active} /> },
   { title: "Performance and accessibility optimisations before launch", fresh: true, render: () => <LighthouseReport /> },
-  {
-    title: "Live on the App Store",
-    ms: 5000,
-    render: () => (
-      <Shot
-        light="/images/details/app-store-listing-light.webp"
-        dark="/images/details/app-store-listing-dark.webp"
-        alt="Beamy's App Store listing"
-        width={2041}
-        height={1870}
-        className="aspect-[4/3] w-[84%]"
-      />
-    ),
-  },
+  { title: "Live on the App Store", fresh: true, render: () => <AppStore /> },
 ];
 
 const slideFade: Variants = {
