@@ -63,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="overflow-x-clip">
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth" className="scroll-smooth overflow-x-clip">
       <body className={`${inter.variable} ${generalSans.variable} antialiased overflow-x-clip`}>
         <a
           href="#main-content"
