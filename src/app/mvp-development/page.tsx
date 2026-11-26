@@ -219,7 +219,7 @@ export default function MvpDevelopmentPage() {
       />
       <main>
         {/* Hero: the offer on the left, how a project runs on the right */}
-        <section className={`${gutter} grid min-h-[88vh] grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16 lg:py-24`}>
+        <section className={`${gutter} grid min-h-[88vh] grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16 lg:py-24`}>
           <div className="max-w-[600px]">
             <HeroContent>
               <nav className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -251,7 +251,7 @@ export default function MvpDevelopmentPage() {
             </HeroContent>
           </div>
 
-          <AnimateIn delay={0.6} fadeOnly className="lg:justify-self-end lg:w-full lg:max-w-[640px]">
+          <AnimateIn delay={0.6} fadeOnly className="lg:justify-self-end lg:w-full lg:max-w-[880px]">
             <ProcessMontage />
           </AnimateIn>
         </section>
