@@ -14,11 +14,10 @@ const FPS = 30;
 const DUR = 1.6; // seconds of build-up per product
 const FRAMES = Math.round(FPS * DUR);
 
-const INK = "#11161C";
-const LINE = "#5A6470";
-const FILL = "#E4E8EB";
-const GRID = "#CBD2D9";
-const ACCENT = "#FFDD33";
+// Vector-tool palette: hairlines, translucent selection fills, snap guides.
+const EDGE = "#2D7FF9";
+const DOT = "#96A7BD";
+const GUIDE = "#FF2E85";
 
 // kind: f = outline, b = filled block, t = text bar, m = media plate
 // Scenes come from the capture/trace step, never from eyeballing a frame:
@@ -39,17 +38,41 @@ const clamp01 = (v) => Math.min(1, Math.max(0, v));
 const easeOut = (t) => 1 - Math.pow(1 - clamp01(t), 3);
 const range = (t, a, b) => clamp01((t - a) / (b - a));
 
-function gridLayer(a) {
-  if (a <= 0) return "";
-  const step = 40;
+// Where only part of the frame is ours to build. DoNotStay is an extension
+// over someone else's page: the page stays as shot, the panel gets built.
+const REGIONS = {
+  donotstay: [583, 18, 668, 918],
+};
+
+// A pixel dot grid, the way a vector canvas shows one.
+function dotGrid() {
+  const step = 16;
   let d = "";
-  for (let x = step; x < W; x += step) d += `M${x} 0V${H}`;
-  for (let y = step; y < H; y += step) d += `M0 ${y}H${W}`;
-  return `<path d="${d}" stroke="${GRID}" stroke-width="1" opacity="${a.toFixed(3)}"/>`;
+  for (let y = step; y < H; y += step)
+    for (let x = step; x < W; x += step) d += `M${x} ${y}h1.5`;
+  return `<path d="${d}" stroke="${DOT}" stroke-width="1.5" opacity="0.8" shape-rendering="crispEdges"/>`;
+}
+
+// Selection handles, as a vector tool draws them.
+function handles(x, y, w, h, a, every = true) {
+  const pts = every
+    ? [
+        [x, y], [x + w / 2, y], [x + w, y],
+        [x + w, y + h / 2], [x + w, y + h],
+        [x + w / 2, y + h], [x, y + h], [x, y + h / 2],
+      ]
+    : [[x, y], [x + w, y], [x + w, y + h], [x, y + h]];
+  const s = 7;
+  return pts
+    .map(
+      ([px, py]) =>
+        `<rect x="${(px - s / 2).toFixed(1)}" y="${(py - s / 2).toFixed(1)}" width="${s}" height="${s}" ` +
+        `fill="#fff" stroke="${EDGE}" stroke-width="1.25" opacity="${a.toFixed(3)}"/>`
+    )
+    .join("");
 }
 
 function boxLayer(boxes, t) {
-  // Boxes draw in on a stagger, then fill.
   const n = boxes.length;
   const slot = 0.34 / n;
   return boxes
@@ -61,66 +84,61 @@ function boxLayer(boxes, t) {
       const cy = y + h / 2;
       const sw = w * p;
       const sh = h * p;
-      const fill =
-        kind === "f" ? "none" : kind === "m" ? "#E2E5E8" : kind === "b" ? INK : FILL;
-      const fillOpacity = kind === "f" ? 0 : fillP * (kind === "b" ? 0.85 : 1);
-      const inner =
-        kind === "m" && fillP > 0.3
-          ? `<path d="M${cx - sw / 2} ${cy - sh / 2}l${sw} ${sh}M${cx + sw / 2} ${cy - sh / 2}l${-sw} ${sh}" stroke="${LINE}" stroke-width="1.5" opacity="${(fillP * 0.5).toFixed(3)}"/>`
-          : "";
+      const op = kind === "m" ? 0.16 : kind === "b" ? 0.22 : kind === "t" ? 0.14 : 0.07;
       return (
         `<rect x="${(cx - sw / 2).toFixed(1)}" y="${(cy - sh / 2).toFixed(1)}" ` +
         `width="${sw.toFixed(1)}" height="${sh.toFixed(1)}" rx="${r}" ` +
-        `fill="${fill}" fill-opacity="${fillOpacity.toFixed(3)}" ` +
-        `stroke="${LINE}" stroke-width="2.4" stroke-opacity="${p.toFixed(3)}"/>` +
-        inner
+        `fill="${EDGE}" fill-opacity="${(fillP * op).toFixed(3)}" ` +
+        `stroke="${EDGE}" stroke-width="1.25" stroke-opacity="${(p * 0.85).toFixed(3)}" ` +
+        `shape-rendering="crispEdges"/>`
       );
     })
     .join("");
 }
 
+// Snap guides and a dimension read-out — the vector-tool/inspector tell.
 function guideLayer(container, t) {
-  const a = easeOut(range(t, 0.36, 0.56));
+  const a = easeOut(range(t, 0.22, 0.4));
   if (a <= 0) return "";
-  const [x, y, w, h, r] = container;
-  const dash = `stroke="${INK}" stroke-width="1.25" stroke-dasharray="7 6" opacity="${(a * 0.7).toFixed(3)}"`;
-  const ticks = [
-    [x, y],
-    [x + w, y],
-    [x, y + h],
-    [x + w, y + h],
-  ]
-    .map(
-      ([px, py]) =>
-        `<circle cx="${px}" cy="${py}" r="${(4 * a).toFixed(1)}" fill="${ACCENT}" stroke="${INK}" stroke-width="1" opacity="${a.toFixed(3)}"/>`
-    )
-    .join("");
-  const radius = r
-    ? `<circle cx="${x + r}" cy="${y + r}" r="${r}" fill="none" stroke="${ACCENT}" stroke-width="2" opacity="${(a * 0.9).toFixed(3)}"/>`
-    : "";
+  const [x, y, w, h] = container;
+  const g = `stroke="${GUIDE}" stroke-width="1" opacity="${(a * 0.8).toFixed(3)}"`;
+  const label = `${Math.round(w)} × ${Math.round(h)}`;
+  const lw = label.length * 7.4 + 14;
+  const lx = Math.min(W - lw - 6, x + w - lw);
+  const ly = Math.min(H - 24, y + h + 8);
   return (
-    `<path d="M${x} 0V${H}M${x + w} 0V${H}M0 ${y}H${W}M0 ${y + h}H${W}" ${dash}/>` +
-    radius +
-    ticks
+    `<path d="M${x} 0V${H}M${x + w} 0V${H}M0 ${y}H${W}M0 ${y + h}H${W}" ${g} stroke-dasharray="3 4"/>` +
+    `<rect x="${lx}" y="${ly}" width="${lw}" height="19" rx="3" fill="${GUIDE}" opacity="${a.toFixed(3)}"/>` +
+    `<text x="${lx + 7}" y="${ly + 13.5}" font-family="monospace" font-size="11.5" ` +
+    `fill="#fff" opacity="${a.toFixed(3)}">${label}</text>` +
+    handles(x, y, w, h, a)
   );
 }
 
-// The container outline is present from the first frame so the panel never
-// reads as blank white at the start of a build-up.
 function containerLayer([x, y, w, h, r]) {
   return (
     `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" ` +
-    `fill="none" stroke="${LINE}" stroke-width="2.4" stroke-opacity="0.75"/>`
+    `fill="none" stroke="${EDGE}" stroke-width="1.25" stroke-opacity="0.9" shape-rendering="crispEdges"/>`
   );
 }
 
 function buildSvg(scene, t, layerAlpha) {
+  const reg = scene.region;
+  const clip = reg
+    ? `<clipPath id="r"><rect x="${reg[0]}" y="${reg[1]}" width="${reg[2]}" height="${reg[3]}" rx="14"/></clipPath>`
+    : "";
+  // Inside a region the panel masks the real UI until it resolves; over a
+  // whole frame the page itself is the canvas.
+  const plate = reg
+    ? `<rect x="${reg[0]}" y="${reg[1]}" width="${reg[2]}" height="${reg[3]}" rx="14" fill="#fff"/>`
+    : `<rect width="${W}" height="${H}" fill="#fff"/>`;
+  const body =
+    plate + dotGrid() + containerLayer(scene.container) + boxLayer(scene.boxes, t);
   return (
     `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
+    `<defs>${clip}</defs>` +
     `<g opacity="${layerAlpha.toFixed(3)}">` +
-    gridLayer(1) +
-    containerLayer(scene.container) +
-    boxLayer(scene.boxes, t) +
+    (reg ? `<g clip-path="url(#r)">${body}</g>` : body) +
     guideLayer(scene.container, t) +
     `</g></svg>`
   );
@@ -132,23 +150,26 @@ async function renderProduct(id, scene) {
   const dir = `/tmp/bts/${id}`;
   await mkdir(dir, { recursive: true });
   const photo = await sharp(`/tmp/bts/${id}.png`).resize(W, H).toBuffer();
+  const reg = scene.region;
 
   for (let f = 0; f < FRAMES; f++) {
     const t = f / (FRAMES - 1);
-    // Wireframe holds, then hands over to the shipped screen.
-    const photoAlpha = easeOut(range(t, 0.58, 0.84));
+    // A region build-up sits over the real page, so the photo is there from
+    // the first frame and only the panel resolves.
+    const photoAlpha = reg ? 1 : easeOut(range(t, 0.58, 0.84));
     const wireAlpha = 1 - easeOut(range(t, 0.7, 1));
 
     const layers = [];
     if (photoAlpha > 0.001) {
       layers.push({
-        input: await sharp(photo).ensureAlpha(photoAlpha).png().toBuffer(),
+        input:
+          photoAlpha >= 1
+            ? photo
+            : await sharp(photo).ensureAlpha(photoAlpha).png().toBuffer(),
       });
     }
     if (wireAlpha > 0.001) {
-      layers.push({
-        input: Buffer.from(buildSvg(scene, t, wireAlpha)),
-      });
+      layers.push({ input: Buffer.from(buildSvg(scene, t, wireAlpha)) });
     }
 
     const frame = await sharp({
@@ -160,9 +181,20 @@ async function renderProduct(id, scene) {
 
     await writeFile(`${dir}/frame${String(f).padStart(4, "0")}.png`, frame);
   }
-  console.log(`${id}: ${FRAMES} frames`);
+  console.log(`${id}: ${FRAMES} frames${reg ? " (panel only)" : ""}`);
 }
 
 for (const [id, scene] of Object.entries(SCENES)) {
+  const reg = REGIONS[id];
+  if (reg) {
+    // Only what we built belongs in the wireframe.
+    const inside = ([x, y, w, h]) =>
+      x + w / 2 > reg[0] &&
+      x + w / 2 < reg[0] + reg[2] &&
+      y + h / 2 > reg[1] &&
+      y + h / 2 < reg[1] + reg[3];
+    scene.region = reg;
+    scene.boxes = scene.boxes.filter(inside);
+  }
   await renderProduct(id, scene);
 }
