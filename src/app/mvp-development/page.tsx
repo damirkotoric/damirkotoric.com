@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer";
 import { Testimonial } from "@/components/testimonial";
 import { getTestimonialByName } from "@/data/testimonials";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
+import { LogoMark, logos } from "@/components/logo-mark";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { Highlighter } from "@/components/ui/highlighter";
 import { PortfolioShowcase } from "@/components/portfolio-showcase";
@@ -365,6 +366,14 @@ export default function MvpDevelopmentPage() {
                     {outcome.name}
                   </Link>
                 </div>
+              </div>
+            ))}
+          </div>
+          <h3 className={`${sectionLabel} mt-24 lg:mt-32`}>Worked with</h3>
+          <div className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-4 lg:gap-y-12">
+            {logos.map((logo) => (
+              <div key={logo.name} className="flex h-20 origin-left scale-75 items-center sm:scale-100">
+                <LogoMark {...logo} />
               </div>
             ))}
           </div>
