@@ -1,12 +1,12 @@
 // Generates "how it's made" build-up frames for the hero showreel.
 //
-// For each product the wireframe geometry below is traced from the shipped
-// screen, so the build-up resolves into the exact frame its live clip opens
-// on. Output: /tmp/bts/<id>/frame####.png, consumed by build-hero-reel.sh.
+// Each product's wireframe geometry is measured from the shipped screen, so
+// the build-up resolves into the real thing rather than an approximation of
+// it. Output: /tmp/bts/<id>/frame####.png, consumed by build-hero-reel.sh.
 //
 // Usage: node scripts/build-bts-frames.mjs
 import sharp from "sharp";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, readFile } from "node:fs/promises";
 
 const W = 1280;
 const H = 960;
@@ -15,82 +15,25 @@ const DUR = 1.6; // seconds of build-up per product
 const FRAMES = Math.round(FPS * DUR);
 
 const INK = "#11161C";
-const LINE = "#7D868F";
+const LINE = "#5A6470";
 const FILL = "#E4E8EB";
-const GRID = "#D7DCE1";
+const GRID = "#CBD2D9";
 const ACCENT = "#FFDD33";
 
 // kind: f = outline, b = filled block, t = text bar, m = media plate
-// [x, y, w, h, radius, kind]
-const SCENES = {
-  stylespin: {
-    container: [120, 89, 1040, 781, 18],
-    boxes: [
-      [640, 89, 520, 781, 0, "m"],
-      [265, 196, 110, 18, 4, "t"],
-      [265, 240, 220, 22, 11, "f"],
-      [258, 285, 250, 40, 4, "t"],
-      [258, 340, 290, 40, 4, "t"],
-      [258, 395, 200, 40, 4, "t"],
-      [178, 460, 390, 14, 4, "t"],
-      [185, 486, 375, 14, 4, "t"],
-      [275, 530, 255, 130, 10, "f"],
-      [278, 715, 200, 32, 16, "b"],
-    ],
-  },
-  donotstay: {
-    container: [589, 10, 691, 940, 14],
-    boxes: [
-      [0, 0, 1280, 94, 0, "b"],
-      [632, 82, 551, 370, 12, "f"],
-      [660, 110, 140, 30, 15, "b"],
-      [660, 165, 420, 34, 4, "t"],
-      [660, 210, 330, 34, 4, "t"],
-      [632, 490, 540, 14, 4, "t"],
-      [632, 516, 540, 14, 4, "t"],
-      [632, 625, 100, 16, 4, "t"],
-      [632, 665, 551, 130, 10, "f"],
-      [632, 810, 551, 130, 10, "f"],
-      [0, 200, 560, 60, 8, "f"],
-      [0, 600, 560, 360, 8, "m"],
-    ],
-  },
-  rankdat: {
-    container: [145, 324, 1135, 503, 14],
-    boxes: [
-      [0, 0, 94, 960, 0, "b"],
-      [145, 215, 200, 28, 4, "t"],
-      [145, 275, 330, 14, 4, "t"],
-      [145, 324, 495, 503, 12, "f"],
-      [662, 324, 490, 503, 12, "f"],
-      [1174, 324, 106, 503, 12, "f"],
-      [178, 585, 40, 12, 4, "t"],
-      [178, 620, 230, 60, 6, "t"],
-      [178, 720, 420, 14, 4, "t"],
-      [178, 746, 400, 14, 4, "t"],
-      [695, 585, 120, 12, 4, "t"],
-      [695, 620, 200, 60, 6, "t"],
-    ],
-  },
-  nametag: {
-    container: [201, 65, 734, 831, 10],
-    boxes: [
-      [205, 9, 290, 34, 4, "t"],
-      [828, 14, 115, 40, 20, "b"],
-      [990, 14, 290, 36, 18, "f"],
-      [201, 65, 237, 208, 8, "m"],
-      [449, 65, 237, 208, 8, "m"],
-      [698, 65, 237, 208, 8, "m"],
-      [201, 312, 237, 208, 8, "m"],
-      [449, 312, 237, 208, 8, "m"],
-      [698, 312, 237, 208, 8, "m"],
-      [201, 611, 237, 208, 8, "m"],
-      [449, 611, 237, 208, 8, "m"],
-      [698, 611, 237, 208, 8, "m"],
-      [1150, 60, 130, 860, 8, "f"],
-    ],
-  },
-};
+// Scenes come from the capture/trace step, never from eyeballing a frame:
+// capture-product-screen.mjs reads real element rects out of a shipped web
+// product's DOM, trace-product-frame.mjs recovers them from a video frame
+// where there is no DOM to read. Both write /tmp/bts/<id>.scene.json next to
+// the <id>.png the build-up resolves into.
+const IDS = ["beamy", "donotstay", "rankdat", "stylespin"];
+const SCENES = {};
+for (const id of IDS) {
+  const scene = JSON.parse(
+    await readFile(`/tmp/bts/${id}.scene.json`, "utf8")
+  );
+  SCENES[id] = { container: scene.container, boxes: scene.boxes };
+}
 
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
 const easeOut = (t) => 1 - Math.pow(1 - clamp01(t), 3);
@@ -129,7 +72,7 @@ function boxLayer(boxes, t) {
         `<rect x="${(cx - sw / 2).toFixed(1)}" y="${(cy - sh / 2).toFixed(1)}" ` +
         `width="${sw.toFixed(1)}" height="${sh.toFixed(1)}" rx="${r}" ` +
         `fill="${fill}" fill-opacity="${fillOpacity.toFixed(3)}" ` +
-        `stroke="${LINE}" stroke-width="2" stroke-opacity="${p.toFixed(3)}"/>` +
+        `stroke="${LINE}" stroke-width="2.4" stroke-opacity="${p.toFixed(3)}"/>` +
         inner
       );
     })
@@ -167,7 +110,7 @@ function guideLayer(container, t) {
 function containerLayer([x, y, w, h, r]) {
   return (
     `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" ` +
-    `fill="none" stroke="${LINE}" stroke-width="2" stroke-opacity="0.75"/>`
+    `fill="none" stroke="${LINE}" stroke-width="2.4" stroke-opacity="0.75"/>`
   );
 }
 

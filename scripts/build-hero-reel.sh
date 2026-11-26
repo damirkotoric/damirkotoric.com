@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 # Builds the hero showreel: a "how it's made" build-up into live product
-# footage, four times over.
+# footage, once per product.
 #
-# Each entry in CLIPS is:
-#   "<id>|<path relative to public/>|<start seconds>|<live seconds>"
-#
-# <id> must match a scene key in scripts/build-bts-frames.mjs — that file
-# holds the wireframe geometry traced from the shipped screen. To add a
-# product, add it in both places. To use real screen-recorded BTS footage
-# instead, drop the clip in as its own CLIPS entry and give it no scene.
+# Geometry is measured, never eyeballed. Where a product ships on the web its
+# wireframe comes from the real DOM (capture-product-screen.mjs); where it
+# does not, it is recovered from the frame itself (trace-product-frame.mjs).
+# Run scripts/verify-product-trace.mjs <id> to see the boxes drawn over the
+# source and check the fit.
 #
 # Usage: ./scripts/build-hero-reel.sh
 set -euo pipefail
@@ -23,31 +21,43 @@ trap 'rm -rf "$TMP"' EXIT
 W=1280
 H=960
 FPS=30
+SCALE="scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1"
 
+# Products in reel order. "<id>|<live clip>|<start s>|<live s>"
 CLIPS=(
-  "stylespin|images/portfolio/stylespin/stylespin.mp4|5|1.2"
-  "donotstay|images/portfolio/donotstay/donotstay.mp4|16|1.2"
-  "rankdat|images/portfolio/rankdat/rankdat.mp4|9|1.2"
-  "nametag|images/portfolio/nametag/nametag.mp4|12|1.2"
+  "beamy|images/portfolio/beamy/beamy.mp4|9|1.3"
+  "donotstay|images/portfolio/donotstay/donotstay.mp4|16|1.3"
+  "rankdat|images/portfolio/rankdat/rankdat.mp4|9|1.3"
+  "stylespin|images/portfolio/stylespin/stylespin.mp4|5|1.3"
+)
+
+# Shipped on the web: geometry read straight out of the live DOM.
+# "<id>|<url>|<settle ms>|<scroll px>"
+WEB=(
+  "beamy|https://getbeamy.app|5500|0"
+  "rankdat|https://rankdat.io|5500|900"
+  "stylespin|https://stylespin.vercel.app|5500|0"
 )
 
 mkdir -p "$OUT" "$BTS"
 
-SCALE="scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1"
-
-# 1. Grab the exact frame each live segment opens on — the build-up resolves
-#    into it, so the handover is seamless.
-for clip in "${CLIPS[@]}"; do
-  IFS='|' read -r id src start dur <<< "$clip"
-  ffmpeg -loglevel error -y -ss "$start" -i "$PUBLIC/$src" \
-    -vf "scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H}" \
-    -frames:v 1 "$BTS/$id.png"
+# 1. Capture the web products and measure their real element boxes.
+for entry in "${WEB[@]}"; do
+  IFS='|' read -r id url settle scroll <<< "$entry"
+  node scripts/capture-product-screen.mjs "$id" "$url" "$settle" "$scroll"
 done
 
-# 2. Render the wireframe build-up frames.
+# 2. DoNotStay runs as a browser extension over someone else's page, so there
+#    is no DOM of ours to read — recover its boxes from the frame instead.
+ffmpeg -loglevel error -y -ss 16 -i "$PUBLIC/images/portfolio/donotstay/donotstay.mp4" \
+  -vf "scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H}" \
+  -frames:v 1 "$BTS/donotstay.png"
+node scripts/trace-product-frame.mjs donotstay
+
+# 3. Render the wireframe build-up frames.
 node scripts/build-bts-frames.mjs
 
-# 3. Encode build-up + live for each product, back to back.
+# 4. Encode build-up + live footage for each product, back to back.
 i=0
 for clip in "${CLIPS[@]}"; do
   IFS='|' read -r id src start dur <<< "$clip"
@@ -76,14 +86,12 @@ ffmpeg -loglevel error -y -i "$TMP/reel.mp4" \
   -an -c:v libvpx-vp9 -crf 42 -b:v 0 -row-mt 1 -deadline good -cpu-used 2 \
   "$OUT/hero-reel.webm"
 
-# Poster — taken from the first finished screen, not the empty grid the reel
-# opens on. It is what loads first and what reduced-motion visitors see.
-ffmpeg -loglevel error -y -ss 2.7 -i "$TMP/reel.mp4" -frames:v 1 -q:v 2 "$TMP/poster.jpg"
+# Poster — a finished screen, not the empty grid the reel opens on. It is
+# what loads first and what reduced-motion visitors see.
+ffmpeg -loglevel error -y -ss 1.55 -i "$TMP/reel.mp4" -frames:v 1 -q:v 2 "$TMP/poster.jpg"
 node -e "
 const sharp = require('sharp');
-sharp(process.argv[1])
-  .avif({ quality: 55 })
-  .toFile(process.argv[2])
+sharp(process.argv[1]).avif({ quality: 55 }).toFile(process.argv[2])
   .catch((e) => { console.error(e); process.exit(1); });
 " "$TMP/poster.jpg" "$OUT/hero-reel-poster.avif"
 
