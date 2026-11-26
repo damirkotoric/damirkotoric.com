@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import { CheckCircle, Microphone, PhoneX, VideoCamera } from "@phosphor-icons/react";
+import { CheckCircle, Microphone, Pause, PhoneX, Play, VideoCamera } from "@phosphor-icons/react";
+import { Button } from "@/components/ui/button";
 import { ThemedImage } from "@/components/themed-image";
 
 // One real project, Beamy, from first contact to the App Store. Everything shown is the real
@@ -278,15 +279,15 @@ const scenes: { label: string; ms?: number; render: (active: boolean) => ReactNo
 export function ProcessMontage() {
   const reduced = useReducedMotion();
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const playing = !paused && !reduced;
+  const duration = scenes[index].ms ?? SCENE_MS;
 
   useEffect(() => {
-    if (reduced) return;
-    const timer = setTimeout(() => setIndex((index + 1) % scenes.length), scenes[index].ms ?? SCENE_MS);
+    if (!playing) return;
+    const timer = setTimeout(() => setIndex((index + 1) % scenes.length), duration);
     return () => clearTimeout(timer);
-  }, [reduced, index]);
-
-  // With reduced motion there is no loop: show where the project ends up.
-  const active = reduced ? scenes.length - 1 : index;
+  }, [playing, index, duration]);
 
   return (
     <figure>
@@ -297,23 +298,55 @@ export function ProcessMontage() {
             aria-hidden="true"
             variants={scene}
             initial={false}
-            animate={position === active ? "show" : "hide"}
+            animate={position === index ? "show" : "hide"}
             className="pointer-events-none absolute inset-0 flex items-center justify-center"
           >
-            {render(position === active)}
+            {render(position === index)}
           </motion.div>
         ))}
       </div>
       <figcaption className="mt-6">
-        <motion.p key={active} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-3 font-semibold">
-          {scenes[active].label}
+        <motion.p key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-4 text-center font-semibold">
+          {scenes[index].label}
         </motion.p>
-        <div className="flex gap-1.5" aria-hidden="true">
-          {scenes.map(({ label }, position) => (
-            <span key={label} className={`h-0.5 flex-1 rounded-full ${position <= active ? "bg-foreground" : "bg-border"}`} />
-          ))}
+        <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center rounded-full bg-muted px-3 py-1.5">
+            {scenes.map(({ label }, position) => (
+              <button
+                key={label}
+                type="button"
+                aria-label={label}
+                aria-current={position === index}
+                onClick={() => setIndex(position)}
+                className="group cursor-pointer rounded-full p-1.5 outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <span
+                  className={`relative block h-2 overflow-hidden rounded-full transition-[width,background-color] duration-300 ${position === index ? "w-10 bg-muted-foreground/40" : "w-2 bg-muted-foreground/40 group-hover:bg-foreground"}`}
+                >
+                  {position === index && (
+                    <motion.span
+                      key={String(playing)}
+                      className="absolute inset-0 origin-left rounded-full bg-foreground"
+                      initial={{ scaleX: playing ? 0 : 1 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: playing ? duration / 1000 : 0, ease: "linear" }}
+                    />
+                  )}
+                </span>
+              </button>
+            ))}
+          </div>
+          <Button
+            variant="secondary"
+            size="icon"
+            className="rounded-full"
+            aria-label={paused ? "Play" : "Pause"}
+            onClick={() => setPaused(!paused)}
+          >
+            {paused ? <Play weight="fill" /> : <Pause weight="fill" />}
+          </Button>
         </div>
-        <p className="mt-3 text-sm text-muted-foreground">
+        <p className="mt-4 text-center text-sm text-muted-foreground">
           Beamy, a product I designed and built alone. The client chat and the call are sketches.
         </p>
       </figcaption>
