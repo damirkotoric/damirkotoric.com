@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import { CheckCircle, Circle, Cursor, Microphone, Pause, PhoneX, Play, User, VideoCamera } from "@phosphor-icons/react";
+import { CheckCircle, Circle, Cursor, Microphone, Pause, PhoneX, Play, VideoCamera } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { ScoreGauge } from "@/components/score-gauge";
 import { ThemedImage } from "@/components/themed-image";
@@ -56,24 +57,48 @@ const messages = [
   { mine: true, at: 4.8, text: "That's what I do. Send me what you have." },
 ];
 
+// An original drawn face for the made-up founder. No real person, no photo.
+function FounderAvatar() {
+  return (
+    <svg viewBox="0 0 64 64" className="size-10" aria-hidden="true">
+      <clipPath id="founder-avatar">
+        <circle cx="32" cy="32" r="32" />
+      </clipPath>
+      <g clipPath="url(#founder-avatar)">
+        <rect width="64" height="64" className="fill-muted" />
+        <path d="M10 66c0-13 9-21 22-21s22 8 22 21z" className="fill-foreground" />
+        <path d="M27 40h10v8a5 5 0 0 1-10 0z" className="fill-background stroke-foreground" strokeWidth="2" />
+        <circle cx="32" cy="28" r="13" className="fill-background stroke-foreground" strokeWidth="2" />
+        <path d="M18.5 27c-1-10 5-16.500 13.500-16.500 8 0 14 5.500 13.500 15.500-3.500-5-8-7.500-14-7.500-5 0-9.500 2.500-13 8.500z" className="fill-foreground" />
+        <circle cx="27" cy="29.500" r="1.600" className="fill-foreground" />
+        <circle cx="37" cy="29.500" r="1.600" className="fill-foreground" />
+        <path d="M27 34.500c2.800 2.800 7.200 2.800 10 0" fill="none" strokeWidth="2" strokeLinecap="round" className="stroke-foreground" />
+      </g>
+    </svg>
+  );
+}
+
 function Conversation() {
   return (
     <div className="flex w-[84%] flex-col gap-2.5">
-      <motion.div {...appear(0.1)} className="mb-1 flex items-center gap-2 self-center text-xs text-muted-foreground">
-        <span className="flex size-7 items-end justify-center overflow-hidden rounded-full bg-muted">
-          <User size={24} weight="fill" className="translate-y-1 text-muted-foreground" />
-        </span>
+      <motion.div {...appear(0.1)} className="mb-1 flex items-center gap-2.5 self-center text-sm text-muted-foreground">
+        <FounderAvatar />
         Founder
       </motion.div>
       {messages.map(({ mine, at, text }) => (
-        <motion.p
+        <motion.div
           key={text}
           {...pop(at)}
           style={{ originX: mine ? 1 : 0, originY: 1 }}
-          className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm sm:text-base ${mine ? "self-end rounded-br-sm bg-foreground text-background" : "self-start rounded-bl-sm bg-muted"}`}
+          className={`flex max-w-[90%] items-end gap-2 ${mine ? "self-end" : "self-start"}`}
         >
-          {text}
-        </motion.p>
+          <p className={`rounded-2xl px-4 py-2.5 text-sm sm:text-base ${mine ? "rounded-br-sm bg-foreground text-background" : "rounded-bl-sm bg-muted"}`}>
+            {text}
+          </p>
+          {mine && (
+            <Image src="/images/damir.avif" alt="" width={64} height={64} className="size-8 shrink-0 rounded-full bg-muted object-cover" />
+          )}
+        </motion.div>
       ))}
     </div>
   );
