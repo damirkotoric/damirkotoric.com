@@ -36,7 +36,7 @@ import { ThemedImage } from "@/components/themed-image";
 // illustrate the process. Slides 8 to 10 show Beamy, a product I designed and built.
 const SLIDE_MS = 7000;
 const DIR = "/images/mvp-montage";
-const SIZES = "(min-width: 1024px) 640px, 100vw";
+const SIZES = "(min-width: 1024px) 880px, 100vw";
 
 const card =
   "overflow-hidden rounded-xl border border-border bg-background shadow-layered";
@@ -515,9 +515,13 @@ function Comment({
         times: [0, 0.12, 0.85, 1],
       })}
     >
-      <span className="flex size-6 shrink-0 items-center justify-center rounded-full rounded-bl-none bg-foreground text-[10px] font-bold text-background">
-        D
-      </span>
+      <Image
+        src={`${DIR}/damir-avatar.webp`}
+        alt=""
+        width={192}
+        height={192}
+        className="size-7 shrink-0 rounded-full rounded-bl-none border border-background shadow-layered"
+      />
       <span className="rounded-lg rounded-tl-none border border-border bg-background px-2.5 py-1.5 text-xs font-medium whitespace-nowrap shadow-layered">
         {text}
       </span>
@@ -1039,7 +1043,13 @@ export function ProcessMontage() {
   return (
     <Still value={still}>
       <figure ref={figure}>
-        <div className="relative aspect-square w-full sm:aspect-[4/3]">
+        <div className="relative aspect-[4/5] w-full sm:aspect-[4/3]">
+          {/* One faint dotted canvas behind every slide, fading out at the edges, so the
+              unboxed slides and the title under them read as one place. */}
+          <div
+            aria-hidden="true"
+            className={`${dottedCanvas} absolute -inset-x-8 -inset-y-4 [mask-image:radial-gradient(closest-side,black_60%,transparent)]`}
+          />
           {slides.map(({ title, fresh, render }, position) => (
             <motion.div
               key={title}
