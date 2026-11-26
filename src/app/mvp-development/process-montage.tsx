@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import { CheckCircle, Cursor, Microphone, Pause, PhoneX, Play, VideoCamera } from "@phosphor-icons/react";
+import { CheckCircle, Circle, Cursor, Microphone, Pause, PhoneX, Play, User, VideoCamera } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
+import { ScoreGauge } from "@/components/score-gauge";
 import { ThemedImage } from "@/components/themed-image";
 
 // How a project runs, as ten short animated slides. Slides 1 to 7 are drawn in code and
@@ -59,7 +60,9 @@ function Conversation() {
   return (
     <div className="flex w-[84%] flex-col gap-2.5">
       <motion.div {...appear(0.1)} className="mb-1 flex items-center gap-2 self-center text-xs text-muted-foreground">
-        <span className="size-6 rounded-full bg-muted-foreground/30" />
+        <span className="flex size-7 items-end justify-center overflow-hidden rounded-full bg-muted">
+          <User size={24} weight="fill" className="translate-y-1 text-muted-foreground" />
+        </span>
         Founder
       </motion.div>
       {messages.map(({ mine, at, text }) => (
@@ -369,18 +372,19 @@ function Quality() {
         <motion.div key={title} {...appear(at - 0.4)} className={`${card} flex flex-col gap-3 p-5`}>
           <p className="text-sm font-semibold text-muted-foreground">{title}</p>
           {rows.map((row, position) => (
-            <div key={row} className="flex items-center gap-2.5 text-sm font-medium">
-              <span className="relative size-5 shrink-0 rounded-full border border-muted-foreground">
-                <motion.span {...pop(at + position * ROW_S)} className="absolute -inset-px">
+            <div key={row} className="flex items-center justify-between gap-2.5 text-sm font-medium">
+              {row}
+              <span className="relative size-5 shrink-0">
+                <Circle size={20} className="absolute inset-0 text-muted-foreground" />
+                <motion.span {...pop(at + position * ROW_S)} className="absolute inset-0">
                   <CheckCircle size={20} weight="fill" />
                 </motion.span>
               </span>
-              {row}
             </div>
           ))}
         </motion.div>
       ))}
-      <Pointer name="Damir" solid left={["70%", "56%", "56%", "56%", "56%"]} top={["90%", "27%", "43%", "59%", "75%"]} duration={checks[1].rows.length * ROW_S} delay={checks[1].at - ROW_S} />
+      <Pointer name="Damir" solid left={["70%", "91%", "91%", "91%", "91%"]} top={["95%", "30%", "46%", "62%", "78%"]} duration={checks[1].rows.length * ROW_S} delay={checks[1].at - ROW_S} />
     </div>
   );
 }
@@ -415,7 +419,48 @@ function Film({ active }: { active: boolean }) {
   );
 }
 
-/* 9 and 10. Real screenshots */
+/* 9. Performance and accessibility: getbeamy.app's Lighthouse report, redrawn so it can animate */
+
+// Lighthouse 13.6, desktop preset, run against getbeamy.app on 25 November 2026.
+const lighthouseScores = [
+  { label: "Performance", score: 98 },
+  { label: "Accessibility", score: 98 },
+  { label: "Best practices", score: 100 },
+  { label: "SEO", score: 100 },
+];
+const lighthouseMetrics = [
+  { label: "First Contentful Paint", value: "0.9 s" },
+  { label: "Largest Contentful Paint", value: "1.0 s" },
+  { label: "Total Blocking Time", value: "20 ms" },
+  { label: "Cumulative Layout Shift", value: "0.007" },
+];
+const METRICS_AT = 2.2;
+
+function LighthouseReport() {
+  return (
+    <motion.div {...pop(0.1)} className={`${card} w-[92%]`}>
+      <p className="border-b border-border px-4 py-2.5 text-xs text-muted-foreground">https://getbeamy.app/</p>
+      <div className="grid grid-cols-4 gap-4 px-6 pt-6 [&_p]:text-xs">
+        {lighthouseScores.map(({ label, score }, position) => (
+          <ScoreGauge key={label} label={label} score={score} play delay={500 + position * 200} />
+        ))}
+      </div>
+      <div className="grid grid-cols-2 gap-x-6 p-6">
+        {lighthouseMetrics.map(({ label, value }, position) => (
+          <motion.div key={label} {...pop(METRICS_AT + position * 0.25)} className="flex items-start gap-2 border-t border-border py-2.5">
+            <span className="mt-1.5 size-2 shrink-0 rounded-full bg-lighthouse-pass" />
+            <span>
+              <span className="block text-xs">{label}</span>
+              <span className="block text-xl text-lighthouse-pass-foreground">{value}</span>
+            </span>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+/* 10. Live on the App Store: a real screenshot */
 
 function Shot({ light, dark, alt, width, height, className }: { light: string; dark: string; alt: string; width: number; height: number; className: string }) {
   return (
@@ -436,20 +481,7 @@ const slides: { title: string; ms?: number; fresh?: boolean; render: (active: bo
   { title: "Calls with you along the way", ms: 5000, render: () => <Call /> },
   { title: "Automated tests and manual quality analysis", fresh: true, render: () => <Quality /> },
   { title: "The product", ms: 10000, render: (active) => <Film active={active} /> },
-  {
-    title: "Performance and accessibility optimisations before launch",
-    ms: 5000,
-    render: () => (
-      <Shot
-        light={`${DIR}/lighthouse-light.webp`}
-        dark={`${DIR}/lighthouse-dark.webp`}
-        alt="Lighthouse report for getbeamy.app"
-        width={1500}
-        height={1050}
-        className="w-[90%]"
-      />
-    ),
-  },
+  { title: "Performance and accessibility optimisations before launch", fresh: true, render: () => <LighthouseReport /> },
   {
     title: "Live on the App Store",
     ms: 5000,
@@ -488,11 +520,6 @@ export function ProcessMontage() {
 
   return (
     <figure>
-      <figcaption>
-        <motion.p key={index} {...appear(0)} className="mb-2 min-h-14 text-center text-lg font-semibold text-balance lg:text-xl">
-          {slides[index].title}
-        </motion.p>
-      </figcaption>
       <div className="relative aspect-square w-full sm:aspect-[4/3]">
         {slides.map(({ title, fresh, render }, position) => (
           <motion.div
@@ -507,7 +534,12 @@ export function ProcessMontage() {
           </motion.div>
         ))}
       </div>
-      <div className="mt-4 flex items-center justify-center gap-3">
+      <figcaption>
+        <motion.p key={index} {...appear(0)} className="mt-4 mb-3 min-h-14 text-center text-lg font-semibold text-balance lg:text-xl">
+          {slides[index].title}
+        </motion.p>
+      </figcaption>
+      <div className="flex items-center justify-center gap-3">
         <div className="flex items-center rounded-full bg-muted px-3 py-1.5">
           {slides.map(({ title }, position) => (
             <button
