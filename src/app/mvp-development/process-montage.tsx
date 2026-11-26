@@ -86,7 +86,7 @@ const boardColumns = [
     title: "Your checkout",
     notes: [
       { text: "5 steps to pay", problem: true, at: 1.2 },
-      { text: "Promo code hides the total", problem: true, at: 2.0 },
+      { text: "No guest checkout", problem: true, at: 2.0 },
     ],
   },
   {
@@ -253,9 +253,10 @@ function DesignSystem() {
 /* 5. Claude builds, I direct every detail: code on the left, the screen on the right, my comments on top */
 
 const codeLines = ["w-1/2", "ml-3 w-3/4", "ml-3 w-2/3", "ml-6 w-1/2", "ml-6 w-3/5", "ml-3 w-1/3", "w-2/5", "ml-3 w-4/5", "ml-6 w-1/2", "ml-6 w-2/3", "ml-3 w-1/4", "w-1/3"];
-const GAP_AT = 2.6;
-const CAROUSEL_AT = 4.4;
-const COPY_AT = 6.2;
+const GAP_AT = 2.4;
+const CAROUSEL_AT = 4;
+const BLEED_AT = 5.8;
+const COPY_AT = 7.6;
 
 function Comment({ at, text, className }: { at: number; text: string; className: string }) {
   return (
@@ -294,16 +295,22 @@ function BuildAndDirect() {
         />
         <motion.span className="block" initial={{ height: 34 }} animate={{ height: 12 }} transition={{ delay: GAP_AT, duration: 0.4 }} />
         <span className="h-7 w-24 rounded-full border border-foreground" />
-        <div className="mt-5 overflow-hidden">
-          <motion.div className="flex gap-3" animate={{ x: ["0%", "-34%", "-68%"] }} transition={{ delay: CAROUSEL_AT, duration: 2.4, times: [0, 0.5, 1], ease: "easeInOut" }}>
+        {/* The carousel starts boxed in by the padding, then bleeds to the edges when I ask for it. */}
+        <motion.div className="mt-5 overflow-hidden" animate={{ marginLeft: -20, marginRight: -20 }} transition={{ delay: BLEED_AT, duration: 0.4 }}>
+          <motion.div
+            className="flex gap-3"
+            animate={{ x: ["0%", "-34%", "-34%", "-68%"], paddingLeft: [0, 0, 20, 20] }}
+            transition={{ delay: CAROUSEL_AT, duration: 3.6, times: [0, 0.3, 0.6, 1], ease: "easeInOut" }}
+          >
             {[0, 1, 2, 3, 4].map((tile) => (
               <span key={tile} className="aspect-[4/5] w-[31%] shrink-0 rounded-lg bg-muted" />
             ))}
           </motion.div>
-        </div>
+        </motion.div>
         <Comment at={GAP_AT} text="Tighten this gap" className="top-[23%] left-[36%]" />
         <Comment at={CAROUSEL_AT} text="Make this an interactive carousel" className="top-[52%] left-[14%]" />
-        <Comment at={COPY_AT} text="The messaging is off. Simplify." className="top-[4%] left-[48%]" />
+        <Comment at={BLEED_AT} text="Bleed it to the edges of the viewport" className="top-[70%] left-[22%]" />
+        <Comment at={COPY_AT} text="The messaging is off. Simplify." className="top-[14%] left-[20%]" />
       </motion.div>
     </div>
   );
@@ -477,7 +484,7 @@ const slides: { title: string; ms?: number; fresh?: boolean; render: (active: bo
   { title: "Analysis first", fresh: true, render: () => <AnalysisBoard /> },
   { title: "Lightning fast wireframes", fresh: true, render: () => <WireframeFlow /> },
   { title: "Design system creation", fresh: true, render: () => <DesignSystem /> },
-  { title: "Claude builds, I direct every detail", ms: 9000, fresh: true, render: () => <BuildAndDirect /> },
+  { title: "Claude builds, I direct every detail", ms: 10500, fresh: true, render: () => <BuildAndDirect /> },
   { title: "Calls with you along the way", ms: 5000, render: () => <Call /> },
   { title: "Automated tests and manual quality analysis", fresh: true, render: () => <Quality /> },
   { title: "The product", ms: 10000, render: (active) => <Film active={active} /> },
