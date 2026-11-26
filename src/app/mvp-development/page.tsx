@@ -245,9 +245,6 @@ export default function MvpDevelopmentPage() {
                   </Button>
                 </AnimateIn>
               </div>
-              <p className="mt-6 text-sm text-muted-foreground">
-                Projects from {PRICE_FLOOR}. {PRICE_RANGE}
-              </p>
             </HeroContent>
           </div>
 
