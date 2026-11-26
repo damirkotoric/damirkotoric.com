@@ -120,17 +120,17 @@ const messages = [
   {
     mine: false,
     at: 0.4,
-    text: "We have a small dev team and a product that works.",
+    text: "We've raised our seed round and need a first version in front of users.",
   },
   {
     mine: false,
     at: 1.7,
-    text: "But we ship too slowly, and it looks like developers designed it.",
+    text: "An agency quoted us five people and four months.",
   },
   {
     mine: false,
     at: 3.2,
-    text: "We need someone with an eye for design who can also build.",
+    text: "We'd rather have one person with an eye for design who can also build.",
   },
   { mine: true, at: 4.8, text: "That's what I do. Send me what you have." },
 ];
