@@ -7,13 +7,13 @@ const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 const DURATION_MS = 1200;
 
 // A Lighthouse-style score ring that counts up once `play` is true.
-export function ScoreGauge({ label, score, play, delay }: { label: string; score: number; play: boolean; delay: number }) {
+export function ScoreGauge({ label, score, play, delay, instant }: { label: string; score: number; play: boolean; delay: number; instant?: boolean }) {
   const [shown, setShown] = useState(0);
 
   useEffect(() => {
     if (!play) return;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (instant || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       const id = requestAnimationFrame(() => setShown(score));
       return () => cancelAnimationFrame(id);
     }
@@ -30,7 +30,7 @@ export function ScoreGauge({ label, score, play, delay }: { label: string; score
 
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [play, score, delay]);
+  }, [play, score, delay, instant]);
 
   return (
     <div className="text-center">
