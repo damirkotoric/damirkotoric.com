@@ -505,8 +505,9 @@ function Comment({
 }) {
   const still = useStill();
   return (
+    // `className` places the centre of the avatar pin, not the corner of the comment.
     <motion.div
-      className={`absolute z-10 flex items-start gap-1.5 ${className}`}
+      className={`absolute z-10 flex -translate-x-3.5 -translate-y-3.5 items-start gap-1.5 ${className}`}
       initial={{ opacity: 0, scale: 0.6 }}
       animate={{ opacity: [0, 1, 1, 0], scale: [0.6, 1, 1, 0.9] }}
       transition={timing(still, {
@@ -551,65 +552,72 @@ function BuildAndDirect() {
         {...appear(still, 0.9)}
         className="relative flex flex-col overflow-hidden p-5"
       >
-        <span className="h-3.5 w-3/4 rounded-full bg-foreground" />
-        <motion.span
-          className="mt-2 block h-3.5 w-1/2 rounded-full bg-foreground"
-          animate={{ height: 0, marginTop: 0, opacity: 0 }}
-          transition={timing(still, { delay: COPY_AT, duration: 0.4 })}
-        />
-        <motion.span
-          className="block"
+        {/* Each comment lives inside the thing it is about, so it stays on it at any size. */}
+        <div className="relative flex flex-col">
+          <span className="h-3.5 w-3/4 rounded-full bg-foreground" />
+          <motion.span
+            className="mt-2 block h-3.5 w-1/2 rounded-full bg-foreground"
+            animate={{ height: 0, marginTop: 0, opacity: 0 }}
+            transition={timing(still, { delay: COPY_AT, duration: 0.4 })}
+          />
+          <Comment
+            at={COPY_AT}
+            text="The messaging is off. Simplify."
+            className="top-[29px] left-[22%]"
+          />
+        </div>
+        <motion.div
+          className="relative"
           initial={{ height: 34 }}
           animate={{ height: 12 }}
           transition={timing(still, { delay: GAP_AT, duration: 0.4 })}
-        />
-        <span className="h-7 w-24 rounded-full border border-foreground" />
-        {/* The carousel starts boxed in by the padding, then bleeds to the edges when I ask for it. */}
-        <motion.div
-          className="mt-5 overflow-hidden"
-          animate={{ marginLeft: -20, marginRight: -20 }}
-          transition={timing(still, { delay: BLEED_AT, duration: 0.4 })}
         >
-          <motion.div
-            className="flex gap-3"
-            animate={{
-              x: ["0%", "-34%", "-34%", "-68%"],
-              paddingLeft: [0, 0, 20, 20],
-            }}
-            transition={timing(still, {
-              delay: CAROUSEL_AT,
-              duration: 3.6,
-              times: [0, 0.3, 0.6, 1],
-              ease: "easeInOut",
-            })}
-          >
-            {[0, 1, 2, 3, 4].map((tile) => (
-              <span
-                key={tile}
-                className="aspect-[4/5] w-[31%] shrink-0 rounded-lg bg-muted"
-              />
-            ))}
-          </motion.div>
+          <Comment
+            at={GAP_AT}
+            text="Tighten this gap"
+            className="top-1/2 left-[10%]"
+          />
         </motion.div>
-        <Comment
-          at={GAP_AT}
-          text="Tighten this gap" className="top-[18.5%] left-[8%]"
-        />
-        <Comment
-          at={CAROUSEL_AT}
-          text="Make this an interactive carousel"
-          className="top-[52%] left-[14%]"
-        />
-        <Comment
-          at={BLEED_AT}
-          text="Run it edge to edge"
-          className="top-[70%] left-[22%]"
-        />
-        <Comment
-          at={COPY_AT}
-          text="The messaging is off. Simplify."
-          className="top-[14%] left-[20%]"
-        />
+        <span className="h-7 w-24 rounded-full border border-foreground" />
+        <div className="relative mt-5">
+          {/* The carousel is always as wide as the pane. It starts clipped to the padding, then
+              the clip opens when I ask for edge to edge. A tile is 31% wide with a 3% gap, so each
+              34% step lands a tile exactly on the left padding line. */}
+          <motion.div
+            className="-mx-5 overflow-hidden px-5"
+            initial={{ clipPath: "inset(0px 20px)" }}
+            animate={{ clipPath: "inset(0px 0px)" }}
+            transition={timing(still, { delay: BLEED_AT, duration: 0.4 })}
+          >
+            <motion.div
+              className="flex gap-[3%]"
+              animate={{ x: ["0%", "-34%", "-34%", "-68%"] }}
+              transition={timing(still, {
+                delay: CAROUSEL_AT,
+                duration: 3.6,
+                times: [0, 0.3, 0.6, 1],
+                ease: "easeInOut",
+              })}
+            >
+              {[0, 1, 2, 3, 4, 5].map((tile) => (
+                <span
+                  key={tile}
+                  className="aspect-[4/5] w-[31%] shrink-0 rounded-lg bg-muted"
+                />
+              ))}
+            </motion.div>
+          </motion.div>
+          <Comment
+            at={CAROUSEL_AT}
+            text="Make this a carousel"
+            className="top-[31%] left-[45%]"
+          />
+          <Comment
+            at={BLEED_AT}
+            text="Run it edge to edge"
+            className="top-[56%] left-0"
+          />
+        </div>
       </motion.div>
     </div>
   );
