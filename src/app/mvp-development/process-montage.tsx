@@ -12,6 +12,7 @@ import {
 import Image from "next/image";
 import {
   motion,
+  useInView,
   useReducedMotion,
   type Transition,
   type Variants,
@@ -96,7 +97,12 @@ function Pointer({
         opacity: { duration: 0.3, delay },
       })}
     >
-      <Cursor size={16} weight={solid ? "fill" : "regular"} />
+      {/* A filled cursor gets a thin outline in the page colour so it shows on dark surfaces. */}
+      <Cursor
+        size={16}
+        weight={solid ? "fill" : "regular"}
+        className={solid ? "stroke-background stroke-[20] [paint-order:stroke]" : undefined}
+      />
       {name && (
         <span
           className={`mt-3 rounded-full px-2 py-0.5 text-[10px] font-semibold ${solid ? "bg-foreground text-background" : "border border-border bg-background"}`}
@@ -156,7 +162,7 @@ function Conversation() {
           </p>
           {mine && (
             <Image
-              src={`${DIR}/damir-memoji.webp`}
+              src={`${DIR}/damir-avatar.webp`}
               alt=""
               width={192}
               height={192}
@@ -903,7 +909,7 @@ function AppStore() {
         ))}
       </div>
       <Pointer solid
-        left={["55%", "92.3%"]}
+        left={["55%", "93%"]}
         top={["75%", "12%"]}
         duration={1}
         delay={GET_AT - 1.2}
@@ -1005,9 +1011,34 @@ export function ProcessMontage() {
     return () => clearTimeout(timer);
   }, [playing, index, stamp, duration]);
 
+  // Left and right arrow keys step through the slides while the carousel is on screen,
+  // unless the visitor is typing in a field.
+  const figure = useRef<HTMLElement>(null);
+  const inView = useInView(figure, { amount: 0.5 });
+
+  useEffect(() => {
+    if (!inView) return;
+    const onKey = (event: KeyboardEvent) => {
+      const step =
+        event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
+      const typing =
+        event.target instanceof HTMLElement &&
+        event.target.closest("input, textarea, select, [contenteditable]");
+      if (!step || typing || event.metaKey || event.ctrlKey || event.altKey)
+        return;
+      setShown({
+        index: (index + step + slides.length) % slides.length,
+        leaving: index,
+        stamp: stamp + 1,
+      });
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [inView, index, stamp]);
+
   return (
     <Still value={still}>
-      <figure>
+      <figure ref={figure}>
         <div className="relative aspect-square w-full sm:aspect-[4/3]">
           {slides.map(({ title, fresh, render }, position) => (
             <motion.div
