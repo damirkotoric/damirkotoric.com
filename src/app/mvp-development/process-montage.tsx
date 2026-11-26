@@ -69,6 +69,9 @@ const appear = (still: boolean, delay: number, duration = 0.4) => ({
 });
 
 // A named pointer that travels through a list of positions, like a collaborator on a canvas.
+const PRESS_DOWN_S = 0.1;
+const PRESS_UP_S = 0.14;
+
 function Pointer({
   name,
   solid,
@@ -76,6 +79,8 @@ function Pointer({
   top,
   duration,
   delay = 0,
+  times,
+  clicks = [],
 }: {
   name?: string;
   solid?: boolean;
@@ -83,8 +88,19 @@ function Pointer({
   top: string[];
   duration: number;
   delay?: number;
+  /** When each position is reached, as fractions of `duration`. Evenly spaced if left out. */
+  times?: number[];
+  /** Seconds into the slide at which the mouse button is fully down. */
+  clicks?: number[];
 }) {
   const still = useStill();
+  // Each click dips the cursor as the button goes down, then lets it back up.
+  const pressEnd = (clicks.at(-1) ?? 0) + PRESS_UP_S;
+  const press = clicks.flatMap((at) => [
+    { at: at - PRESS_DOWN_S, scale: 1 },
+    { at, scale: 0.75 },
+    { at: at + PRESS_UP_S, scale: 1 },
+  ]);
   return (
     <motion.div
       className="absolute z-20 flex items-start"
@@ -94,19 +110,33 @@ function Pointer({
         duration,
         delay,
         ease: "easeInOut",
+        times,
         opacity: { duration: 0.3, delay },
       })}
     >
       {/* A filled cursor gets a thin outline in the page colour so it shows on dark surfaces. */}
-      <Cursor
-        size={16}
-        weight={solid ? "fill" : "regular"}
-        className={
-          solid
-            ? "stroke-background stroke-[20] [paint-order:stroke]"
+      <motion.span
+        className="origin-top-left"
+        animate={
+          clicks.length && !still
+            ? { scale: [1, ...press.map(({ scale }) => scale)] }
             : undefined
         }
-      />
+        transition={{
+          duration: pressEnd,
+          times: [0, ...press.map(({ at }) => at / pressEnd)],
+        }}
+      >
+        <Cursor
+          size={16}
+          weight={solid ? "fill" : "regular"}
+          className={
+            solid
+              ? "stroke-background stroke-[20] [paint-order:stroke]"
+              : undefined
+          }
+        />
+      </motion.span>
       {name && (
         <span
           className={`mt-3 rounded-full px-2 py-0.5 text-[10px] font-semibold ${solid ? "bg-foreground text-background" : "border border-border bg-background"}`}
@@ -722,51 +752,92 @@ const checks = [
     title: "By hand",
     rows: ["Dark mode", "Small screens", "Screen reader", "Slow connection"],
     at: 2.2,
+    clicked: true,
   },
 ];
 const ROW_S = 0.8;
+// The cursor reaches a tick this long before pressing it, and stays this long after.
+const DWELL_S = 0.2;
+const byHand = checks[1];
+const tickClicks = byHand.rows.map((_, row) => byHand.at + row * ROW_S);
+const tickRun = byHand.rows.length * ROW_S + DWELL_S;
+// Where the cursor's tip meets the middle of each tick: the card's edge and padding, its title
+// line, then one fixed-height row and gap per tick.
+const TICK_LEFT = "calc(100% - 2.125rem)";
+const tickTop = (row: number) => `${3.75 + row * 2}rem`;
 
 function Quality() {
   const still = useStill();
   return (
-    <div className="relative grid w-[90%] grid-cols-2 items-start gap-4">
-      {checks.map(({ title, rows, at }) => (
-        <motion.div
-          key={title}
-          {...appear(still, at - 0.4)}
-          className={`${card} flex flex-col gap-3 p-5`}
-        >
-          <p className="text-sm font-semibold text-muted-foreground">{title}</p>
-          {rows.map((row, position) => (
-            <div
-              key={row}
-              className="flex items-center justify-between gap-2.5 text-sm font-medium"
-            >
-              {row}
-              <span className="relative size-5 shrink-0">
-                <Circle
-                  size={20}
-                  className="absolute inset-0 text-muted-foreground"
-                />
-                <motion.span
-                  {...pop(still, at + position * ROW_S)}
-                  className="absolute inset-0"
-                >
-                  <CheckCircle size={20} weight="fill" />
-                </motion.span>
-              </span>
-            </div>
-          ))}
-        </motion.div>
+    <div className="grid w-[90%] grid-cols-1 items-start gap-4 sm:grid-cols-2">
+      {checks.map(({ title, rows, at, clicked }) => (
+        <div key={title} className="relative">
+          <motion.div
+            {...appear(still, at - 0.4)}
+            className={`${card} flex flex-col gap-3 p-5`}
+          >
+            <p className="text-sm font-semibold text-muted-foreground">
+              {title}
+            </p>
+            {rows.map((row, position) => (
+              <div
+                key={row}
+                className="flex h-5 items-center justify-between gap-2.5 text-sm font-medium whitespace-nowrap"
+              >
+                {row}
+                <span className="relative size-5 shrink-0">
+                  {/* A clicked tick gives under the cursor before it fills in. */}
+                  <motion.span
+                    className="absolute inset-0 text-muted-foreground"
+                    animate={
+                      clicked && !still ? { scale: [1, 0.8, 1] } : undefined
+                    }
+                    transition={{
+                      delay: at + position * ROW_S - PRESS_DOWN_S,
+                      duration: PRESS_DOWN_S + PRESS_UP_S,
+                    }}
+                  >
+                    <Circle size={20} />
+                  </motion.span>
+                  <motion.span
+                    {...pop(
+                      still,
+                      at + position * ROW_S + (clicked ? PRESS_UP_S / 2 : 0),
+                    )}
+                    className="absolute inset-0"
+                  >
+                    <CheckCircle size={20} weight="fill" />
+                  </motion.span>
+                </span>
+              </div>
+            ))}
+          </motion.div>
+          {clicked && (
+            <Pointer
+              name="Damir"
+              solid
+              left={[
+                "calc(100% - 7rem)",
+                ...tickClicks.flatMap(() => [TICK_LEFT, TICK_LEFT]),
+              ]}
+              top={[
+                tickTop(byHand.rows.length + 1),
+                ...tickClicks.flatMap((_, row) => [tickTop(row), tickTop(row)]),
+              ]}
+              times={[
+                0,
+                ...tickClicks.flatMap((_, row) => [
+                  ((row + 1) * ROW_S - DWELL_S) / tickRun,
+                  ((row + 1) * ROW_S + DWELL_S) / tickRun,
+                ]),
+              ]}
+              duration={tickRun}
+              delay={byHand.at - ROW_S}
+              clicks={tickClicks}
+            />
+          )}
+        </div>
       ))}
-      <Pointer
-        name="Damir"
-        solid
-        left={["70%", "92.5%", "92.5%", "92.5%", "92.5%"]}
-        top={["95%", "30%", "46%", "62%", "78%"]}
-        duration={checks[1].rows.length * ROW_S}
-        delay={checks[1].at - ROW_S}
-      />
     </div>
   );
 }
@@ -939,6 +1010,7 @@ function AppStore() {
         top={["75%", "12%"]}
         duration={1}
         delay={GET_AT - 1.2}
+        clicks={[GET_AT + 0.15]}
       />
     </motion.div>
   );
