@@ -101,7 +101,11 @@ function Pointer({
       <Cursor
         size={16}
         weight={solid ? "fill" : "regular"}
-        className={solid ? "stroke-background stroke-[20] [paint-order:stroke]" : undefined}
+        className={
+          solid
+            ? "stroke-background stroke-[20] [paint-order:stroke]"
+            : undefined
+        }
       />
       {name && (
         <span
@@ -635,7 +639,7 @@ const sceneItem: Variants = {
   },
 };
 
-// The left person talks, then the right, then the left again.
+// The founder (left) talks, then I do (right), then the founder again.
 const CALL_S = 6;
 const turns = [
   [1, 1, 0, 0, 1, 1],
@@ -652,12 +656,21 @@ function Call() {
           <motion.div
             key={person}
             {...pop(still, 0.1 + person * 0.2)}
-            className="relative flex aspect-[4/3] items-end justify-center overflow-hidden rounded-xl border border-muted-foreground"
+            className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl border border-muted-foreground"
           >
-            <div className="flex flex-col items-center gap-2">
-              <span className="size-14 rounded-full bg-muted-foreground/30" />
-              <span className="h-12 w-28 rounded-t-full bg-muted-foreground/30" />
-            </div>
+            {person === 0 ? (
+              <span className="flex aspect-square w-[30%] items-center justify-center rounded-full bg-muted">
+                <User weight="fill" className="size-1/2" />
+              </span>
+            ) : (
+              <Image
+                src={`${DIR}/damir-avatar.webp`}
+                alt=""
+                width={192}
+                height={192}
+                className="aspect-square w-[30%] rounded-full"
+              />
+            )}
             <motion.div
               className="absolute inset-0 rounded-xl border-2 border-foreground"
               initial={{ opacity: speaking[0] }}
@@ -920,7 +933,8 @@ function AppStore() {
           </motion.div>
         ))}
       </div>
-      <Pointer solid
+      <Pointer
+        solid
         left={["55%", "93%"]}
         top={["75%", "12%"]}
         duration={1}
