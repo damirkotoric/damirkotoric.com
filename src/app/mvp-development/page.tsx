@@ -387,7 +387,7 @@ export default function MvpDevelopmentPage() {
           </div>
         </section>
         <PortfolioShowcase
-          title="Products I designed and built alone"
+          title="Products I designed and built"
           items={products}
           isPersonalProject
           className="pb-24 lg:pb-32"
