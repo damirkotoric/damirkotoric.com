@@ -37,6 +37,14 @@ const archiveProjects = getArchiveProjects();
 
 const personalProjects = [
   {
+    title: "Beamy",
+    description:
+      "An audiobook player for iPhone, iPad, Mac, Apple TV and CarPlay. Live on the App Store.",
+    href: "https://getbeamy.app",
+    video: "/images/portfolio/beamy/beamy.mp4",
+    poster: "/images/portfolio/beamy/beamy-poster.jpg",
+  },
+  {
     title: "DoNotStay",
     description: "AI-powered hotel review analysis for smarter booking decisions.",
     href: "https://donotstay.app",
