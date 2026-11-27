@@ -78,13 +78,32 @@ await S("Emulation.setDeviceMetricsOverride", {
   deviceScaleFactor: 2,
   mobile: false,
 });
+// Headless defaults to a dark colour scheme; the footage these build-ups
+// resolve into is light, so pin it.
+await S("Emulation.setEmulatedMedia", {
+  features: [{ name: "prefers-color-scheme", value: "light" }],
+});
 await S("Page.navigate", { url: URL_ });
 await sleep(Number(SETTLE));
 
-if (Number(SCROLL) > 0) {
-  await S("Runtime.evaluate", {
-    expression: `window.scrollTo(0, ${Number(SCROLL)});`,
-  });
+// Scroll by pixels, or to the section named by a text anchor — the latter
+// survives layout changes and lands on the screen the live clip shows.
+if (SCROLL && SCROLL !== "0") {
+  const expr = /^\d+$/.test(SCROLL)
+    ? `window.scrollTo(0, ${Number(SCROLL)});`
+    : `(() => {
+        const needle = ${JSON.stringify(SCROLL)}.toLowerCase();
+        const el = [...document.querySelectorAll('h1,h2,h3,h4,section,div')]
+          .find((n) => n.textContent.trim().toLowerCase().startsWith(needle)
+            && n.getBoundingClientRect().height < 400);
+        if (!el) return 'anchor not found';
+        window.scrollTo(0, window.scrollY + el.getBoundingClientRect().top - 48);
+        return 'ok';
+      })()`;
+  const r = await S("Runtime.evaluate", { expression: expr, returnByValue: true });
+  if (r.result?.value === "anchor not found") {
+    console.warn(`${ID}: anchor "${SCROLL}" not found — captured unscrolled`);
+  }
   await sleep(1500);
 }
 

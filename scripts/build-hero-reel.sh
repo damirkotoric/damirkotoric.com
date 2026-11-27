@@ -32,10 +32,12 @@ CLIPS=(
 )
 
 # Shipped on the web: geometry read straight out of the live DOM.
-# "<id>|<url>|<settle ms>|<scroll px>"
+# "<id>|<url>|<settle ms>|<scroll px or text anchor>"
+# The anchor lands the capture on the same screen the live clip shows, so the
+# build-up constructs the UI the footage then plays.
 WEB=(
   "beamy|https://getbeamy.app|5500|0"
-  "rankdat|https://rankdat.io|5500|900"
+  "rankdat|https://rankdat.io|5500|Top Insights"
   "stylespin|https://stylespin.vercel.app|5500|0"
 )
 

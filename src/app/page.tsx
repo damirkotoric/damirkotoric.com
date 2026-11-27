@@ -82,7 +82,10 @@ export default function HomePage() {
               <ScrollSection
                 id="intro"
                 mobileMedia={
-                  <HeroShowreel variant="mobile" delay={0.5} className="pb-8" />
+                  // ScrollSection pulls mobile media up by 3rem, which suited
+                  // the portrait's built-in whitespace but jams the panel
+                  // against the buttons. mt-20 nets out to a 2rem gap.
+                  <HeroShowreel variant="mobile" delay={0.5} className="mt-20 pb-8" />
                 }
               >
                 <div className="py-12 lg:py-24">
@@ -190,9 +193,13 @@ export default function HomePage() {
                 ))}
               </div>
               {/* Mobile: horizontal scroll-snap */}
-              <div className="lg:hidden -mx-6 flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+              {/* Cards stop short of the edge so the next one peeks in and
+                  the row reads as a carousel rather than a single quote.
+                  scroll-pl-6 insets the snap position too, so every card
+                  comes to rest at the same margin as the first. */}
+              <div className="lg:hidden -mx-6 px-6 scroll-pl-6 flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
                 {homepageTestimonials.map((t, i) => (
-                  <div key={t.name} className={`snap-start shrink-0 w-[calc(100%-1.5rem)] ${i === 0 ? "pl-6" : ""} ${i === homepageTestimonials.length - 1 ? "pr-6" : ""}`}>
+                  <div key={t.name} className="snap-start shrink-0 w-[85%]">
                     <Testimonial
                       quote={t.summary}
                       highlight={t.highlight}

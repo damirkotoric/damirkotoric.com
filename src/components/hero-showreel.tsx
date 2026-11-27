@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 const POSTER = "/videos/hero-reel-poster.avif";
@@ -15,9 +15,9 @@ type HeroShowreelProps = {
 };
 
 /**
- * Hero showreel — a contained, silent, looping montage of shipped product UI.
- * Pauses when scrolled out of view; falls back to the poster frame when the
- * visitor prefers reduced motion.
+ * Hero showreel — a contained, silent, endlessly looping montage of shipped
+ * product UI. Pauses only when the tab is backgrounded; falls back to the
+ * poster frame when the visitor prefers reduced motion.
  */
 export function HeroShowreel({
   className,
@@ -26,19 +26,32 @@ export function HeroShowreel({
 }: HeroShowreelProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const isVisible = useInView(containerRef, { amount: 0.3 });
   const prefersReducedMotion = useReducedMotion();
 
+  // The reel loops for as long as the page is open. It pauses only when the
+  // tab is in the background — scrolling past it does not stop it, so it is
+  // always mid-loop when it comes back into view.
   useEffect(() => {
     const video = videoRef.current;
     if (!video || prefersReducedMotion) return;
 
-    if (isVisible) {
-      video.play().catch(() => {});
-    } else {
-      video.pause();
-    }
-  }, [isVisible, prefersReducedMotion]);
+    const sync = () => {
+      if (document.hidden) {
+        video.pause();
+      } else {
+        video.play().catch(() => {});
+      }
+    };
+
+    sync();
+    // Some browsers drop out of a loop after a stall; nudge it back.
+    video.addEventListener("ended", sync);
+    document.addEventListener("visibilitychange", sync);
+    return () => {
+      video.removeEventListener("ended", sync);
+      document.removeEventListener("visibilitychange", sync);
+    };
+  }, [prefersReducedMotion]);
 
   return (
     <motion.div
@@ -81,7 +94,7 @@ export function HeroShowreel({
             muted
             playsInline
             autoPlay
-            preload={variant === "mobile" ? "none" : "metadata"}
+            preload="auto"
             poster={POSTER}
             aria-label="A montage of product interfaces designed and built by Damir Kotorić"
             className="absolute inset-0 h-full w-full object-cover"
