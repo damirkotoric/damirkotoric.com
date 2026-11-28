@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
+import { LivePortrait } from "@/components/live-portrait";
 import { cn } from "@/lib/utils";
 
 /** Returns responsive cell size and dot scale for the large variant based on viewport width */
@@ -153,13 +154,15 @@ export function PixelatedAvatar({
               className="absolute inset-0 transition-opacity duration-700"
               style={{ opacity: showRealImage ? 1 : 0 }}
             >
-              <Image
-                src="/images/damir.avif"
-                alt="Damir Kotorić"
-                width={448}
-                height={448}
-                className="object-cover"
-              />
+              <LivePortrait active={showRealImage}>
+                <Image
+                  src="/images/damir.avif"
+                  alt="Damir Kotorić"
+                  width={448}
+                  height={448}
+                  className="object-cover"
+                />
+              </LivePortrait>
             </div>
             <div
               className="absolute inset-0 transition-opacity duration-700"
@@ -212,13 +215,15 @@ export function PixelatedAvatar({
             className="absolute inset-0 transition-opacity duration-700"
             style={{ opacity: showRealImage ? 1 : 0 }}
           >
-            <Image
-              src="/images/damir.avif"
-              alt="Damir Kotorić"
-              fill
-              priority
-              className="object-cover"
-            />
+            <LivePortrait active={showRealImage}>
+              <Image
+                src="/images/damir.avif"
+                alt="Damir Kotorić"
+                fill
+                priority
+                className="object-cover"
+              />
+            </LivePortrait>
           </div>
           {/* Pixelated canvas */}
           <div

@@ -7,6 +7,7 @@ import { testimonials } from "@/data/testimonials";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { HeroShowreel } from "@/components/hero-showreel";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { AvatarLoop } from "@/components/live-portrait";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
@@ -121,6 +122,7 @@ export default function HomePage() {
                           className="object-cover"
                         />
                         <AvatarFallback>DK</AvatarFallback>
+                        <AvatarLoop />
                       </Avatar>
                       <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs tracking-tight font-medium text-muted-foreground">
                         €35M uplift at Booking.com
