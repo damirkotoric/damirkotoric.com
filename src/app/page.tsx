@@ -90,16 +90,19 @@ export default function HomePage() {
               >
                 <div className="py-12 lg:py-24">
                   <HeroContent>
-                    <div className="mb-4 flex items-center gap-3">
-                      <Avatar size="lg">
-                        <AvatarImage
-                          src="/images/damir-contact.jpg"
-                          alt={FULL_NAME}
-                          className="object-cover"
-                        />
-                        <AvatarFallback>DK</AvatarFallback>
-                      </Avatar>
-                      <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs tracking-tight font-medium text-muted-foreground">
+                    {/* The photo sits inside the pill so the two read as one
+                        object. The pill grows to carry it rather than the
+                        photo shrinking to fit. */}
+                    <div className="mb-4 flex">
+                      <span className="inline-flex items-center gap-2.5 rounded-full border border-muted-foreground/40 p-1 pr-4 text-sm tracking-tight font-medium text-muted-foreground">
+                        <Avatar className="size-8">
+                          <AvatarImage
+                            src="/images/damir-contact.jpg"
+                            alt={FULL_NAME}
+                            className="object-cover"
+                          />
+                          <AvatarFallback>DK</AvatarFallback>
+                        </Avatar>
                         €35M uplift at Booking.com
                       </span>
                     </div>
