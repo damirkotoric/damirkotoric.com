@@ -263,11 +263,6 @@ export default function HomePage() {
       {/* Section 6: Toolbelt */}
       <Toolbelt />
 
-      {/* The reel opens the client work */}
-      <section className="px-6 pt-20 lg:px-16 lg:pb-8 lg:pt-32 2xl:px-40 3xl:px-80">
-        <HeroShowreel variant="mobile" delay={0} className="mx-auto max-w-[1000px]" />
-      </section>
-
       {/* Section 7: Client work */}
       <PortfolioShowcase title="Client work" items={selectedWork} />
 
