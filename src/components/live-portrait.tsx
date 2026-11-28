@@ -34,6 +34,8 @@ const FAR = 0.62;
 // The first slice of that travel dissolves the finest mosaic into the video.
 const FADE = 0.1;
 const FPS = 30;
+// With `intro`, how long the portrait takes to resolve when it first appears.
+const INTRO_MS = 1600;
 
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 // Stable per cell and per step, so missing cells do not flicker.
@@ -41,15 +43,19 @@ const hash = (x: number, y: number, level: number) =>
   (((x * 73856093) ^ (y * 19349663) ^ (level * 83492791)) >>> 0) % 1000 / 1000;
 
 /**
- * The About portrait. Off-centre it is a coarse mosaic; as it scrolls toward
+ * The live portrait. Off-centre it is a coarse mosaic; as it scrolls toward
  * the middle of the screen the cells shrink step by step until it resolves
  * into the live loop, and it breaks up again on the way out. The mosaic is
  * sampled from the playing video, so even the blocks blink and breathe.
  *
- * Scroll position is the only thing that drives it — no timer, no button.
- * Visitors who prefer reduced motion get the same reveal over the still.
+ * Scroll position drives it — no button. With `intro` it also starts as a
+ * mosaic and resolves once on arrival, for a portrait that is on screen at
+ * page load. Visitors who prefer reduced motion get the scroll reveal over
+ * the still, without the intro.
+ *
+ * It is a square; size and place it with `className`.
  */
-export function ResolvingPortrait({ className }: { className?: string }) {
+export function ResolvingPortrait({ className, intro = false }: { className?: string; intro?: boolean }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const resolvedRef = useRef<HTMLDivElement>(null);
@@ -100,6 +106,7 @@ export function ResolvingPortrait({ className }: { className?: string }) {
     let inView = false;
     let lastDraw = 0;
     let lastKey = "";
+    let introStart = 0;
 
     const syncVideo = () => {
       const video = videoRef.current;
@@ -115,7 +122,12 @@ export function ResolvingPortrait({ className }: { className?: string }) {
       const rect = wrap.getBoundingClientRect();
       const offCentre =
         Math.abs(rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight;
-      const t = clamp01((offCentre - NEAR) / (FAR - NEAR));
+      let t = clamp01((offCentre - NEAR) / (FAR - NEAR));
+      if (intro && !prefersReducedMotion) {
+        if (!introStart) introStart = now;
+        const left = 1 - (now - introStart) / INTRO_MS;
+        if (left > 0) t = Math.max(t, left * left);
+      }
 
       const video = videoRef.current;
       const live = !!video && !video.paused && video.readyState >= 2;
@@ -202,76 +214,34 @@ export function ResolvingPortrait({ className }: { className?: string }) {
       observer.disconnect();
       document.removeEventListener("visibilitychange", syncVideo);
     };
-  }, [src, prefersReducedMotion]);
+  }, [src, prefersReducedMotion, intro]);
 
   return (
-    <div className={cn("relative w-full lg:h-full", className)}>
-      <div
-        ref={wrapRef}
-        className="relative mx-auto aspect-square w-full max-w-[448px] lg:absolute lg:bottom-0 lg:left-1/2 lg:mx-0 lg:h-full lg:w-auto lg:max-w-none lg:-translate-x-1/2"
-      >
-        <div ref={resolvedRef} className="absolute inset-0">
-          <div ref={stillRef} className="absolute inset-0">
-            <Image src={STILL} alt="Damir Kotorić" fill sizes="(min-width: 1024px) 50vw, 448px" className="object-cover" />
-          </div>
-          {!prefersReducedMotion && src && (
-            <video
-              ref={videoRef}
-              src={src}
-              muted
-              loop
-              playsInline
-              preload="none"
-              aria-hidden="true"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          )}
+    <div ref={wrapRef} className={cn("relative aspect-square", className)}>
+      {/* With an intro the mosaic comes first, so the sharp portrait must
+          not flash before the script takes over. */}
+      <div ref={resolvedRef} className={cn("absolute inset-0", intro && "opacity-0")}>
+        <div ref={stillRef} className="absolute inset-0">
+          <Image src={STILL} alt="Damir Kotorić" fill sizes="(min-width: 1024px) 50vw, 448px" className="object-cover" />
         </div>
-        <canvas
-          ref={canvasRef}
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full opacity-0"
-        />
+        {!prefersReducedMotion && src && (
+          <video
+            ref={videoRef}
+            src={src}
+            muted
+            loop
+            playsInline
+            preload="none"
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        )}
       </div>
+      <canvas
+        ref={canvasRef}
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full opacity-0"
+      />
     </div>
-  );
-}
-
-/**
- * The same loop at avatar size. Drop it inside an Avatar, after the image:
- * it has no poster, so the still shows until the first frame is decoded.
- */
-export function AvatarLoop({ className }: { className?: string }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const prefersReducedMotion = useReducedMotion();
-
-  // The autoplay attribute alone is deferred or dropped in some situations
-  // (a tab opened in the background, for one), so ask for playback as well.
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    const sync = () => {
-      if (document.hidden) video.pause();
-      else video.play().catch(() => {});
-    };
-    sync();
-    document.addEventListener("visibilitychange", sync);
-    return () => document.removeEventListener("visibilitychange", sync);
-  }, [prefersReducedMotion]);
-
-  if (prefersReducedMotion) return null;
-
-  return (
-    <video
-      ref={videoRef}
-      src="/videos/avatar-loop.mp4"
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
-      aria-hidden="true"
-      className={cn("absolute inset-0 size-full object-cover", className)}
-    />
   );
 }

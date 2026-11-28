@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Builds the live portrait loop for the About section, and the small avatar
-# loop for the hero, from a generated clip.
+# Builds the live portrait loop for the hero from a generated clip.
 #
 # The source clip is a 10s image-to-video render of public/images/damir.avif
 # with the same still as its first, middle and last keyframe, so it returns
@@ -55,12 +54,4 @@ ffmpeg -loglevel error -y -i "$SRC" -loop 1 -i "$TMP/matte.png" \
   -c:v hevc_videotoolbox -alpha_quality 0.8 -q:v 52 -tag:v hvc1 \
   "$OUT/portrait-loop.mov"
 
-# The same loop for the small hero avatar: on black to match the still it
-# replaces, no alpha needed inside a circle, and small enough to be free.
-ffmpeg -loglevel error -y -i "$SRC" -loop 1 -i "$TMP/matte.png" \
-  -filter_complex "$MATTE[fg];color=black:s=${S}x${S}[bg];[bg][fg]overlay=shortest=1,scale=160:160:flags=lanczos,format=yuv420p[v]" \
-  -map "[v]" -frames:v "$FRAMES" -an \
-  -c:v libx264 -preset veryslow -crf 26 -profile:v main -movflags +faststart \
-  "$OUT/avatar-loop.mp4"
-
-ls -lh "$OUT"/portrait-loop.* "$OUT"/avatar-loop.mp4
+ls -lh "$OUT"/portrait-loop.*

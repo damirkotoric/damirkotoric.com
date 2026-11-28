@@ -5,8 +5,8 @@ import { Footer } from "@/components/footer";
 import { Testimonial } from "@/components/testimonial";
 import { testimonials } from "@/data/testimonials";
 import { HeroShowreel } from "@/components/hero-showreel";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { AvatarLoop, ResolvingPortrait } from "@/components/live-portrait";
+import { HeroStage } from "@/components/hero-stage";
+import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
@@ -105,28 +105,16 @@ export default function HomePage() {
               <ScrollSection
                 id="intro"
                 mobileMedia={
-                  // ScrollSection pulls mobile media up by 3rem, which suited
-                  // the portrait's built-in whitespace but jams the panel
-                  // against the buttons. mt-20 nets out to a 2rem gap.
-                  <HeroShowreel variant="mobile" delay={0.5} className="mt-20 pb-8" />
+                  // ScrollSection pulls mobile media up by 3rem; mt-20 nets
+                  // out to a 2rem gap under the buttons.
+                  <HeroStage variant="mobile" className="mt-20" />
                 }
               >
                 <div className="py-12 lg:py-24">
                   <HeroContent>
-                    <div className="mb-4 flex items-center gap-3">
-                      <Avatar size="lg">
-                        <AvatarImage
-                          src="/images/damir-contact.jpg"
-                          alt={FULL_NAME}
-                          className="object-cover"
-                        />
-                        <AvatarFallback>DK</AvatarFallback>
-                        <AvatarLoop />
-                      </Avatar>
-                      <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs tracking-tight font-medium text-muted-foreground">
-                        €35M uplift at Booking.com
-                      </span>
-                    </div>
+                    <span className="mb-4 inline-block rounded-full border border-muted-foreground/40 px-3 py-1 text-xs tracking-tight font-medium text-muted-foreground">
+                      €35M uplift at Booking.com
+                    </span>
                     <h1 className="mb-3 text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-[72px]">
                       {FULL_NAME}
                     </h1>
@@ -155,7 +143,7 @@ export default function HomePage() {
 
             <ScrollLinkedMedia className="h-full hidden lg:flex items-center">
               <ScrollMediaItem sectionId="intro" className="h-full w-full">
-                <HeroShowreel />
+                <HeroStage />
               </ScrollMediaItem>
             </ScrollLinkedMedia>
           </ScrollLinkedProvider>
@@ -267,13 +255,23 @@ export default function HomePage() {
             </p>
           </div>
           <div className="flex justify-center lg:justify-end lg:h-full 3xl:pr-60">
-            <ResolvingPortrait />
+            <div className="lg:hidden">
+              <PixelatedAvatar variant="mobile" />
+            </div>
+            <div className="hidden lg:block h-full w-full">
+              <PixelatedAvatar variant="large" size="fill" />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Section 6: Toolbelt */}
       <Toolbelt />
+
+      {/* The reel opens the client work */}
+      <section className="px-6 pt-20 lg:px-16 lg:pb-8 lg:pt-32 2xl:px-40 3xl:px-80">
+        <HeroShowreel variant="mobile" delay={0} className="mx-auto max-w-[1000px]" />
+      </section>
 
       {/* Section 7: Client work */}
       <PortfolioShowcase title="Client work" items={selectedWork} />
