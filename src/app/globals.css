@@ -146,6 +146,17 @@
   html {
     font-size: 18px;
   }
+  /* Phones: body copy one notch smaller on a tighter line. apple.com, measured
+     at 390px wide, sets its body at 17px on a 25px line; 1.5 is the round
+     number next to that. Below Tailwind's `sm` breakpoint. */
+  @media (width < 40rem) {
+    html {
+      font-size: 17px;
+    }
+    :root {
+      --leading-relaxed: 1.5;
+    }
+  }
   body {
     @apply bg-background text-foreground;
   }
