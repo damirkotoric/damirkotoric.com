@@ -6,7 +6,6 @@ import { Testimonial } from "@/components/testimonial";
 import { testimonials } from "@/data/testimonials";
 import { HeroShowreel } from "@/components/hero-showreel";
 import { HeroStage } from "@/components/hero-stage";
-import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
@@ -81,6 +80,12 @@ const structuredData = {
       ],
     },
   ],
+};
+
+const aboutReel = {
+  sources: [{ src: "/videos/about-loop.mp4", type: "video/mp4" }],
+  poster: "/videos/about-loop-poster.jpg",
+  label: "Damir teaching a UX design class at General Assembly and running a design sprint at Envato",
 };
 
 const outcomes = [
@@ -254,13 +259,8 @@ export default function HomePage() {
               we&apos;ll probably get along.
             </p>
           </div>
-          <div className="flex justify-center lg:justify-end lg:h-full 3xl:pr-60">
-            <div className="lg:hidden">
-              <PixelatedAvatar variant="mobile" />
-            </div>
-            <div className="hidden lg:block h-full w-full">
-              <PixelatedAvatar variant="large" size="fill" />
-            </div>
+          <div className="flex items-center justify-center pb-20 pt-10 lg:justify-end lg:py-0 3xl:pr-60">
+            <HeroShowreel variant="mobile" delay={0} reel={aboutReel} className="max-w-[560px]" />
           </div>
         </div>
       </section>

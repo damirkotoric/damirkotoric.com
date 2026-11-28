@@ -4,10 +4,27 @@ import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
-const POSTER = "/videos/hero-reel-poster.avif";
+type Reel = {
+  /** Best format first; the browser plays the first it can. */
+  sources: { src: string; type: string }[];
+  /** Shown before playback, and instead of it under reduced motion. */
+  poster: string;
+  label: string;
+};
+
+const PRODUCT_REEL: Reel = {
+  sources: [
+    { src: "/videos/hero-reel.webm", type: "video/webm" },
+    { src: "/videos/hero-reel.mp4", type: "video/mp4" },
+  ],
+  poster: "/videos/hero-reel-poster.avif",
+  label: "A montage of product interfaces designed and built by Damir Kotorić",
+};
 
 type HeroShowreelProps = {
   className?: string;
+  /** What plays. Defaults to the product montage. */
+  reel?: Reel;
   /** Delay the entry animation to fall in behind the hero copy */
   delay?: number;
   /** Mobile renders a lighter, fully contained panel */
@@ -15,12 +32,13 @@ type HeroShowreelProps = {
 };
 
 /**
- * Hero showreel — a contained, silent, endlessly looping montage of shipped
- * product UI. Pauses only when the tab is backgrounded; falls back to the
- * poster frame when the visitor prefers reduced motion.
+ * A contained, silent, endlessly looping reel — by default the montage of
+ * shipped product UI. Pauses only when the tab is backgrounded; falls back
+ * to the poster frame when the visitor prefers reduced motion.
  */
 export function HeroShowreel({
   className,
+  reel = PRODUCT_REEL,
   delay = 0.4,
   variant = "large",
 }: HeroShowreelProps) {
@@ -83,8 +101,8 @@ export function HeroShowreel({
         {prefersReducedMotion ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={POSTER}
-            alt="A montage of product interfaces designed and built by Damir Kotorić"
+            src={reel.poster}
+            alt={reel.label}
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (
@@ -95,12 +113,13 @@ export function HeroShowreel({
             playsInline
             autoPlay
             preload="auto"
-            poster={POSTER}
-            aria-label="A montage of product interfaces designed and built by Damir Kotorić"
+            poster={reel.poster}
+            aria-label={reel.label}
             className="absolute inset-0 h-full w-full object-cover"
           >
-            <source src="/videos/hero-reel.webm" type="video/webm" />
-            <source src="/videos/hero-reel.mp4" type="video/mp4" />
+            {reel.sources.map((source) => (
+              <source key={source.src} {...source} />
+            ))}
           </video>
         )}
       </div>
