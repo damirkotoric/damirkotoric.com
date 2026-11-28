@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
@@ -6,6 +7,7 @@ import { Footer } from "@/components/footer";
 import { Testimonial } from "@/components/testimonial";
 import { getTestimonialByName } from "@/data/testimonials";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
+import { DeviceSilhouettes } from "./device-silhouettes";
 import { LogoMark, logos } from "@/components/logo-mark";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { Highlighter } from "@/components/ui/highlighter";
@@ -55,8 +57,9 @@ const costRows = [
     ],
   },
   {
-    label: "One product engineer who also designs",
+    label: "Me, one product engineer who also designs",
     total: `From ${PRICE_FLOOR}`,
+    mine: true,
     bars: [
       { width: "30%", label: "Design and build", className: "bg-highlight text-highlight-foreground" },
     ],
@@ -162,51 +165,6 @@ const sectionLabel =
   "mb-10 text-xs font-semibold uppercase tracking-widest text-muted-foreground";
 const gutter = "px-6 lg:px-16 2xl:px-40 3xl:px-80";
 
-const skeleton = "rounded-sm bg-muted-foreground/25";
-const deviceFrame = "absolute top-0 border border-muted-foreground bg-background";
-
-// Three unnamed devices, cut off and fading out at the bottom: a hint at the project, not a reveal.
-function DeviceSilhouettes() {
-  return (
-    <div
-      aria-hidden="true"
-      className="relative mx-8 h-52 [mask-image:linear-gradient(to_bottom,black_35%,transparent)] lg:mx-12 lg:mt-12 lg:h-auto lg:min-h-64"
-    >
-      <div className={`${deviceFrame} left-0 h-80 w-[62%] rounded-xl`}>
-        <div className="flex items-center gap-1.5 border-b border-muted-foreground px-3 py-2.5">
-          <span className="size-2 rounded-full bg-muted-foreground/40" />
-          <span className="size-2 rounded-full bg-muted-foreground/40" />
-          <span className="size-2 rounded-full bg-muted-foreground/40" />
-          <span className="ml-3 h-3 flex-1 rounded-full bg-muted-foreground/15" />
-        </div>
-        <div className="space-y-3 p-4 blur-[2px]">
-          <div className={`${skeleton} h-24`} />
-          <div className={`${skeleton} h-6 w-2/3 rounded-full`} />
-          <div className="grid grid-cols-3 gap-3">
-            <div className={`${skeleton} h-20`} />
-            <div className={`${skeleton} h-20`} />
-            <div className={`${skeleton} h-20`} />
-          </div>
-        </div>
-      </div>
-      {[
-        { position: "right-[19%] top-8", radius: "rounded-[26px]", camera: "h-3 w-10 rounded-full" },
-        { position: "right-0 top-14", radius: "rounded-[18px]", camera: "size-2.5 rounded-full" },
-      ].map(({ position, radius, camera }) => (
-        <div key={position} className={`${deviceFrame} ${position} ${radius} h-80 w-[17%] min-w-24 p-2.5`}>
-          <div className={`mx-auto mb-3 bg-muted-foreground/40 ${camera}`} />
-          <div className="space-y-2.5 blur-[2px]">
-            <div className={`${skeleton} h-20`} />
-            <div className={`${skeleton} h-4 w-3/4 rounded-full`} />
-            <div className={`${skeleton} h-12`} />
-            <div className={`${skeleton} h-12`} />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function MvpDevelopmentPage() {
   const pageTestimonials = testimonialNames
     .map((name) => getTestimonialByName(name))
@@ -287,12 +245,10 @@ export default function MvpDevelopmentPage() {
                   You would otherwise hire at least two people
                 </h3>
                 <p className="leading-relaxed text-pretty">
-                  A senior freelance engineer and a product designer for the
-                  same five weeks cost about $34K at published contractor
-                  rates. Many teams split it further: a design system
-                  designer, an interaction designer, a web developer, an iOS
-                  developer and an Android developer. You get all of it in one
-                  person, and the design and the code never drift apart.
+                  A senior engineer and a product designer for the same five
+                  weeks cost about $34K at published contractor rates. Many
+                  teams hire five specialists. You get all of it in one
+                  person, so the design and the code never drift apart.
                 </p>
               </div>
               <div>
@@ -301,9 +257,10 @@ export default function MvpDevelopmentPage() {
                 </h3>
                 <p className="leading-relaxed text-pretty">
                   A cheap <span className="whitespace-nowrap">AI-generated</span>{" "}
-                  MVP looks fine in a demo. Then real users arrive. Rebuilding
-                  one properly is now its own service, with published prices
-                  from $5K to $50K.
+                  MVP looks fine in a demo. Then real users arrive. Fixing
+                  these builds has become an industry: agencies now sell
+                  rebuilds at published prices from $5K to $50K. Build it
+                  properly the first time and you skip that bill.
                 </p>
               </div>
             </div>
@@ -311,7 +268,15 @@ export default function MvpDevelopmentPage() {
             <figure className="self-center">
               <div className="flex flex-col gap-10">
                 {costRows.map((row) => (
-                  <div key={row.label}>
+                  <Fragment key={row.label}>
+                    {row.mine && (
+                      <div className="flex items-center gap-4 text-sm font-semibold text-muted-foreground">
+                        <span className="h-px flex-1 border-t border-dashed border-muted-foreground" />
+                        versus
+                        <span className="h-px flex-1 border-t border-dashed border-muted-foreground" />
+                      </div>
+                    )}
+                  <div>
                     <div className="mb-3 flex items-baseline justify-between gap-6">
                       <span className="text-sm text-muted-foreground sm:text-base">{row.label}</span>
                       <span className="shrink-0 text-xl font-bold tracking-tight sm:text-2xl">{row.total}</span>
@@ -328,6 +293,7 @@ export default function MvpDevelopmentPage() {
                       ))}
                     </div>
                   </div>
+                  </Fragment>
                 ))}
               </div>
               <figcaption className="mt-8 max-w-[560px] text-xs leading-relaxed text-muted-foreground">
@@ -369,27 +335,28 @@ export default function MvpDevelopmentPage() {
               </div>
             ))}
           </div>
-          <h3 className={`${sectionLabel} mt-24 lg:mt-32`}>Worked with</h3>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-4 lg:gap-y-12">
-            {logos.map((logo) => (
-              <div key={logo.name} className="flex h-20 origin-left scale-75 items-center sm:scale-100">
-                <LogoMark {...logo} />
-              </div>
-            ))}
-          </div>
         </section>
 
         {/* Design quality */}
         <section className={`${gutter} pt-8 lg:pt-16`}>
           <div className="max-w-[640px]">
             <h2 className="mb-4 text-3xl font-bold leading-tight tracking-tight text-balance sm:text-4xl lg:text-5xl">
-              It looks like a funded company&apos;s product
+              Your MVP looks like a funded company&apos;s product
             </h2>
             <p className="text-lg leading-relaxed text-pretty">
               Seventeen years of product design go into every screen. Investors
-              and first customers see something finished, not a template. These
-              are products I designed, built and shipped on my own.
+              and first customers see something finished, not a template.
             </p>
+          </div>
+          <h3 className={`${sectionLabel} mt-16 lg:mt-24`}>
+            Where those seventeen years went
+          </h3>
+          <div className="grid grid-cols-2 gap-x-6 gap-y-6 pb-8 sm:grid-cols-4 lg:gap-y-12 lg:pb-16">
+            {logos.map((logo) => (
+              <div key={logo.name} className="flex h-20 origin-left scale-75 items-center sm:scale-100">
+                <LogoMark {...logo} />
+              </div>
+            ))}
           </div>
         </section>
         <PortfolioShowcase
