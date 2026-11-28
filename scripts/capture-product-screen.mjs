@@ -107,6 +107,23 @@ if (SCROLL && SCROLL !== "0") {
   await sleep(1500);
 }
 
+// Freeze the page before measuring. A carousel that keeps advancing between
+// the measurement and the screenshot puts the boxes where the UI used to be,
+// which is exactly the misalignment this whole approach is meant to avoid.
+await S("Runtime.evaluate", {
+  expression: `(() => {
+    const css = document.createElement('style');
+    css.textContent =
+      '*,*::before,*::after{animation-play-state:paused !important;' +
+      'animation-duration:0s !important;animation-delay:0s !important;' +
+      'transition:none !important;scroll-behavior:auto !important}';
+    document.head.appendChild(css);
+    document.getAnimations?.().forEach((a) => { try { a.pause(); } catch {} });
+    return true;
+  })()`,
+});
+await sleep(600);
+
 // Collect the boxes that are actually painted in the viewport, classified by
 // what they are, straight from the live DOM.
 const COLLECT = `(() => {
@@ -179,8 +196,30 @@ for (const b of boxes) {
   if (!dup) kept.push(b);
 }
 
+// A carousel slide or grid cell wraps a card and runs past its edges. It is
+// a real element but not one you can see, so drawing it puts lines where the
+// UI has none. Drop anything that exists only to hold a box we already have.
+const contains = (outer, inner) =>
+  inner.x >= outer.x - 4 &&
+  inner.y >= outer.y - 4 &&
+  inner.x + inner.w <= outer.x + outer.w + 4 &&
+  inner.y + inner.h <= outer.y + outer.h + 4;
+
+const boxed = kept.filter((b) => b.kind === "f" || b.kind === "m");
+const wrappers = new Set(
+  boxed.filter((outer) =>
+    boxed.some(
+      (inner) =>
+        inner !== outer &&
+        contains(outer, inner) &&
+        outer.area < inner.area * 2.6 &&
+        outer.area > inner.area * 1.05
+    )
+  )
+);
+
 // Text runs inside a card are the detail that sells it; keep a readable mix.
-const frames = kept.filter((b) => b.kind === "f" || b.kind === "m").slice(0, 8);
+const frames = boxed.filter((b) => !wrappers.has(b)).slice(0, 8);
 const text = kept.filter((b) => b.kind === "t").slice(0, 14);
 const btns = kept.filter((b) => b.kind === "b").slice(0, 4);
 const final = [...frames, ...btns, ...text]
