@@ -145,6 +145,18 @@ for (const r of recorded) {
   writeFileSync(scenePath, JSON.stringify(cropScene("/tmp/bts/dns-stay.scene.json", placed, 360)));
   // It is a still, so the product part of the loop simply holds.
   await assemble(id, buildUp(id, first, scenePath, 1), ["-loop", "1", "-t", "4", "-i", first], 360, 27);
+
+  // The extension has no dark mode. For the site's dark mode the same
+  // screenshot is rendered dark: lightness inverted, hues kept, and black
+  // lifted to the wireframe canvas.
+  const dark = `${id}-dark`;
+  const darkFirst = `${TMP}/${dark}-first.png`;
+  ffmpeg(
+    "-i", first,
+    "-vf", "negate,hue=h=180,colorlevels=romin=0.067:gomin=0.067:bomin=0.075",
+    "-frames:v", "1", darkFirst
+  );
+  await assemble(dark, buildUp(dark, darkFirst, scenePath, 1), ["-loop", "1", "-t", "4", "-i", darkFirst], 360, 27);
 }
 
 // Two cards from Rankdat's Top Insights row, dissolving into each other.

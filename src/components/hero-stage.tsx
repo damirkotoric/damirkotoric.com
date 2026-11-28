@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 type Piece = {
   /** Names its files: a silent loop in /videos and a still in /images/hero. */
   id: string;
-  /** The product has a dark mode, so a second set of files, `<id>-dark`, exists. */
+  /** A second set of files, `<id>-dark`, exists for the site's dark mode. */
   dark?: boolean;
   frame: "browser" | "phone" | "panel";
   width: number;
@@ -105,6 +105,7 @@ const PIECES: Piece[] = [
   },
   {
     id: "donotstay-panel",
+    dark: true,
     frame: "panel",
     width: 360,
     height: 526,
@@ -213,7 +214,14 @@ function PieceFrame({ piece, ...state }: { piece: Piece } & PieceState) {
   }
   if (piece.frame === "phone") {
     return (
-      <div className={cn("overflow-hidden rounded-[1.6em] border-[0.3em] border-foreground bg-foreground", SHADOW)}>
+      // A black phone in light mode; in dark mode the foreground colour is
+      // white, so the bezel takes the muted grey instead.
+      <div
+        className={cn(
+          "overflow-hidden rounded-[1.6em] border-[0.3em] border-foreground bg-foreground dark:border-muted dark:bg-muted",
+          SHADOW
+        )}
+      >
         <div className="overflow-hidden rounded-[1.3em]">{media}</div>
       </div>
     );
