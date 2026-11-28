@@ -5,6 +5,8 @@ import { Footer } from "@/components/footer";
 import { Testimonial } from "@/components/testimonial";
 import { testimonials } from "@/data/testimonials";
 import { PixelatedAvatar } from "@/components/pixelated-avatar";
+import { HeroShowreel } from "@/components/hero-showreel";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
@@ -80,12 +82,23 @@ export default function HomePage() {
               <ScrollSection
                 id="intro"
                 mobileMedia={
-                  <PixelatedAvatar variant="mobile" entryAnimation />
+                  // ScrollSection pulls mobile media up by 3rem, which suited
+                  // the portrait's built-in whitespace but jams the panel
+                  // against the buttons. mt-20 nets out to a 2rem gap.
+                  <HeroShowreel variant="mobile" delay={0.5} className="mt-20 pb-8" />
                 }
               >
                 <div className="py-12 lg:py-24">
                   <HeroContent>
-                    <div className="mb-2 flex gap-2">
+                    <div className="mb-4 flex items-center gap-3">
+                      <Avatar size="lg">
+                        <AvatarImage
+                          src="/images/damir-contact.jpg"
+                          alt={FULL_NAME}
+                          className="object-cover"
+                        />
+                        <AvatarFallback>DK</AvatarFallback>
+                      </Avatar>
                       <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs tracking-tight font-medium text-muted-foreground">
                         €35M uplift at Booking.com
                       </span>
@@ -116,9 +129,9 @@ export default function HomePage() {
               </ScrollSection>
             </ScrollLinkedContent>
 
-            <ScrollLinkedMedia className="h-full flex items-center">
-              <ScrollMediaItem sectionId="intro" className="h-full">
-                <PixelatedAvatar variant="large" size="fill" entryAnimation />
+            <ScrollLinkedMedia className="h-full hidden lg:flex items-center">
+              <ScrollMediaItem sectionId="intro" className="h-full w-full">
+                <HeroShowreel />
               </ScrollMediaItem>
             </ScrollLinkedMedia>
           </ScrollLinkedProvider>
@@ -180,9 +193,13 @@ export default function HomePage() {
                 ))}
               </div>
               {/* Mobile: horizontal scroll-snap */}
-              <div className="lg:hidden -mx-6 flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+              {/* Cards stop short of the edge so the next one peeks in and
+                  the row reads as a carousel rather than a single quote.
+                  scroll-pl-6 insets the snap position too, so every card
+                  comes to rest at the same margin as the first. */}
+              <div className="lg:hidden -mx-6 px-6 scroll-pl-6 flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
                 {homepageTestimonials.map((t, i) => (
-                  <div key={t.name} className={`snap-start shrink-0 w-[calc(100%-1.5rem)] ${i === 0 ? "pl-6" : ""} ${i === homepageTestimonials.length - 1 ? "pr-6" : ""}`}>
+                  <div key={t.name} className="snap-start shrink-0 w-[85%]">
                     <Testimonial
                       quote={t.summary}
                       highlight={t.highlight}
