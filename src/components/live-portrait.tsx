@@ -26,7 +26,7 @@ const pickSource = () =>
 // Cells across the portrait at each step of the mosaic, finest first. Steps
 // rather than a continuous zoom: the grid holds still within a step, so the
 // picture sharpens in clear stages instead of swimming as you scroll.
-const LEVELS = [150, 104, 72, 50, 36, 26, 19, 14];
+const LEVELS = [150, 104, 72, 50, 36, 26, 19];
 // How far the portrait's centre is from the viewport's, as a share of the
 // viewport height: fully resolved inside NEAR, coarsest beyond FAR.
 const NEAR = 0.14;
@@ -174,8 +174,8 @@ export function ResolvingPortrait({ className }: { className?: string }) {
 
       const coarse = step / (LEVELS.length - 1);
       const cell = px / n;
-      const gap = cell * (0.03 + 0.1 * coarse);
-      const dropout = 0.34 * Math.pow(coarse, 1.3);
+      const gap = cell * (0.03 + 0.086 * coarse);
+      const dropout = 0.28 * Math.pow(coarse, 1.3);
       for (let y = 0; y < n; y++) {
         for (let x = 0; x < n; x++) {
           const i = y * n + x;
