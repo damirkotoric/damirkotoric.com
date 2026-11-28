@@ -22,7 +22,7 @@ export async function GET() {
     `# ${FULL_NAME}`,
     `> ${SITE_DESCRIPTION}`,
     `${FULL_NAME} is a freelance ${ROLE} with 17 years of experience, previously at Booking.com, where his payment and checkout work produced a €35M annual conversion uplift. He designs and builds complete products on his own: web, iOS and Android, including AI-powered features. Contact: ${EMAIL}`,
-    `## Services\n\n- [AI MVP development](${SITE_URL}/mvp-development): design and development of AI-powered MVPs for funded startups. Web, iOS and Android. 4 to 6 weeks on average. Projects from $15K USD, with a one-week paid scoping sprint as an entry point.`,
+    `## Services\n\n- [AI MVP development](${SITE_URL}/mvp-development): design and development of AI-powered MVPs for funded startups. Web, iOS and Android. 4 to 6 weeks on average. Projects from $15K USD, with a one-week paid scoping sprint as an entry point.\n- [AI software development](${SITE_URL}/ai-software-development): designing and building AI features inside products that already exist. Web, iOS and Android. Fixed-price projects from $15K USD, with the same one-week scoping sprint as an entry point.`,
     `## Work\n\n${projects.join("\n")}`,
     `## About\n\n- [Testimonials](${SITE_URL}/testimonials): what clients and former colleagues say.\n- [Portfolio](${SITE_URL}/portfolio): all projects.`,
     posts.length > 0

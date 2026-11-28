@@ -398,8 +398,19 @@ export default function MvpDevelopmentPage() {
               </li>
             ))}
           </ol>
-          <p className="mt-12 max-w-[520px] leading-relaxed text-pretty">
+          <p className="mt-12 max-w-[560px] leading-relaxed text-pretty">
             {PRICE_TERMS} No hourly meter running in the background.
+          </p>
+          <p className="mt-4 max-w-[560px] leading-relaxed text-pretty">
+            Adding AI to a product you already have rather than building a new
+            one?{" "}
+            <Link
+              href="/ai-software-development"
+              className="underline transition-colors hover:text-muted-foreground"
+            >
+              That work lives here
+            </Link>
+            .
           </p>
         </section>
 

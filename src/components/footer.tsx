@@ -16,6 +16,9 @@ export function Footer() {
           <Link href="/mvp-development" className="hover:text-foreground">
             MVP development
           </Link>
+          <Link href="/ai-software-development" className="hover:text-foreground">
+            AI development
+          </Link>
           <Link href="/testimonials" className="hover:text-foreground">
             Testimonials
           </Link>
