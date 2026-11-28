@@ -2,6 +2,8 @@
 // piece is a silent loop: its layout draws in as a wireframe and resolves
 // into the real product, the product runs for a few seconds, and then the
 // whole thing plays backward to an empty canvas, so no loop has a seam.
+// Products with a dark mode get a second loop, <id>-dark, for the site's own
+// dark mode.
 //
 // Inputs:  /tmp/heroport/rec/<id>/     from scripts/record-hero-pieces.mjs
 //          /tmp/bts/hero-<id>.scene.json, /tmp/bts/rankdat.*
@@ -68,7 +70,10 @@ function cropScene(path, crop, width) {
 // smaller than they were captured.
 function buildUp(id, photo, scenePath, scale) {
   const dir = `${TMP}/buildup/${id}`;
-  execFileSync(process.execPath, ["scripts/build-bts-frames.mjs", id, photo, scenePath, dir, String(scale)]);
+  const theme = id.endsWith("-dark") ? ["dark"] : [];
+  execFileSync(process.execPath, [
+    "scripts/build-bts-frames.mjs", id, photo, scenePath, dir, String(scale), ...theme,
+  ]);
   return ["-framerate", "30", "-i", `${dir}/frame%04d.png`];
 }
 
@@ -98,15 +103,19 @@ const recorded = [
   { id: "beamy-phone", width: 390, crf: 28, scale: 1.8 },
 ];
 for (const r of recorded) {
-  const first = `${TMP}/${r.id}-first.png`;
-  await sharp(`${TMP}/rec/${r.id}/f0000.jpg`).png().toFile(first);
-  await assemble(
-    r.id,
-    buildUp(r.id, first, `/tmp/bts/hero-${r.id}.scene.json`, r.scale),
-    ["-f", "concat", "-safe", "0", "-i", `${TMP}/rec/${r.id}/list.txt`],
-    r.width,
-    r.crf
-  );
+  // The layout is the same in both colour schemes, so one measured scene
+  // serves both.
+  for (const id of [r.id, `${r.id}-dark`]) {
+    const first = `${TMP}/${id}-first.png`;
+    await sharp(`${TMP}/rec/${id}/f0000.jpg`).png().toFile(first);
+    await assemble(
+      id,
+      buildUp(id, first, `/tmp/bts/hero-${r.id}.scene.json`, r.scale),
+      ["-f", "concat", "-safe", "0", "-i", `${TMP}/rec/${id}/list.txt`],
+      r.width,
+      r.crf
+    );
+  }
 }
 
 // The extension's sidebar on a hotel it recommends, from the product site's
@@ -139,31 +148,34 @@ for (const r of recorded) {
 }
 
 // Two cards from Rankdat's Top Insights row, dissolving into each other.
-// The capture is 2560px wide for a 1280px layout.
-{
-  const id = "rankdat-insight";
+// The captures are 2560px wide for a 1280px layout.
+for (const [id, capture] of [
+  ["rankdat-insight", "/tmp/bts/rankdat.png"],
+  ["rankdat-insight-dark", "/tmp/bts/rankdat-dark.png"],
+]) {
   const card = { top: 752, width: 716, height: 728 };
   const lefts = [90, 1610];
+  const stills = lefts.map((_, i) => `${TMP}/${id}-${i}.png`);
   for (const [i, left] of lefts.entries()) {
-    await sharp("/tmp/bts/rankdat.png")
+    await sharp(capture)
       .extract({ left, ...card })
       .resize({ width: 420, height: 428 })
       .png()
-      .toFile(`${TMP}/insight-${i}.png`);
+      .toFile(stills[i]);
   }
   const HOLD = 3.4;
   const FADE = 0.6;
   const clip = `${TMP}/${id}-clip.mp4`;
   ffmpeg(
-    "-loop", "1", "-t", String(HOLD + FADE), "-i", `${TMP}/insight-0.png`,
-    "-loop", "1", "-t", String(HOLD + FADE), "-i", `${TMP}/insight-1.png`,
+    "-loop", "1", "-t", String(HOLD + FADE), "-i", stills[0],
+    "-loop", "1", "-t", String(HOLD + FADE), "-i", stills[1],
     "-filter_complex",
     `[0:v]fps=${FPS}[a];[1:v]fps=${FPS}[b];[a][b]xfade=transition=fade:duration=${FADE}:offset=${HOLD}`,
     ...ENCODE, "-crf", "12",
     clip
   );
   const first = `${TMP}/${id}-first.png`;
-  await sharp(`${TMP}/insight-0.png`).toFile(first);
+  await sharp(stills[0]).toFile(first);
   const scenePath = `${TMP}/${id}.scene.json`;
   const inLayout = { x: lefts[0] / 2, y: card.top / 2, w: card.width / 2, h: card.height / 2 };
   writeFileSync(scenePath, JSON.stringify(cropScene("/tmp/bts/rankdat.scene.json", inLayout, 420)));
@@ -175,3 +187,4 @@ for (const r of recorded) {
 //   VIEW=1200x800 node scripts/capture-product-screen.mjs hero-stylespin https://stylespin.vercel.app
 //   VIEW=390x844 MOBILE=1 node scripts/capture-product-screen.mjs hero-beamy-phone https://getbeamy.app
 //   node scripts/capture-product-screen.mjs rankdat https://rankdat.io 3500 "Top Insights"
+//   SCHEME=dark node scripts/capture-product-screen.mjs rankdat-dark https://rankdat.io 3500 "Top Insights"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import Image from "next/image";
 import {
   motion,
@@ -11,12 +11,15 @@ import {
   useTransform,
   type MotionValue,
 } from "motion/react";
+import { useTheme } from "next-themes";
 import { LivePortrait } from "@/components/live-portrait";
 import { cn } from "@/lib/utils";
 
 type Piece = {
   /** Names its files: a silent loop in /videos and a still in /images/hero. */
   id: string;
+  /** The product has a dark mode, so a second set of files, `<id>-dark`, exists. */
+  dark?: boolean;
   frame: "browser" | "phone" | "panel";
   width: number;
   height: number;
@@ -40,6 +43,7 @@ type Piece = {
 const PIECES: Piece[] = [
   {
     id: "rankdat",
+    dark: true,
     frame: "browser",
     width: 960,
     height: 640,
@@ -55,6 +59,7 @@ const PIECES: Piece[] = [
   },
   {
     id: "stylespin",
+    dark: true,
     frame: "browser",
     width: 960,
     height: 640,
@@ -69,6 +74,7 @@ const PIECES: Piece[] = [
   },
   {
     id: "rankdat-insight",
+    dark: true,
     frame: "panel",
     width: 420,
     height: 428,
@@ -83,6 +89,7 @@ const PIECES: Piece[] = [
   },
   {
     id: "beamy-phone",
+    dark: true,
     frame: "phone",
     width: 390,
     height: 844,
@@ -113,6 +120,8 @@ const PIECES: Piece[] = [
   },
 ];
 
+const subscribeNever = () => () => {};
+
 // The layered shadow is sized for big panels; small screens get a tighter one.
 const SHADOW = "shadow-lg lg:shadow-layered";
 const FRAME = cn("overflow-hidden border border-border bg-card", SHADOW);
@@ -130,6 +139,13 @@ type PieceState = {
 // resolves into the product, runs, and then plays back to empty.
 function PieceMedia({ piece, animated, playing, delay }: { piece: Piece } & PieceState) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  // The theme is only known in the browser. Until the page has hydrated the
+  // loop has no source, so the markup matches the server's and a dark-mode
+  // visitor never downloads the light loop first.
+  const hydrated = useSyncExternalStore(subscribeNever, () => true, () => false);
+  const { resolvedTheme } = useTheme();
+  const theme = hydrated ? resolvedTheme : undefined;
+  const file = theme === "dark" && piece.dark ? `${piece.id}-dark` : piece.id;
 
   useEffect(() => {
     const video = videoRef.current;
@@ -150,13 +166,14 @@ function PieceMedia({ piece, animated, playing, delay }: { piece: Piece } & Piec
       window.clearTimeout(timer);
       document.removeEventListener("visibilitychange", sync);
     };
-  }, [animated, playing, delay]);
+  }, [animated, playing, delay, file, theme]);
 
   if (animated) {
     return (
       <video
         ref={videoRef}
-        src={`/videos/hero-${piece.id}.mp4`}
+        key={file}
+        src={theme ? `/videos/hero-${file}.mp4` : undefined}
         width={piece.width}
         height={piece.height}
         muted
@@ -170,7 +187,7 @@ function PieceMedia({ piece, animated, playing, delay }: { piece: Piece } & Piec
   }
   return (
     <Image
-      src={`/images/hero/${piece.id}.avif`}
+      src={`/images/hero/${file}.avif`}
       width={piece.width}
       height={piece.height}
       alt={piece.alt}

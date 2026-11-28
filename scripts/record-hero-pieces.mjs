@@ -83,7 +83,13 @@ const send = (method, params = {}, sessionId) =>
     ws.send(JSON.stringify({ id, method, params, sessionId }));
   });
 
-for (const shot of SHOTS) {
+// Every product here has a dark mode; each is recorded in both.
+const TAKES = SHOTS.flatMap((shot) => [
+  { ...shot, scheme: "light" },
+  { ...shot, id: `${shot.id}-dark`, scheme: "dark" },
+]);
+
+for (const shot of TAKES) {
   const dir = `${OUT}/${shot.id}`;
   await rm(dir, { recursive: true, force: true });
   await mkdir(dir, { recursive: true });
@@ -100,7 +106,7 @@ for (const shot of SHOTS) {
     mobile: !!shot.mobile,
   });
   await S("Emulation.setEmulatedMedia", {
-    features: [{ name: "prefers-color-scheme", value: "light" }],
+    features: [{ name: "prefers-color-scheme", value: shot.scheme }],
   });
   await S("Page.navigate", { url: shot.url });
   await sleep(4500);

@@ -8,11 +8,11 @@
 //
 // The same build-up for any other screen (the hero's floating pieces use
 // this): the frame takes the photo's size.
-//        node scripts/build-bts-frames.mjs <id> <photo> <scene.json> <outDir> [scale]
+//        node scripts/build-bts-frames.mjs <id> <photo> <scene.json> <outDir> [scale] [dark]
 import sharp from "sharp";
 import { mkdir, writeFile, readFile } from "node:fs/promises";
 
-const [, , ONE_ID, ONE_PHOTO, ONE_SCENE, ONE_OUT, ONE_SCALE = "1"] = process.argv;
+const [, , ONE_ID, ONE_PHOTO, ONE_SCENE, ONE_OUT, ONE_SCALE = "1", ONE_THEME] = process.argv;
 
 let W = 1280;
 let H = 960;
@@ -26,8 +26,11 @@ const FRAMES = Math.round(FPS * DUR);
 
 // Vector-tool palette: hairlines, translucent selection fills, snap guides.
 const EDGE = "#2D7FF9";
-const DOT = "#96A7BD";
 const GUIDE = "#FF2E85";
+// The canvas itself: white, or near-black for a product shown in dark mode.
+const DARK = ONE_THEME === "dark";
+const PLATE = DARK ? "#111113" : "#fff";
+const DOT = DARK ? "#4B5563" : "#96A7BD";
 
 // kind: f = outline, b = filled block, t = text bar, m = media plate
 // Scenes come from the capture/trace step, never from eyeballing a frame:
@@ -81,7 +84,7 @@ function handles(x, y, w, h, a, every = true) {
     .map(
       ([px, py]) =>
         `<rect x="${(px - s / 2).toFixed(1)}" y="${(py - s / 2).toFixed(1)}" width="${s}" height="${s}" ` +
-        `fill="#fff" stroke="${EDGE}" stroke-width="${1.25 * K}" opacity="${a.toFixed(3)}"/>`
+        `fill="${PLATE}" stroke="${EDGE}" stroke-width="${1.25 * K}" opacity="${a.toFixed(3)}"/>`
     )
     .join("");
 }
@@ -144,8 +147,8 @@ function buildSvg(scene, t, layerAlpha) {
   // Inside a region the panel masks the real UI until it resolves; over a
   // whole frame the page itself is the canvas.
   const plate = reg
-    ? `<rect x="${reg[0]}" y="${reg[1]}" width="${reg[2]}" height="${reg[3]}" rx="14" fill="#fff"/>`
-    : `<rect width="${W}" height="${H}" fill="#fff"/>`;
+    ? `<rect x="${reg[0]}" y="${reg[1]}" width="${reg[2]}" height="${reg[3]}" rx="14" fill="${PLATE}"/>`
+    : `<rect width="${W}" height="${H}" fill="${PLATE}"/>`;
   const body =
     plate + dotGrid() + containerLayer(scene.container) + boxLayer(scene.boxes, t);
   return (
@@ -158,7 +161,7 @@ function buildSvg(scene, t, layerAlpha) {
   );
 }
 
-const white = { r: 255, g: 255, b: 255, alpha: 1 };
+const canvas = DARK ? { r: 17, g: 17, b: 19, alpha: 1 } : { r: 255, g: 255, b: 255, alpha: 1 };
 
 async function renderProduct(id, scene, photoPath = `/tmp/bts/${id}.png`, dir = `/tmp/bts/${id}`) {
   await mkdir(dir, { recursive: true });
@@ -186,7 +189,7 @@ async function renderProduct(id, scene, photoPath = `/tmp/bts/${id}.png`, dir = 
     }
 
     const frame = await sharp({
-      create: { width: W, height: H, channels: 4, background: white },
+      create: { width: W, height: H, channels: 4, background: canvas },
     })
       .composite(layers)
       .png({ compressionLevel: 6 })
