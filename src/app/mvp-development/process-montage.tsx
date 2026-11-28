@@ -211,9 +211,95 @@ function Conversation() {
 
 /* 2. Analysis first: a product audit and competitor board, with an invented grocery app */
 
+// Low-fi wireframe parts, drawn on a 100 by 100 grid so they scale with the board.
+const wireText = "fill-muted-foreground/25";
+const wireBox = "fill-background stroke-muted-foreground/40";
+const wireButton = "fill-muted-foreground/50";
+
+// Five steps, and it opens on a sign-in wall.
+const signInWire = (
+  <>
+    <path d="M14 11H86" className="stroke-muted-foreground/40" />
+    {[14, 32, 50, 68, 86].map((x, step) => (
+      <circle
+        key={x}
+        cx={x}
+        cy={11}
+        r={4}
+        className={step ? wireBox : "fill-muted-foreground"}
+      />
+    ))}
+    <rect x={10} y={25} width={42} height={5} rx={2.5} className={wireText} />
+    <rect x={10} y={37} width={80} height={13} rx={2} className={wireBox} />
+    <rect x={10} y={54} width={80} height={13} rx={2} className={wireBox} />
+    <rect x={10} y={76} width={80} height={14} rx={3} className={wireButton} />
+  </>
+);
+
+// Delivery slots come first, then a choice between guest and account.
+const slotsWire = (
+  <>
+    <rect x={10} y={9} width={36} height={5} rx={2.5} className={wireText} />
+    {[20, 35].flatMap((y) =>
+      [10, 38, 66].map((x) => (
+        <rect
+          key={`${x}-${y}`}
+          x={x}
+          y={y}
+          width={24}
+          height={11}
+          rx={5.5}
+          className={x === 38 && y === 20 ? "fill-muted-foreground" : wireBox}
+        />
+      )),
+    )}
+    <rect x={10} y={56} width={38} height={13} rx={2} className={wireButton} />
+    <rect x={52} y={56} width={38} height={13} rx={2} className={wireBox} />
+    <rect x={10} y={76} width={80} height={14} rx={3} className={wireButton} />
+  </>
+);
+
+// The last order, ready to buy again with one button.
+const reorderWire = (
+  <>
+    <rect x={10} y={9} width={30} height={5} rx={2.5} className={wireText} />
+    {[20, 36, 52].map((y) => (
+      <g key={y}>
+        <rect
+          x={10}
+          y={y}
+          width={12}
+          height={12}
+          rx={2}
+          className="fill-muted"
+        />
+        <rect
+          x={27}
+          y={y + 4}
+          width={36}
+          height={4}
+          rx={2}
+          className={wireText}
+        />
+        <rect
+          x={76}
+          y={y + 4}
+          width={14}
+          height={4}
+          rx={2}
+          className={wireText}
+        />
+      </g>
+    ))}
+    <path d="M10 70H90" className="stroke-muted-foreground/40" />
+    <rect x={10} y={76} width={80} height={14} rx={3} className={wireButton} />
+  </>
+);
+
 const boardColumns = [
   {
     title: "Your checkout",
+    wire: signInWire,
     notes: [
       { text: "5 steps to pay", problem: true, at: 1.2 },
       { text: "No guest checkout", problem: true, at: 2.0 },
@@ -221,6 +307,7 @@ const boardColumns = [
   },
   {
     title: "Competitor A",
+    wire: slotsWire,
     notes: [
       { text: "Guest checkout", problem: false, at: 2.9 },
       { text: "Delivery slot picked first", problem: false, at: 3.6 },
@@ -228,6 +315,7 @@ const boardColumns = [
   },
   {
     title: "Competitor B",
+    wire: reorderWire,
     notes: [
       { text: "One-tap reorder", problem: false, at: 4.4 },
       { text: "No order tracking", problem: true, at: 5.1 },
@@ -241,14 +329,16 @@ const dottedCanvas =
 function AnalysisBoard() {
   const still = useStill();
   return (
-    <div className={`${card} ${dottedCanvas} relative aspect-[4/3] w-[92%]`}>
+    <div
+      className={`${card} ${dottedCanvas} relative aspect-[4/5] w-[92%] sm:aspect-[4/3]`}
+    >
       <motion.div
         className="grid h-full origin-top-left grid-cols-3 gap-3 p-4"
         initial={{ scale: 1.3 }}
         animate={{ scale: 1 }}
         transition={timing(still, { duration: 5.5, ease: "easeOut" })}
       >
-        {boardColumns.map(({ title, notes }, column) => (
+        {boardColumns.map(({ title, wire, notes }, column) => (
           <div key={title} className="flex flex-col gap-2">
             <motion.p
               {...appear(still, 0.2 + column * 0.15)}
@@ -256,14 +346,14 @@ function AnalysisBoard() {
             >
               {title}
             </motion.p>
-            <motion.div
+            <motion.svg
               {...appear(still, 0.4 + column * 0.15)}
-              className="flex flex-col gap-1.5 rounded-md border border-border bg-background p-2"
+              viewBox="0 0 100 100"
+              aria-hidden
+              className="rounded-md border border-border bg-background [&_*]:[vector-effect:non-scaling-stroke]"
             >
-              <span className="h-10 rounded-sm bg-muted" />
-              <span className={`${bar} h-1.5 w-3/4`} />
-              <span className={`${bar} h-1.5 w-1/2`} />
-            </motion.div>
+              {wire}
+            </motion.svg>
             {notes.map(({ text, problem, at }, position) => (
               <motion.p
                 key={text}
