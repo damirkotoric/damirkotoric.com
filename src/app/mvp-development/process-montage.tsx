@@ -655,7 +655,8 @@ function Comment({
         height={192}
         className="size-7 shrink-0 rounded-full rounded-bl-none border border-background shadow-layered"
       />
-      <span className="rounded-lg rounded-tl-none border border-border bg-background px-2.5 py-1.5 text-xs font-medium whitespace-nowrap shadow-layered">
+      {/* On a dark wireframe a background-coloured comment disappears into it, so it takes the highlight colour there. */}
+      <span className="rounded-lg rounded-tl-none border border-border bg-background px-2.5 py-1.5 text-xs font-medium whitespace-nowrap shadow-layered dark:border-transparent dark:bg-highlight dark:text-highlight-foreground">
         {text}
       </span>
     </motion.div>
