@@ -1,6 +1,13 @@
 "use client";
 
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import {
+  type ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   AnimatePresence,
   motion,
@@ -8,74 +15,97 @@ import {
   useReducedMotion,
 } from "motion/react";
 
-const SCREEN_MS = 3400;
-const skeleton = "rounded-sm bg-muted-foreground/25";
+const SCREEN_MS = 4400;
+// Outlines go down one after another, then each one fills in, the way a wireframe gets built.
+const OUTLINE_STEP_S = 0.09;
+const FILL_AFTER_S = 0.9;
 const deviceFrame =
   "absolute top-0 border border-muted-foreground bg-background";
 
-const listRow = (
-  <div className="flex items-center gap-2">
-    <div className={`${skeleton} size-8 shrink-0`} />
-    <div className={`${skeleton} h-3 flex-1 rounded-full`} />
+/** When a device starts building, and whether it animates at all. */
+const Build = createContext({ delay: 0, animated: true });
+
+/** One piece of a screen: an outline first, a soft fill a beat later. */
+function Block({ order, className }: { order: number; className: string }) {
+  const { delay, animated } = useContext(Build);
+  const at = delay + order * OUTLINE_STEP_S;
+  return (
+    <motion.div
+      initial={animated ? { opacity: 0, scale: 0.94 } : false}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: at, duration: 0.3 }}
+      className={`relative rounded-sm border border-muted-foreground/50 ${className}`}
+    >
+      <motion.div
+        initial={animated ? { opacity: 0 } : false}
+        animate={{ opacity: 1 }}
+        transition={{ delay: at + FILL_AFTER_S, duration: 0.5 }}
+        className="absolute inset-0 rounded-[inherit] bg-muted-foreground/25 blur-[2px]"
+      />
+    </motion.div>
+  );
+}
+
+const listRow = (order: number) => (
+  <div key={order} className="flex items-center gap-2">
+    <Block order={order} className="size-8 shrink-0" />
+    <Block order={order + 1} className="h-3 flex-1 rounded-full" />
   </div>
 );
 
 // The same three screens on every device: a landing view, a results list and a detail view.
-const browserScreens: ReactNode[][] = [
-  [
-    <div key="hero" className={`${skeleton} h-24`} />,
-    <div key="title" className={`${skeleton} h-6 w-2/3 rounded-full`} />,
-    <div key="cards" className="grid grid-cols-3 gap-3">
-      <div className={`${skeleton} h-20`} />
-      <div className={`${skeleton} h-20`} />
-      <div className={`${skeleton} h-20`} />
-    </div>,
-  ],
-  [
-    <div key="search" className={`${skeleton} h-8 rounded-full`} />,
-    <div key="results" className="grid grid-cols-[1fr_2fr] gap-3">
-      <div className={`${skeleton} h-44`} />
+const browserScreens: ReactNode[] = [
+  <>
+    <Block order={0} className="h-24" />
+    <Block order={1} className="h-6 w-2/3 rounded-full" />
+    <div className="grid grid-cols-3 gap-3">
+      <Block order={2} className="h-20" />
+      <Block order={3} className="h-20" />
+      <Block order={4} className="h-20" />
+    </div>
+  </>,
+  <>
+    <Block order={0} className="h-8 rounded-full" />
+    <div className="grid grid-cols-[1fr_2fr] gap-3">
+      <Block order={1} className="h-44" />
       <div className="space-y-3">
-        <div className={`${skeleton} h-12`} />
-        <div className={`${skeleton} h-12`} />
-        <div className={`${skeleton} h-12`} />
+        <Block order={2} className="h-12" />
+        <Block order={3} className="h-12" />
+        <Block order={4} className="h-12" />
       </div>
-    </div>,
-  ],
-  [
-    <div key="detail" className="grid grid-cols-2 gap-3">
-      <div className={`${skeleton} h-36`} />
+    </div>
+  </>,
+  <>
+    <div className="grid grid-cols-2 gap-3">
+      <Block order={0} className="h-36" />
       <div className="space-y-3">
-        <div className={`${skeleton} h-6 rounded-full`} />
-        <div className={`${skeleton} h-4 w-3/4 rounded-full`} />
-        <div className={`${skeleton} h-4 w-1/2 rounded-full`} />
-        <div className={`${skeleton} h-9 w-2/3`} />
+        <Block order={1} className="h-6 rounded-full" />
+        <Block order={2} className="h-4 w-3/4 rounded-full" />
+        <Block order={3} className="h-4 w-1/2 rounded-full" />
+        <Block order={4} className="h-9 w-2/3" />
       </div>
-    </div>,
-    <div key="more" className={`${skeleton} h-16`} />,
-  ],
+    </div>
+    <Block order={5} className="h-16" />
+  </>,
 ];
 
-const phoneScreens: ReactNode[][] = [
-  [
-    <div key="hero" className={`${skeleton} h-20`} />,
-    <div key="title" className={`${skeleton} h-4 w-3/4 rounded-full`} />,
-    <div key="card-1" className={`${skeleton} h-12`} />,
-    <div key="card-2" className={`${skeleton} h-12`} />,
-  ],
-  [
-    <div key="search" className={`${skeleton} h-6 rounded-full`} />,
-    <div key="row-1">{listRow}</div>,
-    <div key="row-2">{listRow}</div>,
-    <div key="row-3">{listRow}</div>,
-    <div key="row-4">{listRow}</div>,
-  ],
-  [
-    <div key="photo" className={`${skeleton} h-24`} />,
-    <div key="title" className={`${skeleton} h-4 rounded-full`} />,
-    <div key="line" className={`${skeleton} h-3 w-2/3 rounded-full`} />,
-    <div key="button" className={`${skeleton} h-9`} />,
-  ],
+const phoneScreens: ReactNode[] = [
+  <>
+    <Block order={0} className="h-20" />
+    <Block order={1} className="h-4 w-3/4 rounded-full" />
+    <Block order={2} className="h-12" />
+    <Block order={3} className="h-12" />
+  </>,
+  <>
+    <Block order={0} className="h-6 rounded-full" />
+    {[1, 3, 5, 7].map(listRow)}
+  </>,
+  <>
+    <Block order={0} className="h-24" />
+    <Block order={1} className="h-4 rounded-full" />
+    <Block order={2} className="h-3 w-2/3 rounded-full" />
+    <Block order={3} className="h-9" />
+  </>,
 ];
 
 const phones = [
@@ -93,44 +123,32 @@ const phones = [
   },
 ];
 
-/** One device's screen. Each new screen builds in block by block, a beat after the device before it. */
+/** One device's screen. The old screen fades out, then the new one is built from scratch. */
 function Screen({
   screens,
   screen,
   delay,
+  animated,
   className,
 }: {
-  screens: ReactNode[][];
+  screens: ReactNode[];
   screen: number;
   delay: number;
+  animated: boolean;
   className: string;
 }) {
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <motion.div
-        key={screen}
-        className={className}
-        initial="hidden"
-        animate="shown"
-        exit="gone"
-        variants={{
-          shown: { transition: { staggerChildren: 0.14, delayChildren: delay } },
-          gone: { opacity: 0, transition: { duration: 0.25 } },
-        }}
-      >
-        {screens[screen].map((block, position) => (
-          <motion.div
-            key={position}
-            variants={{
-              hidden: { opacity: 0, y: 8 },
-              shown: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-            }}
-          >
-            {block}
-          </motion.div>
-        ))}
-      </motion.div>
-    </AnimatePresence>
+    <Build value={{ delay, animated }}>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={screen}
+          className={className}
+          exit={{ opacity: 0, transition: { duration: 0.25 } }}
+        >
+          {screens[screen]}
+        </motion.div>
+      </AnimatePresence>
+    </Build>
   );
 }
 
@@ -170,7 +188,8 @@ export function DeviceSilhouettes() {
           screens={browserScreens}
           screen={screen}
           delay={0}
-          className="space-y-3 p-4 blur-[2px]"
+          animated={!reduced}
+          className="space-y-3 p-4"
         />
       </div>
       {phones.map(({ position, radius, camera, delay }) => (
@@ -183,7 +202,8 @@ export function DeviceSilhouettes() {
             screens={phoneScreens}
             screen={screen}
             delay={delay}
-            className="space-y-2.5 blur-[2px]"
+            animated={!reduced}
+            className="space-y-2.5"
           />
         </div>
       ))}
