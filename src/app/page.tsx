@@ -6,7 +6,7 @@ import { Testimonial } from "@/components/testimonial";
 import { testimonials } from "@/data/testimonials";
 import { HeroShowreel } from "@/components/hero-showreel";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { AvatarLoop, ResolvingPortrait } from "@/components/live-portrait";
+import { AvatarLoop } from "@/components/live-portrait";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
@@ -248,26 +248,28 @@ export default function HomePage() {
       </section>
 
       {/* Section 5: About */}
-      <section className="bg-muted px-6 lg:px-16 2xl:px-40 3xl:px-80">
-        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16">
-          <div className="max-w-[520px] pt-20 lg:py-40 2xl:py-50">
-            <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              Meet Damir
-            </h2>
+      <section className="bg-muted px-6 py-20 lg:px-16 lg:py-28 2xl:px-40 2xl:py-32 3xl:px-80">
+        <h2 className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          Meet Damir
+        </h2>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+          <p className="relative text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-[72px]">
+            Designing{" "}
+            <Highlighter color="var(--highlight)" isView className="relative inline-block bg-transparent tracking-tight" activeClassName="text-highlight-foreground transition-colors">since 2009.</Highlighter>
+            <br />
+            Remote since 2018.
+          </p>
+          <div className="max-w-[520px] lg:pt-3">
             <p className="mb-6 leading-relaxed">
-              I&apos;ve been <strong>designing since 2009</strong>, and <strong>remote since 2018</strong>, working remotely with teams
-              across time zones. I care about craft, clear communication, and
-              shipping work that actually moves the needle.
+              I work with teams across time zones. I care about craft, clear
+              communication, and shipping work that actually moves the needle.
             </p>
-            <p className="lg:mb-12 lg:mb-0 leading-relaxed">
+            <p className="leading-relaxed">
               I prefer <strong>async collaboration, direct feedback</strong>, and working with
               people who know what they want to build. If you&apos;re looking
               for someone to execute a vision — or challenge it when needed —
               we&apos;ll probably get along.
             </p>
-          </div>
-          <div className="flex justify-center lg:justify-end lg:h-full 3xl:pr-60">
-            <ResolvingPortrait />
           </div>
         </div>
       </section>
