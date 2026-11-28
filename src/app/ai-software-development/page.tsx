@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { Testimonial } from "@/components/testimonial";
 import { getTestimonialByName } from "@/data/testimonials";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
+import { HeroShowreel } from "@/components/hero-showreel";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { PortfolioShowcase } from "@/components/portfolio-showcase";
 import { ContactFormTrigger } from "@/components/contact-form/contact-form-trigger";
@@ -167,8 +168,8 @@ export default function AiSoftwareDevelopmentPage() {
       />
       <main>
         {/* Hero */}
-        <section className={`${gutter} py-20 lg:py-32`}>
-          <div className="max-w-[760px]">
+        <section className={`${gutter} grid min-h-[88vh] grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16 lg:py-24`}>
+          <div className="max-w-[600px]">
             <HeroContent>
               <nav className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground">
                 <Link href="/" className="transition hover:text-foreground">
@@ -192,7 +193,12 @@ export default function AiSoftwareDevelopmentPage() {
                   </Button>
                 </AnimateIn>
               </div>
+              <HeroShowreel variant="mobile" delay={0.5} className="mt-16 lg:hidden" />
             </HeroContent>
+          </div>
+
+          <div className="hidden lg:block lg:h-full lg:justify-self-end lg:w-full">
+            <HeroShowreel delay={0.6} />
           </div>
         </section>
 
