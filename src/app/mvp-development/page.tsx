@@ -287,12 +287,10 @@ export default function MvpDevelopmentPage() {
                   You would otherwise hire at least two people
                 </h3>
                 <p className="leading-relaxed text-pretty">
-                  A senior freelance engineer and a product designer for the
-                  same five weeks cost about $34K at published contractor
-                  rates. Many teams split it further: a design system
-                  designer, an interaction designer, a web developer, an iOS
-                  developer and an Android developer. You get all of it in one
-                  person, and the design and the code never drift apart.
+                  A senior engineer and a product designer for the same five
+                  weeks cost about $34K at published contractor rates. Many
+                  teams hire five specialists. You get all of it in one
+                  person, so the design and the code never drift apart.
                 </p>
               </div>
               <div>
@@ -301,9 +299,10 @@ export default function MvpDevelopmentPage() {
                 </h3>
                 <p className="leading-relaxed text-pretty">
                   A cheap <span className="whitespace-nowrap">AI-generated</span>{" "}
-                  MVP looks fine in a demo. Then real users arrive. Rebuilding
-                  one properly is now its own service, with published prices
-                  from $5K to $50K.
+                  MVP looks fine in a demo. Then real users arrive. Fixing
+                  these builds has become an industry: agencies now sell
+                  rebuilds at published prices from $5K to $50K. Build it
+                  properly the first time and you skip that bill.
                 </p>
               </div>
             </div>
