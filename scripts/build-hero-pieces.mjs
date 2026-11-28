@@ -23,7 +23,7 @@ const stills = [
     src: "/tmp/bts/rankdat.png",
     out: "rankdat-insight",
     width: 420,
-    crop: { left: 850, top: 752, width: 716, height: 728 },
+    crop: { left: 90, top: 752, width: 716, height: 728 },
   },
 ];
 
