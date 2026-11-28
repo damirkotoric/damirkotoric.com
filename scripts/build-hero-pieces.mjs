@@ -4,10 +4,10 @@
 // whole thing plays backward to an empty canvas, so no loop has a seam.
 //
 // Inputs:  /tmp/heroport/rec/<id>/     from scripts/record-hero-pieces.mjs
-//          /tmp/bts/hero-<id>.scene.json, /tmp/bts/{rankdat,donotstay}.*
+//          /tmp/bts/hero-<id>.scene.json, /tmp/bts/rankdat.*
 //                                      from scripts/capture-product-screen.mjs
 //                                      (see the commands at the end of this file)
-//          the DoNotStay case-study video in public/
+//          the DoNotStay site's screenshot of a recommended hotel
 // Outputs: public/videos/hero-<id>.mp4, and public/images/hero/<id>.avif —
 //          the finished screen, for visitors who prefer reduced motion.
 //
@@ -31,12 +31,22 @@ const ENCODE = ["-an", "-c:v", "libx264", "-preset", "slow", "-pix_fmt", "yuv420
 function cropScene(path, crop, width) {
   const scene = JSON.parse(readFileSync(path, "utf8"));
   const k = width / crop.w;
+  const overlaps = (a, b) =>
+    a[0] < b[0] + b[2] && b[0] < a[0] + a[2] && a[1] < b[1] + b[3] && b[1] < a[1] + a[3];
+  const holds = (a, b) =>
+    b[0] >= a[0] - 4 && b[1] >= a[1] - 4 && b[0] + b[2] <= a[0] + a[2] + 4 && b[1] + b[3] <= a[1] + a[3] + 4;
+  const text = scene.boxes.filter((b) => b[5] === "t");
   const boxes = scene.boxes
     .filter(([x, y, w, h]) => {
       const cx = x + w / 2;
       const cy = y + h / 2;
       return cx > crop.x && cx < crop.x + crop.w && cy > crop.y && cy < crop.y + crop.h;
     })
+    // A traced scene can hold lines the UI does not have. A frame that cuts
+    // through lines of text is not a frame, and a "text run" this short is
+    // a stray mark.
+    .filter((b) => b[5] === "t" || text.filter((t) => overlaps(b, t) && !holds(b, t)).length < 2)
+    .filter((b) => b[5] !== "t" || b[2] >= 50)
     .map(([x, y, w, h, r, kind]) => {
       const x0 = Math.max(crop.x, x);
       const y0 = Math.max(crop.y, y);
@@ -99,26 +109,33 @@ for (const r of recorded) {
   );
 }
 
-// The extension's sidebar, cut out of the case-study video while the camera
-// holds still on it. The crop is in the video's own pixels; the measured
-// scene is in the showreel's 1280px frame, 2.25 times smaller.
+// The extension's sidebar on a hotel it recommends, from the product site's
+// own screenshot. There is no DOM to measure, so the layout is traced from
+// the image: the panel is set on a 1280x960 frame, which is what the tracer
+// reads, and the result is cropped back to the panel.
 {
   const id = "donotstay-panel";
-  const crop = { x: 1352, y: 58, w: 1436, h: 2100 };
-  const clip = `${TMP}/${id}-clip.mp4`;
+  const SHOT = `${process.env.HOME}/src/donotstay/apps/web/public/2.jpg`;
+  const panel = { x: 1604, y: 30, w: 920, h: 1344 };
+  const placed = { x: 311, y: 0, w: 658, h: 960 };
   ffmpeg(
-    "-ss", "15.3", "-t", "3.5",
-    "-i", "public/images/portfolio/donotstay/donotstay.mp4",
-    "-vf", `crop=${crop.w}:${crop.h}:${crop.x}:${crop.y},scale=360:-2,fps=${FPS}`,
-    ...ENCODE, "-crf", "12",
-    clip
+    "-i", SHOT,
+    "-vf",
+    `crop=${panel.w}:${panel.h}:${panel.x}:${panel.y},scale=${placed.w}:${placed.h},pad=1280:960:${placed.x}:0:white`,
+    "-frames:v", "1", "/tmp/bts/dns-stay.png"
   );
+  execFileSync(process.execPath, ["scripts/trace-product-frame.mjs", "dns-stay"]);
+
   const first = `${TMP}/${id}-first.png`;
-  ffmpeg("-i", clip, "-frames:v", "1", first);
+  ffmpeg(
+    "-i", SHOT,
+    "-vf", `crop=${panel.w}:${panel.h}:${panel.x}:${panel.y},scale=360:526:flags=lanczos`,
+    "-frames:v", "1", first
+  );
   const scenePath = `${TMP}/${id}.scene.json`;
-  const inFrame = { x: crop.x / 2.25, y: crop.y / 2.25, w: crop.w / 2.25, h: crop.h / 2.25 };
-  writeFileSync(scenePath, JSON.stringify(cropScene("/tmp/bts/donotstay.scene.json", inFrame, 360)));
-  await assemble(id, buildUp(id, first, scenePath, 1), ["-i", clip], 360, 27);
+  writeFileSync(scenePath, JSON.stringify(cropScene("/tmp/bts/dns-stay.scene.json", placed, 360)));
+  // It is a still, so the product part of the loop simply holds.
+  await assemble(id, buildUp(id, first, scenePath, 1), ["-loop", "1", "-t", "4", "-i", first], 360, 27);
 }
 
 // Two cards from Rankdat's Top Insights row, dissolving into each other.
@@ -158,4 +175,3 @@ for (const r of recorded) {
 //   VIEW=1200x800 node scripts/capture-product-screen.mjs hero-stylespin https://stylespin.vercel.app
 //   VIEW=390x844 MOBILE=1 node scripts/capture-product-screen.mjs hero-beamy-phone https://getbeamy.app
 //   node scripts/capture-product-screen.mjs rankdat https://rankdat.io 3500 "Top Insights"
-//   node scripts/trace-product-frame.mjs   (DoNotStay, from a frame of its video)
