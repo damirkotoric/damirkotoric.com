@@ -35,8 +35,12 @@ type Piece = {
   depth: number;
   /** Seconds for one bob up and down. */
   drift: number;
-  /** Shown in the small-screen scene too. */
-  mobile?: boolean;
+  /**
+   * Where the piece sits in the small-screen scene, which is laid out on its
+   * own: fewer pieces, each larger, some running off the screen edge. A
+   * piece without one is left out there.
+   */
+  mobile?: { left: number; top: number; size: number };
 };
 
 // Laid out around the portrait's head and shoulders so nothing covers the face.
@@ -55,7 +59,7 @@ const PIECES: Piece[] = [
     front: false,
     depth: -12,
     drift: 9,
-    mobile: true,
+    mobile: { left: -8, top: 3, size: 50 },
   },
   {
     id: "stylespin",
@@ -71,6 +75,7 @@ const PIECES: Piece[] = [
     front: false,
     depth: -8,
     drift: 11,
+    mobile: { left: 60, top: 9, size: 50 },
   },
   {
     id: "rankdat-insight",
@@ -101,7 +106,7 @@ const PIECES: Piece[] = [
     front: true,
     depth: 22,
     drift: 8,
-    mobile: true,
+    mobile: { left: 3, top: 39, size: 21 },
   },
   {
     id: "donotstay-panel",
@@ -117,7 +122,7 @@ const PIECES: Piece[] = [
     front: true,
     depth: 30,
     drift: 10,
-    mobile: true,
+    mobile: { left: 71, top: 37, size: 31 },
   },
 ];
 
@@ -231,6 +236,8 @@ function PieceFrame({ piece, ...state }: { piece: Piece } & PieceState) {
 
 function FloatingPiece({
   piece,
+  place,
+  compact,
   index,
   pointerX,
   pointerY,
@@ -238,6 +245,10 @@ function FloatingPiece({
   playing,
 }: {
   piece: Piece;
+  /** Position and width in this scene, as shares of it. */
+  place: { left: number; top: number; size: number };
+  /** The small-screen scene: pieces are larger against it, so their chrome is too. */
+  compact: boolean;
   index: number;
   pointerX: MotionValue<number>;
   pointerY: MotionValue<number>;
@@ -247,8 +258,8 @@ function FloatingPiece({
 
   return (
     <motion.div
-      className={cn("absolute text-[1.5cqw]", piece.front ? "z-20" : "z-0")}
-      style={{ left: `${piece.left}%`, top: `${piece.top}%`, width: `${piece.size}%`, x, y }}
+      className={cn("absolute", compact ? "text-[2.1cqw]" : "text-[1.5cqw]", piece.front ? "z-20" : "z-0")}
+      style={{ left: `${place.left}%`, top: `${place.top}%`, width: `${place.size}%`, x, y }}
     >
       <motion.div
         initial={animated ? { opacity: 0, scale: 0.9, y: 20 } : false}
@@ -277,7 +288,7 @@ function FloatingPiece({
 
 type HeroStageProps = {
   className?: string;
-  /** Mobile shows fewer pieces in a scene sized by its width, and no parallax. */
+  /** Mobile is its own scene, sized by its width: fewer, larger pieces and no parallax. */
   variant?: "large" | "mobile";
 };
 
@@ -309,24 +320,35 @@ export function HeroStage({ className, variant = "large" }: HeroStageProps) {
     return () => window.removeEventListener("pointermove", onMove);
   }, [parallax, targetX, targetY]);
 
-  const pieces = variant === "mobile" ? PIECES.filter((p) => p.mobile) : PIECES;
+  const compact = variant === "mobile";
+  const pieces = compact ? PIECES.filter((p) => p.mobile) : PIECES;
 
   return (
     <div
       ref={stageRef}
       className={cn(
-        "relative",
+        // Isolated, so the pieces' stacking stays inside the stage.
+        "relative isolate",
         // On small screens the scene runs edge to edge, past the page padding.
-        variant === "large" ? "h-full w-full" : "-mx-6 aspect-[5/4] w-[calc(100%+3rem)]",
+        compact ? "-mx-6 aspect-[6/5] w-[calc(100%+3rem)]" : "h-full w-full",
         className
       )}
       style={{ containerType: "size" }}
     >
-      <div className="@container absolute bottom-0 right-0 aspect-[5/4] w-[min(100cqw,125cqh)]">
+      <div
+        className={cn(
+          "@container absolute",
+          // The large scene keeps its shape inside whatever room the column
+          // has; the small one is the stage itself.
+          compact ? "inset-0" : "bottom-0 right-0 aspect-[5/4] w-[min(100cqw,125cqh)]"
+        )}
+      >
         {pieces.map((piece, index) => (
           <FloatingPiece
             key={piece.id}
             piece={piece}
+            place={(compact && piece.mobile) || piece}
+            compact={compact}
             index={index}
             pointerX={pointerX}
             pointerY={pointerY}
@@ -334,7 +356,16 @@ export function HeroStage({ className, variant = "large" }: HeroStageProps) {
             playing={playing}
           />
         ))}
-        <LivePortrait className="absolute bottom-0 left-[14%] z-10 w-[72%]" />
+        <LivePortrait
+          className={cn(
+            "absolute bottom-0 z-10",
+            // On a large screen the bust stands on the hero's bottom edge. On
+            // a small one the copy follows it, so it fades out instead.
+            compact
+              ? "left-[11%] w-[78%] [mask-image:linear-gradient(to_bottom,black_68%,transparent_98%)]"
+              : "left-[14%] w-[72%]"
+          )}
+        />
       </div>
     </div>
   );

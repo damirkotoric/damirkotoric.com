@@ -107,15 +107,10 @@ export default function HomePage() {
         <div className="h-full overflow-hidden">
           <ScrollLinkedProvider className="h-full px-6 lg:px-16 2xl:px-40 3xl:px-80">
             <ScrollLinkedContent className="h-full justify-center max-w-[580px]">
-              <ScrollSection
-                id="intro"
-                mobileMedia={
-                  // ScrollSection pulls mobile media up by 3rem; mt-20 nets
-                  // out to a 2rem gap under the buttons.
-                  <HeroStage variant="mobile" className="mt-20" />
-                }
-              >
-                <div className="py-12 lg:py-24">
+              <ScrollSection id="intro">
+                <div className="pb-12 pt-2 lg:py-24">
+                  {/* On small screens the portrait leads and the copy follows. */}
+                  <HeroStage variant="mobile" className="mb-2 lg:hidden" />
                   <HeroContent>
                     <span className="mb-4 inline-block rounded-full border border-muted-foreground/40 px-3 py-1 text-xs tracking-tight font-medium text-muted-foreground">
                       €35M uplift at Booking.com
