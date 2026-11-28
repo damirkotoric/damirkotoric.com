@@ -11,7 +11,7 @@ import {
   useTransform,
   type MotionValue,
 } from "motion/react";
-import { ResolvingPortrait } from "@/components/live-portrait";
+import { LivePortrait } from "@/components/live-portrait";
 import { cn } from "@/lib/utils";
 
 type Piece = {
@@ -298,7 +298,7 @@ export function HeroStage({ className, variant = "large" }: HeroStageProps) {
             playing={playing}
           />
         ))}
-        <ResolvingPortrait intro className="absolute bottom-0 left-[14%] z-10 w-[72%]" />
+        <LivePortrait className="absolute bottom-0 left-[14%] z-10 w-[72%]" />
       </div>
     </div>
   );
