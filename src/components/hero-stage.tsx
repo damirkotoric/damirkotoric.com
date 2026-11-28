@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import {
   motion,
+  useInView,
   useMotionValue,
   useReducedMotion,
   useSpring,
@@ -14,14 +15,12 @@ import { ResolvingPortrait } from "@/components/live-portrait";
 import { cn } from "@/lib/utils";
 
 type Piece = {
+  /** Names its files: a poster in /images/hero and a silent loop in /videos. */
   id: string;
   frame: "browser" | "phone" | "panel";
-  src: string;
   width: number;
   height: number;
   alt: string;
-  /** A silent loop to play in place of the still. */
-  video?: string;
   /** Position and width, as a share of the scene (left/size of its width, top of its height). */
   left: number;
   top: number;
@@ -42,7 +41,6 @@ const PIECES: Piece[] = [
   {
     id: "rankdat",
     frame: "browser",
-    src: "/images/hero/rankdat.avif",
     width: 960,
     height: 640,
     alt: "Rankdat home page",
@@ -58,7 +56,6 @@ const PIECES: Piece[] = [
   {
     id: "stylespin",
     frame: "browser",
-    src: "/images/hero/stylespin.avif",
     width: 960,
     height: 640,
     alt: "StyleSpin landing page",
@@ -73,10 +70,9 @@ const PIECES: Piece[] = [
   {
     id: "rankdat-insight",
     frame: "panel",
-    src: "/images/hero/rankdat-insight.avif",
     width: 420,
-    height: 427,
-    alt: "A Rankdat insight card",
+    height: 428,
+    alt: "Rankdat insight cards",
     left: 67,
     top: 1,
     size: 16,
@@ -86,11 +82,10 @@ const PIECES: Piece[] = [
     drift: 7,
   },
   {
-    id: "beamy",
+    id: "beamy-phone",
     frame: "phone",
-    src: "/images/hero/beamy-phone.avif",
-    width: 468,
-    height: 1013,
+    width: 390,
+    height: 844,
     alt: "Beamy on a phone",
     left: 8,
     top: 44,
@@ -102,13 +97,11 @@ const PIECES: Piece[] = [
     mobile: true,
   },
   {
-    id: "donotstay",
+    id: "donotstay-panel",
     frame: "panel",
-    src: "/images/hero/donotstay-panel.avif",
     width: 360,
     height: 526,
     alt: "The DoNotStay extension's verdict panel",
-    video: "/videos/hero-donotstay.mp4",
     left: 74,
     top: 50,
     size: 22,
@@ -124,33 +117,40 @@ const PIECES: Piece[] = [
 const SHADOW = "shadow-lg lg:shadow-layered";
 const FRAME = cn("overflow-hidden border border-border bg-card", SHADOW);
 
-function PieceMedia({ piece, animated }: { piece: Piece; animated: boolean }) {
+type PieceState = {
+  /** False for visitors who prefer reduced motion: stills, no drift. */
+  animated: boolean;
+  /** Loops run only while the hero is on screen. */
+  playing: boolean;
+};
+
+function PieceMedia({ piece, animated, playing }: { piece: Piece } & PieceState) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const poster = `/images/hero/${piece.id}.avif`;
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
     const sync = () => {
-      if (document.hidden) video.pause();
-      else video.play().catch(() => {});
+      if (playing && !document.hidden) video.play().catch(() => {});
+      else video.pause();
     };
     sync();
     document.addEventListener("visibilitychange", sync);
     return () => document.removeEventListener("visibilitychange", sync);
-  }, [animated]);
+  }, [animated, playing]);
 
-  if (piece.video && animated) {
+  if (animated) {
     return (
       <video
         ref={videoRef}
-        src={piece.video}
-        poster={piece.src}
+        src={`/videos/hero-${piece.id}.mp4`}
+        poster={poster}
         width={piece.width}
         height={piece.height}
         muted
         loop
         playsInline
-        autoPlay
         preload="metadata"
         aria-label={piece.alt}
         className="block h-auto w-full"
@@ -159,7 +159,7 @@ function PieceMedia({ piece, animated }: { piece: Piece; animated: boolean }) {
   }
   return (
     <Image
-      src={piece.src}
+      src={poster}
       width={piece.width}
       height={piece.height}
       alt={piece.alt}
@@ -169,8 +169,8 @@ function PieceMedia({ piece, animated }: { piece: Piece; animated: boolean }) {
   );
 }
 
-function PieceFrame({ piece, animated }: { piece: Piece; animated: boolean }) {
-  const media = <PieceMedia piece={piece} animated={animated} />;
+function PieceFrame({ piece, ...state }: { piece: Piece } & PieceState) {
+  const media = <PieceMedia piece={piece} {...state} />;
   if (piece.frame === "browser") {
     return (
       <div className={cn(FRAME, "rounded-[0.7em]")}>
@@ -199,13 +199,13 @@ function FloatingPiece({
   pointerX,
   pointerY,
   animated,
+  playing,
 }: {
   piece: Piece;
   index: number;
   pointerX: MotionValue<number>;
   pointerY: MotionValue<number>;
-  animated: boolean;
-}) {
+} & PieceState) {
   const x = useTransform(pointerX, (v) => v * piece.depth);
   const y = useTransform(pointerY, (v) => v * piece.depth * 0.6);
 
@@ -232,7 +232,7 @@ function FloatingPiece({
               : { duration: 0 }
           }
         >
-          <PieceFrame piece={piece} animated={animated} />
+          <PieceFrame piece={piece} animated={animated} playing={playing} />
         </motion.div>
       </motion.div>
     </motion.div>
@@ -247,11 +247,14 @@ type HeroStageProps = {
 
 /**
  * The hero's visual: the live portrait with product pieces floating around
- * it — some behind, some in front. The pieces bob slowly and, on devices
+ * it — some behind, some in front. Each piece is a short loop of the real
+ * product in use. The pieces bob slowly and, on devices
  * with a cursor, shift against it by depth. Everything is placed in shares
  * of one scene box, so the composition scales as a unit.
  */
 export function HeroStage({ className, variant = "large" }: HeroStageProps) {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const playing = useInView(stageRef, { margin: "20% 0px" });
   const prefersReducedMotion = useReducedMotion();
   const animated = !prefersReducedMotion;
   const targetX = useMotionValue(0);
@@ -274,6 +277,7 @@ export function HeroStage({ className, variant = "large" }: HeroStageProps) {
 
   return (
     <div
+      ref={stageRef}
       className={cn(
         "relative",
         // On small screens the scene runs edge to edge, past the page padding.
@@ -291,6 +295,7 @@ export function HeroStage({ className, variant = "large" }: HeroStageProps) {
             pointerX={pointerX}
             pointerY={pointerY}
             animated={animated}
+            playing={playing}
           />
         ))}
         <ResolvingPortrait intro className="absolute bottom-0 left-[14%] z-10 w-[72%]" />
