@@ -168,14 +168,16 @@ const messages = [
   { mine: true, at: 4.8, text: "That's what I do. Send me what you have." },
 ];
 
-/** The founder has no photo, so they get their initial, the way chat and call apps show it. */
+/** The founder is nobody in particular: a generated portrait, not a client's photo. */
 function FounderAvatar({ className }: { className: string }) {
   return (
-    <span
-      className={`flex items-center justify-center rounded-full bg-foreground font-semibold text-background ${className}`}
-    >
-      F
-    </span>
+    <Image
+      src={`${DIR}/founder-avatar.webp`}
+      alt=""
+      width={192}
+      height={192}
+      className={`rounded-full ${className}`}
+    />
   );
 }
 
@@ -187,7 +189,7 @@ function Conversation() {
         {...appear(still, 0.1)}
         className="mb-1 flex items-center gap-2.5 self-center text-sm text-muted-foreground"
       >
-        <FounderAvatar className="size-9 text-sm" />
+        <FounderAvatar className="size-9" />
         Founder
       </motion.div>
       {messages.map(({ mine, at, text }) => (
@@ -787,7 +789,7 @@ function Call() {
             className="@container relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl border border-muted-foreground"
           >
             {person === 0 ? (
-              <FounderAvatar className="aspect-square w-[30%] text-[13cqw]" />
+              <FounderAvatar className="aspect-square w-[30%]" />
             ) : (
               <Image
                 src={`${DIR}/damir-avatar.webp`}
