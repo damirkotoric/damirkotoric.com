@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { Testimonial } from "@/components/testimonial";
 import { testimonials } from "@/data/testimonials";
-import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { HeroShowreel } from "@/components/hero-showreel";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { HeroStage } from "@/components/hero-stage";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
@@ -83,6 +82,12 @@ const structuredData = {
   ],
 };
 
+const aboutReel = {
+  sources: [{ src: "/videos/about-loop.mp4", type: "video/mp4" }],
+  poster: "/videos/about-loop-poster.jpg",
+  label: "Damir teaching a UX design class at General Assembly and running a design sprint at Envato",
+};
+
 const outcomes = [
   { number: "€35M", label: "Conversion uplift at", name: "Booking.com", href: "/portfolio/booking-com" },
   { number: "70%", label: "Acquisition secured for", name: "BrokerEngine", href: "/portfolio/brokerengine" },
@@ -102,30 +107,14 @@ export default function HomePage() {
         <div className="h-full overflow-hidden">
           <ScrollLinkedProvider className="h-full px-6 lg:px-16 2xl:px-40 3xl:px-80">
             <ScrollLinkedContent className="h-full justify-center max-w-[580px]">
-              <ScrollSection
-                id="intro"
-                mobileMedia={
-                  // ScrollSection pulls mobile media up by 3rem, which suited
-                  // the portrait's built-in whitespace but jams the panel
-                  // against the buttons. mt-20 nets out to a 2rem gap.
-                  <HeroShowreel variant="mobile" delay={0.5} className="mt-20 pb-8" />
-                }
-              >
-                <div className="py-12 lg:py-24">
+              <ScrollSection id="intro">
+                <div className="pb-12 pt-2 lg:py-24">
+                  {/* On small screens the portrait leads and the copy follows. */}
+                  <HeroStage variant="mobile" className="mb-2 lg:hidden" />
                   <HeroContent>
-                    <div className="mb-4 flex items-center gap-3">
-                      <Avatar size="lg">
-                        <AvatarImage
-                          src="/images/damir-contact.jpg"
-                          alt={FULL_NAME}
-                          className="object-cover"
-                        />
-                        <AvatarFallback>DK</AvatarFallback>
-                      </Avatar>
-                      <span className="rounded-full border border-muted-foreground/40 px-3 py-1 text-xs tracking-tight font-medium text-muted-foreground">
-                        €35M uplift at Booking.com
-                      </span>
-                    </div>
+                    <span className="mb-4 inline-block rounded-full border border-muted-foreground/40 px-3 py-1 text-xs tracking-tight font-medium text-muted-foreground">
+                      €35M uplift at Booking.com
+                    </span>
                     <h1 className="mb-3 text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-[72px]">
                       {FULL_NAME}
                     </h1>
@@ -154,7 +143,7 @@ export default function HomePage() {
 
             <ScrollLinkedMedia className="h-full hidden lg:flex items-center">
               <ScrollMediaItem sectionId="intro" className="h-full w-full">
-                <HeroShowreel />
+                <HeroStage />
               </ScrollMediaItem>
             </ScrollLinkedMedia>
           </ScrollLinkedProvider>
@@ -265,19 +254,19 @@ export default function HomePage() {
               we&apos;ll probably get along.
             </p>
           </div>
-          <div className="flex justify-center lg:justify-end lg:h-full 3xl:pr-60">
-            <div className="lg:hidden">
-              <PixelatedAvatar variant="mobile" reveal />
-            </div>
-            <div className="hidden lg:block h-full w-full">
-              <PixelatedAvatar variant="large" reveal size="fill" />
-            </div>
+          <div className="flex items-center justify-center pb-20 pt-10 lg:justify-end lg:py-0 3xl:pr-60">
+            <HeroShowreel variant="mobile" delay={0} reel={aboutReel} className="max-w-[560px]" />
           </div>
         </div>
       </section>
 
       {/* Section 6: Toolbelt */}
       <Toolbelt />
+
+      {/* The reel opens the client work */}
+      <section className="px-6 pt-20 lg:px-16 lg:pb-8 lg:pt-32 2xl:px-40 3xl:px-80">
+        <HeroShowreel variant="mobile" delay={0} className="mx-auto max-w-[1000px]" />
+      </section>
 
       {/* Section 7: Client work */}
       <PortfolioShowcase title="Client work" items={selectedWork} />
