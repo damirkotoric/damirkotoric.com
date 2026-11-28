@@ -69,6 +69,9 @@ const appear = (still: boolean, delay: number, duration = 0.4) => ({
 });
 
 // A named pointer that travels through a list of positions, like a collaborator on a canvas.
+const PRESS_DOWN_S = 0.1;
+const PRESS_UP_S = 0.14;
+
 function Pointer({
   name,
   solid,
@@ -76,6 +79,8 @@ function Pointer({
   top,
   duration,
   delay = 0,
+  times,
+  clicks = [],
 }: {
   name?: string;
   solid?: boolean;
@@ -83,8 +88,19 @@ function Pointer({
   top: string[];
   duration: number;
   delay?: number;
+  /** When each position is reached, as fractions of `duration`. Evenly spaced if left out. */
+  times?: number[];
+  /** Seconds into the slide at which the mouse button is fully down. */
+  clicks?: number[];
 }) {
   const still = useStill();
+  // Each click dips the cursor as the button goes down, then lets it back up.
+  const pressEnd = (clicks.at(-1) ?? 0) + PRESS_UP_S;
+  const press = clicks.flatMap((at) => [
+    { at: at - PRESS_DOWN_S, scale: 1 },
+    { at, scale: 0.75 },
+    { at: at + PRESS_UP_S, scale: 1 },
+  ]);
   return (
     <motion.div
       className="absolute z-20 flex items-start"
@@ -94,15 +110,33 @@ function Pointer({
         duration,
         delay,
         ease: "easeInOut",
+        times,
         opacity: { duration: 0.3, delay },
       })}
     >
       {/* A filled cursor gets a thin outline in the page colour so it shows on dark surfaces. */}
-      <Cursor
-        size={16}
-        weight={solid ? "fill" : "regular"}
-        className={solid ? "stroke-background stroke-[20] [paint-order:stroke]" : undefined}
-      />
+      <motion.span
+        className="origin-top-left"
+        animate={
+          clicks.length && !still
+            ? { scale: [1, ...press.map(({ scale }) => scale)] }
+            : undefined
+        }
+        transition={{
+          duration: pressEnd,
+          times: [0, ...press.map(({ at }) => at / pressEnd)],
+        }}
+      >
+        <Cursor
+          size={16}
+          weight={solid ? "fill" : "regular"}
+          className={
+            solid
+              ? "stroke-background stroke-[20] [paint-order:stroke]"
+              : undefined
+          }
+        />
+      </motion.span>
       {name && (
         <span
           className={`mt-3 rounded-full px-2 py-0.5 text-[10px] font-semibold ${solid ? "bg-foreground text-background" : "border border-border bg-background"}`}
@@ -177,9 +211,95 @@ function Conversation() {
 
 /* 2. Analysis first: a product audit and competitor board, with an invented grocery app */
 
+// Low-fi wireframe parts, drawn on a 100 by 100 grid so they scale with the board.
+const wireText = "fill-muted-foreground/25";
+const wireBox = "fill-background stroke-muted-foreground/40";
+const wireButton = "fill-muted-foreground/50";
+
+// Five steps, and it opens on a sign-in wall.
+const signInWire = (
+  <>
+    <path d="M14 11H86" className="stroke-muted-foreground/40" />
+    {[14, 32, 50, 68, 86].map((x, step) => (
+      <circle
+        key={x}
+        cx={x}
+        cy={11}
+        r={4}
+        className={step ? wireBox : "fill-muted-foreground"}
+      />
+    ))}
+    <rect x={10} y={25} width={42} height={5} rx={2.5} className={wireText} />
+    <rect x={10} y={37} width={80} height={13} rx={2} className={wireBox} />
+    <rect x={10} y={54} width={80} height={13} rx={2} className={wireBox} />
+    <rect x={10} y={76} width={80} height={14} rx={3} className={wireButton} />
+  </>
+);
+
+// Delivery slots come first, then a choice between guest and account.
+const slotsWire = (
+  <>
+    <rect x={10} y={9} width={36} height={5} rx={2.5} className={wireText} />
+    {[20, 35].flatMap((y) =>
+      [10, 38, 66].map((x) => (
+        <rect
+          key={`${x}-${y}`}
+          x={x}
+          y={y}
+          width={24}
+          height={11}
+          rx={5.5}
+          className={x === 38 && y === 20 ? "fill-muted-foreground" : wireBox}
+        />
+      )),
+    )}
+    <rect x={10} y={56} width={38} height={13} rx={2} className={wireButton} />
+    <rect x={52} y={56} width={38} height={13} rx={2} className={wireBox} />
+    <rect x={10} y={76} width={80} height={14} rx={3} className={wireButton} />
+  </>
+);
+
+// The last order, ready to buy again with one button.
+const reorderWire = (
+  <>
+    <rect x={10} y={9} width={30} height={5} rx={2.5} className={wireText} />
+    {[20, 36, 52].map((y) => (
+      <g key={y}>
+        <rect
+          x={10}
+          y={y}
+          width={12}
+          height={12}
+          rx={2}
+          className="fill-muted"
+        />
+        <rect
+          x={27}
+          y={y + 4}
+          width={36}
+          height={4}
+          rx={2}
+          className={wireText}
+        />
+        <rect
+          x={76}
+          y={y + 4}
+          width={14}
+          height={4}
+          rx={2}
+          className={wireText}
+        />
+      </g>
+    ))}
+    <path d="M10 70H90" className="stroke-muted-foreground/40" />
+    <rect x={10} y={76} width={80} height={14} rx={3} className={wireButton} />
+  </>
+);
+
 const boardColumns = [
   {
     title: "Your checkout",
+    wire: signInWire,
     notes: [
       { text: "5 steps to pay", problem: true, at: 1.2 },
       { text: "No guest checkout", problem: true, at: 2.0 },
@@ -187,6 +307,7 @@ const boardColumns = [
   },
   {
     title: "Competitor A",
+    wire: slotsWire,
     notes: [
       { text: "Guest checkout", problem: false, at: 2.9 },
       { text: "Delivery slot picked first", problem: false, at: 3.6 },
@@ -194,6 +315,7 @@ const boardColumns = [
   },
   {
     title: "Competitor B",
+    wire: reorderWire,
     notes: [
       { text: "One-tap reorder", problem: false, at: 4.4 },
       { text: "No order tracking", problem: true, at: 5.1 },
@@ -207,14 +329,16 @@ const dottedCanvas =
 function AnalysisBoard() {
   const still = useStill();
   return (
-    <div className={`${card} ${dottedCanvas} relative aspect-[4/3] w-[92%]`}>
+    <div
+      className={`${card} ${dottedCanvas} relative aspect-[4/5] w-[92%] sm:aspect-[4/3]`}
+    >
       <motion.div
         className="grid h-full origin-top-left grid-cols-3 gap-3 p-4"
         initial={{ scale: 1.3 }}
         animate={{ scale: 1 }}
         transition={timing(still, { duration: 5.5, ease: "easeOut" })}
       >
-        {boardColumns.map(({ title, notes }, column) => (
+        {boardColumns.map(({ title, wire, notes }, column) => (
           <div key={title} className="flex flex-col gap-2">
             <motion.p
               {...appear(still, 0.2 + column * 0.15)}
@@ -222,14 +346,14 @@ function AnalysisBoard() {
             >
               {title}
             </motion.p>
-            <motion.div
+            <motion.svg
               {...appear(still, 0.4 + column * 0.15)}
-              className="flex flex-col gap-1.5 rounded-md border border-border bg-background p-2"
+              viewBox="0 0 100 100"
+              aria-hidden
+              className="rounded-md border border-border bg-background [&_*]:[vector-effect:non-scaling-stroke]"
             >
-              <span className="h-10 rounded-sm bg-muted" />
-              <span className={`${bar} h-1.5 w-3/4`} />
-              <span className={`${bar} h-1.5 w-1/2`} />
-            </motion.div>
+              {wire}
+            </motion.svg>
             {notes.map(({ text, problem, at }, position) => (
               <motion.p
                 key={text}
@@ -635,7 +759,7 @@ const sceneItem: Variants = {
   },
 };
 
-// The left person talks, then the right, then the left again.
+// The founder (left) talks, then I do (right), then the founder again.
 const CALL_S = 6;
 const turns = [
   [1, 1, 0, 0, 1, 1],
@@ -652,12 +776,21 @@ function Call() {
           <motion.div
             key={person}
             {...pop(still, 0.1 + person * 0.2)}
-            className="relative flex aspect-[4/3] items-end justify-center overflow-hidden rounded-xl border border-muted-foreground"
+            className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl border border-muted-foreground"
           >
-            <div className="flex flex-col items-center gap-2">
-              <span className="size-14 rounded-full bg-muted-foreground/30" />
-              <span className="h-12 w-28 rounded-t-full bg-muted-foreground/30" />
-            </div>
+            {person === 0 ? (
+              <span className="flex aspect-square w-[30%] items-center justify-center rounded-full bg-muted">
+                <User weight="fill" className="size-1/2" />
+              </span>
+            ) : (
+              <Image
+                src={`${DIR}/damir-avatar.webp`}
+                alt=""
+                width={192}
+                height={192}
+                className="aspect-square w-[30%] rounded-full"
+              />
+            )}
             <motion.div
               className="absolute inset-0 rounded-xl border-2 border-foreground"
               initial={{ opacity: speaking[0] }}
@@ -709,51 +842,92 @@ const checks = [
     title: "By hand",
     rows: ["Dark mode", "Small screens", "Screen reader", "Slow connection"],
     at: 2.2,
+    clicked: true,
   },
 ];
 const ROW_S = 0.8;
+// The cursor reaches a tick this long before pressing it, and stays this long after.
+const DWELL_S = 0.2;
+const byHand = checks[1];
+const tickClicks = byHand.rows.map((_, row) => byHand.at + row * ROW_S);
+const tickRun = byHand.rows.length * ROW_S + DWELL_S;
+// Where the cursor's tip meets the middle of each tick: the card's edge and padding, its title
+// line, then one fixed-height row and gap per tick.
+const TICK_LEFT = "calc(100% - 2.125rem)";
+const tickTop = (row: number) => `${3.75 + row * 2}rem`;
 
 function Quality() {
   const still = useStill();
   return (
-    <div className="relative grid w-[90%] grid-cols-2 items-start gap-4">
-      {checks.map(({ title, rows, at }) => (
-        <motion.div
-          key={title}
-          {...appear(still, at - 0.4)}
-          className={`${card} flex flex-col gap-3 p-5`}
-        >
-          <p className="text-sm font-semibold text-muted-foreground">{title}</p>
-          {rows.map((row, position) => (
-            <div
-              key={row}
-              className="flex items-center justify-between gap-2.5 text-sm font-medium"
-            >
-              {row}
-              <span className="relative size-5 shrink-0">
-                <Circle
-                  size={20}
-                  className="absolute inset-0 text-muted-foreground"
-                />
-                <motion.span
-                  {...pop(still, at + position * ROW_S)}
-                  className="absolute inset-0"
-                >
-                  <CheckCircle size={20} weight="fill" />
-                </motion.span>
-              </span>
-            </div>
-          ))}
-        </motion.div>
+    <div className="grid w-[90%] grid-cols-1 items-start gap-4 sm:grid-cols-2">
+      {checks.map(({ title, rows, at, clicked }) => (
+        <div key={title} className="relative">
+          <motion.div
+            {...appear(still, at - 0.4)}
+            className={`${card} flex flex-col gap-3 p-5`}
+          >
+            <p className="text-sm font-semibold text-muted-foreground">
+              {title}
+            </p>
+            {rows.map((row, position) => (
+              <div
+                key={row}
+                className="flex h-5 items-center justify-between gap-2.5 text-sm font-medium whitespace-nowrap"
+              >
+                {row}
+                <span className="relative size-5 shrink-0">
+                  {/* A clicked tick gives under the cursor before it fills in. */}
+                  <motion.span
+                    className="absolute inset-0 text-muted-foreground"
+                    animate={
+                      clicked && !still ? { scale: [1, 0.8, 1] } : undefined
+                    }
+                    transition={{
+                      delay: at + position * ROW_S - PRESS_DOWN_S,
+                      duration: PRESS_DOWN_S + PRESS_UP_S,
+                    }}
+                  >
+                    <Circle size={20} />
+                  </motion.span>
+                  <motion.span
+                    {...pop(
+                      still,
+                      at + position * ROW_S + (clicked ? PRESS_UP_S / 2 : 0),
+                    )}
+                    className="absolute inset-0"
+                  >
+                    <CheckCircle size={20} weight="fill" />
+                  </motion.span>
+                </span>
+              </div>
+            ))}
+          </motion.div>
+          {clicked && (
+            <Pointer
+              name="Damir"
+              solid
+              left={[
+                "calc(100% - 7rem)",
+                ...tickClicks.flatMap(() => [TICK_LEFT, TICK_LEFT]),
+              ]}
+              top={[
+                tickTop(byHand.rows.length + 1),
+                ...tickClicks.flatMap((_, row) => [tickTop(row), tickTop(row)]),
+              ]}
+              times={[
+                0,
+                ...tickClicks.flatMap((_, row) => [
+                  ((row + 1) * ROW_S - DWELL_S) / tickRun,
+                  ((row + 1) * ROW_S + DWELL_S) / tickRun,
+                ]),
+              ]}
+              duration={tickRun}
+              delay={byHand.at - ROW_S}
+              clicks={tickClicks}
+            />
+          )}
+        </div>
       ))}
-      <Pointer
-        name="Damir"
-        solid
-        left={["70%", "92.5%", "92.5%", "92.5%", "92.5%"]}
-        top={["95%", "30%", "46%", "62%", "78%"]}
-        duration={checks[1].rows.length * ROW_S}
-        delay={checks[1].at - ROW_S}
-      />
     </div>
   );
 }
@@ -920,11 +1094,13 @@ function AppStore() {
           </motion.div>
         ))}
       </div>
-      <Pointer solid
+      <Pointer
+        solid
         left={["55%", "93%"]}
         top={["75%", "12%"]}
         duration={1}
         delay={GET_AT - 1.2}
+        clicks={[GET_AT + 0.15]}
       />
     </motion.div>
   );
