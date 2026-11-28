@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CtaSection } from "@/components/cta-section";
@@ -23,17 +24,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `${post.title} • ${FULL_NAME}`;
 
-  return {
+  const metadata = pageMetadata({
     title,
     description: post.description,
-    alternates: { canonical: `/blog/${post.slug}` },
+    path: `/blog/${post.slug}`,
+  });
+
+  return {
+    ...metadata,
     robots: post.draft ? { index: false } : undefined,
-    openGraph: {
-      type: "article",
-      title,
-      description: post.description,
-      publishedTime: post.date,
-    },
+    openGraph: { ...metadata.openGraph, type: "article", publishedTime: post.date },
   };
 }
 

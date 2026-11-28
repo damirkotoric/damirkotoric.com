@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import { notFound } from "next/navigation";
 import { PortfolioDetail } from "@/components/portfolio-detail";
 import { FULL_NAME, PERSON_ID, SITE_URL } from "@/data/socials";
@@ -29,26 +30,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `${project.seoTitle} • ${FULL_NAME}`;
 
-  return {
+  return pageMetadata({
     title,
     description: project.description,
-    alternates: { canonical: `/portfolio/${project.slug}` },
-    openGraph: {
-      title,
-      description: project.description,
-      images: [
-        {
-          url: project.ogImage.src,
-          width: 1200,
-          height: 680,
-          alt: project.ogImage.alt,
-        },
-      ],
+    path: `/portfolio/${project.slug}`,
+    image: {
+      url: project.ogImage.src,
+      width: 1200,
+      height: 680,
+      alt: project.ogImage.alt,
     },
-    twitter: {
-      images: [project.ogImage.src],
-    },
-  };
+  });
 }
 
 export default async function PortfolioProjectPage({ params }: Props) {

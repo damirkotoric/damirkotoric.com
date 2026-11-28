@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
@@ -29,12 +30,11 @@ const DESCRIPTION =
 
 const title = `${HEADLINE} • ${FULL_NAME}`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
-  openGraph: { title, description: DESCRIPTION, url: PATH },
-};
+  path: PATH,
+});
 
 // Bar widths are a share of the largest figure on the chart ($50K).
 const costRows = [

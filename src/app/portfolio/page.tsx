@@ -1,30 +1,18 @@
 import type { Metadata } from "next";
-import { FULL_NAME, ROLE } from "@/data/socials";
+import { pageMetadata } from "@/lib/page-metadata";
+import { FULL_NAME } from "@/data/socials";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { CtaSection } from "@/components/cta-section";
 import { ProjectCard } from "@/components/project-card";
 import { getFeaturedProjects, getArchiveProjects } from "@/lib/portfolio-data";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: `Portfolio • ${FULL_NAME}`,
-  alternates: { canonical: "/portfolio" },
   description:
     "Selected projects from 17+ years of product design work across startups, scale-ups, and enterprise.",
-  openGraph: {
-    images: [
-      {
-        url: "/images/og.jpg",
-        width: 1200,
-        height: 630,
-        alt: `${FULL_NAME} - ${ROLE}`,
-      },
-    ],
-  },
-  twitter: {
-    images: ["/images/og.jpg"],
-  },
-};
+  path: "/portfolio",
+});
 
 const featuredProjects = getFeaturedProjects().map((p) => ({
   slug: p.slug,
