@@ -4,10 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { Testimonial } from "@/components/testimonial";
 import { testimonials } from "@/data/testimonials";
-import { PixelatedAvatar } from "@/components/pixelated-avatar";
 import { HeroShowreel } from "@/components/hero-showreel";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { AvatarLoop } from "@/components/live-portrait";
+import { AvatarLoop, ResolvingPortrait } from "@/components/live-portrait";
 import { HeroContent, AnimateIn } from "@/components/hero-content";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LogoReel } from "@/components/logo-reel";
@@ -268,12 +267,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="flex justify-center lg:justify-end lg:h-full 3xl:pr-60">
-            <div className="lg:hidden">
-              <PixelatedAvatar variant="mobile" reveal />
-            </div>
-            <div className="hidden lg:block h-full w-full">
-              <PixelatedAvatar variant="large" reveal size="fill" />
-            </div>
+            <ResolvingPortrait />
           </div>
         </div>
       </section>

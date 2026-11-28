@@ -1,9 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
-import { LivePortrait } from "@/components/live-portrait";
 import { cn } from "@/lib/utils";
 
 /** Returns responsive cell size and dot scale for the large variant based on viewport width */
@@ -33,12 +31,8 @@ function useLargeCellParams() {
 type PixelatedAvatarProps = {
   variant?: "mobile" | "large";
   className?: string;
-  /** When true, reveals from pixelated to real photo when in view */
-  reveal?: boolean;
   /** Size of the large variant container. Default is "viewport" (h-screen), "medium" is 60vh, "fill" is h-full */
   size?: "viewport" | "medium" | "fill";
-  /** How to trigger the reveal: "scroll" (in-view) or "hover" (mouse hover). Default is "scroll" */
-  revealOn?: "scroll" | "hover";
   /** Enable entry animation where cells animate into place */
   entryAnimation?: boolean;
 };
@@ -70,116 +64,15 @@ const baseProps = {
 export function PixelatedAvatar({
   variant = "large",
   className,
-  reveal = false,
   size = "viewport",
-  revealOn = "scroll",
   entryAnimation = false,
 }: PixelatedAvatarProps) {
   const { cellSize: largeCellSize, dotScale: largeDotScale } = useLargeCellParams();
   const heightClass = size === "medium" ? "h-[60vh]" : size === "fill" ? "h-full" : "h-screen";
   const innerHeight = size === "fill" ? "100%" : "110%";
-  const bottomClass = size === "fill" ? "bottom-0" : "bottom-0";
-  const overflowClass = "overflow-visible";
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [showRealImage, setShowRealImage] = useState(false);
-  const hasTriggeredRef = useRef(false);
-  const revealTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Trigger reveal/conceal animation based on visibility (scroll mode)
-  useEffect(() => {
-    if (!reveal || revealOn !== "scroll") return;
-
-    const element = containerRef.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const ratio = entry.intersectionRatio;
-
-          if (ratio >= 0.8) {
-            // Element is mostly in view - wait 1 second, then reveal
-            if (!hasTriggeredRef.current) {
-              hasTriggeredRef.current = true;
-              revealTimeoutRef.current = setTimeout(() => {
-                setShowRealImage(true);
-              }, 200);
-            }
-          } else if (ratio < 0.95) {
-            // Any part leaving view - conceal back to pixelated immediately
-            if (revealTimeoutRef.current) {
-              clearTimeout(revealTimeoutRef.current);
-              revealTimeoutRef.current = null;
-            }
-            hasTriggeredRef.current = false;
-            setShowRealImage(false);
-          }
-        });
-      },
-      { threshold: [0.8, 0.85, 0.9, 0.95, 1.0] } // Multiple thresholds for precise control
-    );
-
-    observer.observe(element);
-    return () => {
-      observer.disconnect();
-      if (revealTimeoutRef.current) clearTimeout(revealTimeoutRef.current);
-    };
-  }, [reveal, variant, revealOn]);
-
-  // Hover handlers for hover mode
-  const handleMouseEnter = () => {
-    if (!reveal || revealOn !== "hover") return;
-    setShowRealImage(true);
-  };
-
-  const handleMouseLeave = () => {
-    if (!reveal || revealOn !== "hover") return;
-    if (revealTimeoutRef.current) {
-      clearTimeout(revealTimeoutRef.current);
-      revealTimeoutRef.current = null;
-    }
-    setShowRealImage(false);
-  };
 
   // Mobile variant - inline avatar
   if (variant === "mobile") {
-    if (reveal) {
-      return (
-        <div
-          ref={containerRef}
-          className={cn("flex items-center justify-center relative md:pb-8", className)}
-        >
-          <div className="relative w-[448px] h-[448px]">
-            <div
-              className="absolute inset-0 transition-opacity duration-700"
-              style={{ opacity: showRealImage ? 1 : 0 }}
-            >
-              <LivePortrait active={showRealImage}>
-                <Image
-                  src="/images/damir.avif"
-                  alt="Damir Kotorić"
-                  width={448}
-                  height={448}
-                  className="object-cover"
-                />
-              </LivePortrait>
-            </div>
-            <div
-              className="absolute inset-0 transition-opacity duration-700"
-              style={{ opacity: showRealImage ? 0 : 1 }}
-            >
-              <PixelatedCanvas
-                {...baseProps}
-                width={448}
-                height={448}
-                cellSize={8}
-                distortionRadius={80}
-              />
-            </div>
-          </div>
-        </div>
-      );
-    }
     return (
       <div className={cn("flex items-center justify-center lg:pb-8", className)}>
         <PixelatedCanvas
@@ -194,62 +87,11 @@ export function PixelatedAvatar({
     );
   }
 
-  // Large variant with reveal effect
-  if (reveal) {
-    return (
-      <div
-        ref={containerRef}
-        className={cn("relative w-full overflow-visible", heightClass, className)}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-0 pointer-events-auto"
-          style={{
-            height: "110%",
-            aspectRatio: "1 / 1",
-          }}
-        >
-          {/* Real image */}
-          <div
-            className="absolute inset-0 transition-opacity duration-700"
-            style={{ opacity: showRealImage ? 1 : 0 }}
-          >
-            <LivePortrait active={showRealImage}>
-              <Image
-                src="/images/damir.avif"
-                alt="Damir Kotorić"
-                fill
-                priority
-                className="object-cover"
-              />
-            </LivePortrait>
-          </div>
-          {/* Pixelated canvas */}
-          <div
-            className="absolute inset-0 transition-opacity duration-700"
-            style={{ opacity: showRealImage ? 0 : 1 }}
-          >
-            <PixelatedCanvas
-              {...baseProps}
-              cellSize={largeCellSize}
-              dotScale={largeDotScale}
-              distortionRadius={100}
-              objectFit="cover"
-              fillContainer
-              className="h-full w-full"
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Large variant - dramatic full-height presentation (no reveal)
+  // Large variant - dramatic full-height presentation
   return (
-    <div className={cn("relative w-full", overflowClass, heightClass, className)}>
+    <div className={cn("relative w-full overflow-visible", heightClass, className)}>
       <div
-        className={cn("absolute left-1/2 -translate-x-1/2 pointer-events-auto", bottomClass)}
+        className="absolute left-1/2 -translate-x-1/2 bottom-0 pointer-events-auto"
         style={{
           height: innerHeight,
           aspectRatio: "1 / 1",
