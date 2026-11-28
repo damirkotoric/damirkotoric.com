@@ -1,5 +1,5 @@
 // Records short clips of shipped products for the pieces that float around
-// the hero portrait: the real page, scrolling or playing, via Chrome's
+// the hero portrait: the real page doing what it does, via Chrome's
 // screencast. Frames land in /tmp/heroport/rec/<id>/ with a concat list that
 // carries their real timing; scripts/build-hero-pieces.mjs turns them into
 // loops.
@@ -9,12 +9,26 @@ import { spawn } from "node:child_process";
 import { mkdir, rm, writeFile } from "node:fs/promises";
 
 const OUT = "/tmp/heroport/rec";
+// Rankdat's hero grid ripples outward from wherever it is clicked.
+const RIPPLE = `(() => {
+  const click = (x, y) =>
+    [...document.querySelectorAll(".cell")]
+      .find((cell) => {
+        const r = cell.getBoundingClientRect();
+        return x >= r.left && x < r.right && y >= r.top && y < r.bottom;
+      })
+      ?.click();
+  setTimeout(() => click(380, 170), 250);
+  setTimeout(() => click(860, 260), 2300);
+})()`;
+
 const SHOTS = [
-  // `scroll` is how far the page travels during the clip, in px.
-  { id: "rankdat", url: "https://rankdat.io", w: 1200, h: 800, ms: 5000, scroll: 520 },
-  { id: "stylespin", url: "https://stylespin.vercel.app", w: 1200, h: 800, ms: 5000, scroll: 480 },
+  // `run` is a script started as the recording begins.
+  { id: "rankdat", url: "https://rankdat.io", w: 1200, h: 800, ms: 4500, run: RIPPLE },
+  // The landing page cycles its models by itself.
+  { id: "stylespin", url: "https://stylespin.vercel.app", w: 1200, h: 800, ms: 5000 },
   // The page's own promo video plays inside it.
-  { id: "beamy-phone", url: "https://getbeamy.app", w: 390, h: 844, mobile: true, ms: 6000, scroll: 0 },
+  { id: "beamy-phone", url: "https://getbeamy.app", w: 390, h: 844, mobile: true, ms: 6000 },
 ];
 
 const PORT = 9222 + Math.floor(Math.random() * 500);
@@ -69,20 +83,6 @@ const send = (method, params = {}, sessionId) =>
     ws.send(JSON.stringify({ id, method, params, sessionId }));
   });
 
-// An eased scroll from the top to `distance`, resting briefly at both ends
-// so the forward-then-backward loop pauses where it turns.
-const scrollScript = (distance, ms) => `(() => {
-  document.documentElement.style.scrollBehavior = "auto";
-  const HOLD = 500;
-  const t0 = performance.now();
-  const step = (now) => {
-    const p = Math.min(1, Math.max(0, (now - t0 - HOLD) / (${ms} - 2 * HOLD)));
-    window.scrollTo(0, ${distance} * (0.5 - 0.5 * Math.cos(Math.PI * p)));
-    if (p < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-})()`;
-
 for (const shot of SHOTS) {
   const dir = `${OUT}/${shot.id}`;
   await rm(dir, { recursive: true, force: true });
@@ -111,7 +111,7 @@ for (const shot of SHOTS) {
     send("Page.screencastFrameAck", { sessionId: params.sessionId }, sid).catch(() => {});
   };
   await S("Page.startScreencast", { format: "jpeg", quality: 90, everyNthFrame: 1 });
-  if (shot.scroll) await S("Runtime.evaluate", { expression: scrollScript(shot.scroll, shot.ms) });
+  if (shot.run) await S("Runtime.evaluate", { expression: shot.run });
   await sleep(shot.ms);
   await S("Page.stopScreencast");
   onFrame = null;

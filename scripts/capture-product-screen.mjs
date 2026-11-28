@@ -7,8 +7,10 @@ import { spawn } from "node:child_process";
 import { writeFile } from "node:fs/promises";
 
 const [, , ID, URL_, SETTLE = "3500", SCROLL = "0"] = process.argv;
-const W = 1280;
-const H = 960;
+// VIEW=1200x800 and MOBILE=1 capture at another viewport; the default is the
+// showreel's frame.
+const [W, H] = (process.env.VIEW ?? "1280x960").split("x").map(Number);
+const MOBILE = process.env.MOBILE === "1";
 const PORT = 9222 + Math.floor(Math.random() * 500);
 const OUT = "/tmp/bts";
 
@@ -76,7 +78,7 @@ await S("Emulation.setDeviceMetricsOverride", {
   width: W,
   height: H,
   deviceScaleFactor: 2,
-  mobile: false,
+  mobile: MOBILE,
 });
 // Headless defaults to a dark colour scheme; the footage these build-ups
 // resolve into is light, so pin it.

@@ -15,7 +15,7 @@ import { LivePortrait } from "@/components/live-portrait";
 import { cn } from "@/lib/utils";
 
 type Piece = {
-  /** Names its files: a poster in /images/hero and a silent loop in /videos. */
+  /** Names its files: a silent loop in /videos and a still in /images/hero. */
   id: string;
   frame: "browser" | "phone" | "panel";
   width: number;
@@ -122,36 +122,47 @@ type PieceState = {
   animated: boolean;
   /** Loops run only while the hero is on screen. */
   playing: boolean;
+  /** Seconds before the loop first starts, so the pieces build in turn. */
+  delay: number;
 };
 
-function PieceMedia({ piece, animated, playing }: { piece: Piece } & PieceState) {
+// Each loop opens on an empty canvas, draws the layout as a wireframe,
+// resolves into the product, runs, and then plays back to empty.
+function PieceMedia({ piece, animated, playing, delay }: { piece: Piece } & PieceState) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const poster = `/images/hero/${piece.id}.avif`;
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    let timer: number | undefined;
     const sync = () => {
-      if (playing && !document.hidden) video.play().catch(() => {});
-      else video.pause();
+      window.clearTimeout(timer);
+      if (!playing || document.hidden) {
+        video.pause();
+        return;
+      }
+      const wait = video.currentTime === 0 ? delay * 1000 : 0;
+      timer = window.setTimeout(() => video.play().catch(() => {}), wait);
     };
     sync();
     document.addEventListener("visibilitychange", sync);
-    return () => document.removeEventListener("visibilitychange", sync);
-  }, [animated, playing]);
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener("visibilitychange", sync);
+    };
+  }, [animated, playing, delay]);
 
   if (animated) {
     return (
       <video
         ref={videoRef}
         src={`/videos/hero-${piece.id}.mp4`}
-        poster={poster}
         width={piece.width}
         height={piece.height}
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         aria-label={piece.alt}
         className="block h-auto w-full"
       />
@@ -159,7 +170,7 @@ function PieceMedia({ piece, animated, playing }: { piece: Piece } & PieceState)
   }
   return (
     <Image
-      src={poster}
+      src={`/images/hero/${piece.id}.avif`}
       width={piece.width}
       height={piece.height}
       alt={piece.alt}
@@ -205,7 +216,7 @@ function FloatingPiece({
   index: number;
   pointerX: MotionValue<number>;
   pointerY: MotionValue<number>;
-} & PieceState) {
+} & Omit<PieceState, "delay">) {
   const x = useTransform(pointerX, (v) => v * piece.depth);
   const y = useTransform(pointerY, (v) => v * piece.depth * 0.6);
 
@@ -232,7 +243,7 @@ function FloatingPiece({
               : { duration: 0 }
           }
         >
-          <PieceFrame piece={piece} animated={animated} playing={playing} />
+          <PieceFrame piece={piece} animated={animated} playing={playing} delay={0.5 + index * 0.45} />
         </motion.div>
       </motion.div>
     </motion.div>
@@ -247,8 +258,8 @@ type HeroStageProps = {
 
 /**
  * The hero's visual: the live portrait with product pieces floating around
- * it — some behind, some in front. Each piece is a short loop of the real
- * product in use. The pieces bob slowly and, on devices
+ * it — some behind, some in front. Each piece is a short loop: a wireframe
+ * that builds into the real product in use. The pieces bob slowly and, on devices
  * with a cursor, shift against it by depth. Everything is placed in shares
  * of one scene box, so the composition scales as a unit.
  */

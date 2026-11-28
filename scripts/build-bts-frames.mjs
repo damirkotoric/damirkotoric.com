@@ -5,11 +5,21 @@
 // it. Output: /tmp/bts/<id>/frame####.png, consumed by build-hero-reel.sh.
 //
 // Usage: node scripts/build-bts-frames.mjs
+//
+// The same build-up for any other screen (the hero's floating pieces use
+// this): the frame takes the photo's size.
+//        node scripts/build-bts-frames.mjs <id> <photo> <scene.json> <outDir> [scale]
 import sharp from "sharp";
 import { mkdir, writeFile, readFile } from "node:fs/promises";
 
-const W = 1280;
-const H = 960;
+const [, , ONE_ID, ONE_PHOTO, ONE_SCENE, ONE_OUT, ONE_SCALE = "1"] = process.argv;
+
+let W = 1280;
+let H = 960;
+// Line weights, the grid and the handles are drawn for a 1280px frame shown
+// near full size. A screen that will be shown much smaller than it was
+// captured passes a scale, so they survive the reduction.
+const K = Number(ONE_SCALE);
 const FPS = 30;
 const DUR = 1.6; // seconds of build-up per product
 const FRAMES = Math.round(FPS * DUR);
@@ -27,11 +37,15 @@ const GUIDE = "#FF2E85";
 // the <id>.png the build-up resolves into.
 const IDS = ["beamy", "donotstay", "rankdat", "stylespin"];
 const SCENES = {};
-for (const id of IDS) {
-  const scene = JSON.parse(
-    await readFile(`/tmp/bts/${id}.scene.json`, "utf8")
-  );
-  SCENES[id] = { container: scene.container, boxes: scene.boxes };
+const loadScene = async (path) => {
+  const scene = JSON.parse(await readFile(path, "utf8"));
+  return { container: scene.container, boxes: scene.boxes };
+};
+if (ONE_ID) {
+  SCENES[ONE_ID] = await loadScene(ONE_SCENE);
+  ({ width: W, height: H } = await sharp(ONE_PHOTO).metadata());
+} else {
+  for (const id of IDS) SCENES[id] = await loadScene(`/tmp/bts/${id}.scene.json`);
 }
 
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
@@ -46,11 +60,11 @@ const REGIONS = {
 
 // A pixel dot grid, the way a vector canvas shows one.
 function dotGrid() {
-  const step = 16;
+  const step = 16 * K;
   let d = "";
   for (let y = step; y < H; y += step)
-    for (let x = step; x < W; x += step) d += `M${x} ${y}h1.5`;
-  return `<path d="${d}" stroke="${DOT}" stroke-width="1.5" opacity="0.8" shape-rendering="crispEdges"/>`;
+    for (let x = step; x < W; x += step) d += `M${x} ${y}h${1.5 * K}`;
+  return `<path d="${d}" stroke="${DOT}" stroke-width="${1.5 * K}" opacity="0.8" shape-rendering="crispEdges"/>`;
 }
 
 // Selection handles, as a vector tool draws them.
@@ -62,12 +76,12 @@ function handles(x, y, w, h, a, every = true) {
         [x + w / 2, y + h], [x, y + h], [x, y + h / 2],
       ]
     : [[x, y], [x + w, y], [x + w, y + h], [x, y + h]];
-  const s = 7;
+  const s = 7 * K;
   return pts
     .map(
       ([px, py]) =>
         `<rect x="${(px - s / 2).toFixed(1)}" y="${(py - s / 2).toFixed(1)}" width="${s}" height="${s}" ` +
-        `fill="#fff" stroke="${EDGE}" stroke-width="1.25" opacity="${a.toFixed(3)}"/>`
+        `fill="#fff" stroke="${EDGE}" stroke-width="${1.25 * K}" opacity="${a.toFixed(3)}"/>`
     )
     .join("");
 }
@@ -89,7 +103,7 @@ function boxLayer(boxes, t) {
         `<rect x="${(cx - sw / 2).toFixed(1)}" y="${(cy - sh / 2).toFixed(1)}" ` +
         `width="${sw.toFixed(1)}" height="${sh.toFixed(1)}" rx="${r}" ` +
         `fill="${EDGE}" fill-opacity="${(fillP * op).toFixed(3)}" ` +
-        `stroke="${EDGE}" stroke-width="1.25" stroke-opacity="${(p * 0.85).toFixed(3)}" ` +
+        `stroke="${EDGE}" stroke-width="${1.25 * K}" stroke-opacity="${(p * 0.85).toFixed(3)}" ` +
         `shape-rendering="crispEdges"/>`
       );
     })
@@ -101,15 +115,15 @@ function guideLayer(container, t) {
   const a = easeOut(range(t, 0.22, 0.4));
   if (a <= 0) return "";
   const [x, y, w, h] = container;
-  const g = `stroke="${GUIDE}" stroke-width="1" opacity="${(a * 0.8).toFixed(3)}"`;
+  const g = `stroke="${GUIDE}" stroke-width="${K}" opacity="${(a * 0.8).toFixed(3)}"`;
   const label = `${Math.round(w)} × ${Math.round(h)}`;
-  const lw = label.length * 7.4 + 14;
-  const lx = Math.min(W - lw - 6, x + w - lw);
-  const ly = Math.min(H - 24, y + h + 8);
+  const lw = (label.length * 7.4 + 14) * K;
+  const lx = Math.min(W - lw - 6 * K, x + w - lw);
+  const ly = Math.min(H - 24 * K, y + h + 8 * K);
   return (
-    `<path d="M${x} 0V${H}M${x + w} 0V${H}M0 ${y}H${W}M0 ${y + h}H${W}" ${g} stroke-dasharray="3 4"/>` +
-    `<rect x="${lx}" y="${ly}" width="${lw}" height="19" rx="3" fill="${GUIDE}" opacity="${a.toFixed(3)}"/>` +
-    `<text x="${lx + 7}" y="${ly + 13.5}" font-family="monospace" font-size="11.5" ` +
+    `<path d="M${x} 0V${H}M${x + w} 0V${H}M0 ${y}H${W}M0 ${y + h}H${W}" ${g} stroke-dasharray="${3 * K} ${4 * K}"/>` +
+    `<rect x="${lx}" y="${ly}" width="${lw}" height="${19 * K}" rx="${3 * K}" fill="${GUIDE}" opacity="${a.toFixed(3)}"/>` +
+    `<text x="${lx + 7 * K}" y="${ly + 13.5 * K}" font-family="monospace" font-size="${11.5 * K}" ` +
     `fill="#fff" opacity="${a.toFixed(3)}">${label}</text>` +
     handles(x, y, w, h, a)
   );
@@ -118,7 +132,7 @@ function guideLayer(container, t) {
 function containerLayer([x, y, w, h, r]) {
   return (
     `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" ` +
-    `fill="none" stroke="${EDGE}" stroke-width="1.25" stroke-opacity="0.9" shape-rendering="crispEdges"/>`
+    `fill="none" stroke="${EDGE}" stroke-width="${1.25 * K}" stroke-opacity="0.9" shape-rendering="crispEdges"/>`
   );
 }
 
@@ -146,10 +160,9 @@ function buildSvg(scene, t, layerAlpha) {
 
 const white = { r: 255, g: 255, b: 255, alpha: 1 };
 
-async function renderProduct(id, scene) {
-  const dir = `/tmp/bts/${id}`;
+async function renderProduct(id, scene, photoPath = `/tmp/bts/${id}.png`, dir = `/tmp/bts/${id}`) {
   await mkdir(dir, { recursive: true });
-  const photo = await sharp(`/tmp/bts/${id}.png`).resize(W, H).toBuffer();
+  const photo = await sharp(photoPath).resize(W, H).png().toBuffer();
   const reg = scene.region;
 
   for (let f = 0; f < FRAMES; f++) {
@@ -182,6 +195,11 @@ async function renderProduct(id, scene) {
     await writeFile(`${dir}/frame${String(f).padStart(4, "0")}.png`, frame);
   }
   console.log(`${id}: ${FRAMES} frames${reg ? " (panel only)" : ""}`);
+}
+
+if (ONE_ID) {
+  await renderProduct(ONE_ID, SCENES[ONE_ID], ONE_PHOTO, ONE_OUT);
+  process.exit(0);
 }
 
 for (const [id, scene] of Object.entries(SCENES)) {
